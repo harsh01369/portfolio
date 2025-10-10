@@ -1,0 +1,231 @@
+.experience {
+    position: relative;
+    min-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px 40px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+}
+
+.experience-title {
+    font-size: 2.5rem;
+    color: #0A1F44;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 1.2s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+.education-card {
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border: 3px solid #0A1F44;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideInUp 0.8s ease-out backwards;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.experience-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.experience-card {
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border: 3px solid #0A1F44;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    animation: slideInUp 0.8s ease-out backwards;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    position: relative;
+    z-index: 1;
+    min-width: 300px; /* Reduced min-width for better fit */
+    flex: 1 1 300px; /* Adjusted flex basis */
+    max-width: 90%; /* Dynamic max-width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .experience-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .experience-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .experience-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .experience-card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .experience-card:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+
+    .experience-card:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+
+    .experience-card:hover {
+        transform: translateY(-8px) rotate(1deg);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border-color: #FFFF99;
+    }
+
+.card-title {
+    font-size: 1.8rem;
+    color: #0A1F44;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #FFFF99;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.duration {
+    font-size: 1rem;
+    color: #1a2a44;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    text-align: center;
+    width: 100%;
+}
+
+.details {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.6;
+    text-align: left;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 40px 15px 20px; /* Reduced side padding */
+        width: 95%;
+    }
+
+    .experience-title {
+        font-size: 2rem;
+    }
+
+    .education-card {
+        margin-bottom: 2rem;
+        padding: 1.2rem;
+        width: 100%;
+    }
+
+    .experience-cards {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0; /* Removed padding to fit */
+    }
+
+    .experience-card {
+        min-width: 100%; /* Full width on mobile */
+        max-width: 100%;
+        margin-bottom: 1.5rem;
+        padding: 1.2rem;
+        flex: 1 1 100%; /* Ensure full width */
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .duration {
+        font-size: 0.9rem;
+    }
+
+    .details {
+        font-size: 1rem;
+        padding: 0 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-wrapper {
+        padding: 30px 10px 15px; /* Further reduced padding */
+    }
+
+    .experience-title {
+        font-size: 1.8rem;
+    }
+
+    .education-card {
+        padding: 1rem;
+    }
+
+    .experience-card {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .details {
+        font-size: 0.9rem;
+        padding: 0 0.6rem;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
