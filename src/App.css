@@ -1,199 +1,147 @@
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #FFFFFF;
-    color: #000000;
-    overflow-x: hidden;
-    line-height: 1.6;
-}
+/* Modern App-specific styles using Tailwind */
 
-.App {
-    text-align: center;
-    position: relative;
-}
-
-.sticky-nav {
-    position: sticky;
-    top: 0;
-    background-color: #0A1F44;
-    padding: 1rem;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-    .sticky-nav ul {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-    }
-
-    .sticky-nav a {
-        color: #FFFFFF;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s ease;
-    }
-
-        .sticky-nav a:hover {
-            color: #FFFF99;
-        }
-
-.progress-bar {
-    height: 5px;
-    background-color: #FFFF99;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    z-index: 1001;
-    transition: width 0.3s ease;
-}
-
+/* Legacy support for particles.js backgrounds */
 #hero {
-    background: linear-gradient(135deg, #0A1F44, #000000);
-    color: #FFFFFF;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+  @apply relative min-h-screen flex flex-col justify-center overflow-hidden;
+  background: linear-gradient(135deg, #6366F1 0%, #312E81 100%);
 }
 
 #particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 0;
+  @apply absolute inset-0 w-full h-full pointer-events-none;
+  z-index: 0;
 }
 
+/* Hero content styling */
 .hero-content {
-    padding: 4rem 2rem;
-    text-align: center;
-    z-index: 1;
-    position: relative;
+  @apply relative z-10 px-4 sm:px-6 lg:px-8 py-16 text-center;
 }
 
-    .hero-content h1 {
-        font-size: 3.5rem;
-        margin: 0;
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-content p {
-        font-size: 1.8rem;
-        margin: 1rem 0;
-    }
-
-    .hero-content img {
-        max-width: 250px;
-        border-radius: 50%;
-        margin: 2rem auto;
-        border: 4px solid #0A1F44;
-    }
-
-    .hero-content h2 {
-        font-size: 3rem;
-        margin: 2rem 0;
-        color: #FFFFFF;
-    }
-
-.project-grid, .experience-grid {
-    display: flex;
-    gap: 2rem;
-    padding: 2rem 0;
-    overflow-x: auto;
-    justify-content: center;
+.hero-content h1 {
+  @apply text-white mb-4;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.project-card, .experience-card {
-    background-color: #FFFFFF;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    min-width: 300px;
-    text-align: left;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+.hero-content p {
+  @apply text-white/90 text-xl sm:text-2xl mb-8;
 }
 
-    .project-card:hover, .experience-card:hover {
-        transform: translateY(-5px);
-        background-color: #FFFF99;
-    }
+.hero-content img {
+  @apply max-w-[200px] sm:max-w-[250px] rounded-full mx-auto my-8 border-4 border-white/20 shadow-2xl;
+}
 
-    .project-card h3, .experience-card h3 {
-        color: #0A1F44;
-        margin-bottom: 0.5rem;
-    }
+.hero-content h2 {
+  @apply text-white text-3xl sm:text-4xl md:text-5xl mt-12 mb-6 font-bold cursor-pointer;
+  @apply hover:text-secondary-300 transition-colors duration-300;
+}
 
-    .project-card p, .experience-card p {
-        color: #000000;
-        margin: 0;
-    }
+/* Project and Experience grids */
+.project-grid,
+.experience-grid {
+  @apply flex gap-6 py-8 overflow-x-auto justify-center flex-wrap;
+}
 
-    .project-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin-top: 1rem;
-    }
+/* Custom scrollbar for grids */
+.project-grid::-webkit-scrollbar,
+.experience-grid::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
+.project-grid::-webkit-scrollbar-track,
+.experience-grid::-webkit-scrollbar-track {
+  @apply bg-neutral-100 rounded-full;
+}
+
+.project-grid::-webkit-scrollbar-thumb,
+.experience-grid::-webkit-scrollbar-thumb {
+  @apply bg-neutral-400 rounded-full;
+}
+
+.project-grid::-webkit-scrollbar-thumb:hover,
+.experience-grid::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-500;
+}
+
+/* Project and Experience cards */
+.project-card,
+.experience-card {
+  @apply bg-white p-6 sm:p-8 rounded-2xl shadow-soft min-w-[280px] max-w-[350px];
+  @apply text-left transition-all duration-300 cursor-pointer;
+  @apply hover:-translate-y-2 hover:shadow-hard hover:border-2 hover:border-primary-400;
+  border: 2px solid transparent;
+}
+
+.project-card h3,
+.experience-card h3 {
+  @apply text-primary-700 text-xl sm:text-2xl font-bold mb-3;
+}
+
+.project-card p,
+.experience-card p {
+  @apply text-neutral-700 text-base leading-relaxed mb-4;
+}
+
+.project-card img {
+  @apply w-full h-auto rounded-lg mt-4 shadow-md;
+}
+
+/* About info section */
 .about-info {
-    padding: 2rem;
-    text-align: center;
+  @apply py-8 px-4 text-center;
 }
 
-    .about-info p {
-        margin: 1rem 0;
-        color: #FFFFFF;
-    }
+.about-info p {
+  @apply my-4 text-white text-lg sm:text-xl leading-relaxed;
+}
 
+/* Contact icons */
 .contact-icons {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    padding: 2rem;
+  @apply flex gap-6 sm:gap-8 justify-center py-8 px-4;
 }
 
-    .contact-icons a {
-        font-size: 2rem;
-        color: #0A1F44;
-        transition: color 0.3s ease, transform 0.3s ease;
-    }
+.contact-icons a {
+  @apply text-4xl sm:text-5xl text-white transition-all duration-300;
+  @apply hover:text-secondary-300 hover:scale-125;
+}
 
-        .contact-icons a:hover {
-            color: #FFFF99;
-            transform: scale(1.1);
-        }
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero-content h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
 
-@media (max-width: 768px) {
-    .sticky-nav ul {
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .hero-content p {
+    @apply text-lg;
+  }
 
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
+  .hero-content img {
+    @apply max-w-[150px];
+  }
 
-    .hero-content p {
-        font-size: 1.4rem;
-    }
+  .project-grid,
+  .experience-grid {
+    @apply flex-col items-center;
+  }
 
-    .hero-content img {
-        max-width: 150px;
-    }
+  .project-card,
+  .experience-card {
+    @apply min-w-[250px] w-full;
+  }
+}
 
-    .project-grid, .experience-grid {
-        flex-direction: column;
-        align-items: center;
-    }
+/* Smooth page transitions (for future implementation) */
+.page-enter {
+  @apply opacity-0;
+}
 
-    .project-card, .experience-card {
-        min-width: 250px;
-    }
+.page-enter-active {
+  @apply opacity-100 transition-opacity duration-500;
+}
+
+.page-exit {
+  @apply opacity-100;
+}
+
+.page-exit-active {
+  @apply opacity-0 transition-opacity duration-300;
 }
