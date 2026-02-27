@@ -1,0 +1,83 @@
+---
+title: "From 953 Lines to 25 Modules: Refactoring a Python Monolith"
+date: "2024-11-20"
+excerpt: "How I broke GeoThreadBot from a single tangled script into 8 packages with clear boundaries, typed data models, and 19 unit tests."
+readingTime: "6 min read"
+---
+
+GeoThreadBot started as a single file called `newsbot.py`. 953 lines. RSS parsing, AI summarisation, Twitter posting, fact verification, file I/O, and configuration all jammed into one script. Functions called each other across arbitrary boundaries, global state leaked everywhere, and testing meant running the whole thing and checking Twitter manually.
+
+It worked. But every new feature meant scrolling through 950+ lines, and every change risked breaking something three functions away. When I wanted to add YouTube fetching alongside RSS, I realised I would be bolting yet more logic onto an already unmanageable file. So I stopped adding features and started pulling the thing apart.
+
+## Mapping the Boundaries
+
+Before moving any code, I traced every function call and drew out what depended on what. The clusters were obvious once I looked: fetching content, processing it, generating threads, publishing them, storing state. Each cluster talked to the others through shared dictionaries and global variables, but the logical boundaries were already there, just buried.
+
+Those clusters became 8 packages: `config`, `models`, `fetchers`, `processors`, `generators`, `publishers`, `storage`, and `api`. 25 modules total.
+
+## Data Models First
+
+The original code passed dictionaries around. An article was a `dict` with loosely defined keys. A "thread" was a list of strings. Nothing was typed, nothing was validated.
+
+I replaced all of it with dataclasses in `models/types.py`:
+
+```python
+@dataclass
+class ContentItem:
+    id: str
+    title: str
+    content: str
+    url: str
+    timestamp: datetime
+    source: str
+    language: str
+    domain: str
+    content_type: str
+    transcript_data: Optional[dict] = None
+
+@dataclass
+class VerificationResult:
+    verified: bool
+    sources: list[str]
+    confidence: float  # 0.0 to 1.0
+```
+
+Four dataclasses in total: `ContentItem`, `Claim`, `Thread`, and `VerificationResult`. Extracting these first was the safest move because data containers have no side effects. Every resulting error was a type error, straightforward to track down and fix.
+
+## Splitting the Fetchers
+
+The original script had RSS fetching tangled with content parsing and relevance filtering. I pulled these apart into `fetchers/rss_fetcher.py`, `fetchers/twitter_fetcher.py`, `fetchers/youtube_fetcher.py`, and `fetchers/url_fetcher.py`, with shared helpers in `fetchers/utils.py` for language detection and relevance checking.
+
+The real win here was concurrency. With fetchers in separate modules, I could run 3 of them in parallel threads. The original script fetched everything sequentially. Multi-threaded fetching cut the collection phase significantly because network I/O was the bottleneck, not CPU.
+
+## Lazy-Loading the Transformer
+
+The summariser uses a BART transformer for text summarisation. In the monolith, importing the script loaded the model into memory immediately, which meant a multi-second startup even for operations that never touched summarisation.
+
+I wrapped it with lazy loading in `processors/summarizer.py`: the model only loads on first use, not at import time. This brought the startup time for non-summarisation tasks down to near instant, and it meant the test suite could import the module without pulling a transformer into memory.
+
+## Fact Verification as Its Own Module
+
+`processors/verifier.py` handles claim verification against credible sources. In the monolith, this logic was interleaved with thread generation. Splitting it out meant the verifier returns a clean `VerificationResult` with a boolean, a list of sources, and a confidence score between 0.0 and 1.0. The thread generator consumes that result without knowing how verification works internally.
+
+## Storage and the Threading Problem
+
+The original file I/O was scattered across functions. I consolidated everything into `storage/database.py`, backed by SQLite. The catch was that multiple fetcher threads write results concurrently, so I had to configure SQLite with threading support to handle concurrent writes without corruption.
+
+## The Entry Point
+
+`app.py` ties it all together with an async event loop. It spins up the fetchers, feeds results through the processors, generates threads respecting Twitter's 280-character limit with domain-specific hashtags, and publishes via `publishers/twitter_publisher.py` using a tweepy client. Signal handlers ensure graceful shutdown: if the process gets a SIGTERM, it finishes the current operation before exiting.
+
+Configuration lives in `newsbot_config.json`, loaded through `config/settings.py`. No more hardcoded values scattered across the file.
+
+## 19 Tests, Zero API Calls
+
+I wrote 19 unit tests with pytest. Every external dependency is mocked through fixtures: no RSS feeds fetched, no AI calls made, no tweets posted during testing. Each module is testable in complete isolation.
+
+The pattern is consistent: create a fixture that returns predictable data, inject it into the module under test, assert the output. The full suite runs in seconds because it never touches the network.
+
+## What Actually Changed
+
+The logic is the same. Same RSS sources, same summarisation, same posting flow. What changed is where code lives and how the pieces communicate. Instead of 953 lines where anything can call anything, there are 25 modules with explicit imports and typed interfaces. Adding YouTube fetching, which triggered this whole effort, took an afternoon once the structure was in place. In the monolith, it would have been a week of careful surgery.
+
+The lesson is not that monoliths are bad. The 953-line script worked for months. The lesson is that refactoring gets harder the longer you wait, and data models are the right place to start when you finally do it.

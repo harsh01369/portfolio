@@ -1,0 +1,70 @@
+---
+title: "Pre-rendering 192 Pages Without Next.js: A Puppeteer SEO Approach"
+date: "2025-01-08"
+excerpt: "How I took a React 19 SPA from zero Google indexing to full coverage by building a Puppeteer pipeline that renders 192 pages to static HTML."
+readingTime: "6 min read"
+---
+
+Bhairav Aaradhyaa is a spiritual content platform built with React 19 as a single-page application. The site holds a serious amount of content: 65 Bhairava divine forms, 108+ stotras, 31 stories, pilgrimage guides, articles, and more. The frontend data files alone total over 1.7MB (forms.ts at 147KB, stotras.ts at 550KB, stories.ts at 358KB, plus several others). All of it rendered client-side.
+
+The problem was straightforward. Google saw an empty `<div id="root"></div>` and a JavaScript bundle. Zero pages indexed. None. A site with 192 distinct pages of spiritual content was invisible to search engines.
+
+## Why Not Next.js
+
+The obvious question: why not use Next.js or Remix? Because Bhairav Aaradhyaa was already a working React 19 SPA with a mature component tree and routing setup. Migrating to a server-rendering framework would have meant rewriting the entire frontend. The content was static in nature, updated through data files rather than a CMS or API. I did not need server-side rendering on every request. I needed the HTML to exist at build time so crawlers could read it.
+
+So I built a Puppeteer pipeline instead.
+
+## How the Pipeline Works
+
+The pipeline runs as a post-build step using Puppeteer 24.37. The process is mechanical:
+
+1. Build the React app normally
+2. Start a local static server pointing at the build output
+3. Launch headless Chromium via Puppeteer
+4. Iterate through all 192 routes
+5. For each route, navigate to it, wait for React to finish rendering, and write the final HTML to disk
+
+The route list is derived from the data files themselves. Every Bhairava form, every stotra, every story has a slug. A script reads these data files and generates the complete manifest of URLs that need pre-rendering.
+
+```
+npm run build → react-scripts build → node prerender.js
+```
+
+For each page, the script calls `page.goto()` with `waitUntil: 'networkidle0'`, then extracts the full document HTML. The resulting file replaces the empty SPA shell for that route, so when Googlebot hits `/bhairava/kala-bhairava`, it gets complete HTML with all the content already in the DOM.
+
+## Meta Tags with React Helmet
+
+Pre-rendered HTML is useless for SEO if every page has the same generic `<title>` tag. Every route in Bhairav Aaradhyaa uses React Helmet to set page-specific meta tags: title, description, Open Graph tags, and canonical URLs.
+
+Because Puppeteer captures the page after React has fully rendered (including Helmet's head mutations), the saved HTML includes all the correct meta tags for each page. The stotra for "Batuka Bhairava Ashtakam" gets its own title, description, and OG image. The pilgrimage guide for Kashi Vishwanath gets its own. No manual templating needed. React Helmet does the work at render time, and Puppeteer captures the result.
+
+## Keeping it Safe
+
+One constraint I had to respect: the React components could not access `window` or `document` during the initial render cycle. Puppeteer runs a real browser, so these globals exist, but I structured the components to avoid side effects that would behave differently in a headless context versus a real browser. The rendering had to be deterministic and safe.
+
+I also built a custom script called content-guardian that validates data integrity across all the content files before the pipeline runs. If a stotra is missing its slug, or a form has an empty description, the build fails before Puppeteer ever launches. This catches problems early rather than producing broken pre-rendered pages.
+
+## Results
+
+Before the pipeline: 0 pages indexed by Google. The site might as well not have existed from a search perspective.
+
+After deploying pre-rendered HTML: Google indexed the full set of pages. Stotras, divine forms, stories, pilgrimage guides. All of it discoverable through search for the first time.
+
+The pipeline processes all 192 pages in roughly 4 minutes on a single machine, about 1 to 2 seconds per page including navigation, render wait, and HTML extraction. Running 5 pages in parallel brings that time down further.
+
+## Trade-offs
+
+This approach has real limitations:
+
+- **Build time scales linearly.** 192 pages is fine. If the content grew to thousands of pages, the pipeline would need batching or incremental rendering.
+- **Content freshness depends on builds.** The pre-rendered HTML is a snapshot. If I update a stotra's text, the change is not visible to crawlers until the next deployment triggers a fresh pre-render.
+- **Route manifest must stay in sync.** A new page that is not in the manifest will not get pre-rendered. The auto-generation from data files handles this, but it is still a moving part that can break.
+
+For Bhairav Aaradhyaa, these trade-offs are acceptable. The content changes infrequently, deployments are deliberate, and the route manifest is generated from the same data files that drive the app.
+
+## What I Learned
+
+Building this pipeline gave me a concrete understanding of how search engines interact with JavaScript-rendered content. The gap between what a user sees and what a crawler sees is not theoretical when you are staring at zero indexed pages. The fix did not require adopting a framework. It required understanding the problem clearly and applying a targeted solution: render the pages ahead of time, save the HTML, and serve it to crawlers.
+
+If I were starting a new content-heavy project today, I would probably reach for Next.js from the beginning. But for an existing React 19 SPA with 1.7MB of structured spiritual content, a Puppeteer pipeline was the right tool for the job.

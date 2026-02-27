@@ -1,0 +1,73 @@
+---
+title: "Why I Chose SvelteKit Over React for a Real-Time Chat App"
+date: "2024-12-05"
+excerpt: "SvelteKit's reactive stores, Fastify's throughput, and Groq's inference speed made HELEC's real-time AI chat significantly cleaner to build than a React equivalent."
+readingTime: "6 min read"
+---
+
+I have built plenty of things in React. It is the framework I reach for by default. So when I started building HELEC, an AI-powered customer support chat for an electronics company, React was the obvious choice.
+
+I went with SvelteKit instead. Six weeks later, the project is done, and I am genuinely glad I made that call.
+
+## What HELEC Actually Is
+
+HELEC is a real-time chat widget where customers ask questions about products, shipping, returns and payments. An LLM handles the responses using a 300+ line system prompt that covers the full product catalogue. The whole thing runs as a pnpm monorepo managed by Turbo 2.7.2: SvelteKit 2.0.0 on the frontend, Fastify 5.6.2 on the backend, PostgreSQL 16 in Docker, and Groq's llama-3.3-70b-versatile model for inference.
+
+The frontend is a floating chat widget built with DaisyUI 4.12 components on top of Tailwind CSS 3.4. It supports session persistence via localStorage, typing indicators, auto-scroll to the latest message, and conversation reset. The backend exposes both Socket.IO events (join_conversation, send_message, typing) and REST endpoints (POST /api/chat/message, GET /api/chat/conversation/:id) with Zod validation on every single one.
+
+## React's Problem with WebSocket State
+
+In React, managing a WebSocket connection means opening it inside a useEffect, storing messages in state, and immediately fighting stale closures. The callback you pass to your socket listener captures the state value at the time it was created, not the current value. You end up layering useRef workarounds on top of dependency arrays on top of cleanup functions. It works, but it is a lot of ceremony for something that should be straightforward.
+
+For a chat app where messages arrive constantly and the UI needs to update on every single one, this friction compounds. Multiple useEffect hooks for different socket events become difficult to reason about, and React's re-render cycle means rapid incoming messages can trigger unnecessary renders.
+
+## Why Svelte Stores Are a Better Fit
+
+Svelte's built-in stores solved this cleanly. A writable store is reactive by default. You update it from your Socket.IO listener and every subscribed component re-renders automatically. No context providers, no selector functions, no memo wrappers.
+
+```javascript
+import { writable } from 'svelte/store';
+
+export const messages = writable([]);
+export const isTyping = writable(false);
+
+socket.on('send_message', (msg) => {
+  messages.update(current => [...current, msg]);
+});
+
+socket.on('typing', () => {
+  isTyping.set(true);
+});
+```
+
+No stale closures. No dependency arrays. The store handles subscription setup and teardown when components mount and unmount. For real-time state that changes constantly, this is a meaningful improvement in clarity.
+
+Svelte 5's reactive declarations made the chat widget logic especially concise. The typing indicator, auto-scroll behaviour and session persistence all live in clean, readable blocks rather than tangled hook chains.
+
+## The Stack Choices That Mattered
+
+SvelteKit was only one piece. Three other decisions shaped how the project turned out.
+
+**Fastify over Express.** Fastify 5.6.2 gives roughly 2x the throughput compared to Express. For a chat backend handling concurrent WebSocket connections alongside REST endpoints, that headroom matters. Fastify's schema-based validation also pairs well with Zod: every endpoint validates its input before anything touches the database.
+
+**Groq over OpenAI.** Groq's inference speed is about 10x faster than OpenAI for comparable models. I am using llama-3.3-70b-versatile at temperature 0.7 with a max token limit of 600. Responses come back fast enough that the typing indicator barely has time to show. For a chat interface where the user is staring at the screen waiting, that speed is the difference between feeling like a conversation and feeling like a loading spinner.
+
+**Prisma with PostgreSQL.** The data model is simple: a Conversation (id, createdAt, updatedAt) and a Message (id, conversationId, content, senderType of "user" or "assistant", createdAt) with cascade deletes. Prisma 6.15 on TypeScript 5.9 made this painless. The backend loads the last 10 messages from the database to give the LLM conversation context, and UUID validation on conversation IDs keeps things tidy.
+
+## The Bundle Size Difference
+
+SvelteKit with Vite 6 produced a bundle roughly 40% smaller than what I would have shipped with a comparable React setup. Svelte compiles components to vanilla JavaScript at build time rather than shipping a runtime. For a chat widget that gets embedded on other pages, keeping the footprint small was a real consideration, not just a benchmark to brag about.
+
+## What I Would Do Differently
+
+SvelteKit's ecosystem is still smaller than React's. When I hit an edge case with routing, debugging took longer than it would have in React where I already know the quirks. Finding component libraries and example code requires more digging.
+
+TypeScript support in Svelte has improved a lot, but it still is not as seamless as React with TypeScript. A few patterns needed type assertions that felt clunky.
+
+I also would not recommend SvelteKit for a project where you need to hire quickly. The React talent pool is significantly larger. But for a solo project or a small team that is willing to learn, the developer experience payoff is real.
+
+## The Verdict
+
+For a real-time chat application, SvelteKit was the right choice. Reactive stores made WebSocket state management cleaner. Fastify gave me the throughput I needed. Groq gave me inference speed that actually feels instant. The whole stack fits together well, and the codebase is smaller and easier to maintain than a React equivalent would have been.
+
+I still use React for other projects. But for anything with heavy real-time state, I will be reaching for SvelteKit first from now on.

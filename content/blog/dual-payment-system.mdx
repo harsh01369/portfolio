@@ -1,0 +1,79 @@
+---
+title: "How I Built a Dual Payment System for India and International Users"
+date: "2025-01-15"
+excerpt: "Integrating Stripe and Instamojo with geo-based routing, webhook verification, and unified order tracking in a single Express 5 backend."
+readingTime: "7 min read"
+---
+
+Bhairav Aaradhyaa is a spiritual tech platform I built. One of its paid features is a Life Purpose reading, priced at £21 GBP for international users and ₹251 INR for users in India. Two completely different price points, two completely different payment gateways, one backend. Here is how I wired it all together.
+
+## Why Two Gateways
+
+Stripe does not handle Indian domestic payment methods well. UPI, net banking, Indian wallets: none of that works reliably through Stripe. Instamojo handles all of it natively, but it has zero international support. So the answer was both. Instamojo for India, Stripe for everyone else.
+
+The routing decision could not live on the frontend. If a React component decides which gateway to call, any user with dev tools open can manipulate that choice. The backend has to own it.
+
+## Geo-Based Routing with MaxMind
+
+I use MaxMind's GeoIP database on the Express 5 backend to detect the user's country from their IP address. If the IP resolves to India, the backend routes to Instamojo and charges ₹251 INR. Any other country routes to Stripe, where I create a PaymentIntent for £21 GBP.
+
+The frontend React 19 payment component calls a single endpoint. It gets back either an Instamojo redirect URL or a Stripe client secret, depending on where the user is. The component detects the user's location and renders the appropriate gateway UI. The user never has to pick their country manually. It just works based on their IP.
+
+```
+Request hits Express 5 backend
+  -> MaxMind GeoIP lookup on user IP
+  -> India? Create Instamojo payment request (₹251 INR)
+  -> International? Create Stripe PaymentIntent (£21 GBP)
+  -> Return payment session to React frontend
+```
+
+The entire backend is written in TypeScript with strict mode enabled. No `any` types sneaking through, no implicit nulls. When you are handling money, strict typing is not optional.
+
+## Webhook Verification
+
+This is where the two gateways diverge the most. Stripe and Instamojo verify webhook authenticity in fundamentally different ways.
+
+Stripe uses HMAC-SHA256. You take the raw request body, the `Stripe-Signature` header, and your webhook signing secret, then verify the HMAC. Stripe's Node SDK has `stripe.webhooks.constructEvent()` that handles this, but you have to pass the raw body, not the parsed JSON. I learned that the hard way. If Express parses the body before you verify the signature, the verification fails silently. I had to add `express.raw({ type: 'application/json' })` specifically on the Stripe webhook route.
+
+Instamojo uses SHA1 MAC signature verification. The approach is different: Instamojo sends a MAC in the payload, and you verify it against your salt and the payment fields. The field ordering matters. Get the concatenation order wrong and the signature never matches.
+
+```
+POST /api/webhooks/stripe    -> HMAC-SHA256 verification -> process payment
+POST /api/webhooks/instamojo -> SHA1 MAC verification    -> process payment
+```
+
+Both routes feed into the same `processPayment()` function after verification. I did not want two separate codepaths for updating the database after a successful payment. One function handles it regardless of which gateway confirmed the charge.
+
+## Data Model with Prisma
+
+The database runs on Neon.tech serverless PostgreSQL, managed through Prisma ORM. Two models handle the payment state.
+
+The `Payment` model tracks every transaction: amount, currency (INR or GBP), status (pending, completed, failed), and gateway (Stripe or Instamojo). Every payment gets a row here regardless of which provider processed it.
+
+The `LifePurposePayment` model controls access to the actual content. It has two key fields: `hasPaid` (boolean) and `expiresAt` (timestamp). When a webhook confirms a successful payment, the backend sets `hasPaid` to true and calculates the `expiresAt` date. The frontend checks these fields to gate access. Simple, no JWT-based entitlement system, no overengineered access tokens. Just a database lookup.
+
+```prisma
+model Payment {
+  amount    Float
+  currency  String   // "INR" | "GBP"
+  status    String   // "pending" | "completed" | "failed"
+  gateway   String   // "stripe" | "instamojo"
+}
+
+model LifePurposePayment {
+  hasPaid   Boolean
+  expiresAt DateTime
+}
+```
+
+## What Actually Went Wrong
+
+The MaxMind database does not catch VPN users. Someone in India using a UK VPN gets routed to Stripe and charged £21 instead of ₹251. I could layer in additional heuristics (browser timezone, Accept-Language header), but honestly the edge case is small enough that I have not bothered yet. If someone emails me about it, I refund and redirect them manually.
+
+The other issue was webhook reliability. Instamojo's webhook retries are less predictable than Stripe's. I added idempotency checks on the payment ID before processing. If the `Payment` row already shows `completed`, the webhook handler returns 200 without doing anything. This prevents duplicate access grants when Instamojo sends the same webhook three times.
+
+## The Stack in Full
+
+Express 5 with TypeScript strict mode. React 19 on the frontend. Prisma ORM talking to Neon.tech serverless PostgreSQL. MaxMind GeoIP for routing. Stripe PaymentIntents for international users. Instamojo for Indian users. HMAC-SHA256 and SHA1 MAC for webhook verification. Two gateways, one unified payment flow.
+
+The whole thing processes payments in two currencies across two providers, and from the user's perspective, they just click "Pay" and it works. That is the point. All the complexity lives in the backend where it belongs.

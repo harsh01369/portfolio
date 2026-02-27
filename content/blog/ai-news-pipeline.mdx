@@ -1,0 +1,60 @@
+---
+title: "Building a 7-Stage AI News Pipeline from Scratch"
+date: "2024-12-20"
+excerpt: "How GeoThreadBot fetches from 3 concurrent sources, analyses content with SpaCy and BART, verifies facts against credible sources, and publishes to Twitter."
+readingTime: "8 min read"
+---
+
+GeoThreadBot started as a 953-line Python monolith that fetched news and posted tweets. It now runs as a 7-stage pipeline split across 25 modules and 8 packages, pulling from Twitter, YouTube, and RSS feeds simultaneously, then filtering, summarising, fact-checking, and publishing to Twitter/X on a cron schedule. Here is how each stage works.
+
+## Stage 1: Concurrent Fetching
+
+Three fetcher threads run in parallel, each hitting a different source: the Twitter API v2 via tweepy, the YouTube Data API v3 (with transcript extraction through the YouTube Transcript API), and RSS feeds via feedparser. Running them concurrently cuts the collection window roughly to a third of what sequential fetching would take.
+
+Each fetcher normalises its output into a common format so the rest of the pipeline does not care where a piece of content originated. Tweets, video transcripts, and article text all flow downstream as the same data structure.
+
+## Stage 2: Language Detection and Translation
+
+Not everything arrives in English. The pipeline uses langdetect to identify the source language across 12+ languages, then deep-translator handles auto-translation to English for anything that is not already in it. This keeps the downstream NLP stages working with a single language rather than needing multilingual models for every step.
+
+## Stage 3: NLP Filtering
+
+This is where the pipeline decides what is actually worth processing further. SpaCy handles named entity extraction and keyword identification. VADER runs sentiment scoring on each piece of content. Then a relevance scoring algorithm combines three signals: keyword frequency, entity matching against known geopolitical actors and regions, and domain relevance.
+
+Content that scores below the relevance threshold gets dropped here. There is no point summarising or fact-checking an article that is not relevant to the domain.
+
+## Stage 4: Summarisation with BART
+
+The facebook/bart-large-cnn model generates summaries of content that made it through the filter. I lazy-load the model on first use rather than at startup, which keeps the initial boot time fast and avoids loading a large transformer model into memory for pipeline runs where no new content passes the filter.
+
+NLTK handles sentence tokenisation and key point extraction before the content hits BART. Breaking the text into sentences first gives better control over what goes into the summariser and what comes out. The summaries need to be tight enough for Twitter threads, so every word matters.
+
+## Stage 5: Cross-Source Fact Verification
+
+This stage is what separates GeoThreadBot from a simple "scrape and repost" bot. Each claim extracted from the summarised content gets checked against 6 credible sources: BBC, Reuters, AP News, Al Jazeera, the New York Times, and The Hindu. BeautifulSoup4 handles the web scraping for verification checks.
+
+The confidence scoring works on a simple additive model. A claim starts at 0 confidence. Each corroborating source found adds 0.4 to the confidence score. The publication threshold sits at 0.6, meaning a claim needs at least 2 independent credible sources backing it before the pipeline will publish it. Anything below that gets flagged and held.
+
+## Stage 6: Human Moderation
+
+Automated fact-checking has limits. A Flask API serves a moderation queue where flagged content and borderline cases land for manual review. This is deliberately not automated. The pipeline handles the volume problem (filtering hundreds of items down to a handful), but a human makes the final call on anything the verification stage was not fully confident about.
+
+## Stage 7: Publishing to Twitter/X
+
+The tweepy client posts approved content to Twitter/X. Each post stays within the 280-character limit, includes domain-relevant hashtags, and cites the original sources. The publisher formats everything to fit the constraints rather than truncating, which means the summarisation in Stage 4 has to produce output that is already close to the right length.
+
+## The Refactoring
+
+The original 953-line monolith worked, but it was brittle. Changing the fetcher logic risked breaking the summariser. Adding a new source meant touching code that had nothing to do with fetching.
+
+I broke it into 8 packages: fetchers, processors, generators, publishers, storage, models, config, and api. 25 modules total. Each stage maps to one or more modules with clear interfaces between them.
+
+The storage layer uses SQLite with three core tables: claims (for fact-checking state), processed_content (the pipeline's working data), and metrics (for tracking throughput and accuracy over time).
+
+I wrote 19 unit tests with pytest, mocking the external APIs so the test suite runs without hitting Twitter, YouTube, or any of the verification sources. The mocking was more work than the tests themselves, but it means the suite runs in seconds and does not depend on API keys or network access.
+
+## Tech Stack Summary
+
+Python glues everything together. TensorFlow and Hugging Face Transformers power the BART summarisation. SpaCy, VADER, and NLTK handle the NLP filtering. Tweepy, the YouTube APIs, and feedparser cover data collection. Flask serves the moderation API. SQLite stores state. The whole thing runs on a configurable cron schedule.
+
+The hardest part was not any single stage. It was getting them to work together reliably, handling failures gracefully when an API goes down or a source changes its format, and making sure the pipeline could resume from where it left off rather than reprocessing everything from scratch.

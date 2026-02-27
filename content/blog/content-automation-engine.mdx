@@ -1,0 +1,83 @@
+---
+title: "Building a Content Automation Engine That Produces 3,500+ Social Media Assets"
+date: "2025-02-10"
+excerpt: "How I built a multi-platform content engine that generates Instagram cards, Pinterest pins, and Twitter threads from a single data source using Puppeteer and platform APIs."
+readingTime: "9 min read"
+---
+
+ContentForge is a Node.js automation engine that takes a single TypeScript data source of spiritual content (65 Bhairava forms, 108+ stotras, 31 stories, and a collection of articles) and produces over 3,500 ready-to-publish social media assets across Instagram, Pinterest, Twitter/X, and Facebook. It renders images with Puppeteer, writes platform-specific captions, schedules posts with rate limiting, and handles publishing through each platform's API.
+
+Here is how it all fits together.
+
+## The Data Pipeline
+
+The content lives in a TypeScript file inside a separate frontend repository. At runtime, a `tsx` bridge loads and parses this file directly, giving the engine access to typed data without duplicating anything. When the frontend repo is unavailable (different machine, CI environment), the engine falls back to a cached JSON snapshot it wrote during the last successful load.
+
+From this single source, extractors pull content tailored for each platform. The core extractor handles shared logic: resolving names, descriptions, associations, and iconography. Platform-specific extractors then reshape that data to fit each platform's constraints. Pinterest needs different content angles than Twitter, and there is real overlap to manage. For example, Twitter's "Did You Know" series pulls from iconography and vahana data specifically because the "brief" field already feeds the "Form of Day" series. Without that deduplication, followers on Twitter would see the same content twice in different formats.
+
+## Rendering 3,500+ Images with Puppeteer
+
+The image generation pipeline produces 8 distinct Instagram card types across 4 visual themes (classic, cosmic, puja-scene, shakti), plus Pinterest pins at 1000x1500. The numbers add up fast: 302 Namavali cards, 2,000+ Sahasranama cards, story carousels at 7 slides each, stotra verse cards, and mantra cards.
+
+Each template is an HTML string with inline CSS and shared brand styles. No React rendering here. Plain HTML strings are faster to construct and easier to debug when a card layout breaks. The engine feeds each template into a shared Puppeteer browser instance running in headless Chrome with a 2x device scale factor for retina-quality output. That shared browser instance matters: launching a new Chrome process per image would be absurdly slow at this volume. Instead, one browser stays open and new pages are created and destroyed within it. Each render gets 3 retries on failure, because headless Chrome occasionally drops frames or times out on complex layouts.
+
+For post-processing, sharp handles any image manipulation needed after the PNG comes out of Puppeteer.
+
+## Platform-Specific Publishing
+
+Each platform has its own API client and its own set of quirks.
+
+**Instagram** uses the Graph API v21.0. The engine uploads images to a container, waits for processing, then publishes. Carousels (story posts with 7 slides) require creating individual media objects first, then combining them into a carousel container. Rate limit: 2 posts per day.
+
+**Pinterest** uses API v5. Pins go up at 1000x1500 with content categories like wisdom quotes, form spotlights, moral teachings, and ritual tips. Rate limit: 9 pins per day.
+
+**Twitter/X** uses API v2. Tweets stay under 220 characters. Story hooks get scored by predicted impact, and article content gets broken into threads of 7-8 tweets. One critical lesson: never put links in the tweet body. Twitter's algorithm suppresses tweets with external URLs. The engine posts the tweet first, then adds the link as an auto-reply. Rate limit: 4 tweets per day.
+
+**Facebook** publishing goes through the same Graph API infrastructure as Instagram but with its own posting logic and content formatting.
+
+Caption generation is also platform-aware. Instagram captions get 10-15 hashtags. Twitter gets a maximum of 2. Every caption runs through a comprehensive Unicode regex that strips all emojis, because the brand voice requires clean text without them.
+
+## The Scheduler
+
+A node-cron job runs every 2 minutes, checking the publishing queue. Each post moves through a state machine: `DRAFT -> QUEUED -> PUBLISHING -> PUBLISHED` (or `FAILED` on error). The scheduler respects per-platform rate limits, so even if 50 posts are queued, Instagram will only get 2 per day.
+
+An auto-fill system keeps the queue fed. It scans the output directories, identifies assets that have not been posted yet, and queues them automatically. This means I can regenerate a batch of 500 new cards, and the scheduler will pick them up and distribute them across platforms over the following days without any manual intervention.
+
+## The Dashboard
+
+A React 19 frontend connects to the Express 5 server (port 3030) and shows real-time publishing status through Server-Sent Events. When a post moves from QUEUED to PUBLISHING to PUBLISHED, the dashboard updates live. This was essential for debugging early on, when I needed to watch the publishing pipeline and catch failures as they happened.
+
+## DM Automation
+
+The engine also handles Instagram DM replies using Groq's LLM API. When a follower sends a message, the DM engine generates a conversational reply that fits the brand's tone. Gemini serves as a fallback model. This runs separately from the publishing pipeline but shares the same Express server.
+
+## What Was Tricky
+
+**Story carousel formatting** took several iterations. The slides need to be readable on a phone screen, which means 26px font size, a maximum of 700 characters per slide, and paragraph breaks rendered as `<br><br>` rather than actual paragraph elements. Getting the text to flow naturally across 7 slides while respecting these constraints required careful splitting logic.
+
+**Cross-platform content deduplication** was harder than expected. The same underlying data needs to produce distinct content for each platform. If someone follows the account on both Instagram and Twitter, they should not see identical content. Each platform extractor pulls from different fields and presents the data from a different angle.
+
+**Rate limit coordination** across four platforms, each with different daily limits and different error responses when you exceed them, required careful state management. The scheduler tracks per-platform counters that reset daily and backs off gracefully when an API returns a rate limit error.
+
+## Architecture Summary
+
+The full flow looks like this:
+
+```
+TypeScript data source → tsx bridge → Core extractor
+  → Platform extractors (Instagram, Pinterest, Twitter, Facebook)
+    → HTML templates + inline CSS
+      → Puppeteer rendering (shared browser, 2x scale, 3 retries)
+        → sharp post-processing
+          → Caption generator (platform-specific hashtags, emoji stripping)
+            → Scheduler queue (DRAFT → QUEUED → PUBLISHING → PUBLISHED)
+              → Platform API clients (Graph API, Pinterest v5, Twitter v2)
+```
+
+The entire system runs as a single Node.js process. No message queues, no microservices, no Kubernetes. For the volume it handles, a single Express server with cron scheduling is more than sufficient and far simpler to operate.
+
+## Results
+
+The engine currently manages a sustained publishing cadence across all four platforms with zero daily manual effort. The initial batch generation of 3,500+ assets took about 45 minutes on a single machine. After that, the scheduler distributes content over weeks, and regeneration only happens when new data is added to the source.
+
+Building ContentForge reinforced something I keep learning: the boring parts (data extraction, deduplication, rate limiting, retry logic) take more time than the flashy parts (AI integration, image rendering). Getting the plumbing right is what makes the difference between a demo and a system that runs reliably every day.
