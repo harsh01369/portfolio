@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?logo=framer&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Portfolio
 
-## Available Scripts
+Personal portfolio website showcasing projects, skills, and experience.
 
-In the project directory, you can run:
+[Live Site](https://portfoliowebsite-psi-sepia.vercel.app)
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Tech | Purpose |
+|------|---------|
+| React 19 | UI framework |
+| Tailwind CSS | Utility-first styling with custom design tokens |
+| Framer Motion | Scroll-triggered animations and page transitions |
+| React Router v7 | Client-side routing with lazy-loaded pages |
+| EmailJS | Contact form email delivery |
+| Vercel | Hosting and deployment |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Sections
 
-### `npm test`
+**Hero.** Animated landing with rotating taglines, floating orbs, and stats grid (projects, reach, technologies, experience).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**About.** Bio, education (BSc Computer Science, Lancaster University), and a searchable skills section organized into 5 categories with proficiency levels.
 
-### `npm run build`
+**Projects.** Filterable project grid with category tabs. Each project opens a modal with image carousel, full description, and tech stack. Categories: Full Stack, AI/Automation, AI/ML, Digital Marketing.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Experience.** Alternating timeline layout showing education and work history with technology tags and responsibility lists.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Contact.** Contact form (EmailJS integration) with email, phone (UK + India), and social links.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Design
 
-### `npm run eject`
+Navy blue (#0066FF) and gold (#FFC300) color palette. Custom animations: fade-in, slide-in, scale-in, float, gradient-shift. Glassmorphism effects with backdrop blur. Responsive mobile-first layout. Custom scrollbar styling.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Getting Started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/harsh01369/portfolio.git
+cd portfolio
+npm install
+npm start
+# Opens at http://localhost:3000
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Deployment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Hosted on Vercel. Pushes to main trigger automatic deployments.
