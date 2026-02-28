@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
-import { createMetadata, createJsonLd } from "@/lib/metadata";
+import { createMetadata, createJsonLd, blogPostJsonLd } from "@/lib/metadata";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -108,15 +108,12 @@ export default async function BlogPostPage({
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
+  const jsonLd = blogPostJsonLd({
+    title: post.title,
     description: post.description,
-    datePublished: post.date,
-    author: { "@type": "Person", name: "Harsh Khetia" },
-    url: `https://harshkhetia.dev/blog/${post.slug}`,
-  };
+    date: post.date,
+    slug: post.slug,
+  });
 
   return (
     <>

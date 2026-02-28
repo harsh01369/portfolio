@@ -46,7 +46,18 @@ export const personJsonLd = {
   "@type": "Person",
   name: "Harsh Khetia",
   url: BASE_URL,
+  image: `${BASE_URL}/og-image.png`,
   jobTitle: "Full Stack Developer & AI Engineer",
+  addressLocality: "Manchester",
+  addressCountry: "GB",
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "University Academy 92 (Lancaster University)",
+  },
+  knowsAbout: [
+    "React", "Next.js", "TypeScript", "Node.js", "Python",
+    "PostgreSQL", "MongoDB", "Express", "AI/ML Pipelines", "Payment Integration",
+  ],
   sameAs: [
     "https://github.com/harsh01369",
     "https://linkedin.com/in/harsh-khetia111",
@@ -60,4 +71,42 @@ export const websiteJsonLd = {
   url: BASE_URL,
   description:
     "Full Stack Developer and AI Engineer building scalable web applications, payment systems, and AI pipelines.",
+  author: {
+    "@type": "Person",
+    name: "Harsh Khetia",
+  },
 };
+
+export function blogPostJsonLd({
+  title,
+  description,
+  date,
+  slug,
+}: {
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    datePublished: date,
+    dateModified: date,
+    url: `${BASE_URL}/blog/${slug}`,
+    mainEntityOfPage: `${BASE_URL}/blog/${slug}`,
+    image: `${BASE_URL}/og-image.png`,
+    author: {
+      "@type": "Person",
+      name: "Harsh Khetia",
+      url: BASE_URL,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Harsh Khetia",
+      url: BASE_URL,
+    },
+  };
+}

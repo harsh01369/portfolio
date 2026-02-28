@@ -3,6 +3,7 @@ title: "From 953 Lines to 25 Modules: Refactoring a Python Monolith"
 date: "2024-11-20"
 excerpt: "How I broke GeoThreadBot from a single tangled script into 8 packages with clear boundaries, typed data models, and 19 unit tests."
 readingTime: "6 min read"
+tags: ["Python", "Refactoring", "Testing", "Architecture", "Clean Code"]
 ---
 
 GeoThreadBot started as a single file called `newsbot.py`. 953 lines. RSS parsing, AI summarisation, Twitter posting, fact verification, file I/O, and configuration all jammed into one script. Functions called each other across arbitrary boundaries, global state leaked everywhere, and testing meant running the whole thing and checking Twitter manually.

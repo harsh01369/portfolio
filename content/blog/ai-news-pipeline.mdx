@@ -3,6 +3,7 @@ title: "Building a 7-Stage AI News Pipeline from Scratch"
 date: "2024-12-20"
 excerpt: "How GeoThreadBot fetches from 3 concurrent sources, analyses content with SpaCy and BART, verifies facts against credible sources, and publishes to Twitter."
 readingTime: "8 min read"
+tags: ["Python", "NLP", "AI", "SpaCy", "Pipeline"]
 ---
 
 GeoThreadBot started as a 953-line Python monolith that fetched news and posted tweets. It now runs as a 7-stage pipeline split across 25 modules and 8 packages, pulling from Twitter, YouTube, and RSS feeds simultaneously, then filtering, summarising, fact-checking, and publishing to Twitter/X on a cron schedule. Here is how each stage works.
