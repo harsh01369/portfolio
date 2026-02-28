@@ -14,9 +14,10 @@ export default function ImageGallery({ images }: { images: GalleryImage[] }) {
 
   if (!images || images.length === 0) return null;
 
-  const labels = images.map((_, i) => {
+  const labels = images.map((img, i) => {
     if (i === 0) return "Overview";
-    if (images[i].alt.toLowerCase().includes("architecture")) return "Architecture";
+    const text = `${img.alt} ${img.src}`.toLowerCase();
+    if (text.includes("architecture") || text.includes("pipeline") || text.includes("adapter") || text.includes("diagram")) return "Architecture";
     return `Image ${i + 1}`;
   });
 
