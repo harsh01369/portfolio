@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import GridBackground from "@/components/grid-background";
+import ScrollToTop from "@/components/scroll-to-top";
 import "./globals.css";
 
 const inter = Inter({
@@ -92,6 +93,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-bg text-text-primary font-sans antialiased" suppressHydrationWarning>
         <div className="noise-overlay" />
         <GridBackground />
+        <ScrollToTop />
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />
