@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
 import { getAllPosts } from "@/lib/mdx";
+import { solutions } from "@/data/solutions-config";
 
 const BASE_URL = "https://harshkhetia.dev";
 
@@ -28,5 +29,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...projectRoutes, ...blogRoutes];
+  const solutionRoutes = [
+    { url: `${BASE_URL}/solutions`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
+    ...solutions.map((s) => ({
+      url: `${BASE_URL}/solutions/${s.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+  ];
+
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes, ...solutionRoutes];
 }

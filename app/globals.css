@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source not "../**/*.md";
 
 @theme {
   --color-bg: #0a0a0a;
@@ -161,4 +162,115 @@ body {
 
 .glow-purple {
   box-shadow: 0 0 60px -12px rgba(168, 85, 247, 0.3);
+}
+
+/* ─── Solution Pages Light Theme ─── */
+.solutions-theme {
+  --color-bg: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-hover: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+  --color-accent: var(--industry-accent, #2563eb);
+  --color-accent-hover: var(--industry-accent-dark, #1d4ed8);
+  --color-accent-muted: var(--industry-accent-light, #eff6ff);
+}
+
+.solutions-theme ::selection {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.solutions-theme ::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.solutions-theme ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+.solutions-theme ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Aurora gradient blobs */
+@keyframes aurora-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(20px, 10px) scale(1.02); }
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: aurora-float 15s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Liquid glass — specular highlight on top edge */
+.liquid-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  position: relative;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Clay card */
+.clay-card {
+  border-radius: 24px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.04),
+    inset 0 4px 8px rgba(255, 255, 255, 0.6);
+}
+
+/* Gradient text for solution pages */
+.gradient-text-solution {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--industry-accent-dark, #1d4ed8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Noise overlay light variant */
+.noise-overlay-light {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
