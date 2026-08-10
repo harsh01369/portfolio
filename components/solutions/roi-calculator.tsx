@@ -2,15 +2,21 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import type { SolutionIndustryContent, IndustryConfig } from "@/data/solutions-config";
+import type { SolutionIndustryContent, IndustryConfig, SolutionConfig } from "@/data/solutions-config";
+import { getPricing } from "@/data/solutions-config";
 
-export default function ROICalculator({ content, industry }: { content: SolutionIndustryContent; industry: IndustryConfig }) {
+export default function ROICalculator({ content, industry, solution }: { content: SolutionIndustryContent; industry: IndustryConfig; solution: SolutionConfig }) {
   const [missed, setMissed] = useState(content.roiDefaults.missedPerWeek);
   const [avg, setAvg] = useState(content.roiDefaults.avgValue);
   const monthly = missed * avg * 4.33;
   const annual = monthly * 12;
-  const cost = content.roiDefaults.cost;
+  const priced = getPricing(solution.slug, industry.slug);
+  // One-time solutions don't have a monthly cost to compare against — show weeks to
+  // payback on the one-time fee instead of a "Nx over per month" multiple.
+  const cost = priced.kind === "one-time" ? (priced.oneTimeLow ?? 0) : (priced.monthly ?? 0);
   const payMultiple = monthly / cost;
+  const weekly = monthly / 4.33;
+  const weeksToPayback = weekly > 0 ? cost / weekly : 0;
 
   return (
     <section id="roi-calculator" className="py-20 border-b border-[#e2e8f0]">
@@ -55,12 +61,18 @@ export default function ROICalculator({ content, industry }: { content: Solution
               <hr className="border-[#e2e8f0]" />
               <div className="flex justify-between items-center">
                 <span className="text-sm text-[#475569]">Solution investment</span>
-                <span className="text-sm font-medium text-[#0f172a]">from £{cost}/month</span>
+                <span className="text-sm font-medium text-[#0f172a]">
+                  {priced.kind === "one-time" ? `from £${cost.toLocaleString()} one-time` : `from £${cost}/month`}
+                </span>
               </div>
             </div>
             <div className="mt-6 pt-6 border-t border-[#e2e8f0]">
               <p className="text-sm text-[#334155] mb-4">
-                At these numbers, the monthly investment is covered roughly <span className="font-semibold" style={{ color: industry.accentColor }}>{payMultiple >= 1 ? `${payMultiple.toFixed(1)}x over` : "in part"}</span> by recovering just the customers on the slider above.
+                {priced.kind === "one-time" ? (
+                  <>At these numbers, the one-time fee is covered in roughly <span className="font-semibold" style={{ color: industry.accentColor }}>{weeksToPayback >= 1 ? `${Math.ceil(weeksToPayback)} weeks` : "under a week"}</span> by recovering just the customers on the slider above.</>
+                ) : (
+                  <>At these numbers, the monthly investment is covered roughly <span className="font-semibold" style={{ color: industry.accentColor }}>{payMultiple >= 1 ? `${payMultiple.toFixed(1)}x over` : "in part"}</span> by recovering just the customers on the slider above.</>
+                )}
               </p>
               <button onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
                 className="w-full py-3.5 rounded-md text-white font-bold text-sm uppercase tracking-wide hover:opacity-90 transition-opacity" style={{ backgroundColor: industry.accentColor }}>

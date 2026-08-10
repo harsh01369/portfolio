@@ -12,6 +12,7 @@ import SolutionFeatures from "./solution-features";
 import ROICalculator from "./roi-calculator";
 import SolutionHowItWorks from "./solution-how-it-works";
 import SolutionProof from "./solution-proof";
+import SolutionPricing from "./solution-pricing";
 import SolutionFAQ from "./solution-faq";
 import SolutionContactForm from "./solution-contact-form";
 import MockupSection from "./mockup-section";
@@ -81,10 +82,11 @@ export default function SolutionPageContent({ solution }: Props) {
             <SolutionProblem content={content} industry={industry} />
             <SolutionStatementBand industry={industry} />
             <MockupSection industry={industry} content={content} />
-            <ROICalculator content={content} industry={industry} />
+            <ROICalculator content={content} industry={industry} solution={solution} />
             <SolutionFeatures content={content} industry={industry} />
             <SolutionHowItWorks />
             <SolutionProof content={content} industry={industry} />
+            <SolutionPricing solution={solution} industry={industry} />
             <SolutionFAQ content={content} />
             <SolutionContactForm industry={industry} solution={solution} />
           </motion.div>

@@ -7,6 +7,11 @@ export type IndustrySlug =
 export type SolutionSlug =
   | "ai-chatbot" | "booking-system" | "speed-optimization" | "website-rebuild" | "review-system";
 
+// Pricing ceiling tracks the vertical, not the country (confirmed via market research
+// across UK/US/Canada/EU): home/health services tolerate meaningfully higher recurring
+// spend than appearance/hospitality/creative ones, everywhere.
+export type IndustryTier = "A" | "B";
+
 export interface IndustryConfig {
   slug: IndustrySlug;
   label: string;
@@ -15,6 +20,7 @@ export interface IndustryConfig {
   accentDark: string;
   workVerb: string;
   businessNoun: string;
+  tier: IndustryTier;
 }
 
 export interface SolutionConfig {
@@ -25,8 +31,54 @@ export interface SolutionConfig {
   icon: IconName;
 }
 
-export interface ROIDefaults { missedPerWeek: number; avgValue: number; label: string; cost: number; }
+export interface ROIDefaults { missedPerWeek: number; avgValue: number; label: string; }
 export interface FAQ { question: string; answer: string; }
+
+// Recurring items (chatbot, booking, reviews) are tiered by willingness-to-pay per
+// vertical. One-time items (speed optimization, rebuild) are tiered by build
+// complexity instead — a trades/dental site typically needs more pages and
+// integrations than a cafe/tattoo site, so the higher price there is defensible
+// as more work, not just "they can afford it."
+export interface PricingModel {
+  kind: "hybrid" | "monthly-flat" | "one-time";
+  setup?: Record<IndustryTier, number>;
+  monthly?: Record<IndustryTier, number>;
+  oneTime?: Record<IndustryTier, [number, number]>;
+  trustLine?: string;
+}
+
+export const pricing: Record<SolutionSlug, PricingModel> = {
+  "ai-chatbot": { kind: "hybrid", setup: { A: 199, B: 129 }, monthly: { A: 59, B: 39 } },
+  "booking-system": { kind: "monthly-flat", monthly: { A: 39, B: 25 }, trustLine: "No commission, ever, unlike most booking platforms" },
+  "review-system": { kind: "monthly-flat", monthly: { A: 25, B: 15 } },
+  "speed-optimization": { kind: "one-time", oneTime: { A: [349, 349], B: [199, 199] } },
+  "website-rebuild": { kind: "one-time", oneTime: { A: [1800, 3500], B: [1200, 2500] } },
+};
+
+export interface ResolvedPricing {
+  kind: "hybrid" | "monthly-flat" | "one-time";
+  setup?: number;
+  monthly?: number;
+  oneTimeLow?: number;
+  oneTimeHigh?: number;
+  trustLine?: string;
+}
+
+export function getPricing(solutionSlug: string, industrySlug: string): ResolvedPricing {
+  const model = pricing[solutionSlug as SolutionSlug];
+  const industry = industries.find((i) => i.slug === industrySlug);
+  const tier: IndustryTier = industry?.tier ?? "B";
+  if (!model) return { kind: "monthly-flat", monthly: 39 };
+  const [oneTimeLow, oneTimeHigh] = model.oneTime?.[tier] ?? [];
+  return {
+    kind: model.kind,
+    setup: model.setup?.[tier],
+    monthly: model.monthly?.[tier],
+    oneTimeLow,
+    oneTimeHigh,
+    trustLine: model.trustLine,
+  };
+}
 
 export interface SolutionIndustryContent {
   heroHeadline: string;
@@ -43,17 +95,17 @@ export interface SolutionIndustryContent {
 
 // Muted, restrained accent per industry — one working color, not a saturated rainbow.
 export const industries: IndustryConfig[] = [
-  { slug: "dental", label: "Dental", accentColor: "#3A6D8C", accentLight: "#F4F7F8", accentDark: "#2A5266", workVerb: "treating", businessNoun: "practice" },
-  { slug: "pet-care", label: "Pet Care", accentColor: "#4C7A6D", accentLight: "#F4F7F6", accentDark: "#385C52", workVerb: "grooming", businessNoun: "business" },
-  { slug: "tattoo", label: "Tattoo", accentColor: "#5B4A45", accentLight: "#F6F5F4", accentDark: "#43372F", workVerb: "inking", businessNoun: "studio" },
-  { slug: "salon", label: "Salon", accentColor: "#8C5A6D", accentLight: "#F8F5F6", accentDark: "#6B4252", workVerb: "styling", businessNoun: "salon" },
-  { slug: "trades", label: "Trades", accentColor: "#8A6D3B", accentLight: "#F8F6F1", accentDark: "#6B542C", workVerb: "fixing", businessNoun: "business" },
-  { slug: "restaurant", label: "Restaurant", accentColor: "#A85D3B", accentLight: "#F8F4F1", accentDark: "#7E452B", workVerb: "cooking", businessNoun: "restaurant" },
-  { slug: "cafe", label: "Cafe", accentColor: "#6B4A2E", accentLight: "#F7F4F0", accentDark: "#4F3620", workVerb: "brewing", businessNoun: "cafe" },
-  { slug: "fitness", label: "Fitness", accentColor: "#5B5390", accentLight: "#F5F4F8", accentDark: "#433D6B", workVerb: "training", businessNoun: "gym" },
-  { slug: "photography", label: "Photography", accentColor: "#33383F", accentLight: "#F5F5F6", accentDark: "#21252A", workVerb: "shooting", businessNoun: "studio" },
-  { slug: "moving", label: "Moving", accentColor: "#3D6E8C", accentLight: "#F3F6F8", accentDark: "#2C5266", workVerb: "moving", businessNoun: "company" },
-  { slug: "automotive", label: "Automotive", accentColor: "#4C5A6B", accentLight: "#F4F5F7", accentDark: "#37424F", workVerb: "repairing", businessNoun: "garage" },
+  { slug: "dental", label: "Dental", accentColor: "#3A6D8C", accentLight: "#F4F7F8", accentDark: "#2A5266", workVerb: "treating", businessNoun: "practice", tier: "A" },
+  { slug: "pet-care", label: "Pet Care", accentColor: "#4C7A6D", accentLight: "#F4F7F6", accentDark: "#385C52", workVerb: "grooming", businessNoun: "business", tier: "B" },
+  { slug: "tattoo", label: "Tattoo", accentColor: "#5B4A45", accentLight: "#F6F5F4", accentDark: "#43372F", workVerb: "inking", businessNoun: "studio", tier: "B" },
+  { slug: "salon", label: "Salon", accentColor: "#8C5A6D", accentLight: "#F8F5F6", accentDark: "#6B4252", workVerb: "styling", businessNoun: "salon", tier: "B" },
+  { slug: "trades", label: "Trades", accentColor: "#8A6D3B", accentLight: "#F8F6F1", accentDark: "#6B542C", workVerb: "fixing", businessNoun: "business", tier: "A" },
+  { slug: "restaurant", label: "Restaurant", accentColor: "#A85D3B", accentLight: "#F8F4F1", accentDark: "#7E452B", workVerb: "cooking", businessNoun: "restaurant", tier: "B" },
+  { slug: "cafe", label: "Cafe", accentColor: "#6B4A2E", accentLight: "#F7F4F0", accentDark: "#4F3620", workVerb: "brewing", businessNoun: "cafe", tier: "B" },
+  { slug: "fitness", label: "Fitness", accentColor: "#5B5390", accentLight: "#F5F4F8", accentDark: "#433D6B", workVerb: "training", businessNoun: "gym", tier: "B" },
+  { slug: "photography", label: "Photography", accentColor: "#33383F", accentLight: "#F5F5F6", accentDark: "#21252A", workVerb: "shooting", businessNoun: "studio", tier: "B" },
+  { slug: "moving", label: "Moving", accentColor: "#3D6E8C", accentLight: "#F3F6F8", accentDark: "#2C5266", workVerb: "moving", businessNoun: "company", tier: "A" },
+  { slug: "automotive", label: "Automotive", accentColor: "#4C5A6B", accentLight: "#F4F5F7", accentDark: "#37424F", workVerb: "repairing", businessNoun: "garage", tier: "A" },
 ];
 
 export const solutions: SolutionConfig[] = [
@@ -83,9 +135,9 @@ export const solutionContent: Record<string, SolutionIndustryContent> = {
       { icon: "chart", title: "Analytics Dashboard", description: "Track every booking, missed call, and patient inquiry" },
       { icon: "star", title: "Review Requests", description: "Automatic review requests sent after every appointment" },
     ],
-    roiDefaults: { missedPerWeek: 12, avgValue: 85, label: "per appointment", cost: 99 },
+    roiDefaults: { missedPerWeek: 12, avgValue: 85, label: "per appointment" },
     faqs: [
-      { question: "How much does it cost?", answer: "Pricing depends on your specific needs, discussed on a free call. Most dental practices land between £99 and £299 a month for the full package." },
+      { question: "How much does it cost?", answer: "£199 one-time to build and set up your practice's AI receptionist, then £59 a month to keep it running. No long-term contract, cancel anytime." },
       { question: "How long does setup take?", answer: "Most practices are live within 14 days, with no technical work required on your side." },
       { question: "Does it work with my existing booking system?", answer: "Yes. It can connect to whatever practice management software you already use, or I can set up a standalone booking flow if you don't have one yet." },
       { question: "What if a patient asks something outside what the AI knows?", answer: "It says a member of the team will follow up personally rather than guessing. It only answers from the exact information you give it, nothing invented." },
@@ -125,7 +177,7 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
       { icon: "mobile", title: "Mobile Gallery", description: "A swipeable, full-screen portfolio that loads instantly" },
       { icon: "search", title: "Google Ranking", description: "Built to rank for 'tattoo studio near me', not just Instagram hashtags" },
     ],
-    roiDefaults: { missedPerWeek: 5, avgValue: 200, label: "per custom piece", cost: 79 },
+    roiDefaults: { missedPerWeek: 5, avgValue: 200, label: "per custom piece" },
     faqs: [
       { question: "Can the AI understand different tattoo styles?", answer: "Yes. It's trained on your specific style specialties, pricing tiers, and consultation process." },
       { question: "What about deposit collection?", answer: "The AI can collect deposits via Stripe directly in the chat, for example a standard £50 deposit to secure a consultation slot." },
@@ -155,13 +207,13 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
       { icon: "calendar", title: "Job Scheduling", description: "Customers book available slots directly, synced with your calendar" },
       { icon: "star", title: "Review Collection", description: "Automatic review requests after every completed job" },
     ],
-    roiDefaults: { missedPerWeek: 8, avgValue: 180, label: "per job", cost: 79 },
+    roiDefaults: { missedPerWeek: 8, avgValue: 180, label: "per job" },
     faqs: [
       { question: "I'm not tech-savvy, is this complicated?", answer: "No. Everything is set up for you, and job notifications land on your phone just like a text message." },
       { question: "What if it's an emergency callout?", answer: "Emergency requests are flagged as urgent and sent to you immediately by text and email. You decide whether to accept." },
       { question: "Can customers send photos of the problem?", answer: "Yes. The AI asks customers to upload a photo, which helps you assess the job before arriving." },
       { question: "Does it work for multiple trades?", answer: "Yes. Whether you're a plumber, electrician, builder, or multi-trade, the AI adapts to your services." },
-      { question: "What does it cost?", answer: "Pricing is discussed on a free call. Most tradespeople land between £79 and £199 a month, and it typically pays for itself with one extra job." },
+      { question: "What does it cost?", answer: "£199 one-time setup, then £59 a month. It typically pays for itself with one extra job, and there's no long-term contract." },
     ],
     proofStat: "Automation pipeline",
     proofDescription: "built and shipped scraping and scheduling automation in production",
@@ -185,7 +237,7 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
       { icon: "mobile", title: "Mobile Perfect", description: "Most salon bookings happen on phones; this is built for that" },
       { icon: "star", title: "Loyalty & Reviews", description: "Track visits, reward regulars, collect Google reviews" },
     ],
-    roiDefaults: { missedPerWeek: 10, avgValue: 65, label: "per appointment", cost: 89 },
+    roiDefaults: { missedPerWeek: 10, avgValue: 65, label: "per appointment" },
     faqs: [
       { question: "Can clients choose their stylist?", answer: "Yes. Each stylist gets their own profile with specialties, portfolio, and availability." },
       { question: "How does the deposit system work?", answer: "When a client books, they pay a small deposit. Salons typically see a significant reduction in no-shows." },
@@ -215,7 +267,7 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
       { icon: "chart", title: "Customer Data", description: "Own your customer relationships: names, preferences, order history" },
       { icon: "star", title: "Review Management", description: "Streamlined responses to Google and TripAdvisor reviews" },
     ],
-    roiDefaults: { missedPerWeek: 15, avgValue: 28, label: "per order", cost: 99 },
+    roiDefaults: { missedPerWeek: 15, avgValue: 28, label: "per order" },
     faqs: [
       { question: "Can it handle dietary requirements?", answer: "Yes. The AI knows your full menu, including allergens and vegan or vegetarian options." },
       { question: "How does direct ordering save money?", answer: "Delivery apps typically charge 25-35% commission. On meaningful monthly volume, that adds up to real money kept in-house." },
@@ -257,7 +309,7 @@ RULES: Only use the facts given above. Never invent a menu item, price, or aller
       { icon: "calendar", title: "24/7 Booking", description: "Clients book grooming, daycare, or walking anytime" },
       { icon: "star", title: "Review Boost", description: "Automatic review requests with before/after photos attached" },
     ],
-    roiDefaults: { missedPerWeek: 8, avgValue: 55, label: "per grooming session", cost: 79 },
+    roiDefaults: { missedPerWeek: 8, avgValue: 55, label: "per grooming session" },
     faqs: [
       { question: "Can the AI handle different pet types?", answer: "Yes, dogs, cats, rabbits. It knows breed-specific grooming requirements." },
       { question: "How do auto-reminders work?", answer: "Based on breed and coat type, the AI calculates when each pet is due and sends a one-tap booking link." },
@@ -282,6 +334,11 @@ export function getFallbackContent(solutionSlug: string, industrySlug: string): 
   const solution = solutions.find((s) => s.slug === solutionSlug);
   const name = industry?.label ?? industrySlug;
   const noun = industry?.businessNoun ?? "business";
+  const priced = getPricing(solutionSlug, industrySlug);
+  const costAnswer =
+    priced.kind === "hybrid" ? `£${priced.setup} one-time to build and set up, then £${priced.monthly} a month. No long-term contract, cancel anytime.`
+    : priced.kind === "monthly-flat" ? `£${priced.monthly} a month, no setup fee. No long-term contract, cancel anytime.`
+    : `${priced.oneTimeLow === priced.oneTimeHigh ? `£${priced.oneTimeLow?.toLocaleString()}` : `£${priced.oneTimeLow?.toLocaleString()}–£${priced.oneTimeHigh?.toLocaleString()}`}, one-time, scoped to your business on a free call.`;
   return {
     heroHeadline: `Your ${name} Business Deserves\nBetter Technology.`,
     heroSubheadline: `Outdated websites lose customers to competitors. This builds ${solution?.title.toLowerCase() ?? "a solution"} specifically for ${name.toLowerCase()} businesses.`,
@@ -300,9 +357,9 @@ export function getFallbackContent(solutionSlug: string, industrySlug: string): 
       { icon: "chart", title: "Analytics", description: "Track every booking, inquiry, and customer interaction" },
       { icon: "star", title: "Reviews", description: "Automatic collection of 5-star reviews from happy customers" },
     ],
-    roiDefaults: { missedPerWeek: 8, avgValue: 75, label: "per customer", cost: 99 },
+    roiDefaults: { missedPerWeek: 8, avgValue: 75, label: "per customer" },
     faqs: [
-      { question: "How much does it cost?", answer: "Pricing is discussed on a free call. Most businesses land between £79 and £299 a month." },
+      { question: "How much does it cost?", answer: costAnswer },
       { question: "How long does setup take?", answer: "Most businesses are live within 14 days, with everything handled for you." },
       { question: "Do I need to be tech-savvy?", answer: "No. If you can use a smartphone, you can use this." },
       { question: "What if I already have a website?", answer: "An existing site can be enhanced, or rebuilt if that makes more sense." },
