@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import GridBackground from "@/components/grid-background";
@@ -98,6 +99,7 @@ export default function RootLayout({
         <main className="pt-16">{children}</main>
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-Z8FD4KW1PQ" />
     </html>
   );
 }
