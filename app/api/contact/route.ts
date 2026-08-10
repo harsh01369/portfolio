@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       const error = await res.json();
       console.error("Brevo error:", error);
       return NextResponse.json(
-        { error: "Failed to send message" },
+        { error: "Failed to send message", debug: error },
         { status: 500 }
       );
     }

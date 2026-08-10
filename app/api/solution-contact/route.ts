@@ -33,8 +33,9 @@ export async function POST(request: Request) {
     });
 
     if (!res.ok) {
-      console.error("Brevo error:", await res.json());
-      return NextResponse.json({ error: "Failed to submit" }, { status: 500 });
+      const error = await res.json();
+      console.error("Brevo error:", error);
+      return NextResponse.json({ error: "Failed to submit", debug: error }, { status: 500 });
     }
     return NextResponse.json({ success: true });
   } catch (error) {
