@@ -18,7 +18,7 @@ import AutomotiveMockup from "./mockups/automotive-mockup";
 import LiveChatPanel from "./live-chat-panel";
 
 const mockups: Record<string, React.ComponentType> = {
-  dental: DentalMockup, tattoo: TattooMockup, trades: TradesMockup,
+  medico: DentalMockup, tattoo: TattooMockup, trades: TradesMockup,
   salon: SalonMockup, "pet-care": PetCareMockup, restaurant: RestaurantMockup,
   cafe: CafeMockup, fitness: FitnessMockup, photography: PhotographyMockup,
   moving: MovingMockup, automotive: AutomotiveMockup,

@@ -1,9 +1,8 @@
 import type { IconName } from "@/components/solutions/icon";
 
 export type IndustrySlug =
-  | "dental" | "pet-care" | "tattoo" | "salon" | "trades"
-  | "restaurant" | "cafe" | "fitness" | "photography" | "moving" | "automotive"
-  | "medical" | "veterinary";
+  | "medico" | "pet-care" | "tattoo" | "salon" | "trades"
+  | "restaurant" | "cafe" | "fitness" | "photography" | "moving" | "automotive";
 
 export type SolutionSlug =
   | "ai-chatbot" | "booking-system" | "speed-optimization" | "website-rebuild" | "review-system";
@@ -96,7 +95,7 @@ export interface SolutionIndustryContent {
 
 // Muted, restrained accent per industry — one working color, not a saturated rainbow.
 export const industries: IndustryConfig[] = [
-  { slug: "dental", label: "Dental", accentColor: "#3A6D8C", accentLight: "#F4F7F8", accentDark: "#2A5266", workVerb: "treating", businessNoun: "practice", tier: "A" },
+  { slug: "medico", label: "Medico", accentColor: "#3A6D8C", accentLight: "#F4F7F8", accentDark: "#2A5266", workVerb: "treating", businessNoun: "practice", tier: "A" },
   { slug: "pet-care", label: "Pet Care", accentColor: "#4C7A6D", accentLight: "#F4F7F6", accentDark: "#385C52", workVerb: "grooming", businessNoun: "business", tier: "B" },
   { slug: "tattoo", label: "Tattoo", accentColor: "#5B4A45", accentLight: "#F6F5F4", accentDark: "#43372F", workVerb: "inking", businessNoun: "studio", tier: "B" },
   { slug: "salon", label: "Salon", accentColor: "#8C5A6D", accentLight: "#F8F5F6", accentDark: "#6B4252", workVerb: "styling", businessNoun: "salon", tier: "B" },
@@ -107,8 +106,6 @@ export const industries: IndustryConfig[] = [
   { slug: "photography", label: "Photography", accentColor: "#33383F", accentLight: "#F5F5F6", accentDark: "#21252A", workVerb: "shooting", businessNoun: "studio", tier: "B" },
   { slug: "moving", label: "Moving", accentColor: "#3D6E8C", accentLight: "#F3F6F8", accentDark: "#2C5266", workVerb: "moving", businessNoun: "company", tier: "A" },
   { slug: "automotive", label: "Automotive", accentColor: "#4C5A6B", accentLight: "#F4F5F7", accentDark: "#37424F", workVerb: "repairing", businessNoun: "garage", tier: "A" },
-  { slug: "medical", label: "Medical", accentColor: "#2D6B78", accentLight: "#F2F7F8", accentDark: "#204E58", workVerb: "consulting", businessNoun: "practice", tier: "A" },
-  { slug: "veterinary", label: "Veterinary", accentColor: "#6B7355", accentLight: "#F6F7F3", accentDark: "#4F5540", workVerb: "treating", businessNoun: "clinic", tier: "A" },
 ];
 
 export const solutions: SolutionConfig[] = [
@@ -120,7 +117,7 @@ export const solutions: SolutionConfig[] = [
 ];
 
 export const solutionContent: Record<string, SolutionIndustryContent> = {
-  "ai-chatbot:dental": {
+  "ai-chatbot:medico": {
     heroHeadline: "Your Patients Call After Hours.\nNobody Answers.",
     heroSubheadline: "Missed after-hours calls are missed bookings. An AI receptionist can answer every call and book every appointment, even at 3am.",
     problemStory: "It's 8pm. Sarah searches 'dentist near me.' She finds your practice, but there's no way to book online. She calls and gets voicemail. A competitor with an AI chatbot answers instantly and books her in. You never knew Sarah existed.",
