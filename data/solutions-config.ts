@@ -2,7 +2,8 @@ import type { IconName } from "@/components/solutions/icon";
 
 export type IndustrySlug =
   | "dental" | "pet-care" | "tattoo" | "salon" | "trades"
-  | "restaurant" | "cafe" | "fitness" | "photography" | "moving" | "automotive";
+  | "restaurant" | "cafe" | "fitness" | "photography" | "moving" | "automotive"
+  | "medical" | "veterinary";
 
 export type SolutionSlug =
   | "ai-chatbot" | "booking-system" | "speed-optimization" | "website-rebuild" | "review-system";
@@ -106,6 +107,8 @@ export const industries: IndustryConfig[] = [
   { slug: "photography", label: "Photography", accentColor: "#33383F", accentLight: "#F5F5F6", accentDark: "#21252A", workVerb: "shooting", businessNoun: "studio", tier: "B" },
   { slug: "moving", label: "Moving", accentColor: "#3D6E8C", accentLight: "#F3F6F8", accentDark: "#2C5266", workVerb: "moving", businessNoun: "company", tier: "A" },
   { slug: "automotive", label: "Automotive", accentColor: "#4C5A6B", accentLight: "#F4F5F7", accentDark: "#37424F", workVerb: "repairing", businessNoun: "garage", tier: "A" },
+  { slug: "medical", label: "Medical", accentColor: "#2D6B78", accentLight: "#F2F7F8", accentDark: "#204E58", workVerb: "consulting", businessNoun: "practice", tier: "A" },
+  { slug: "veterinary", label: "Veterinary", accentColor: "#6B7355", accentLight: "#F6F7F3", accentDark: "#4F5540", workVerb: "treating", businessNoun: "clinic", tier: "A" },
 ];
 
 export const solutions: SolutionConfig[] = [
