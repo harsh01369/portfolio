@@ -12,9 +12,8 @@ import SolutionFeatures from "./solution-features";
 import ROICalculator from "./roi-calculator";
 import SolutionHowItWorks from "./solution-how-it-works";
 import SolutionProof from "./solution-proof";
-import SolutionPricing from "./solution-pricing";
 import SolutionFAQ from "./solution-faq";
-import SolutionContactForm from "./solution-contact-form";
+import PackageBuilder from "./package-builder";
 import MockupSection from "./mockup-section";
 import SolutionStatementBand from "./solution-statement-band";
 import Icon from "./icon";
@@ -79,16 +78,21 @@ export default function SolutionPageContent({ solution }: Props) {
         <AnimatePresence mode="wait">
           <motion.div key={selectedIndustry} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }}>
             <SolutionHero content={content} industry={industry} solution={solution} />
-            <SolutionProblem content={content} industry={industry} />
-            <SolutionStatementBand industry={industry} />
             <MockupSection industry={industry} content={content} />
-            <ROICalculator content={content} industry={industry} solution={solution} />
+            <SolutionStatementBand industry={industry} />
+            <section className="py-16 border-b border-[#e2e8f0]" style={{ backgroundColor: industry.accentLight }}>
+              <div className="mx-auto max-w-6xl px-6">
+                <div className="grid gap-12 lg:grid-cols-2 items-start">
+                  <SolutionProblem content={content} industry={industry} />
+                  <ROICalculator content={content} industry={industry} solution={solution} />
+                </div>
+              </div>
+            </section>
             <SolutionFeatures content={content} industry={industry} />
+            <PackageBuilder industry={industry} />
             <SolutionHowItWorks />
-            <SolutionProof content={content} industry={industry} />
-            <SolutionPricing solution={solution} industry={industry} />
             <SolutionFAQ content={content} />
-            <SolutionContactForm industry={industry} solution={solution} />
+            <SolutionProof content={content} industry={industry} />
           </motion.div>
         </AnimatePresence>
       </div>

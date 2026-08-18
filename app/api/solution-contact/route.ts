@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { businessName, need, email, phone, website, message, industry, solution } = await request.json();
+    const { businessName, need, email, phone, website, message, industry, solution, estimate } = await request.json();
 
     if (!businessName || !need || !email) {
       return NextResponse.json({ error: "Business name, service needed, and email are required" }, { status: 400 });
     }
+
+    const estimateLine = estimate
+      ? `${estimate.oneTime > 0 ? `£${estimate.oneTime.toLocaleString()} one-time` : ""}${estimate.oneTime > 0 && estimate.monthly > 0 ? " + " : ""}${estimate.monthly > 0 ? `£${estimate.monthly}/mo` : ""}${estimate.discountPct > 0 ? ` (${estimate.discountPct}% bundle discount)` : ""}${estimate.bonusUnlocked ? ", Review Requests included free" : ""}`
+      : null;
 
     const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
@@ -21,7 +25,8 @@ export async function POST(request: Request) {
           <table style="border-collapse:collapse;width:100%;max-width:500px;">
             <tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Business</td><td style="padding:8px;border:1px solid #e2e8f0;">${businessName}</td></tr>
             <tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Industry</td><td style="padding:8px;border:1px solid #e2e8f0;">${industry}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Need</td><td style="padding:8px;border:1px solid #e2e8f0;">${need}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Modules</td><td style="padding:8px;border:1px solid #e2e8f0;">${need}</td></tr>
+            ${estimateLine ? `<tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Estimate</td><td style="padding:8px;border:1px solid #e2e8f0;">${estimateLine}</td></tr>` : ""}
             <tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Email</td><td style="padding:8px;border:1px solid #e2e8f0;"><a href="mailto:${email}">${email}</a></td></tr>
             ${phone ? `<tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Phone</td><td style="padding:8px;border:1px solid #e2e8f0;">${phone}</td></tr>` : ""}
             ${website ? `<tr><td style="padding:8px;border:1px solid #e2e8f0;font-weight:bold;">Website</td><td style="padding:8px;border:1px solid #e2e8f0;">${website}</td></tr>` : ""}

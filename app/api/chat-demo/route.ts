@@ -39,10 +39,26 @@ export async function POST(request: Request) {
     // need repeating in each prompt. Warm and natural, but honest if asked directly
     // whether it's a bot — real disclosure laws (EU AI Act Art. 50, California's bot
     // law) require that, and pretending otherwise is a bad bet for a real business.
-    const toneInstruction = "Talk like a real, friendly member of staff, not a formal script: use contractions, keep it warm and casual, don't repeat 'I'm an AI' or similar every message. If someone directly and sincerely asks whether you're a bot or an AI, say yes honestly rather than denying it.";
+    //
+    // Written to the same bar as the outreach email copywriting elsewhere in this
+    // project: reply to the actual thing the person asked, don't pivot to a script.
+    // A real front-desk person doesn't recite a menu of services when asked one
+    // specific question, they answer that question, then let the conversation lead
+    // naturally to the next thing. That's the read-aloud test here too: if a real
+    // employee wouldn't say it that way out loud, rewrite it.
+    const toneInstruction = "Talk like a real, friendly member of staff who has done this job for years, not a script reading off a services list. Answer the specific thing they just asked before adding anything else. Use contractions, keep sentences short and conversational, vary how you open replies instead of always restating their question back at them. Never use em dashes, use a comma or period instead. Don't repeat 'I'm an AI' or similar every message, and don't pad replies with corporate filler like 'I'd be happy to help' or 'great question'. If someone directly and sincerely asks whether you're a bot or an AI, say yes honestly rather than denying it.";
+
+    // Booking-button layer: the moment the conversation reaches "let's get you
+    // booked", emit a machine-parseable marker so the frontend can render a real
+    // tappable button instead of just describing one in text. This is what turns
+    // the demo from "the AI can answer questions" into "watch it actually hand the
+    // visitor a booking action", which is the whole point of the WhatsApp demo.
+    // Keep the label short and put the marker on its own final line so it has room
+    // to finish inside the token budget rather than getting cut off mid-marker.
+    const bookingButtonInstruction = "The moment you'd naturally offer to book something (a slot, appointment, consultation, or table) rather than just answer a question, finish your reply, then on a new final line add exactly: [[BOOK: <button label, 2-4 words max>]]. Keep the label very short so the whole marker fits easily. Only include this marker when you are genuinely ready to hand off to booking, not on every message, and never more than one per reply. Do not explain or mention the marker itself, it's rendered as a button, not read as text.";
 
     const groqMessages = [
-      { role: "system", content: `${toneInstruction}\n\n${systemPrompt || "You are a helpful business assistant."}` },
+      { role: "system", content: `${toneInstruction}\n\n${bookingButtonInstruction}\n\n${systemPrompt || "You are a helpful business assistant."}` },
       ...messages.slice(-10), // Last 10 messages only
     ];
 
@@ -53,9 +69,9 @@ export async function POST(request: Request) {
         Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "openai/gpt-oss-20b",
         messages: groqMessages,
-        max_tokens: 200,
+        max_tokens: 500,
         temperature: 0.7,
       }),
     });
@@ -67,7 +83,26 @@ export async function POST(request: Request) {
     }
 
     const data = await res.json();
-    const reply = data.choices?.[0]?.message?.content ?? "Sorry, I could not generate a response.";
+    let reply: string = data.choices?.[0]?.message?.content ?? "Sorry, I could not generate a response.";
+
+    // Safety net, not the primary fix: strip any em dash the model slips in
+    // despite the instruction. Also drop a [[BOOK: ...]] marker that got cut off
+    // mid-way (hit the token limit before the closing ]]), catching it from the
+    // last unclosed "[[" onward rather than requiring "[[BOOK:" specifically,
+    // since a truncation can land before the colon even finishes.
+    reply = reply.replace(/—/g, ",");
+    const lastOpen = reply.lastIndexOf("[[");
+    if (lastOpen !== -1 && !reply.slice(lastOpen).includes("]]")) {
+      reply = reply.slice(0, lastOpen);
+    }
+    reply = reply.trim();
+
+    // If stripping that fragment left nothing (the model's entire truncated
+    // output was the marker itself, no sentence before it), fall back to a safe
+    // line rather than showing a blank bubble.
+    if (!reply) {
+      reply = "Let me get that sorted for you, one moment.";
+    }
 
     return NextResponse.json({ reply });
   } catch (error) {

@@ -19,14 +19,13 @@ export default function ROICalculator({ content, industry, solution }: { content
   const weeksToPayback = weekly > 0 ? cost / weekly : 0;
 
   return (
-    <section id="roi-calculator" className="py-20 border-b border-[#e2e8f0]">
-      <div className="mx-auto max-w-5xl px-6">
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: industry.accentColor }}>The Numbers</p>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-2">See What You Could Be Losing</h2>
-          <p className="text-[#475569] mb-10">Rough numbers, adjust the sliders to match your business.</p>
-        </motion.div>
-        <div className="grid gap-10 lg:grid-cols-2 items-start">
+    <div>
+      <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: industry.accentColor }}>The Numbers</p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-2">See What You Could Be Losing</h2>
+        <p className="text-[#475569] mb-8">Rough numbers, adjust the sliders to match your business.</p>
+      </motion.div>
+      <div className="space-y-8">
           <div className="space-y-8">
             <div>
               <div className="flex justify-between text-sm mb-2">
@@ -80,8 +79,7 @@ export default function ROICalculator({ content, industry, solution }: { content
               </button>
             </div>
           </motion.div>
-        </div>
       </div>
-    </section>
+    </div>
   );
 }
