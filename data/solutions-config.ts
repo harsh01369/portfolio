@@ -2,7 +2,7 @@ import type { IconName } from "@/components/solutions/icon";
 
 export type IndustrySlug =
   | "medico" | "pet-care" | "tattoo" | "salon" | "trades"
-  | "restaurant" | "cafe" | "fitness" | "photography" | "moving" | "automotive";
+  | "restaurant" | "cafe" | "fitness" | "photography" | "moving" | "automotive" | "med-spa";
 
 export type SolutionSlug =
   | "ai-chatbot" | "booking-system" | "speed-optimization" | "website-rebuild" | "review-system";
@@ -177,6 +177,7 @@ export const industries: IndustryConfig[] = [
   { slug: "photography", label: "Photography", accentColor: "#33383F", accentLight: "#F5F5F6", accentDark: "#21252A", workVerb: "shooting", businessNoun: "studio", tier: "B" },
   { slug: "moving", label: "Moving", accentColor: "#3D6E8C", accentLight: "#F3F6F8", accentDark: "#2C5266", workVerb: "moving", businessNoun: "company", tier: "A" },
   { slug: "automotive", label: "Automotive", accentColor: "#4C5A6B", accentLight: "#F4F5F7", accentDark: "#37424F", workVerb: "repairing", businessNoun: "garage", tier: "A" },
+  { slug: "med-spa", label: "Med Spa", accentColor: "#A8677A", accentLight: "#F9F4F5", accentDark: "#7F4E5D", workVerb: "enhancing", businessNoun: "clinic", tier: "A" },
 ];
 
 export const solutions: SolutionConfig[] = [
@@ -1721,6 +1722,156 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     proofStat: "Automated notification pipelines",
     proofDescription: "the same reliable trigger and follow-up logic used in production automation",
     chatSystemPrompt: "You are the assistant for Frame & Light Studio. Packages: Portrait session £150, Family session £220, Event coverage from £350, Wedding package from £1,200 (20% deposit). Photographer: Alex. Keep responses concise (2-3 sentences max).",
+  },
+  "ai-chatbot:med-spa": {
+    heroHeadline: "A £400 Filler Client\nJust Messaged a Competitor Instead.",
+    heroSubheadline: "Aesthetic clients research treatments at night and expect an instant answer on pricing and availability. No AI chat means every after-hours inquiry goes to whoever answers first, and it's rarely you.",
+    problemStory: "Jess is scrolling Instagram at 9pm, deciding between three clinics for her first Botox appointment. Yours has the best reviews. But the website just has a phone number and a contact form. She messages a competitor's Instagram instead, who has an assistant that answers instantly with pricing and books her in for Saturday. You never even knew she looked.",
+    painPoints: [
+      "After-hours inquiries about pricing and suitability go unanswered until morning",
+      "Staff spend hours a week answering the same 'how much is X' questions by phone",
+      "No-shows on high-value consultations cost hundreds in lost chair time",
+      "New clients can't tell which treatment fits their goals without a consultation call",
+    ],
+    features: [
+      { icon: "chat", title: "AI Treatment Advisor", description: "Answers pricing and suitability questions for Botox, fillers, laser, and facials instantly" },
+      { icon: "calendar", title: "24/7 Consultation Booking", description: "Clients book a consultation or treatment slot anytime, no phone tag" },
+      { icon: "gallery", title: "Before/After Gallery", description: "Chat can surface real results matched to the treatment being asked about" },
+      { icon: "coin", title: "Deposit Collection", description: "Automatic deposit on high-value bookings to cut no-shows" },
+      { icon: "mobile", title: "Mobile-First", description: "Built for the way aesthetic clients actually research, on their phone, at night" },
+      { icon: "sparkle", title: "Treatment Matching", description: "Asks a few questions and recommends the right treatment instead of a generic price list" },
+    ],
+    roiDefaults: { missedPerWeek: 5, avgValue: 300, label: "per consultation" },
+    faqs: [
+      { question: "Can it handle pricing for different treatments?", answer: "Yes. It's given your actual price ranges for each treatment and answers accordingly, not a vague 'contact us for pricing.'" },
+      { question: "Can it book consultations separately from treatments?", answer: "Yes, a free or paid consultation slot can be booked separately from an actual treatment slot." },
+      { question: "Can it show before/after photos?", answer: "Yes, matched to whatever treatment the client is asking about." },
+      { question: "Does it handle sensitive medical questions well?", answer: "It's instructed to keep suitability questions general and always point to an in-person consultation for anything requiring clinical judgment." },
+      { question: "How much does it cost?", answer: "£249 one-time to build and set up your clinic's AI receptionist, then £79 a month to keep it running. No long-term contract, cancel anytime." },
+    ],
+    proofStat: "AI chat system",
+    proofDescription: "built and shipped handling full conversations with knowledge base integration",
+    chatSystemPrompt: "You are the assistant for Radiance Aesthetics. Treatments: Botox from £180, Dermal Fillers from £220, Laser Hair Removal from £45/session, Chemical Peel from £75, Microneedling from £120, Consultation free. Practitioners: Dr. Sarah Lin (injectables), Mia Torres (skin treatments). Hours: Tue-Sat 9am-6pm, closed Sun-Mon. Keep responses concise (2-3 sentences max).",
+  },
+  "booking-system:med-spa": {
+    heroHeadline: "Stop Losing Consultations\nTo Phone Tag.",
+    heroSubheadline: "Every high-value booking lost to a missed call is a client who found a clinic with instant online booking instead. Let clients pick a treatment and time themselves.",
+    problemStory: "A client wants a filler consultation before a wedding in three weeks. She calls at 2pm, mid-treatment, and it goes to voicemail. She books online with the clinic down the road instead, done in under a minute.",
+    painPoints: [
+      "Booking over the phone eats into treatment room time",
+      "Evening and weekend calls often go to voicemail",
+      "No-shows on high-value slots go untracked, with no automatic reminder",
+      "Rebooking maintenance appointments (Botox top-ups, laser sessions) means another call every time",
+    ],
+    features: [
+      { icon: "calendar", title: "Live Availability", description: "Clients see real open slots per practitioner and book instantly" },
+      { icon: "bell", title: "Automatic Reminders", description: "Text reminders sent before every appointment, cutting no-shows" },
+      { icon: "clock", title: "Per-Practitioner Calendars", description: "Each practitioner has their own availability, no manual juggling" },
+      { icon: "coin", title: "Deposit Option", description: "Deposit collection on high-value treatments to protect the slot" },
+      { icon: "lock", title: "No Double-Booking", description: "One calendar, synced everywhere, so two clients never land on the same slot" },
+      { icon: "mobile", title: "Books From Any Phone", description: "No app download, just a link that works on any device" },
+    ],
+    roiDefaults: { missedPerWeek: 5, avgValue: 300, label: "per consultation" },
+    faqs: [
+      { question: "Can clients choose their practitioner?", answer: "Yes. Each practitioner has their own profile and availability." },
+      { question: "What about deposits for high-value treatments?", answer: "A deposit can be required for treatments like filler or laser packages, to protect the slot." },
+      { question: "What if a client needs to reschedule?", answer: "They can move their own appointment from the same link, no phone call needed." },
+      { question: "Does it handle recurring maintenance appointments?", answer: "Yes, clients can rebook Botox top-ups or laser sessions from the same system." },
+      { question: "How much does it cost?", answer: "£45 a month, no setup fee. No long-term contract, cancel anytime." },
+    ],
+    proofStat: "Zero-conflict scheduling logic",
+    proofDescription: "the same double-booking prevention built into production calendar systems",
+    chatSystemPrompt: "You are the booking assistant for Radiance Aesthetics. Treatments: Botox from £180, Dermal Fillers from £220, Laser Hair Removal from £45/session, Chemical Peel from £75, Microneedling from £120, Consultation free. Practitioners: Dr. Sarah Lin (injectables), Mia Torres (skin treatments). Keep responses concise (2-3 sentences max).",
+  },
+  "speed-optimization:med-spa": {
+    heroHeadline: "A Slow Site Loses Consultations\nBefore It Even Loads.",
+    heroSubheadline: "Most local med spa websites take 8+ seconds to load on mobile. Most clients leave before it finishes. This is a technical rebuild for speed, not a redesign.",
+    problemStory: "Someone searches 'Botox near me' on their phone. Your before/after gallery takes 8 seconds to load. They're gone before the first photo appears, back to scrolling Instagram instead.",
+    painPoints: [
+      "Mobile load time over 8 seconds on the average local clinic site",
+      "Google ranks faster sites higher, so slow sites lose search visibility too",
+      "Visitors on mobile data give up before the gallery loads",
+      "Every extra second of load time measurably increases the chance they leave",
+    ],
+    features: [
+      { icon: "route", title: "Full Speed Audit", description: "Every image, script, and render-blocking resource on the current site gets measured" },
+      { icon: "mobile", title: "Mobile-First Rebuild", description: "The technical layer gets rebuilt to load fast on a phone first" },
+      { icon: "search", title: "Core Web Vitals Fixed", description: "The same metrics Google uses to rank sites, brought into the passing range" },
+      { icon: "image", title: "Image Compression", description: "Before/after and treatment photos load fast without a visible quality drop" },
+      { icon: "chart", title: "Before/After Report", description: "A real load-time comparison, so the improvement isn't just a claim" },
+      { icon: "lock", title: "No Redesign Required", description: "A technical fix, your current site's look stays the same unless you want it changed" },
+    ],
+    roiDefaults: { missedPerWeek: 5, avgValue: 300, label: "per consultation" },
+    faqs: [
+      { question: "Does this change how my site looks?", answer: "No. This is purely a technical fix underneath, the design stays exactly as it is unless you want it changed too." },
+      { question: "How is the improvement measured?", answer: "Google PageSpeed and Core Web Vitals scores are pulled before and after, and sent over so you can see the real numbers." },
+      { question: "How long does it take?", answer: "Typically a few days once access to the site is provided." },
+      { question: "What if my site is built on Wix, Squarespace, or similar?", answer: "Some platforms limit how much can be fixed directly. That gets assessed honestly on the free call before anything is agreed." },
+      { question: "How much does it cost?", answer: "£349, one-time, scoped to your business on a free call." },
+    ],
+    proofStat: "Image-heavy sites, optimized",
+    proofDescription: "portfolio and gallery-driven builds tuned for fast mobile load in production",
+    chatSystemPrompt: "You are the assistant for Radiance Aesthetics. Treatments: Botox from £180, Dermal Fillers from £220, Laser Hair Removal from £45/session, Chemical Peel from £75, Microneedling from £120, Consultation free. Keep responses concise (2-3 sentences max).",
+  },
+  "website-rebuild:med-spa": {
+    heroHeadline: "Your Website Doesn't Look Like\nSomewhere You'd Get Filler.",
+    heroSubheadline: "A dated site undersells real results. This is a full rebuild, modern design, mobile-first, built to actually convert visitors into consultations.",
+    problemStory: "A client finds your Instagram, the results look incredible, but the website linked in your bio looks a decade old. She assumes the clinic itself hasn't kept up either, and books with a competitor whose site matches the work.",
+    painPoints: [
+      "Website design doesn't reflect the quality of actual results",
+      "No mobile-first layout, most visitors are on their phone",
+      "No clear place to see treatments, pricing, or practitioner credentials",
+      "Doesn't rank well against competitors with modern, SEO-built sites",
+    ],
+    features: [
+      { icon: "badge", title: "Modern Design", description: "A clean, professional layout that matches the quality of your results" },
+      { icon: "mobile", title: "Mobile-First Build", description: "Built for phones first, since that's where most visitors are" },
+      { icon: "gallery", title: "Before/After Gallery", description: "A real results gallery, organized by treatment" },
+      { icon: "search", title: "SEO Structure", description: "Built to rank for local aesthetics searches from day one" },
+      { icon: "calendar", title: "Booking Built In", description: "Online booking included, not bolted on separately" },
+      { icon: "star", title: "Review Display", description: "Your best Google reviews shown right on the homepage" },
+    ],
+    roiDefaults: { missedPerWeek: 5, avgValue: 300, label: "per consultation" },
+    faqs: [
+      { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
+      { question: "What if I don't have professional before/after photos yet?", answer: "That gets discussed on the free call, existing result photos usually still work well." },
+      { question: "How much does it cost?", answer: "£1,800–£3,500, one-time, scoped to your business on a free call." },
+    ],
+    proofStat: "Conversion-focused builds",
+    proofDescription: "the same fast, mobile-first foundation used across every production site shipped",
+    chatSystemPrompt: "You are the assistant for Radiance Aesthetics. Treatments: Botox from £180, Dermal Fillers from £220, Laser Hair Removal from £45/session, Chemical Peel from £75, Microneedling from £120, Consultation free. Keep responses concise (2-3 sentences max).",
+  },
+  "review-system:med-spa": {
+    heroHeadline: "Your Best Results Walk Out the Door\nWithout Leaving a Review.",
+    heroSubheadline: "A great result gets a compliment in the chair, not a Google review. Automatic requests after every visit turn happy clients into public proof.",
+    problemStory: "A client leaves thrilled with her filler results, tells you it's exactly what she wanted, and drives off. She meant to leave a review. She never did. Multiply that by every happy client this month.",
+    painPoints: [
+      "Happy clients rarely leave a review without being asked at the right moment",
+      "No consistent system for asking, so it depends on remembering",
+      "Unhappy clients are more likely to leave unprompted reviews than happy ones",
+      "Competitors with more reviews rank higher and look more trusted",
+    ],
+    features: [
+      { icon: "bell", title: "Automatic Requests", description: "A review request goes out right after the appointment, while it's fresh" },
+      { icon: "chat", title: "Smart Timing", description: "Requests are timed to land once results have settled, not mid-appointment" },
+      { icon: "alert", title: "Private Routing", description: "Unhappy clients are routed to you privately first, not straight to Google" },
+      { icon: "star", title: "Review Display", description: "Your best reviews get pulled onto your website automatically" },
+      { icon: "chart", title: "Simple Reporting", description: "See exactly how many requests went out and how many converted" },
+      { icon: "mobile", title: "One-Tap Reviews", description: "Clients tap a link and leave a review in under a minute" },
+    ],
+    roiDefaults: { missedPerWeek: 5, avgValue: 300, label: "per consultation" },
+    faqs: [
+      { question: "What if a client had a bad experience?", answer: "They're routed to a private form first, so you hear about it before it becomes a public review." },
+      { question: "How soon after the appointment does the request go out?", answer: "Timed to land once results have settled, usually a week or two out for injectables." },
+      { question: "Can I control which platform reviews go to?", answer: "Yes. Google is the default, but it can point wherever matters most to your business." },
+      { question: "Do I need to do anything manually?", answer: "No. Once it's set up it runs automatically after every appointment." },
+      { question: "How much does it cost?", answer: "£39 a month, no setup fee. No long-term contract, cancel anytime." },
+    ],
+    proofStat: "Automated notification pipelines",
+    proofDescription: "the same reliable trigger and follow-up logic used in production automation",
+    chatSystemPrompt: "You are the assistant for Radiance Aesthetics. Treatments: Botox from £180, Dermal Fillers from £220, Laser Hair Removal from £45/session, Chemical Peel from £75, Microneedling from £120, Consultation free. Keep responses concise (2-3 sentences max).",
   },
 };
 

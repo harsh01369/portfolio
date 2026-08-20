@@ -30,6 +30,7 @@ const DEMO_BUSINESS_NAMES: Record<string, string> = {
   photography: "Frame & Light Studio",
   moving: "SwiftMove",
   automotive: "Apex Auto",
+  "med-spa": "Radiance Aesthetics",
 };
 
 const DEMO_SERVICES: Record<string, string[]> = {
@@ -44,6 +45,7 @@ const DEMO_SERVICES: Record<string, string[]> = {
   photography: ["Portrait Session · 1 hr", "Family Session · 1.5 hr", "Wedding Consultation · 30 min"],
   moving: ["In-Home Estimate · 30 min", "Local Move", "Long-Distance Move"],
   automotive: ["MOT & Service · 60 min", "Diagnostic Check · 30 min", "Tyre Fitting · 20 min"],
+  "med-spa": ["Consultation · 20 min", "Botox · 30 min", "Dermal Filler · 45 min", "Laser Hair Removal · 30 min"],
 };
 
 const TIME_SLOTS = ["9:00 AM", "9:30 AM", "10:30 AM", "11:00 AM", "1:00 PM", "2:00 PM", "2:30 PM", "3:30 PM"];

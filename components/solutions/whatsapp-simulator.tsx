@@ -38,6 +38,7 @@ const DEMO_BUSINESS_NAMES: Record<string, string> = {
   photography: "Frame & Light Studio",
   moving: "SwiftMove",
   automotive: "Apex Auto",
+  "med-spa": "Radiance Aesthetics",
 };
 
 // Strips a trailing [[BOOK: label]] marker out of the display text and returns
