@@ -15,13 +15,14 @@ import FitnessMockup from "./mockups/fitness-mockup";
 import PhotographyMockup from "./mockups/photography-mockup";
 import MovingMockup from "./mockups/moving-mockup";
 import AutomotiveMockup from "./mockups/automotive-mockup";
+import MedSpaMockup from "./mockups/med-spa-mockup";
 import LiveChatPanel from "./live-chat-panel";
 
 const mockups: Record<string, React.ComponentType> = {
   medico: DentalMockup, tattoo: TattooMockup, trades: TradesMockup,
   salon: SalonMockup, "pet-care": PetCareMockup, restaurant: RestaurantMockup,
   cafe: CafeMockup, fitness: FitnessMockup, photography: PhotographyMockup,
-  moving: MovingMockup, automotive: AutomotiveMockup,
+  moving: MovingMockup, automotive: AutomotiveMockup, "med-spa": MedSpaMockup,
 };
 
 export default function MockupSection({ industry, content }: { industry: IndustryConfig; content: SolutionIndustryContent }) {
