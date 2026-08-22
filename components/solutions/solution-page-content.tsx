@@ -18,19 +18,21 @@ import MockupSection from "./mockup-section";
 import SolutionStatementBand from "./solution-statement-band";
 import Icon from "./icon";
 
-interface Props { solution: SolutionConfig; }
+interface Props { solution: SolutionConfig; initialIndustry: IndustrySlug | null; }
 
-export default function SolutionPageContent({ solution }: Props) {
+export default function SolutionPageContent({ solution, initialIndustry }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const industryParam = searchParams.get("industry");
-  const paramIsValid = !!industryParam && isValidIndustrySlug(industryParam);
 
-  const [selectedIndustry, setSelectedIndustry] = useState<IndustrySlug | null>(paramIsValid ? (industryParam as IndustrySlug) : null);
+  const [selectedIndustry, setSelectedIndustry] = useState<IndustrySlug | null>(initialIndustry);
 
   useEffect(() => {
-    if (industryParam && isValidIndustrySlug(industryParam)) setSelectedIndustry(industryParam);
-  }, [industryParam]);
+    const industryParam = searchParams.get("industry");
+    if (industryParam && isValidIndustrySlug(industryParam) && industryParam !== selectedIndustry) {
+      setSelectedIndustry(industryParam);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   function choose(slug: IndustrySlug) {
     setSelectedIndustry(slug);
