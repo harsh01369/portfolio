@@ -19,20 +19,41 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+// Standalone preview sites (levee-dental-preview, magnolia-dental-preview, etc.)
+// reuse this endpoint cross-origin rather than duplicating the Groq wiring and
+// tone rules per site. No secrets or per-user data are exposed here and the
+// route is already IP rate-limited, so a permissive origin is fine.
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+function withCors(response: NextResponse): NextResponse {
+  for (const [key, value] of Object.entries(CORS_HEADERS)) {
+    response.headers.set(key, value);
+  }
+  return response;
+}
+
+export async function OPTIONS() {
+  return withCors(new NextResponse(null, { status: 204 }));
+}
+
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     if (isRateLimited(ip)) {
-      return NextResponse.json(
+      return withCors(NextResponse.json(
         { error: "Too many messages. Please try again later." },
         { status: 429 }
-      );
+      ));
     }
 
     const { messages, systemPrompt } = await request.json();
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      return NextResponse.json({ error: "Messages required" }, { status: 400 });
+      return withCors(NextResponse.json({ error: "Messages required" }, { status: 400 }));
     }
 
     // Tone layer applied on top of every industry's own knowledge, so it doesn't
@@ -79,7 +100,7 @@ export async function POST(request: Request) {
     if (!res.ok) {
       const err = await res.text();
       console.error("Groq API error:", err);
-      return NextResponse.json({ error: "AI service unavailable" }, { status: 502 });
+      return withCors(NextResponse.json({ error: "AI service unavailable" }, { status: 502 }));
     }
 
     const data = await res.json();
@@ -104,9 +125,9 @@ export async function POST(request: Request) {
       reply = "Let me get that sorted for you, one moment.";
     }
 
-    return NextResponse.json({ reply });
+    return withCors(NextResponse.json({ reply }));
   } catch (error) {
     console.error("Chat demo error:", error);
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    return withCors(NextResponse.json({ error: "Something went wrong" }, { status: 500 }));
   }
 }
