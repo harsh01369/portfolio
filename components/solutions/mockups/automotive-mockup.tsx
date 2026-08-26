@@ -3,14 +3,14 @@
 import { useState } from "react";
 
 const services = [
-  { name: "MOT Test", price: "£39.99", time: "1 hr", icon: "🔍", tag: "Best Value" },
-  { name: "Full Service", price: "£149", time: "3 hrs", icon: "🔧", tag: "Popular" },
-  { name: "Interim Service", price: "£89", time: "1.5 hrs", icon: "⚙️", tag: "" },
-  { name: "Brake Pads (front)", price: "from £89", time: "1.5 hrs", icon: "🛞", tag: "" },
-  { name: "Tyre Fitting (each)", price: "from £45", time: "30 min", icon: "🔩", tag: "" },
-  { name: "Diagnostics Check", price: "£49", time: "45 min", icon: "💻", tag: "" },
-  { name: "Air Con Regas", price: "£59", time: "1 hr", icon: "❄️", tag: "" },
-  { name: "Battery Replacement", price: "from £89", time: "30 min", icon: "🔋", tag: "" },
+  { name: "MOT Test", price: "$39.99", time: "1 hr", icon: "🔍", tag: "Best Value" },
+  { name: "Full Service", price: "$149", time: "3 hrs", icon: "🔧", tag: "Popular" },
+  { name: "Interim Service", price: "$89", time: "1.5 hrs", icon: "⚙️", tag: "" },
+  { name: "Brake Pads (front)", price: "from $89", time: "1.5 hrs", icon: "🛞", tag: "" },
+  { name: "Tyre Fitting (each)", price: "from $45", time: "30 min", icon: "🔩", tag: "" },
+  { name: "Diagnostics Check", price: "$49", time: "45 min", icon: "💻", tag: "" },
+  { name: "Air Con Regas", price: "$59", time: "1 hr", icon: "❄️", tag: "" },
+  { name: "Battery Replacement", price: "from $89", time: "30 min", icon: "🔋", tag: "" },
 ];
 
 const reviews = [
@@ -49,7 +49,7 @@ export default function AutomotiveMockup() {
         <p className="text-xs text-[#94a3b8] mt-2">Honest pricing. No surprises. Guaranteed work.</p>
         <div className="flex gap-2 mt-5">
           <button className="px-5 py-2.5 bg-white text-[#334155] text-xs font-bold rounded-xl">
-            Book MOT £39.99
+            Book MOT $39.99
           </button>
           <button className="px-5 py-2.5 bg-white/10 text-white text-xs font-medium rounded-xl border border-white/20">
             All Services

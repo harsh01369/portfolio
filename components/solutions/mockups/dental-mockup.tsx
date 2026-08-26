@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 const services = [
-  { name: "Check-up & Clean", price: "£45", duration: "30 min", icon: "🦷", desc: "Comprehensive exam, scale & polish, oral health assessment" },
-  { name: "Teeth Whitening", price: "£299", duration: "1 hr", icon: "✨", desc: "Professional Zoom whitening, up to 8 shades brighter" },
-  { name: "Dental Implants", price: "from £2,500", duration: "Consultation", icon: "🔩", desc: "Permanent tooth replacement, titanium implant + crown" },
-  { name: "Invisalign", price: "from £1,800", duration: "6-18 months", icon: "😁", desc: "Clear aligners, virtually invisible, removable" },
-  { name: "Emergency", price: "£85", duration: "Same day", icon: "🚨", desc: "Toothache, broken tooth, lost filling, swelling" },
-  { name: "Veneers", price: "from £450/tooth", duration: "2 visits", icon: "💎", desc: "Porcelain veneers, natural look, long-lasting" },
+  { name: "Check-up & Clean", price: "$45", duration: "30 min", icon: "🦷", desc: "Comprehensive exam, scale & polish, oral health assessment" },
+  { name: "Teeth Whitening", price: "$299", duration: "1 hr", icon: "✨", desc: "Professional Zoom whitening, up to 8 shades brighter" },
+  { name: "Dental Implants", price: "from $2,500", duration: "Consultation", icon: "🔩", desc: "Permanent tooth replacement, titanium implant + crown" },
+  { name: "Invisalign", price: "from $1,800", duration: "6-18 months", icon: "😁", desc: "Clear aligners, virtually invisible, removable" },
+  { name: "Emergency", price: "$85", duration: "Same day", icon: "🚨", desc: "Toothache, broken tooth, lost filling, swelling" },
+  { name: "Veneers", price: "from $450/tooth", duration: "2 visits", icon: "💎", desc: "Porcelain veneers, natural look, long-lasting" },
 ];
 
 const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "14:00", "14:30", "15:00", "15:30", "16:00"];

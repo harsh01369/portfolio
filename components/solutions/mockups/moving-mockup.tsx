@@ -89,10 +89,10 @@ export default function MovingMockup() {
           {showQuote && (
             <div className="p-5 rounded-2xl bg-[#f0f9ff] border-2 border-[#0284C7] mt-2">
               <p className="text-[10px] text-[#475569]">Estimated price for {rooms} bedroom move</p>
-              <p className="text-4xl font-bold text-[#0284C7] mt-1">£{basePrice}</p>
+              <p className="text-4xl font-bold text-[#0284C7] mt-1">${basePrice}</p>
               <div className="mt-3 space-y-1 text-[10px] text-[#475569]">
-                <div className="flex justify-between"><span>Base rate</span><span>£250</span></div>
-                <div className="flex justify-between"><span>{rooms} bedroom(s)</span><span>£{rooms * 120}</span></div>
+                <div className="flex justify-between"><span>Base rate</span><span>$250</span></div>
+                <div className="flex justify-between"><span>{rooms} bedroom(s)</span><span>${rooms * 120}</span></div>
                 <div className="flex justify-between"><span>2 professional movers</span><span>Included</span></div>
                 <div className="flex justify-between"><span>Full insurance</span><span>Included</span></div>
               </div>
@@ -109,12 +109,12 @@ export default function MovingMockup() {
       {view === "services" && (
         <div className="px-5 py-4 space-y-2">
           {[
-            { name: "Home Removals", desc: "Full packing, loading, transport, unpacking", price: "from £250" },
-            { name: "Office Moves", desc: "Weekend moves, minimal disruption", price: "from £500" },
-            { name: "Packing Service", desc: "We pack everything safely", price: "from £150" },
-            { name: "Storage", desc: "Secure, climate-controlled units", price: "from £30/wk" },
-            { name: "Single Items", desc: "Sofa, wardrobe, piano, etc.", price: "from £75" },
-            { name: "Student Moves", desc: "Special rates for students", price: "from £99", tag: "Popular" },
+            { name: "Home Removals", desc: "Full packing, loading, transport, unpacking", price: "from $250" },
+            { name: "Office Moves", desc: "Weekend moves, minimal disruption", price: "from $500" },
+            { name: "Packing Service", desc: "We pack everything safely", price: "from $150" },
+            { name: "Storage", desc: "Secure, climate-controlled units", price: "from $30/wk" },
+            { name: "Single Items", desc: "Sofa, wardrobe, piano, etc.", price: "from $75" },
+            { name: "Student Moves", desc: "Special rates for students", price: "from $99", tag: "Popular" },
           ].map((s, i) => (
             <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-[#fafbfc] border border-[#f1f5f9]">
               <div>

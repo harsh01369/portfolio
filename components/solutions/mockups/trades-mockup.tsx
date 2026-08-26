@@ -14,12 +14,12 @@ const problems = [
 ];
 
 const services = [
-  { name: "Emergency Callout", price: "£85", desc: "call-out fee, 24/7", tag: "🚨 Emergency" },
-  { name: "Boiler Repair", price: "from £120", desc: "diagnosis + repair", tag: "" },
-  { name: "Boiler Installation", price: "from £1,800", desc: "supply + fit, warranty", tag: "Popular" },
-  { name: "Bathroom Fitting", price: "from £2,500", desc: "full design + install", tag: "" },
-  { name: "Power Flush", price: "£350", desc: "full system clean", tag: "" },
-  { name: "Leak Detection", price: "£95", desc: "thermal imaging", tag: "" },
+  { name: "Emergency Callout", price: "$85", desc: "call-out fee, 24/7", tag: "🚨 Emergency" },
+  { name: "Boiler Repair", price: "from $120", desc: "diagnosis + repair", tag: "" },
+  { name: "Boiler Installation", price: "from $1,800", desc: "supply + fit, warranty", tag: "Popular" },
+  { name: "Bathroom Fitting", price: "from $2,500", desc: "full design + install", tag: "" },
+  { name: "Power Flush", price: "$350", desc: "full system clean", tag: "" },
+  { name: "Leak Detection", price: "$95", desc: "thermal imaging", tag: "" },
 ];
 
 const recentJobs = [

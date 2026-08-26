@@ -39,7 +39,7 @@ export default function ROICalculator({ content, industry, solution }: { content
             <div>
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-[#475569]">Average value {content.roiDefaults.label}</span>
-                <span className="font-semibold text-[#0f172a]">£{avg}</span>
+                <span className="font-semibold text-[#0f172a]">${avg}</span>
               </div>
               <input type="range" min={10} max={500} step={5} value={avg} onChange={(e) => setAvg(Number(e.target.value))}
                 className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
@@ -51,17 +51,17 @@ export default function ROICalculator({ content, industry, solution }: { content
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-[#475569]">Estimated monthly revenue at stake</span>
-                <span className="text-2xl font-bold text-[#0f172a]">£{Math.round(monthly).toLocaleString()}</span>
+                <span className="text-2xl font-bold text-[#0f172a]">${Math.round(monthly).toLocaleString()}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm text-[#475569]">Estimated annual revenue at stake</span>
-                <span className="text-lg font-semibold text-[#334155]">£{Math.round(annual).toLocaleString()}</span>
+                <span className="text-lg font-semibold text-[#334155]">${Math.round(annual).toLocaleString()}</span>
               </div>
               <hr className="border-[#e2e8f0]" />
               <div className="flex justify-between items-center">
                 <span className="text-sm text-[#475569]">Solution investment</span>
                 <span className="text-sm font-medium text-[#0f172a]">
-                  {priced.kind === "one-time" ? `from £${cost.toLocaleString()} one-time` : `from £${cost}/month`}
+                  {priced.kind === "one-time" ? `from $${cost.toLocaleString()} one-time` : `from $${cost}/month`}
                 </span>
               </div>
             </div>

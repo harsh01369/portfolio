@@ -3,14 +3,14 @@
 import { useState } from "react";
 
 const groomingServices = [
-  { name: "Full Groom (Small)", price: "£35", time: "1 hr", icon: "🐕", desc: "Bath, dry, clip, nails, ears, cologne" },
-  { name: "Full Groom (Medium)", price: "£45", time: "1.5 hrs", icon: "🐕‍🦺", desc: "Full service for medium breeds" },
-  { name: "Full Groom (Large)", price: "£65", time: "2 hrs", icon: "🦮", desc: "Full service for large breeds" },
-  { name: "Bath & Brush", price: "from £25", time: "45 min", icon: "🛁", desc: "Deep clean, brush out, nail trim" },
-  { name: "Puppy First Groom", price: "£30", time: "30 min", icon: "🐶", desc: "Gentle intro for puppies under 6 months", tag: "Popular" },
-  { name: "Cat Groom", price: "£45", time: "1 hr", icon: "🐱", desc: "Specialist feline grooming" },
-  { name: "Nail Trim Only", price: "£10", time: "10 min", icon: "✂️", desc: "Walk-in welcome, no appointment needed" },
-  { name: "De-matting", price: "from £15", time: "Varies", icon: "🪮", desc: "Added to any groom service" },
+  { name: "Full Groom (Small)", price: "$35", time: "1 hr", icon: "🐕", desc: "Bath, dry, clip, nails, ears, cologne" },
+  { name: "Full Groom (Medium)", price: "$45", time: "1.5 hrs", icon: "🐕‍🦺", desc: "Full service for medium breeds" },
+  { name: "Full Groom (Large)", price: "$65", time: "2 hrs", icon: "🦮", desc: "Full service for large breeds" },
+  { name: "Bath & Brush", price: "from $25", time: "45 min", icon: "🛁", desc: "Deep clean, brush out, nail trim" },
+  { name: "Puppy First Groom", price: "$30", time: "30 min", icon: "🐶", desc: "Gentle intro for puppies under 6 months", tag: "Popular" },
+  { name: "Cat Groom", price: "$45", time: "1 hr", icon: "🐱", desc: "Specialist feline grooming" },
+  { name: "Nail Trim Only", price: "$10", time: "10 min", icon: "✂️", desc: "Walk-in welcome, no appointment needed" },
+  { name: "De-matting", price: "from $15", time: "Varies", icon: "🪮", desc: "Added to any groom service" },
 ];
 
 const happyPets = [

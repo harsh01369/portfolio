@@ -26,12 +26,12 @@ const artists = [
 ];
 
 const pricing = [
-  { size: "Tiny (1-2\")", price: "from £60", time: "30 min" },
-  { size: "Small (2-4\")", price: "from £80", time: "1 hr" },
-  { size: "Medium (4-8\")", price: "from £200", time: "2-3 hrs" },
-  { size: "Large (8\"+)", price: "from £400", time: "4+ hrs" },
-  { size: "Half Sleeve", price: "from £500", time: "Multiple sessions" },
-  { size: "Full Sleeve", price: "from £1,200", time: "Multiple sessions" },
+  { size: "Tiny (1-2\")", price: "from $60", time: "30 min" },
+  { size: "Small (2-4\")", price: "from $80", time: "1 hr" },
+  { size: "Medium (4-8\")", price: "from $200", time: "2-3 hrs" },
+  { size: "Large (8\"+)", price: "from $400", time: "4+ hrs" },
+  { size: "Half Sleeve", price: "from $500", time: "Multiple sessions" },
+  { size: "Full Sleeve", price: "from $1,200", time: "Multiple sessions" },
 ];
 
 export default function TattooMockup() {
@@ -191,7 +191,7 @@ export default function TattooMockup() {
           <button className="w-full py-3 bg-[#DC2626] text-white text-xs font-bold rounded-xl shadow-lg shadow-[#DC2626]/20">
             Request Consultation
           </button>
-          <p className="text-[8px] text-[#333] text-center">£50 deposit to secure your slot. Free consultation.</p>
+          <p className="text-[8px] text-[#333] text-center">$50 deposit to secure your slot. Free consultation.</p>
         </div>
       </div>
 

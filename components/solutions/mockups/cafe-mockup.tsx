@@ -5,25 +5,25 @@ import { useState } from "react";
 const menuSections = ["Coffee", "Food", "Cold Drinks"];
 const menuItems: Record<string, { name: string; price: string; desc: string; tag?: string }[]> = {
   Coffee: [
-    { name: "Flat White", price: "£3.20", desc: "Double ristretto, velvety microfoam", tag: "Best Seller" },
-    { name: "Oat Latte", price: "£3.80", desc: "Oatly Barista, single origin espresso", tag: "Vegan" },
-    { name: "Matcha Latte", price: "£4.00", desc: "Ceremonial grade matcha, your choice of milk" },
-    { name: "Pour Over", price: "£4.50", desc: "V60, single origin, brewed to order" },
-    { name: "Americano", price: "£2.80", desc: "Double shot, hot water" },
-    { name: "Espresso", price: "£2.20", desc: "Single or double shot" },
+    { name: "Flat White", price: "$3.20", desc: "Double ristretto, velvety microfoam", tag: "Best Seller" },
+    { name: "Oat Latte", price: "$3.80", desc: "Oatly Barista, single origin espresso", tag: "Vegan" },
+    { name: "Matcha Latte", price: "$4.00", desc: "Ceremonial grade matcha, your choice of milk" },
+    { name: "Pour Over", price: "$4.50", desc: "V60, single origin, brewed to order" },
+    { name: "Americano", price: "$2.80", desc: "Double shot, hot water" },
+    { name: "Espresso", price: "$2.20", desc: "Single or double shot" },
   ],
   Food: [
-    { name: "Avocado Toast", price: "£7.50", desc: "Sourdough, smashed avo, chilli flakes, poached egg", tag: "Popular" },
-    { name: "Croissant", price: "£2.80", desc: "Baked fresh every morning, butter or almond" },
-    { name: "Banana Bread", price: "£3.50", desc: "Homemade, served warm with butter" },
-    { name: "Granola Bowl", price: "£6.50", desc: "Greek yoghurt, house granola, seasonal fruit", tag: "Vegan opt." },
-    { name: "Toastie", price: "£5.50", desc: "Cheese & ham or mushroom & gruyere" },
+    { name: "Avocado Toast", price: "$7.50", desc: "Sourdough, smashed avo, chilli flakes, poached egg", tag: "Popular" },
+    { name: "Croissant", price: "$2.80", desc: "Baked fresh every morning, butter or almond" },
+    { name: "Banana Bread", price: "$3.50", desc: "Homemade, served warm with butter" },
+    { name: "Granola Bowl", price: "$6.50", desc: "Greek yoghurt, house granola, seasonal fruit", tag: "Vegan opt." },
+    { name: "Toastie", price: "$5.50", desc: "Cheese & ham or mushroom & gruyere" },
   ],
   "Cold Drinks": [
-    { name: "Iced Latte", price: "£3.80", desc: "Espresso over ice, your choice of milk" },
-    { name: "Cold Brew", price: "£3.50", desc: "18-hour steeped, smooth and strong" },
-    { name: "Fresh Lemonade", price: "£3.50", desc: "Hand-pressed, mint, lemon" },
-    { name: "Smoothie", price: "£5.00", desc: "Berry blast or mango & passion fruit" },
+    { name: "Iced Latte", price: "$3.80", desc: "Espresso over ice, your choice of milk" },
+    { name: "Cold Brew", price: "$3.50", desc: "18-hour steeped, smooth and strong" },
+    { name: "Fresh Lemonade", price: "$3.50", desc: "Hand-pressed, mint, lemon" },
+    { name: "Smoothie", price: "$5.00", desc: "Berry blast or mango & passion fruit" },
   ],
 };
 
@@ -114,11 +114,11 @@ export default function CafeMockup() {
           <div className="mt-3 space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs">Lavender Latte</span>
-              <span className="text-xs text-[#d4a76a]">£4.20</span>
+              <span className="text-xs text-[#d4a76a]">$4.20</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-xs">Sourdough French Toast</span>
-              <span className="text-xs text-[#d4a76a]">£8.50</span>
+              <span className="text-xs text-[#d4a76a]">$8.50</span>
             </div>
           </div>
           <p className="text-[8px] text-[#8b7355] mt-3">While stocks last</p>

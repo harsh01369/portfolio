@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     }
 
     const estimateLine = estimate
-      ? `${estimate.oneTime > 0 ? `£${estimate.oneTime.toLocaleString()} one-time` : ""}${estimate.oneTime > 0 && estimate.monthly > 0 ? " + " : ""}${estimate.monthly > 0 ? `£${estimate.monthly}/mo` : ""}${estimate.discountPct > 0 ? ` (${estimate.discountPct}% bundle discount)` : ""}${estimate.bonusUnlocked ? ", Review Requests included free" : ""}`
+      ? `${estimate.oneTime > 0 ? `$${estimate.oneTime.toLocaleString()} one-time` : ""}${estimate.oneTime > 0 && estimate.monthly > 0 ? " + " : ""}${estimate.monthly > 0 ? `$${estimate.monthly}/mo` : ""}${estimate.discountPct > 0 ? ` (${estimate.discountPct}% bundle discount)` : ""}${estimate.bonusUnlocked ? ", Review Requests included free" : ""}`
       : null;
 
     const res = await fetch("https://api.brevo.com/v3/smtp/email", {

@@ -5,28 +5,28 @@ import { useState } from "react";
 const menuTabs = ["Starters", "Mains", "Desserts", "Drinks"];
 const menu: Record<string, { name: string; price: string; desc: string; tag?: string }[]> = {
   Starters: [
-    { name: "Hummus & Warm Pitta", price: "£6.50", desc: "House-made hummus, za'atar oil, charred pitta", tag: "V" },
-    { name: "Grilled Halloumi", price: "£7.95", desc: "Pan-fried, honey drizzle, mint, pomegranate" },
-    { name: "Lamb Kofta Bites", price: "£8.50", desc: "Spiced lamb, tzatziki, pickled chilli" },
-    { name: "Soup of the Day", price: "£5.50", desc: "Freshly made, served with crusty sourdough", tag: "GF" },
+    { name: "Hummus & Warm Pitta", price: "$6.50", desc: "House-made hummus, za'atar oil, charred pitta", tag: "V" },
+    { name: "Grilled Halloumi", price: "$7.95", desc: "Pan-fried, honey drizzle, mint, pomegranate" },
+    { name: "Lamb Kofta Bites", price: "$8.50", desc: "Spiced lamb, tzatziki, pickled chilli" },
+    { name: "Soup of the Day", price: "$5.50", desc: "Freshly made, served with crusty sourdough", tag: "GF" },
   ],
   Mains: [
-    { name: "Lamb Kofta Wrap", price: "£12.50", desc: "Spiced lamb, tahini, pickled onion, herbs", tag: "Best Seller" },
-    { name: "Mediterranean Bowl", price: "£11.95", desc: "Falafel, tabbouleh, roasted veg, hummus", tag: "V" },
-    { name: "Chicken Shawarma", price: "£13.50", desc: "Slow-roasted, garlic sauce, saffron rice" },
-    { name: "Grilled Sea Bass", price: "£16.95", desc: "Pan-seared, lemon butter, seasonal vegetables", tag: "GF" },
-    { name: "Aubergine Moussaka", price: "£12.50", desc: "Layered aubergine, spiced lentil, bechamel", tag: "V" },
+    { name: "Lamb Kofta Wrap", price: "$12.50", desc: "Spiced lamb, tahini, pickled onion, herbs", tag: "Best Seller" },
+    { name: "Mediterranean Bowl", price: "$11.95", desc: "Falafel, tabbouleh, roasted veg, hummus", tag: "V" },
+    { name: "Chicken Shawarma", price: "$13.50", desc: "Slow-roasted, garlic sauce, saffron rice" },
+    { name: "Grilled Sea Bass", price: "$16.95", desc: "Pan-seared, lemon butter, seasonal vegetables", tag: "GF" },
+    { name: "Aubergine Moussaka", price: "$12.50", desc: "Layered aubergine, spiced lentil, bechamel", tag: "V" },
   ],
   Desserts: [
-    { name: "Pistachio Baklava", price: "£5.50", desc: "Layers of filo, honey syrup, crushed pistachio" },
-    { name: "Chocolate Fondant", price: "£7.50", desc: "Warm molten centre, vanilla bean ice cream" },
-    { name: "Orange Blossom Panna Cotta", price: "£6.50", desc: "Rose water, candied petals" },
+    { name: "Pistachio Baklava", price: "$5.50", desc: "Layers of filo, honey syrup, crushed pistachio" },
+    { name: "Chocolate Fondant", price: "$7.50", desc: "Warm molten centre, vanilla bean ice cream" },
+    { name: "Orange Blossom Panna Cotta", price: "$6.50", desc: "Rose water, candied petals" },
   ],
   Drinks: [
-    { name: "Fresh Mint Lemonade", price: "£3.50", desc: "Hand-pressed, fresh mint leaves" },
-    { name: "Turkish Coffee", price: "£3.00", desc: "Traditional preparation, cardamom" },
-    { name: "House Wine (175ml)", price: "£6.50", desc: "Red: Merlot | White: Pinot Grigio" },
-    { name: "Signature Cocktails", price: "from £9", desc: "Ask your server for our seasonal menu" },
+    { name: "Fresh Mint Lemonade", price: "$3.50", desc: "Hand-pressed, fresh mint leaves" },
+    { name: "Turkish Coffee", price: "$3.00", desc: "Traditional preparation, cardamom" },
+    { name: "House Wine (175ml)", price: "$6.50", desc: "Red: Merlot | White: Pinot Grigio" },
+    { name: "Signature Cocktails", price: "from $9", desc: "Ask your server for our seasonal menu" },
   ],
 };
 

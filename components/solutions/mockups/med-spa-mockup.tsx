@@ -5,25 +5,25 @@ import { useState } from "react";
 const categories = ["Injectables", "Skin", "Laser", "Wellness"];
 const services: Record<string, { name: string; price: string; duration: string; popular?: boolean }[]> = {
   Injectables: [
-    { name: "Botox", price: "from £180", duration: "30 min", popular: true },
-    { name: "Dermal Filler", price: "from £220", duration: "45 min" },
-    { name: "Lip Filler", price: "from £200", duration: "30 min" },
+    { name: "Botox", price: "from $180", duration: "30 min", popular: true },
+    { name: "Dermal Filler", price: "from $220", duration: "45 min" },
+    { name: "Lip Filler", price: "from $200", duration: "30 min" },
     { name: "Consultation", price: "Free", duration: "20 min" },
   ],
   Skin: [
-    { name: "Chemical Peel", price: "from £75", duration: "45 min", popular: true },
-    { name: "Microneedling", price: "from £120", duration: "1 hr" },
-    { name: "HydraFacial", price: "£95", duration: "1 hr" },
-    { name: "LED Light Therapy", price: "£45", duration: "30 min" },
+    { name: "Chemical Peel", price: "from $75", duration: "45 min", popular: true },
+    { name: "Microneedling", price: "from $120", duration: "1 hr" },
+    { name: "HydraFacial", price: "$95", duration: "1 hr" },
+    { name: "LED Light Therapy", price: "$45", duration: "30 min" },
   ],
   Laser: [
-    { name: "Laser Hair Removal", price: "from £45/session", duration: "30 min", popular: true },
-    { name: "Skin Resurfacing", price: "from £250", duration: "1 hr" },
-    { name: "Vein Treatment", price: "from £150", duration: "45 min" },
+    { name: "Laser Hair Removal", price: "from $45/session", duration: "30 min", popular: true },
+    { name: "Skin Resurfacing", price: "from $250", duration: "1 hr" },
+    { name: "Vein Treatment", price: "from $150", duration: "45 min" },
   ],
   Wellness: [
-    { name: "IV Vitamin Drip", price: "from £85", duration: "45 min" },
-    { name: "B12 Injection", price: "£25", duration: "10 min" },
+    { name: "IV Vitamin Drip", price: "from $85", duration: "45 min" },
+    { name: "B12 Injection", price: "$25", duration: "10 min" },
     { name: "Weight Loss Consult", price: "Free", duration: "30 min", popular: true },
   ],
 };

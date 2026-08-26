@@ -19,11 +19,11 @@ const gallery = [
 ];
 
 const packages = [
-  { name: "Wedding Full Day", price: "from £1,200", desc: "8+ hours coverage, 500+ edited images, online gallery" },
-  { name: "Wedding Half Day", price: "from £750", desc: "4 hours coverage, 250+ edited images" },
-  { name: "Portrait Session", price: "from £150", desc: "1 hour, 20 edited images, studio or location" },
-  { name: "Corporate Headshots", price: "from £75/person", desc: "Professional headshots, same-day delivery" },
-  { name: "Event Coverage", price: "from £400", desc: "3+ hours, all highlights, fast turnaround" },
+  { name: "Wedding Full Day", price: "from $1,200", desc: "8+ hours coverage, 500+ edited images, online gallery" },
+  { name: "Wedding Half Day", price: "from $750", desc: "4 hours coverage, 250+ edited images" },
+  { name: "Portrait Session", price: "from $150", desc: "1 hour, 20 edited images, studio or location" },
+  { name: "Corporate Headshots", price: "from $75/person", desc: "Professional headshots, same-day delivery" },
+  { name: "Event Coverage", price: "from $400", desc: "3+ hours, all highlights, fast turnaround" },
 ];
 
 export default function PhotographyMockup() {

@@ -91,10 +91,10 @@ export default function PackageBuilder({ industry }: { industry: IndustryConfig 
           {packageModules.map((m) => {
             const isChosen = selected.has(m.slug);
             const priceLine = m.setup
-              ? `£${m.setup[tier]} setup + £${m.monthly![tier]}/mo`
+              ? `$${m.setup[tier]} setup + $${m.monthly![tier]}/mo`
               : m.monthly
-              ? `£${m.monthly[tier]}/mo`
-              : `from £${m.oneTimeFrom![tier].toLocaleString()} one-time`;
+              ? `$${m.monthly[tier]}/mo`
+              : `from $${m.oneTimeFrom![tier].toLocaleString()} one-time`;
             return (
               <button
                 key={m.slug}
@@ -135,7 +135,7 @@ export default function PackageBuilder({ industry }: { industry: IndustryConfig 
           <Icon name="star" className="w-5 h-5 shrink-0" style={{ color: summary.unlockedBonus ? industry.accentColor : "#94a3b8" }} />
           <div className="flex-1">
             <p className="text-sm font-semibold text-[#0f172a]">
-              {bonusModule.name} {summary.unlockedBonus ? "— unlocked free" : `— free at 4 modules (worth £${bonusModule.monthly[tier]}/mo)`}
+              {bonusModule.name} {summary.unlockedBonus ? "— unlocked free" : `— free at 4 modules (worth $${bonusModule.monthly[tier]}/mo)`}
             </p>
             <p className="text-xs text-[#64748b]">{bonusModule.description}</p>
           </div>
@@ -151,9 +151,9 @@ export default function PackageBuilder({ industry }: { industry: IndustryConfig 
                   {summary.discountPct > 0 && ` · ${summary.discountPct}% bundle discount applied`}
                 </p>
                 <p className="text-2xl font-bold">
-                  {summary.oneTime > 0 && `£${summary.oneTime.toLocaleString()} one-time`}
+                  {summary.oneTime > 0 && `$${summary.oneTime.toLocaleString()} one-time`}
                   {summary.oneTime > 0 && summary.monthly > 0 && " + "}
-                  {summary.monthly > 0 && `£${summary.monthly}/mo`}
+                  {summary.monthly > 0 && `$${summary.monthly}/mo`}
                 </p>
                 {summary.hasWebsite && <p className="text-xs text-white/50 mt-1">Website scope confirmed on your free call, this is a starting estimate.</p>}
               </div>

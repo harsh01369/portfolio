@@ -5,30 +5,30 @@ import { useState } from "react";
 const categories = ["Hair", "Nails", "Lashes", "Facial"];
 const services: Record<string, { name: string; price: string; duration: string; popular?: boolean }[]> = {
   Hair: [
-    { name: "Cut & Blowdry", price: "from £45", duration: "45 min" },
-    { name: "Balayage", price: "from £120", duration: "2.5 hrs", popular: true },
-    { name: "Full Colour", price: "from £85", duration: "2 hrs" },
-    { name: "Highlights", price: "from £95", duration: "2 hrs" },
-    { name: "Extensions", price: "from £250", duration: "3 hrs" },
-    { name: "Keratin Treatment", price: "£180", duration: "2 hrs" },
+    { name: "Cut & Blowdry", price: "from $45", duration: "45 min" },
+    { name: "Balayage", price: "from $120", duration: "2.5 hrs", popular: true },
+    { name: "Full Colour", price: "from $85", duration: "2 hrs" },
+    { name: "Highlights", price: "from $95", duration: "2 hrs" },
+    { name: "Extensions", price: "from $250", duration: "3 hrs" },
+    { name: "Keratin Treatment", price: "$180", duration: "2 hrs" },
   ],
   Nails: [
-    { name: "Gel Manicure", price: "£35", duration: "45 min", popular: true },
-    { name: "Acrylic Full Set", price: "£45", duration: "1 hr" },
-    { name: "Nail Art", price: "from £10", duration: "20 min" },
-    { name: "Spa Pedicure", price: "£45", duration: "1 hr" },
+    { name: "Gel Manicure", price: "$35", duration: "45 min", popular: true },
+    { name: "Acrylic Full Set", price: "$45", duration: "1 hr" },
+    { name: "Nail Art", price: "from $10", duration: "20 min" },
+    { name: "Spa Pedicure", price: "$45", duration: "1 hr" },
   ],
   Lashes: [
-    { name: "Classic Full Set", price: "£55", duration: "1.5 hrs", popular: true },
-    { name: "Volume Full Set", price: "£75", duration: "2 hrs" },
-    { name: "Infills (2 week)", price: "£35", duration: "1 hr" },
-    { name: "Lash Lift & Tint", price: "£40", duration: "45 min" },
+    { name: "Classic Full Set", price: "$55", duration: "1.5 hrs", popular: true },
+    { name: "Volume Full Set", price: "$75", duration: "2 hrs" },
+    { name: "Infills (2 week)", price: "$35", duration: "1 hr" },
+    { name: "Lash Lift & Tint", price: "$40", duration: "45 min" },
   ],
   Facial: [
-    { name: "Express Glow", price: "£35", duration: "30 min" },
-    { name: "Deep Cleanse", price: "£55", duration: "1 hr", popular: true },
-    { name: "Anti-Ageing", price: "£75", duration: "1 hr" },
-    { name: "LED Light Therapy", price: "£45", duration: "30 min" },
+    { name: "Express Glow", price: "$35", duration: "30 min" },
+    { name: "Deep Cleanse", price: "$55", duration: "1 hr", popular: true },
+    { name: "Anti-Ageing", price: "$75", duration: "1 hr" },
+    { name: "LED Light Therapy", price: "$45", duration: "30 min" },
   ],
 };
 
