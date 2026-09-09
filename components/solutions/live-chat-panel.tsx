@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import type { IndustryConfig, SolutionIndustryContent } from "@/data/solutions-config";
+import type { IndustryConfig } from "@/data/solutions-config";
 import Icon from "./icon";
 
 interface Message {
@@ -12,12 +12,12 @@ interface Message {
 
 interface Props {
   industry: IndustryConfig;
-  content: SolutionIndustryContent;
+  solutionSlug: string;
 }
 
 // The real, live chat agent — embedded directly in the site mockup, not a separate
 // floating widget. This is what "See It Live" actually points to, so it has to be real.
-export default function LiveChatPanel({ industry, content }: Props) {
+export default function LiveChatPanel({ industry, solutionSlug }: Props) {
   const [minimized, setMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: `Hi! I'm the live AI assistant for this ${industry.label.toLowerCase()} business. Ask me anything, this is a real conversation, not a script.` },
@@ -52,7 +52,8 @@ export default function LiveChatPanel({ industry, content }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
-          systemPrompt: content.chatSystemPrompt,
+          industry: industry.slug,
+          solution: solutionSlug,
         }),
         signal: controller.signal,
       });
@@ -74,7 +75,7 @@ export default function LiveChatPanel({ industry, content }: Props) {
     } finally {
       setLoading(false);
     }
-  }, [messages, loading, content.chatSystemPrompt]);
+  }, [messages, loading, industry.slug, solutionSlug]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

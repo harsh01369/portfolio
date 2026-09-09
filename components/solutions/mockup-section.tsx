@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import type { IndustryConfig, SolutionIndustryContent } from "@/data/solutions-config";
+import type { IndustryConfig, SolutionConfig } from "@/data/solutions-config";
 import MockupFrame from "./mockups/mockup-frame";
 import DentalMockup from "./mockups/dental-mockup";
 import TattooMockup from "./mockups/tattoo-mockup";
@@ -25,7 +25,7 @@ const mockups: Record<string, React.ComponentType> = {
   moving: MovingMockup, automotive: AutomotiveMockup, "med-spa": MedSpaMockup,
 };
 
-export default function MockupSection({ industry, content }: { industry: IndustryConfig; content: SolutionIndustryContent }) {
+export default function MockupSection({ industry, solution }: { industry: IndustryConfig; solution: SolutionConfig }) {
   const [vp, setVp] = useState<"desktop" | "mobile">("desktop");
   const Comp = mockups[industry.slug];
 
@@ -49,7 +49,7 @@ export default function MockupSection({ industry, content }: { industry: Industr
                 </div>
               )}
             </MockupFrame>
-            <LiveChatPanel industry={industry} content={content} />
+            <LiveChatPanel industry={industry} solutionSlug={solution.slug} />
           </div>
           <div className="flex justify-center gap-2 mt-6">
             {(["desktop", "mobile"] as const).map((v) => (
@@ -64,7 +64,7 @@ export default function MockupSection({ industry, content }: { industry: Industr
             <p className="text-[#475569] mb-3">Want this for your business?</p>
             <button onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
               className="px-8 py-3.5 rounded-md text-white font-bold text-sm uppercase tracking-wide hover:opacity-90 transition-opacity" style={{ backgroundColor: industry.accentColor }}>
-              Book a Free Call
+              Get Started
             </button>
           </div>
         </motion.div>

@@ -13,7 +13,7 @@
 // one visible thread, which is the actual claim being made.
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import type { IndustryConfig, SolutionIndustryContent } from "@/data/solutions-config";
+import type { IndustryConfig } from "@/data/solutions-config";
 
 interface Message {
   role: "user" | "assistant";
@@ -51,10 +51,10 @@ function parseBookingMarker(raw: string): { text: string; bookLabel?: string } {
 
 interface Props {
   industry: IndustryConfig;
-  content: SolutionIndustryContent;
+  solutionSlug: string;
 }
 
-export default function WhatsAppSimulator({ industry, content }: Props) {
+export default function WhatsAppSimulator({ industry, solutionSlug }: Props) {
   const businessName = DEMO_BUSINESS_NAMES[industry.slug] ?? `${industry.label} Business`;
 
   const [messages, setMessages] = useState<Message[]>([
@@ -90,7 +90,8 @@ export default function WhatsAppSimulator({ industry, content }: Props) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
-            systemPrompt: content.chatSystemPrompt,
+            industry: industry.slug,
+            solution: solutionSlug,
           }),
           signal: controller.signal,
         });
@@ -118,7 +119,7 @@ export default function WhatsAppSimulator({ industry, content }: Props) {
         setLoading(false);
       }
     },
-    [messages, loading, content.chatSystemPrompt]
+    [messages, loading, industry.slug, solutionSlug]
   );
 
   const handleSubmit = (e: React.FormEvent) => {

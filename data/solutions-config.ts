@@ -190,11 +190,11 @@ export const solutions: SolutionConfig[] = [
 
 export const solutionContent: Record<string, SolutionIndustryContent> = {
   "ai-chatbot:medico": {
-    heroHeadline: "Your Patients Call After Hours.\nNobody Answers.",
-    heroSubheadline: "Missed after-hours calls are missed bookings. An AI receptionist can answer every call and book every appointment, even at 3am.",
-    problemStory: "It's 8pm. Sarah searches 'dentist near me.' She finds your practice, but there's no way to book online. She calls and gets voicemail. A competitor with an AI chatbot answers instantly and books her in. You never knew Sarah existed.",
+    heroHeadline: "A Patient's Question Goes Unanswered.\nThey Book Elsewhere.",
+    heroSubheadline: "Patients have a question before they're ready to book, insurance, cost, a specific slot. No one to ask right now means they message a practice that answers instantly instead.",
+    problemStory: "It's 8pm. Sarah searches 'dentist near me' and finds your practice, but there's no way to ask a quick question before booking. A competitor's site replies instantly over chat and books her in. You never knew Sarah existed.",
     painPoints: [
-      "No online booking, so patients call and you miss a share of them after hours",
+      "No way to ask a quick question before booking, so patients message a competitor who replies instantly",
       "Website is slow to load on mobile",
       "No way to answer questions outside office hours",
       "Competitors are already using AI chat and pulling ahead",
@@ -263,19 +263,19 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
   },
   "ai-chatbot:trades": {
     heroHeadline: "Capture Jobs While\nYou're on Another Job.",
-    heroSubheadline: "A missed call while you're under a sink is a job gone to the next plumber on Google. An AI receptionist answers every call.",
-    problemStory: "It's 6pm on a Friday. Mrs. Thompson's boiler breaks down. She Googles 'emergency plumber near me' and calls three numbers. Two go to voicemail. The third has an AI that answers instantly, asks what's wrong, and books an emergency callout for 7pm. You were one of the voicemails. That was a $350 job.",
+    heroSubheadline: "A customer with a job to describe while you're under a sink usually just moves to the next plumber on Google. A chat assistant on your site answers instantly, even mid-job.",
+    problemStory: "It's 6pm on a Friday. Mrs. Thompson's boiler breaks down. She Googles 'emergency plumber near me' and checks three sites. Two have just a phone number. The third has a chat assistant that answers instantly, asks what's wrong, and books an emergency callout for 7pm. You were one of the phone numbers she skipped. That was a $350 job.",
     painPoints: [
-      "Missed calls while on jobs, each one a potential $150-500 job lost",
+      "No way to capture a job while you're on another one, each one a potential $150-500 job lost",
       "No online presence beyond a basic trade directory listing",
       "Customers can't request quotes outside working hours",
       "Competitors with proper websites are getting the Google traffic",
     ],
     features: [
-      { icon: "chat", title: "AI Call Handler", description: "Answers customer calls around the clock, captures the job, gets photos, books you in" },
+      { icon: "chat", title: "AI Job Handler", description: "Answers customer questions around the clock, captures the job, gets photos, books you in" },
       { icon: "alert", title: "Emergency Routing", description: "Urgent jobs get flagged immediately; you choose to accept or reschedule" },
       { icon: "image", title: "Photo Quotes", description: "Customers upload photos of the problem and get a preliminary estimate" },
-      { icon: "badge", title: "Trust Badges", description: "Your certifications (Gas Safe, NICEIC, and similar) displayed clearly for instant trust" },
+      { icon: "badge", title: "Trust Badges", description: "Your certifications (state license, BBB accreditation, and similar) displayed clearly for instant trust" },
       { icon: "calendar", title: "Job Scheduling", description: "Customers book available slots directly, synced with your calendar" },
       { icon: "star", title: "Review Collection", description: "Automatic review requests after every completed job" },
     ],
@@ -289,7 +289,7 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
     ],
     proofStat: "Automation pipeline",
     proofDescription: "built and shipped scraping and scheduling automation in production",
-    chatSystemPrompt: "You are an AI assistant for Smith & Son Plumbing. Handle emergency callouts (24/7), routine bookings, and quote requests. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Gas Safe registered, fully insured. Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are an AI assistant for Smith & Son Plumbing. Handle emergency callouts (24/7), routine bookings, and quote requests. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Licensed and fully insured. Keep responses concise (2-3 sentences max).",
   },
   "ai-chatbot:salon": {
     heroHeadline: "Chairs Empty After 6pm?\nThey Don't Have to Be.",
@@ -319,7 +319,7 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
     ],
     proofStat: "Admin dashboard",
     proofDescription: "built and shipped with real-time analytics and order tracking",
-    chatSystemPrompt: "You are an AI assistant for Glow & Grace Salon. Services: Cut & Style (from $45), Balayage (from $120), Full Colour (from $85), Extensions (from $250), Gel Manicure ($35). Stylists: Amy (colour), Jade (nails), Priya (extensions). Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are an AI assistant for Glow & Grace Salon. Services: Cut & Style (from $45), Balayage (from $120), Full Color (from $85), Extensions (from $250), Gel Manicure ($35). Stylists: Amy (color), Jade (nails), Priya (extensions). Keep responses concise (2-3 sentences max).",
   },
   "ai-chatbot:restaurant": {
     heroHeadline: "Stop Paying 30%\nto Delivery Apps.",
@@ -344,7 +344,7 @@ RULES: Only use the facts given above. Never invent a price, a dentist's name, a
       { question: "Can it handle dietary requirements?", answer: "Yes. The AI knows your full menu, including allergens and vegan or vegetarian options." },
       { question: "How does direct ordering save money?", answer: "Delivery apps typically charge 25-35% commission. On meaningful monthly volume, that adds up to real money kept in-house." },
       { question: "What about delivery logistics?", answer: "You can use your own drivers, or connect to a last-mile delivery service at a fraction of the app commission." },
-      { question: "Can customers reorder favourites?", answer: "Yes. Repeat customers get a quick-reorder option for past favourites." },
+      { question: "Can customers reorder favorites?", answer: "Yes. Repeat customers get a quick-reorder option for past favorites." },
       { question: "Does it work for table reservations too?", answer: "Yes. The AI handles both ordering and reservations." },
     ],
     proofStat: "Full e-commerce build",
@@ -664,7 +664,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 8, avgValue: 55, label: "per grooming session" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, a phone-shot before/after gallery still works well if that's what's available." },
       { question: "How much does it cost?", answer: "$1,199–$2,499, one-time, scoped to your business on a free call." },
@@ -706,7 +706,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
   "booking-system:salon": {
     heroHeadline: "Stop Booking Clients\nBetween Blow-Dries.",
     heroSubheadline: "Every minute spent booking over the phone is a minute not behind the chair. Let clients pick a stylist, service, and time themselves.",
-    problemStory: "Emma wants a balayage before her friend's wedding. She calls at 3pm, but you're mid-colour and can't pick up. She books online with the salon down the street instead, done in under a minute.",
+    problemStory: "Emma wants a balayage before her friend's wedding. She calls at 3pm, but you're mid-color and can't pick up. She books online with the salon down the street instead, done in under a minute.",
     painPoints: [
       "Booking over the phone eats into time behind the chair",
       "Evening and weekend calls often go to voicemail",
@@ -724,19 +724,19 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 10, avgValue: 65, label: "per appointment" },
     faqs: [
       { question: "Can clients choose their stylist?", answer: "Yes. Each stylist has their own profile and availability." },
-      { question: "What about deposits for colour services?", answer: "A deposit can be required for higher-value services like colour or extensions, to protect the slot." },
+      { question: "What about deposits for color services?", answer: "A deposit can be required for higher-value services like color or extensions, to protect the slot." },
       { question: "What if a client needs to reschedule?", answer: "They can move their own appointment from the same link, no phone call needed." },
       { question: "Does it work alongside walk-ins?", answer: "Yes. You control how many slots stay open for walk-ins versus online booking." },
       { question: "How much does it cost?", answer: "$29 a month, no setup fee. No long-term contract, cancel anytime." },
     ],
     proofStat: "Zero-conflict scheduling logic",
     proofDescription: "the same double-booking prevention built into production calendar systems",
-    chatSystemPrompt: "You are the booking assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Colour ($85), Extensions ($250), Gel Manicure ($35). Stylists: Amy (colour), Jade (nails), Priya (extensions). Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the booking assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Color ($85), Extensions ($250), Gel Manicure ($35). Stylists: Amy (color), Jade (nails), Priya (extensions). Keep responses concise (2-3 sentences max).",
   },
   "speed-optimization:salon": {
     heroHeadline: "A Slow Site Loses Bookings\nBefore It Even Loads.",
     heroSubheadline: "Most local salon websites take 8+ seconds to load on mobile. Most clients leave before it finishes. This is a technical rebuild for speed, not a redesign.",
-    problemStory: "Someone searches 'balayage near me' on their phone. Your gallery of colour work takes 8 seconds to load. They're gone before the first photo appears, back to scrolling Instagram instead.",
+    problemStory: "Someone searches 'balayage near me' on their phone. Your gallery of color work takes 8 seconds to load. They're gone before the first photo appears, back to scrolling Instagram instead.",
     painPoints: [
       "Mobile load time over 8 seconds on the average local salon site",
       "Google ranks faster sites higher, so slow sites lose search visibility too",
@@ -747,7 +747,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
       { icon: "route", title: "Full Speed Audit", description: "Every image, script, and render-blocking resource on the current site gets measured" },
       { icon: "mobile", title: "Mobile-First Rebuild", description: "The technical layer gets rebuilt to load fast on a phone first" },
       { icon: "search", title: "Core Web Vitals Fixed", description: "The same metrics Google uses to rank sites, brought into the passing range" },
-      { icon: "image", title: "Image Compression", description: "Colour work and gallery photos load fast without a visible quality drop" },
+      { icon: "image", title: "Image Compression", description: "Color work and gallery photos load fast without a visible quality drop" },
       { icon: "chart", title: "Before/After Report", description: "A real load-time comparison, so the improvement isn't just a claim" },
       { icon: "lock", title: "No Redesign Required", description: "A technical fix, your current site's look stays the same unless you want it changed" },
     ],
@@ -761,12 +761,12 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     ],
     proofStat: "Image-heavy sites, optimized",
     proofDescription: "portfolio and gallery-driven builds tuned for fast mobile load in production",
-    chatSystemPrompt: "You are the assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Colour ($85), Extensions ($250), Gel Manicure ($35). Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Color ($85), Extensions ($250), Gel Manicure ($35). Keep responses concise (2-3 sentences max).",
   },
   "website-rebuild:salon": {
     heroHeadline: "Your Website Doesn't Look Like\nSomewhere You'd Book a Cut.",
     heroSubheadline: "A dated site undersells great work. This is a full rebuild, modern design, mobile-first, built to actually convert visitors into bookings.",
-    problemStory: "A client finds your Instagram, the colour work looks incredible, but the website linked in your bio looks a decade old. They assume the salon itself hasn't kept up either, and book with a competitor whose site matches the work.",
+    problemStory: "A client finds your Instagram, the color work looks incredible, but the website linked in your bio looks a decade old. They assume the salon itself hasn't kept up either, and book with a competitor whose site matches the work.",
     painPoints: [
       "Website design doesn't reflect the quality of the actual work",
       "No mobile-first layout, most visitors are on their phone",
@@ -784,18 +784,18 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 10, avgValue: 65, label: "per appointment" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, existing work photos usually still work well." },
       { question: "How much does it cost?", answer: "$1,199–$2,499, one-time, scoped to your business on a free call." },
     ],
     proofStat: "Conversion-focused builds",
     proofDescription: "the same fast, mobile-first foundation used across every production site shipped",
-    chatSystemPrompt: "You are the assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Colour ($85), Extensions ($250), Gel Manicure ($35). Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Color ($85), Extensions ($250), Gel Manicure ($35). Keep responses concise (2-3 sentences max).",
   },
   "review-system:salon": {
     heroHeadline: "Your Best Work Walks Out the Door\nWithout Leaving a Review.",
-    heroSubheadline: "A great colour appointment gets a compliment in the chair, not a Google review. Automatic requests after every visit turn happy clients into public proof.",
+    heroSubheadline: "A great color appointment gets a compliment in the chair, not a Google review. Automatic requests after every visit turn happy clients into public proof.",
     problemStory: "A client leaves thrilled with a fresh balayage, tells you it's the best it's ever looked, and drives off. She meant to leave a review. She never did. Multiply that by every happy client this month.",
     painPoints: [
       "Happy clients rarely leave a review without being asked at the right moment",
@@ -821,7 +821,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     ],
     proofStat: "Automated notification pipelines",
     proofDescription: "the same reliable trigger and follow-up logic used in production automation",
-    chatSystemPrompt: "You are the assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Colour ($85), Extensions ($250), Gel Manicure ($35). Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the assistant for Glow & Grace Salon. Services: Cut & Style ($45), Balayage ($120), Full Color ($85), Extensions ($250), Gel Manicure ($35). Keep responses concise (2-3 sentences max).",
   },
   "booking-system:trades": {
     heroHeadline: "Let Customers Book the Job\nWithout Waiting for a Callback.",
@@ -851,7 +851,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     ],
     proofStat: "Zero-conflict scheduling logic",
     proofDescription: "the same double-booking prevention built into production calendar systems",
-    chatSystemPrompt: "You are the booking assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Gas Safe registered. Ask what the problem is and preferred time. Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the booking assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Licensed and insured. Ask what the problem is and preferred time. Keep responses concise (2-3 sentences max).",
   },
   "speed-optimization:trades": {
     heroHeadline: "Your Site Loads Slower\nThan the Van Down the Road.",
@@ -881,12 +881,12 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     ],
     proofStat: "Sub-2-second loads",
     proofDescription: "the same performance budget every production site I've shipped is held to",
-    chatSystemPrompt: "You are the assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Gas Safe registered. Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Licensed and insured. Keep responses concise (2-3 sentences max).",
   },
   "website-rebuild:trades": {
     heroHeadline: "Customers Judge Trust\nBy Your Website First.",
     heroSubheadline: "Before anyone calls a trade, they check the website. A dated site raises doubt before you've said a word. This is a full rebuild built to earn trust fast.",
-    problemStory: "Someone needs a boiler installed, a big spend. They check three plumbers' websites before calling anyone. Two look outdated with no certifications shown. The third looks professional, lists Gas Safe registration clearly, and gets the call.",
+    problemStory: "Someone needs a boiler installed, a big spend. They check three plumbers' websites before calling anyone. Two look outdated with no certifications shown. The third looks professional, lists their license and insurance clearly, and gets the call.",
     painPoints: [
       "An outdated website undercuts trust before a customer even calls",
       "Certifications and insurance aren't displayed clearly, if at all",
@@ -894,7 +894,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
       "Doesn't rank well against competitors with modern, SEO-built sites",
     ],
     features: [
-      { icon: "badge", title: "Trust Badges", description: "Certifications like Gas Safe or NICEIC displayed clearly for instant trust" },
+      { icon: "badge", title: "Trust Badges", description: "Certifications like a state plumbing license or BBB accreditation displayed clearly for instant trust" },
       { icon: "mobile", title: "Mobile-First Build", description: "Built for phones first, since that's where most searches happen" },
       { icon: "search", title: "SEO Structure", description: "Built to rank for local trade searches from day one" },
       { icon: "calendar", title: "Booking Built In", description: "Online booking included, not bolted on separately" },
@@ -904,14 +904,14 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 8, avgValue: 180, label: "per job" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, phone-shot job photos usually still work well." },
       { question: "How much does it cost?", answer: "$1,799–$3,499, one-time, scoped to your business on a free call." },
     ],
     proofStat: "Conversion-focused builds",
     proofDescription: "the same fast, mobile-first foundation used across every production site shipped",
-    chatSystemPrompt: "You are the assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Gas Safe registered. Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Licensed and insured. Keep responses concise (2-3 sentences max).",
   },
   "review-system:trades": {
     heroHeadline: "A Great Job Deserves\nMore Than a Handshake.",
@@ -941,7 +941,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     ],
     proofStat: "Automated notification pipelines",
     proofDescription: "the same reliable trigger and follow-up logic used in production automation",
-    chatSystemPrompt: "You are the assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Gas Safe registered. Keep responses concise (2-3 sentences max).",
+    chatSystemPrompt: "You are the assistant for Smith & Son Plumbing. Services: Emergency callout ($85 fee), boiler repair (from $120), boiler installation (from $1,800), bathroom fitting. Licensed and insured. Keep responses concise (2-3 sentences max).",
   },
   "booking-system:restaurant": {
     heroHeadline: "Stop Losing Reservations\nTo a Busy Phone Line.",
@@ -1024,7 +1024,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 10, avgValue: 65, label: "per table visit" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional food photos yet?", answer: "That gets discussed on the free call, this can be scoped into the project if needed." },
       { question: "How much does it cost?", answer: "$1,199–$2,499, one-time, scoped to your business on a free call." },
@@ -1085,7 +1085,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     faqs: [
       { question: "Can it handle large groups?", answer: "Yes. Group size limits can be set, with larger groups flagged for a follow-up." },
       { question: "What about walk-ins?", answer: "You control how many tables stay open for walk-ins versus online booking." },
-      { question: "Can regulars book their usual table?", answer: "Yes. Once set up, a favourite spot can be rebooked in one tap." },
+      { question: "Can regulars book their usual table?", answer: "Yes. Once set up, a favorite spot can be rebooked in one tap." },
       { question: "What if a reservation needs to change?", answer: "It can be adjusted manually any time without cancelling and restarting." },
       { question: "How much does it cost?", answer: "$29 a month, no setup fee. No long-term contract, cancel anytime." },
     ],
@@ -1144,7 +1144,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 12, avgValue: 18, label: "per table visit" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, phone-shot photos of the space usually still work well." },
       { question: "How much does it cost?", answer: "$1,199–$2,499, one-time, scoped to your business on a free call." },
@@ -1155,7 +1155,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
   },
   "review-system:cafe": {
     heroHeadline: "Regulars Love You.\nThey Just Never Say So Online.",
-    heroSubheadline: "A regular's favourite order gets a smile, not a Google review. Automatic requests after a visit turn loyal customers into public proof.",
+    heroSubheadline: "A regular's favorite order gets a smile, not a Google review. Automatic requests after a visit turn loyal customers into public proof.",
     problemStory: "A regular comes in three times a week, loves the place, tells their friends in person. They've just never left a review. Multiply that across every loyal customer, and it's a lot of trust that never made it online.",
     painPoints: [
       "Loyal customers rarely leave a review without being asked at the right moment",
@@ -1264,7 +1264,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 10, avgValue: 35, label: "per session" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, phone footage from the gym floor usually still works well." },
       { question: "How much does it cost?", answer: "$1,199–$2,499, one-time, scoped to your business on a free call." },
@@ -1384,7 +1384,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 5, avgValue: 550, label: "per move" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, photos of the crew and trucks in action usually still work well." },
       { question: "How much does it cost?", answer: "$1,799–$3,499, one-time, scoped to your business on a free call." },
@@ -1424,17 +1424,17 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     chatSystemPrompt: "You are the assistant for SwiftMove. Local moves from $250, long-distance from $800, free in-home or video estimate available. Keep responses concise (2-3 sentences max).",
   },
   "ai-chatbot:automotive": {
-    heroHeadline: "Missed Calls Are Booked\nElsewhere By the Time You're Free.",
-    heroSubheadline: "A customer with a car that won't start calls three garages. Whoever answers first, even if it's an AI, gets the job.",
-    problemStory: "Someone's car is making a bad noise on a Saturday morning. They search 'auto repair near me', call two shops. One goes to voicemail. The other has an AI that answers instantly, asks what's wrong, gives a rough estimate, and books a drop-off for Monday. You were the voicemail. That was a $220 job.",
+    heroHeadline: "Whoever Answers First\nGets the Job.",
+    heroSubheadline: "A customer with a car that won't start checks a few garage sites at once. Whoever replies first, even if it's an AI chat, gets the job.",
+    problemStory: "Someone's car is making a bad noise on a Saturday morning. They search 'auto repair near me', check two shops' sites. One has just a phone number. The other has a chat assistant that answers instantly, asks what's wrong, gives a rough estimate, and books a drop-off for Monday. You were the one with just a phone number. That was a $220 job.",
     painPoints: [
-      "Missed calls while a bay is busy, each one a job that goes to the next shop",
+      "No way to capture the job while a bay is busy, each one a job that goes to the next shop",
       "No way for someone to get a quick estimate outside business hours",
       "Competitors with an AI assistant or online booking are catching that traffic instead",
       "No online presence beyond the Google Maps listing",
     ],
     features: [
-      { icon: "chat", title: "AI Call Handler", description: "Answers customer questions around the clock, captures the problem, gives a rough estimate" },
+      { icon: "chat", title: "AI Job Handler", description: "Answers customer questions around the clock, captures the problem, gives a rough estimate" },
       { icon: "alert", title: "Urgent Job Flagging", description: "A car that won't start or won't stop gets flagged as urgent immediately" },
       { icon: "image", title: "Photo Estimates", description: "Customers describe or photograph the issue and get a preliminary estimate" },
       { icon: "badge", title: "Trust Badges", description: "Certifications and years in business displayed clearly for instant trust" },
@@ -1534,7 +1534,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 10, avgValue: 120, label: "per service" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, workshop photos usually still work well." },
       { question: "How much does it cost?", answer: "$1,799–$3,499, one-time, scoped to your business on a free call." },
@@ -1594,7 +1594,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 10, avgValue: 85, label: "per appointment" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, this can be scoped into the project if needed." },
       { question: "How much does it cost?", answer: "$1,799–$3,499, one-time, scoped to your business on a free call." },
@@ -1654,7 +1654,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 5, avgValue: 200, label: "per custom piece" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional photos yet?", answer: "That gets discussed on the free call, existing portfolio shots usually still work well." },
       { question: "How much does it cost?", answer: "$1,199–$2,499, one-time, scoped to your business on a free call." },
@@ -1714,7 +1714,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 3, avgValue: 450, label: "per booking" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "Can it showcase multiple shoot types?", answer: "Yes. Weddings, portraits, and events can each get their own gallery section." },
       { question: "How much does it cost?", answer: "$1,199–$2,499, one-time, scoped to your business on a free call." },
@@ -1864,7 +1864,7 @@ RULES: Only use the facts given above. Never invent a price, dentist name, or me
     roiDefaults: { missedPerWeek: 5, avgValue: 300, label: "per consultation" },
     faqs: [
       { question: "How is this different from just fixing my current site?", answer: "This is a full rebuild from the ground up, not patches on the old one, so the design, speed, and structure are all handled together." },
-      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colours carry over, only the site itself is rebuilt." },
+      { question: "Can I keep my current domain and branding?", answer: "Yes. Your domain, logo, and colors carry over, only the site itself is rebuilt." },
       { question: "How long does it take?", answer: "Typically 14 days from when content and photos are provided." },
       { question: "What if I don't have professional before/after photos yet?", answer: "That gets discussed on the free call, existing result photos usually still work well." },
       { question: "How much does it cost?", answer: "$1,799–$3,499, one-time, scoped to your business on a free call." },

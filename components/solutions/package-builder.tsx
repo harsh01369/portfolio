@@ -19,7 +19,7 @@ const MODULE_ICONS: Record<ModuleSlug, IconName> = {
   "speed-optimization": "route",
 };
 
-export default function PackageBuilder({ industry }: { industry: IndustryConfig }) {
+export default function PackageBuilder({ industry, leadId, campaign }: { industry: IndustryConfig; leadId?: string; campaign?: string }) {
   const tier = industry.tier;
   const [selected, setSelected] = useState<Set<ModuleSlug>>(new Set());
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -65,6 +65,8 @@ export default function PackageBuilder({ industry }: { industry: IndustryConfig 
           solution: "package-builder",
           modules: summary.chosen.map((m) => m.slug),
           estimate: { oneTime: summary.oneTime, monthly: summary.monthly, discountPct: summary.discountPct, bonusUnlocked: summary.unlockedBonus },
+          leadId,
+          campaign,
         }),
       });
       if (!res.ok) throw new Error();
@@ -188,7 +190,7 @@ export default function PackageBuilder({ industry }: { industry: IndustryConfig 
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-[#0f172a] mb-1">Phone (optional)</label>
                 <input id="phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className={inputCls} style={{ "--tw-ring-color": industry.accentColor } as React.CSSProperties} placeholder="07xxx xxxxxx" />
+                  className={inputCls} style={{ "--tw-ring-color": industry.accentColor } as React.CSSProperties} placeholder="(555) 123-4567" />
               </div>
               <div>
                 <label htmlFor="website" className="block text-sm font-medium text-[#0f172a] mb-1">Current Website (optional)</label>

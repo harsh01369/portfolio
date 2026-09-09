@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getContentFor, isValidIndustrySlug, isValidSolutionSlug } from "@/lib/solutions";
 
 // Simple in-memory rate limiter: 60 messages per IP per hour.
 // Note: on localhost with no reverse proxy, x-forwarded-for is unset, so every
@@ -21,39 +22,78 @@ function isRateLimited(ip: string): boolean {
 
 // Standalone preview sites (levee-dental-preview, magnolia-dental-preview, etc.)
 // reuse this endpoint cross-origin rather than duplicating the Groq wiring and
-// tone rules per site. No secrets or per-user data are exposed here and the
-// route is already IP rate-limited, so a permissive origin is fine.
-const CORS_HEADERS = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
+// tone rules per site, each sending its own bespoke systemPrompt (these are
+// one-off businesses, not part of the industry/solution taxonomy below, so
+// there's no server-side prompt to look up for them). A wildcard origin used
+// to be allowed here on the theory that no secrets are exposed and the route
+// is IP rate-limited -- that undersold the real risk: an open systemPrompt
+// input on a public endpoint doubles as a free, unrestricted Groq proxy for
+// anyone who finds the URL, unrelated to Harsh's business entirely. Origin is
+// now checked against an explicit allowlist, and the raw-systemPrompt path
+// below is gated on passing that check.
+const ALLOWED_ORIGINS = new Set(["https://harshkhetia.dev", "https://www.harshkhetia.dev"]);
+// Preview-site deployments live on Vercel's own subdomain and their exact
+// hostname can change per-deploy (preview URLs get a hash suffix), so this
+// matches by prefix + suffix rather than an exact string.
+const PREVIEW_SITE_ORIGIN_PATTERN = /^https:\/\/(levee-dental-preview|magnolia-dental-preview)[a-z0-9-]*\.vercel\.app$/;
 
-function withCors(response: NextResponse): NextResponse {
-  for (const [key, value] of Object.entries(CORS_HEADERS)) {
-    response.headers.set(key, value);
+function isAllowedOrigin(origin: string | null): boolean {
+  if (!origin) return false;
+  return ALLOWED_ORIGINS.has(origin) || PREVIEW_SITE_ORIGIN_PATTERN.test(origin);
+}
+
+function withCors(response: NextResponse, origin: string | null): NextResponse {
+  if (isAllowedOrigin(origin)) {
+    response.headers.set("Access-Control-Allow-Origin", origin!);
+    response.headers.set("Vary", "Origin");
   }
+  response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type");
   return response;
 }
 
-export async function OPTIONS() {
-  return withCors(new NextResponse(null, { status: 204 }));
+export async function OPTIONS(request: Request) {
+  return withCors(new NextResponse(null, { status: 204 }), request.headers.get("origin"));
 }
 
+// Max length for a preview site's bespoke systemPrompt -- generous enough for
+// a real per-business prompt, small enough to bound abuse if the origin check
+// is ever bypassed some other way.
+const MAX_CUSTOM_PROMPT_LENGTH = 4000;
+
 export async function POST(request: Request) {
+  const origin = request.headers.get("origin");
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     if (isRateLimited(ip)) {
       return withCors(NextResponse.json(
         { error: "Too many messages. Please try again later." },
         { status: 429 }
-      ));
+      ), origin);
     }
 
-    const { messages, systemPrompt } = await request.json();
+    const { messages, systemPrompt, industry, solution } = await request.json();
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      return withCors(NextResponse.json({ error: "Messages required" }, { status: 400 }));
+      return withCors(NextResponse.json({ error: "Messages required" }, { status: 400 }), origin);
+    }
+
+    // Resolve the actual system prompt server-side whenever possible, so a
+    // caller can never inject arbitrary instructions just by sending their
+    // own systemPrompt string. The portfolio's own solution-page widgets
+    // always take this path (they already know their industry/solution).
+    let resolvedPrompt: string;
+    if (typeof industry === "string" && typeof solution === "string" && isValidIndustrySlug(industry) && isValidSolutionSlug(solution)) {
+      resolvedPrompt = getContentFor(solution, industry).chatSystemPrompt;
+    } else if (typeof systemPrompt === "string" && systemPrompt.trim() && isAllowedOrigin(origin)) {
+      // Only the known standalone preview sites take this path, and only
+      // when their origin actually matches -- a bespoke prompt for a
+      // one-off business that isn't part of the industry/solution config.
+      resolvedPrompt = systemPrompt.slice(0, MAX_CUSTOM_PROMPT_LENGTH);
+    } else if (typeof systemPrompt === "string" && systemPrompt.trim()) {
+      return withCors(NextResponse.json({ error: "Not authorized for a custom prompt" }, { status: 403 }), origin);
+    } else {
+      return withCors(NextResponse.json({ error: "A valid industry/solution pair or an authorized systemPrompt is required" }, { status: 400 }), origin);
     }
 
     // Tone layer applied on top of every industry's own knowledge, so it doesn't
@@ -79,7 +119,7 @@ export async function POST(request: Request) {
     const bookingButtonInstruction = "The moment you'd naturally offer to book something (a slot, appointment, consultation, or table) rather than just answer a question, finish your reply, then on a new final line add exactly: [[BOOK: <button label, 2-4 words max>]]. Keep the label very short so the whole marker fits easily. Only include this marker when you are genuinely ready to hand off to booking, not on every message, and never more than one per reply. Do not explain or mention the marker itself, it's rendered as a button, not read as text.";
 
     const groqMessages = [
-      { role: "system", content: `${toneInstruction}\n\n${bookingButtonInstruction}\n\n${systemPrompt || "You are a helpful business assistant."}` },
+      { role: "system", content: `${toneInstruction}\n\n${bookingButtonInstruction}\n\n${resolvedPrompt}` },
       ...messages.slice(-10), // Last 10 messages only
     ];
 
@@ -100,7 +140,7 @@ export async function POST(request: Request) {
     if (!res.ok) {
       const err = await res.text();
       console.error("Groq API error:", err);
-      return withCors(NextResponse.json({ error: "AI service unavailable" }, { status: 502 }));
+      return withCors(NextResponse.json({ error: "AI service unavailable" }, { status: 502 }), origin);
     }
 
     const data = await res.json();
@@ -125,9 +165,9 @@ export async function POST(request: Request) {
       reply = "Let me get that sorted for you, one moment.";
     }
 
-    return withCors(NextResponse.json({ reply }));
+    return withCors(NextResponse.json({ reply }), origin);
   } catch (error) {
     console.error("Chat demo error:", error);
-    return withCors(NextResponse.json({ error: "Something went wrong" }, { status: 500 }));
+    return withCors(NextResponse.json({ error: "Something went wrong" }, { status: 500 }), origin);
   }
 }

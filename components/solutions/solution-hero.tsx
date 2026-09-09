@@ -72,7 +72,7 @@ export default function SolutionHero({ content, industry, solution }: Props) {
             )}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button onClick={() => scrollTo("contact-form")} className="px-7 py-3.5 rounded-md text-white font-bold text-sm uppercase tracking-wide transition-opacity hover:opacity-90" style={{ backgroundColor: industry.accentColor }}>
-                Book a Free Call
+                Get Started
               </button>
               <button onClick={() => scrollTo("mockup-section")} className={`px-7 py-3.5 rounded-md font-bold text-sm uppercase tracking-wide border-2 transition-colors hover:text-white ${showLiveDemo ? "border-white/30 text-white/90" : ""}`}
                 style={showLiveDemo ? undefined : { borderColor: industry.accentColor, color: industry.accentColor }}
@@ -97,7 +97,7 @@ export default function SolutionHero({ content, industry, solution }: Props) {
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.15 }}>
             {showChatDemo ? (
-              <WhatsAppSimulator industry={industry} content={content} />
+              <WhatsAppSimulator industry={industry} solutionSlug={solution.slug} />
             ) : showBookingDemo ? (
               <BookingWidgetDemo industry={industry} />
             ) : (

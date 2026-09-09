@@ -23,6 +23,11 @@ interface Props { solution: SolutionConfig; initialIndustry: IndustrySlug | null
 export default function SolutionPageContent({ solution, initialIndustry }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
+  // Carried through from the outbound email link (see dental-cold-templates.ts
+  // v3.3 / email-writer.ts) so a form submission can be traced back to which
+  // lead and campaign it came from, instead of landing as an anonymous submit.
+  const leadId = searchParams.get("lead") || undefined;
+  const campaign = searchParams.get("campaign") || undefined;
 
   const [selectedIndustry, setSelectedIndustry] = useState<IndustrySlug | null>(initialIndustry);
 
@@ -80,7 +85,7 @@ export default function SolutionPageContent({ solution, initialIndustry }: Props
         <AnimatePresence mode="wait">
           <motion.div key={selectedIndustry} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }}>
             <SolutionHero content={content} industry={industry} solution={solution} />
-            <MockupSection industry={industry} content={content} />
+            <MockupSection industry={industry} solution={solution} />
             <SolutionStatementBand industry={industry} />
             <section className="py-16 border-b border-[#e2e8f0]" style={{ backgroundColor: industry.accentLight }}>
               <div className="mx-auto max-w-6xl px-6">
@@ -91,7 +96,7 @@ export default function SolutionPageContent({ solution, initialIndustry }: Props
               </div>
             </section>
             <SolutionFeatures content={content} industry={industry} />
-            <PackageBuilder industry={industry} />
+            <PackageBuilder industry={industry} leadId={leadId} campaign={campaign} />
             <SolutionHowItWorks />
             <SolutionFAQ content={content} />
             <SolutionProof content={content} industry={industry} />
