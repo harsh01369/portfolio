@@ -52,10 +52,16 @@ function parseBookingMarker(raw: string): { text: string; bookLabel?: string } {
 interface Props {
   industry: IndustryConfig;
   solutionSlug: string;
+  // Per-lead preview override (see data/lead-previews.ts): when set, the
+  // widget shows the real business's name and passes leadId through to
+  // /api/chat-demo so the backend resolves that lead's own system prompt
+  // instead of the generic per-industry demo copy.
+  overrideBusinessName?: string;
+  leadId?: string;
 }
 
-export default function WhatsAppSimulator({ industry, solutionSlug }: Props) {
-  const businessName = DEMO_BUSINESS_NAMES[industry.slug] ?? `${industry.label} Business`;
+export default function WhatsAppSimulator({ industry, solutionSlug, overrideBusinessName, leadId }: Props) {
+  const businessName = overrideBusinessName ?? DEMO_BUSINESS_NAMES[industry.slug] ?? `${industry.label} Business`;
 
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: `Hi! Thanks for messaging ${businessName} 👋 How can I help?`, time: nowStamp() },
@@ -92,6 +98,7 @@ export default function WhatsAppSimulator({ industry, solutionSlug }: Props) {
             messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
             industry: industry.slug,
             solution: solutionSlug,
+            ...(leadId && { lead: leadId }),
           }),
           signal: controller.signal,
         });

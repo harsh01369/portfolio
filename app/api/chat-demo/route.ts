@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getContentFor, isValidIndustrySlug, isValidSolutionSlug } from "@/lib/solutions";
+import { getLeadPreviewByOpportunityId } from "@/data/lead-previews";
 
 // Simple in-memory rate limiter: 60 messages per IP per hour.
 // Note: on localhost with no reverse proxy, x-forwarded-for is unset, so every
@@ -72,7 +73,7 @@ export async function POST(request: Request) {
       ), origin);
     }
 
-    const { messages, systemPrompt, industry, solution } = await request.json();
+    const { messages, systemPrompt, industry, solution, lead } = await request.json();
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return withCors(NextResponse.json({ error: "Messages required" }, { status: 400 }), origin);
@@ -82,8 +83,20 @@ export async function POST(request: Request) {
     // caller can never inject arbitrary instructions just by sending their
     // own systemPrompt string. The portfolio's own solution-page widgets
     // always take this path (they already know their industry/solution).
+    //
+    // A `lead` id (the same real Opportunity id already carried through every
+    // dental campaign link as &lead=) takes priority over the generic
+    // industry/solution lookup when it matches a known per-lead preview --
+    // this is what makes a hot-lead's preview page talk about their actual
+    // business instead of the generic "Bright Smile Dental" demo copy. Still
+    // fully server-resolved: `lead` is looked up against a fixed config map,
+    // never used to build a prompt directly, so it carries none of the
+    // injection risk a free-text systemPrompt would.
     let resolvedPrompt: string;
-    if (typeof industry === "string" && typeof solution === "string" && isValidIndustrySlug(industry) && isValidSolutionSlug(solution)) {
+    const leadPreview = typeof lead === "string" ? getLeadPreviewByOpportunityId(lead) : undefined;
+    if (leadPreview) {
+      resolvedPrompt = leadPreview.chatSystemPrompt;
+    } else if (typeof industry === "string" && typeof solution === "string" && isValidIndustrySlug(industry) && isValidSolutionSlug(solution)) {
       resolvedPrompt = getContentFor(solution, industry).chatSystemPrompt;
     } else if (typeof systemPrompt === "string" && systemPrompt.trim() && isAllowedOrigin(origin)) {
       // Only the known standalone preview sites take this path, and only
