@@ -58,9 +58,13 @@ interface Props {
   // instead of the generic per-industry demo copy.
   overrideBusinessName?: string;
   leadId?: string;
+  // Preview pages pass this to reveal their inline booking calendar instead
+  // of the default scroll-to-contact-form behavior used on the generic
+  // solutions pages.
+  onBook?: () => void;
 }
 
-export default function WhatsAppSimulator({ industry, solutionSlug, overrideBusinessName, leadId }: Props) {
+export default function WhatsAppSimulator({ industry, solutionSlug, overrideBusinessName, leadId, onBook }: Props) {
   const businessName = overrideBusinessName ?? DEMO_BUSINESS_NAMES[industry.slug] ?? `${industry.label} Business`;
 
   const [messages, setMessages] = useState<Message[]>([
@@ -135,6 +139,10 @@ export default function WhatsAppSimulator({ industry, solutionSlug, overrideBusi
   };
 
   const handleBookClick = () => {
+    if (onBook) {
+      onBook();
+      return;
+    }
     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 

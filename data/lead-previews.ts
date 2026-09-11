@@ -19,7 +19,8 @@ export interface LeadPreviewConfig {
   accentColor: string;
   accentDark: string;
   heroNote: string; // one real, specific differentiator worth leading with
-  factsSummary: string[]; // short bullets shown on the page itself, all real
+  closedWeekdays: number[]; // 0=Sun...6=Sat, drives the booking calendar demo, from their real hours
+  journeySteps: { customerAsks: string; whatHappens: string }[]; // what the chat actually does, not a recap of facts they already know
   sourceUrl: string; // the real site these facts were pulled from
   chatSystemPrompt: string; // fully self-contained, real facts only
 }
@@ -35,11 +36,20 @@ export const leadPreviews: Record<string, LeadPreviewConfig> = {
     accentColor: "#247D8F",
     accentDark: "#1B5F6B",
     heroNote: "A wine bar in the lobby and Netflix in every treatment room, real differentiators most practices don't have",
-    factsSummary: [
-      "Dr. Scott Brewster, DDS (Howard University) sees patients at 1140 3rd Street NE, Washington, DC",
-      "Open Mon-Fri 7am-7pm, closed weekends",
-      "Runs New Columbia Dentistry & Beauty Lab, combining general dentistry with cosmetic and aesthetic treatments",
-      "Currently running an Invisalign Day promotion: up to $1,500 off, plus a free photo facial laser treatment (worth $1,000)",
+    closedWeekdays: [0, 6],
+    journeySteps: [
+      {
+        customerAsks: "A patient messages at 9pm asking about the Invisalign promotion",
+        whatHappens: "Gets the real numbers back immediately, up to $1,500 off plus a free photo facial, instead of a message that sits unread until Monday.",
+      },
+      {
+        customerAsks: "Someone tries to book for a Saturday",
+        whatHappens: "Told plainly you're closed weekends and offered the next open weekday, instead of a booking request nobody sees until it's too late to answer.",
+      },
+      {
+        customerAsks: "They're ready to actually book",
+        whatHappens: "A calendar opens right inside the chat. No phone tag, no waiting on a callback during business hours.",
+      },
     ],
     sourceUrl: "https://newcolumbiadentistry.com/",
     chatSystemPrompt: `You are the AI assistant for New Columbia Dentistry, a dental practice and beauty lab in Washington, DC run by Dr. Scott Brewster, DDS.

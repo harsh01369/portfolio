@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import type { LeadPreviewConfig } from "@/data/lead-previews";
 import type { IndustryConfig } from "@/data/solutions-config";
 import WhatsAppSimulator from "./whatsapp-simulator";
+import BookingCalendar from "./booking-calendar";
 
 interface Props {
   preview: LeadPreviewConfig;
@@ -10,6 +12,8 @@ interface Props {
 }
 
 export default function PreviewPageContent({ preview, industry }: Props) {
+  const [showCalendar, setShowCalendar] = useState(false);
+
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
       <div
@@ -31,8 +35,8 @@ export default function PreviewPageContent({ preview, industry }: Props) {
       </p>
 
       <p className="text-lg text-text-primary/70 leading-relaxed mb-8 max-w-xl">
-        {preview.heroNote}. Here's what it looks like when someone messages {preview.businessName}{" "}
-        and actually gets an answer, instantly, day or night.
+        The chat on the right is live, ask it something real. It's running off your actual hours, services and
+        current promotions, not placeholder copy.
       </p>
 
       <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-primary/60 mb-14 pb-14 border-b border-text-primary/10">
@@ -45,22 +49,18 @@ export default function PreviewPageContent({ preview, industry }: Props) {
 
       <div className="grid md:grid-cols-[1fr_auto] gap-10 items-start">
         <div className="order-2 md:order-1">
-          <h2 className="text-xl font-semibold text-text-primary mb-3">Try it yourself</h2>
-          <p className="text-sm text-text-primary/60 leading-relaxed mb-6 max-w-sm">
-            This isn't a script playing back, it's a real conversation. Ask it something a patient
-            actually would, a price, your hours, the Invisalign promotion, and watch it answer, then
-            hand off to booking.
-          </p>
+          <h2 className="text-xl font-semibold text-text-primary mb-5">What changes for a patient</h2>
 
-          <div className="space-y-3">
-            {preview.factsSummary.map((fact) => (
-              <div key={fact} className="flex gap-3 text-sm text-text-primary/70 leading-relaxed">
+          <div className="space-y-5">
+            {preview.journeySteps.map((step) => (
+              <div key={step.customerAsks} className="relative pl-5">
                 <span
-                  className="mt-[7px] w-1.5 h-1.5 rounded-full shrink-0"
+                  className="absolute left-0 top-[7px] w-1.5 h-1.5 rounded-full"
                   style={{ backgroundColor: preview.accentColor }}
                   aria-hidden="true"
                 />
-                <span>{fact}</span>
+                <p className="text-sm text-text-primary/50 mb-1">{step.customerAsks}</p>
+                <p className="text-sm text-text-primary/85 leading-relaxed">{step.whatHappens}</p>
               </div>
             ))}
           </div>
@@ -72,41 +72,40 @@ export default function PreviewPageContent({ preview, industry }: Props) {
             solutionSlug="ai-chatbot"
             overrideBusinessName={preview.businessName}
             leadId={preview.opportunityId}
+            onBook={() => setShowCalendar(true)}
           />
         </div>
       </div>
 
-      <div
-        id="contact-form"
-        className="mt-16 rounded-2xl border border-text-primary/10 p-6 md:p-8 scroll-mt-24"
-        style={{ backgroundColor: `${preview.accentColor}0d` }}
-      >
-        <h2 className="text-lg font-semibold text-text-primary mb-1">Ready to book with {preview.businessName}?</h2>
-        <p className="text-sm text-text-primary/60 mb-5 max-w-md">
-          This is where a real visitor lands after the chat hands them off, straight to a real way to reach you.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={`tel:${preview.phone.replace(/[^0-9+]/g, "")}`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: preview.accentColor }}
-          >
-            Call {preview.phone}
-          </a>
-          <a
-            href={preview.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-text-primary/15 text-text-primary hover:bg-text-primary/5 transition-colors"
-          >
-            Visit their site
-          </a>
+      {showCalendar && (
+        <div id="contact-form" className="mt-16 scroll-mt-24">
+          <BookingCalendar
+            businessName={preview.businessName}
+            accentColor={preview.accentColor}
+            closedWeekdays={preview.closedWeekdays}
+          />
         </div>
+      )}
+
+      <div className="mt-8 pt-8 border-t border-text-primary/10">
+        <p className="text-sm text-text-primary/60 mb-2">
+          This page is a working example, not a pitch deck. If it's useful, let's talk about setting it up for real.
+        </p>
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-1.5 text-sm font-medium"
+          style={{ color: preview.accentColor }}
+        >
+          Get in touch
+          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
       </div>
 
       <div className="mt-8 pt-8 border-t border-text-primary/10 text-xs text-text-primary/40 leading-relaxed">
-        Every fact this assistant uses came from {preview.businessName}&apos;s own site. Anything
-        not published there, it says so rather than guessing, same as it would for a real patient.
+        Everything this assistant says comes from {preview.businessName}&apos;s own site. Anything not published
+        there, it says so instead of guessing.
       </div>
     </div>
   );
