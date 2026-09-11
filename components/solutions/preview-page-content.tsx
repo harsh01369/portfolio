@@ -16,12 +16,19 @@ export default function PreviewPageContent({ preview, industry }: Props) {
         className="text-xs font-semibold uppercase tracking-[0.15em] mb-4"
         style={{ color: preview.accentColor }}
       >
-        Built for {preview.businessName}
+        A live preview, built just for you
       </div>
 
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-[1.1] mb-4">
-        {preview.tagline}
+      <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-[1.1] mb-3">
+        {preview.businessName}
       </h1>
+
+      <p
+        className="text-lg font-medium mb-6"
+        style={{ color: preview.accentColor }}
+      >
+        {preview.tagline}
+      </p>
 
       <p className="text-lg text-text-primary/70 leading-relaxed mb-8 max-w-xl">
         {preview.heroNote}. Here's what it looks like when someone messages {preview.businessName}{" "}
@@ -69,7 +76,35 @@ export default function PreviewPageContent({ preview, industry }: Props) {
         </div>
       </div>
 
-      <div className="mt-16 pt-8 border-t border-text-primary/10 text-xs text-text-primary/40 leading-relaxed">
+      <div
+        id="contact-form"
+        className="mt-16 rounded-2xl border border-text-primary/10 p-6 md:p-8 scroll-mt-24"
+        style={{ backgroundColor: `${preview.accentColor}0d` }}
+      >
+        <h2 className="text-lg font-semibold text-text-primary mb-1">Ready to book with {preview.businessName}?</h2>
+        <p className="text-sm text-text-primary/60 mb-5 max-w-md">
+          This is where a real visitor lands after the chat hands them off, straight to a real way to reach you.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={`tel:${preview.phone.replace(/[^0-9+]/g, "")}`}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-90"
+            style={{ backgroundColor: preview.accentColor }}
+          >
+            Call {preview.phone}
+          </a>
+          <a
+            href={preview.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-text-primary/15 text-text-primary hover:bg-text-primary/5 transition-colors"
+          >
+            Visit their site
+          </a>
+        </div>
+      </div>
+
+      <div className="mt-8 pt-8 border-t border-text-primary/10 text-xs text-text-primary/40 leading-relaxed">
         Every fact this assistant uses came from {preview.businessName}&apos;s own site. Anything
         not published there, it says so rather than guessing, same as it would for a real patient.
       </div>

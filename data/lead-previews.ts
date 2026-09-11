@@ -14,6 +14,7 @@ export interface LeadPreviewConfig {
   opportunityId: string; // real OIE Opportunity.id, carried through as &lead= for click/contact tracking continuity
   businessName: string;
   tagline: string;
+  phone: string; // real, shown on the booking section so the "Schedule" button has somewhere real to send someone
   city: string;
   accentColor: string;
   accentDark: string;
@@ -29,6 +30,7 @@ export const leadPreviews: Record<string, LeadPreviewConfig> = {
     opportunityId: "cmttoz4vp0008uxw433nyxude",
     businessName: "New Columbia Dentistry",
     tagline: "Modern dentistry that caters to you",
+    phone: "202-918-1620",
     city: "Washington, DC",
     accentColor: "#247D8F",
     accentDark: "#1B5F6B",
