@@ -36,7 +36,7 @@ const ALLOWED_ORIGINS = new Set(["https://harshkhetia.dev", "https://www.harshkh
 // Preview-site deployments live on Vercel's own subdomain and their exact
 // hostname can change per-deploy (preview URLs get a hash suffix), so this
 // matches by prefix + suffix rather than an exact string.
-const PREVIEW_SITE_ORIGIN_PATTERN = /^https:\/\/(levee-dental-preview|magnolia-dental-preview|new-columbia-dentistry-preview|fedra-wittingdds-preview)[a-z0-9-]*\.vercel\.app$/;
+const PREVIEW_SITE_ORIGIN_PATTERN = /^https:\/\/(levee-dental-preview|magnolia-dental-preview|new-columbia-dentistry-preview|fedra-wittingdds-preview|king-dental-preview|mh-dentistry-preview|florence-family-dental-preview|chevy-chase-dentistry-preview|old-town-endo-preview)[a-z0-9-]*\.vercel\.app$/;
 
 function isAllowedOrigin(origin: string | null): boolean {
   if (!origin) return false;
