@@ -1,7 +1,7 @@
 export const personal = {
   name: "Harsh Khetia",
   title: "Full Stack Developer & AI Engineer",
-  email: "work.harshkhetia@gmail.com",
+  email: "hello@harshkhetia.dev",
   phoneUK: "+44 7587 358048",
   phoneIND: "+91 9586 544434",
   location: "Manchester, UK",
