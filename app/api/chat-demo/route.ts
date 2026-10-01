@@ -36,11 +36,15 @@ const ALLOWED_ORIGINS = new Set(["https://harshkhetia.dev", "https://www.harshkh
 // Preview-site deployments live on Vercel's own subdomain and their exact
 // hostname can change per-deploy (preview URLs get a hash suffix), so this
 // matches by prefix + suffix rather than an exact string.
-const PREVIEW_SITE_ORIGIN_PATTERN = /^https:\/\/(levee-dental-preview|magnolia-dental-preview|new-columbia-dentistry-preview|fedra-wittingdds-preview|king-dental-preview|mh-dentistry-preview|florence-family-dental-preview|chevy-chase-dentistry-preview|old-town-endo-preview)[a-z0-9-]*\.vercel\.app$/;
+const PREVIEW_SITE_ORIGIN_PATTERN = /^https:\/\/(levee-dental-preview|magnolia-dental-preview|new-columbia-dentistry-preview|fedra-wittingdds-preview|king-dental-preview|mh-dentistry-preview|florence-family-dental-preview|chevy-chase-dentistry-preview|old-town-endo-preview|medical-intake-demo)[a-z0-9-]*\.vercel\.app$/;
+// medical-intake-demo is still being built against a local dev server, not
+// deployed yet, so its localhost origin is allowed here too. Remove once it
+// has a real Vercel domain and this is no longer needed for local testing.
+const LOCALHOST_ORIGIN_PATTERN = /^http:\/\/localhost:\d+$/;
 
 function isAllowedOrigin(origin: string | null): boolean {
   if (!origin) return false;
-  return ALLOWED_ORIGINS.has(origin) || PREVIEW_SITE_ORIGIN_PATTERN.test(origin);
+  return ALLOWED_ORIGINS.has(origin) || PREVIEW_SITE_ORIGIN_PATTERN.test(origin) || LOCALHOST_ORIGIN_PATTERN.test(origin);
 }
 
 function withCors(response: NextResponse, origin: string | null): NextResponse {
