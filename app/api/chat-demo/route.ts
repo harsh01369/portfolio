@@ -135,9 +135,18 @@ export async function POST(request: Request) {
     // to finish inside the token budget rather than getting cut off mid-marker.
     const bookingButtonInstruction = "The moment you'd naturally offer to book something (a slot, appointment, consultation, or table) rather than just answer a question, finish your reply, then on a new final line add exactly: [[BOOK: <button label, 2-4 words max>]]. Keep the label very short so the whole marker fits easily. Only include this marker when you are genuinely ready to hand off to booking, not on every message, and never more than one per reply. Do not explain or mention the marker itself, it's rendered as a button, not read as text.";
 
+    // 10 was fine for a short "ask a question, get an answer" demo chat, but
+    // a structured intake flow (medical-intake-demo) regularly runs well past
+    // that: once the real exchange where an early field was answered scrolls
+    // out of this window, the model has no memory it was ever asked, and
+    // re-asks it from scratch even though the system prompt (always present,
+    // never sliced) still lists it as a required field. Confirmed live: a
+    // medication-refill intake conversation looped back to the opening
+    // question after ~30 messages. 30 gives real headroom for a multi-field
+    // intake without meaningfully changing the short dental-chat demos.
     const groqMessages = [
       { role: "system", content: `${toneInstruction}\n\n${bookingButtonInstruction}\n\n${resolvedPrompt}` },
-      ...messages.slice(-10), // Last 10 messages only
+      ...messages.slice(-30),
     ];
 
     const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
