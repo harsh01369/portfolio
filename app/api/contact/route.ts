@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 
-// Enamel is a fully static export site (no API routes of its own), so its
-// contact form calls this route cross-origin instead of duplicating a whole
-// second Brevo-backed backend. Scoped to the specific known origins rather
-// than "*" so this doesn't become an open mail relay for anyone's site.
+// Enamel and Pre-Visit are both static-export sites with no API route of
+// their own, so their contact forms call this route cross-origin instead of
+// each duplicating a whole second Brevo-backed backend. Scoped to the
+// specific known origins rather than "*" so this doesn't become an open
+// mail relay for anyone's site.
 const ALLOWED_ORIGINS = [
   "https://enamel-lemon.vercel.app",
   "http://localhost:3411", // enamel local dev
+  "http://localhost:3000", // pre-visit local dev
 ];
 
 function corsHeaders(origin: string | null): Record<string, string> {
@@ -39,10 +41,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // source lets Enamel's cross-origin submissions be told apart from the
-    // portfolio's own form in the inbox, without needing a second endpoint.
-    const isEnamel = source === "enamel";
-    const label = isEnamel ? "Enamel Contact" : "Portfolio Contact";
+    // source lets Enamel's and Pre-Visit's cross-origin submissions be told
+    // apart from the portfolio's own form in the inbox, without needing a
+    // separate endpoint per site.
+    const SOURCE_LABELS: Record<string, string> = {
+      enamel: "Enamel",
+      "pre-visit": "Pre-Visit",
+    };
+    const siteName = SOURCE_LABELS[source] ?? "your portfolio";
+    const label = SOURCE_LABELS[source] ? `${SOURCE_LABELS[source]} Contact` : "Portfolio Contact";
 
     const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
@@ -60,7 +67,7 @@ export async function POST(request: Request) {
         replyTo: { name, email },
         subject: `${label}: ${name}`,
         htmlContent: `
-          <h2>New message from ${isEnamel ? "Enamel" : "your portfolio"}</h2>
+          <h2>New message from ${siteName}</h2>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <hr />
