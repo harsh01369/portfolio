@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 // mail relay for anyone's site.
 const ALLOWED_ORIGINS = [
   "https://enamel-lemon.vercel.app",
+  "https://previsit-pi.vercel.app",
   "http://localhost:3411", // enamel local dev
   "http://localhost:3000", // pre-visit local dev
 ];
