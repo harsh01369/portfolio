@@ -363,4 +363,41 @@ Tailwind CSS 4 handles all styling with custom theme tokens defined as CSS varia
     live: "https://harshkhetia.dev",
     featured: false,
   },
+  {
+    slug: "opportunity-intelligence-engine",
+    title: "Opportunity Intelligence Engine",
+    tagline:
+      "Lead-discovery and cold-outreach engine: Maps scraping, SMTP verification, sequenced sending",
+    description:
+      "A cold-outreach pipeline that finds real businesses via Google Maps, scans their sites for a usable contact email, verifies deliverability with a raw SMTP probe before anything sends, and runs a 3-touch Brevo sequence with a durable suppression list. Built to run daily, unattended, inside a strict sending cap.",
+    longDescription: `Opportunity Intelligence Engine is a lead-generation and cold-outreach system I built to run real campaigns, not a demo. It finds businesses through Google Maps search, filters out chains and hospital systems with a dedicated regex pass, visits each independent business's website with a headless Playwright browser, and extracts a real contact email from the rendered page content, not just a mailto link, since most sites bury the real address in plain text or a contact form.
+
+Every email that passes the scan goes through an SMTP pre-send check before it ever reaches a queue: a raw socket connection to the domain's MX host, a RCPT TO probe, and a three-way verdict. Accepted addresses get queued automatically. Addresses the probe cannot confirm are held back for manual review rather than risking a bounce, because a sender's domain reputation is a shared, slow-to-rebuild resource.
+
+Outreach runs as a scheduled 3-touch sequence (day 0, day 4, day 10) through the Brevo transactional API, with per-lead tracking links and a suppression list that any opt-out or hard bounce writes to immediately, checked on every single send path so a suppressed address can never receive another touch regardless of which script is running.
+
+The hardest bugs were not in any single stage, they were in making daily unattended runs actually idempotent. An early version silently re-scanned the same several hundred known-bad domains on every restart because a "no email found" outcome was never persisted, only successes were. A worse one: the finder script never closed its own browser instance on exit, so repeated restarts stacked multiple live copies of the same process, all racing to write the same output file and periodically overwriting each other's progress. Fixing both (a persistent no-match log, and a PID lock file plus an explicit process exit) turned a flaky, hours-long daily grind into a clean, repeatable run that currently sits at 597 SMTP-accepted leads out of 966 independent practices scanned for a single campaign.`,
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "Prisma",
+      "PostgreSQL",
+      "Playwright",
+      "Python",
+      "Brevo",
+      "Groq LLM",
+    ],
+    features: [
+      "Google Maps-based lead discovery with chain/hospital-system filtering",
+      "Playwright-based site scanning for real contact emails, not just mailto links",
+      "Raw SMTP RCPT TO verification before any address is queued",
+      "3-touch sequenced outreach via Brevo with per-lead tracking links",
+      "Durable suppression list checked on every send path",
+      "PID-locked, idempotent daily runs with persistent no-match logging",
+      "Free-mail-provider matching so small practices on Gmail still qualify",
+    ],
+    image: "/images/projects/opportunity-intelligence-engine/thumbnail.png",
+    github: "https://github.com/harsh01369/opportunity-intelligence-engine",
+    featured: true,
+  },
 ];
