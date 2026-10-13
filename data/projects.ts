@@ -441,4 +441,40 @@ The content pipeline runs its own review gate: as of the last content pass, 993 
     github: "https://github.com/harsh01369/number-and-verse",
     featured: true,
   },
+  {
+    slug: "previsit",
+    title: "Pre-Visit",
+    tagline: "Patient intake automation demo, including a hand-built frame-by-frame video renderer",
+    description:
+      "A Next.js demo site for an AI patient-intake product, pitched to independent medical practices through the Opportunity Intelligence Engine's own cold-outreach pipeline. Built alongside it: a frame-by-frame video rendering engine that screenshots HTML scene files through Puppeteer and stitches them with ffmpeg, with no timeline-editing software anywhere in the pipeline.",
+    longDescription: `Pre-Visit is the demo site I built for an AI-driven patient-intake product, and it's the live link every cold email from the Opportunity Intelligence Engine actually points to. The site itself is a Next.js 15 app: an intake chat panel showing what a patient's pre-visit conversation looks like, a booking calendar, phone and identity verification steps, and a contact path, all built to be the thing a practice owner clicks through in under a minute and immediately understands.
+
+The part I'm most glad I built properly is the demo video. The brief was simple: show a patient's whole flow, then cut to what the doctor actually sees. I built it as a frame-by-frame renderer rather than reaching for timeline-editing software: each scene is a self-contained HTML file exposing a pure renderFrame(progress) function (0 to 1), nothing in it depends on Date.now() or a real CSS transition, so the same progress value always produces the same pixels. A Puppeteer script loops through progress values, screenshots each frame, and ffmpeg encodes the sequence into a silent MP4 per scene before crossfading them together and muxing in an audio track trimmed to the assembled video's exact runtime via ffprobe.
+
+That determinism is what made iteration survivable. Early passes had real, fixable problems: reveals timed to a flat 0.5 seconds regardless of how much text there was to read, hard cuts between scenes that read as a glitch, a closing line whose word-by-word reveal finished right as the scene ended with no time to actually read it. Every fix was a change to one scene's pacing windows, not a re-shoot, because re-rendering a single scene and re-running the assembly script always reproduces exactly the same result. The motion itself went through a real upgrade pass too: the logo draws its stroke on instead of fading, cards drop in with a slight 3D tilt and spring overshoot, the doctor's queue view gets a moving highlight sweep instead of a static pulse, and each side of the story opens with its own full-bleed chapter wipe so the two-sided flow reads as two explicit parts rather than one undifferentiated scroll.
+
+I built this pipeline specifically because the equivalent one used for an earlier demo video was never committed anywhere, only the rendered output survived, and rebuilding from a lost process is not a mistake worth repeating. Everything, scenes, render scripts, and the final output's source, lives in the repo now.`,
+    technologies: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Puppeteer",
+      "ffmpeg",
+    ],
+    features: [
+      "Patient intake chat panel, booking calendar, and identity verification demo",
+      "Frame-by-frame video renderer: pure renderFrame(progress) scenes, no timeline software",
+      "Deterministic rendering: same progress value always produces identical pixels",
+      "Crossfade assembly and ffprobe-driven audio trimming across 5 scenes",
+      "Pacing driven entirely by per-scene duration windows, not fixed-time reveals",
+      "Two-sided story: patient flow, then a cut to the doctor's queue view",
+      "Demo site is the live link the cold-outreach campaign actually sends",
+    ],
+    image: "/images/projects/previsit/thumbnail.png",
+    live: "https://previsit-pi.vercel.app",
+    github: "https://github.com/harsh01369/previsit",
+    featured: true,
+  },
 ];
