@@ -477,4 +477,40 @@ I built this pipeline specifically because the equivalent one used for an earlie
     github: "https://github.com/harsh01369/previsit",
     featured: true,
   },
+  {
+    slug: "silentgreen",
+    title: "SilentGreen",
+    tagline: "Catches automations that report success and did nothing, without asking a model to grade a model",
+    description:
+      "A verification CLI for AI and automation pipelines, built on the premise that an LLM judge marking its own family's output is the wrong tool. Instead it checks whether every checkable fact in an answer (numbers, dates, emails, identifiers, quoted text) actually appears in the source material, and carries a clock so it can catch a scheduled workflow that silently stopped firing.",
+    longDescription: `SilentGreen exists because of one failure mode I kept seeing described the same way: a workflow or an AI agent reports success on every run, and the work didn't happen. An upstream API quietly renames a field, a mapping step resolves to null, a database accepts the null, an email goes out reading "Hi {{ $json.firstName }}" to a real customer, and the platform logs every single one of those runs as a 200. Nothing an error-driven monitor watches for ever fires.
+
+The core check deliberately asks a narrower question than most AI evaluation tools: not "is this answer good," but "does every checkable fact in it appear in the material the model was actually given." Numbers, money, dates, emails, links, identifiers, and quoted passages either occur in the source or they don't, which is a question with a real, verifiable answer rather than a judgment call. I measured this against the common alternative (LLM-as-judge) rather than asserting it's better: judges score their own model family's output higher, and agreement that looks like 80% in a controlled test can collapse past 50% error under adversarial bias probes.
+
+Every result lands in one of three verdicts: proven, violated, or unproven, and unproven is the one that matters most. If a workflow changes underneath a check, or the evidence needed to confirm something was never retained, the honest answer is "this wasn't established," not a green tick earned by default. Contracts (short YAML files stating what a pipeline is actually for) are bound to a semantic hash of the workflow graph, so renaming a node or dragging it on the canvas changes nothing, but rewiring a connection or changing a request target invalidates every check bound to it, and those checks report unproven until a person re-confirms them rather than silently continuing to report green about a graph that no longer exists.
+
+Absence detection is the other half: a scheduled workflow that stops firing writes no execution and raises no error, so SilentGreen carries its own clock, discounting nights and weekends so an alarm doesn't fire at 2am on a Saturday for a workflow that only runs weekday business hours (and then get muted within a fortnight, which is worse than no alerting at all). The whole system is read-only against any connected platform, with no code path that can activate, deactivate, or modify anything, and produces a hash-chained, append-only evidence ledger that's deliberately plain JSON so it stays readable and diffable without the tool itself. 167 tests cover the core, and the test that gates every change isn't accuracy, it's the count of faithful answers wrongly flagged, which has to stay at zero.`,
+    technologies: [
+      "TypeScript",
+      "Node.js",
+      "n8n API",
+      "LangSmith",
+      "Langfuse",
+      "OpenTelemetry",
+      "GitHub Actions",
+    ],
+    features: [
+      "Fact-grounding check: every number, date, email, and quote verified against the source",
+      "Three verdicts (proven / violated / unproven), with no code path that turns silence into a pass",
+      "Absence detection with a business-hours-aware clock for silently-stopped workflows",
+      "Contracts bound to a semantic graph hash, go stale rather than rotting on change",
+      "Hash-chained, append-only evidence ledger in plain diffable JSON",
+      "Read-only against every connected platform, no path to modify anything",
+      "Auto-unpacks LangSmith, Langfuse, and OpenTelemetry GenAI trace exports",
+      "167 tests, gated on zero false positives rather than raw accuracy",
+    ],
+    image: "/images/projects/silentgreen/thumbnail.png",
+    github: "https://github.com/harsh01369/silentgreen",
+    featured: true,
+  },
 ];
