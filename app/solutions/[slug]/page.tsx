@@ -28,10 +28,14 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   if (industry && isValidIndustrySlug(industry)) {
     const industryConfig = getIndustryBySlug(industry)!;
     const content = getContentFor(slug, industry);
+    // Canonical points at the path-based URL (/solutions/[slug]/[industry]), not this
+    // query-param one, so Google indexes one real page per combo instead of treating
+    // every outreach-email link (?industry=...&lead=...&campaign=...) as a near-duplicate.
+    // The query-param shape itself stays live forever -- real sent emails link to it.
     return createMetadata({
       title: `${solution.title} for ${industryConfig.label}`,
       description: content.heroSubheadline,
-      path: `/solutions/${slug}?industry=${industry}`,
+      path: `/solutions/${slug}/${industry}`,
     });
   }
 

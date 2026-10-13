@@ -41,7 +41,11 @@ export default function SolutionPageContent({ solution, initialIndustry }: Props
 
   function choose(slug: IndustrySlug) {
     setSelectedIndustry(slug);
-    router.replace(`/solutions/${solution.slug}?industry=${slug}`, { scroll: false });
+    const tracking = new URLSearchParams();
+    if (leadId) tracking.set("lead", leadId);
+    if (campaign) tracking.set("campaign", campaign);
+    const query = tracking.toString();
+    router.replace(`/solutions/${solution.slug}/${slug}${query ? `?${query}` : ""}`, { scroll: false });
   }
 
   // No industry chosen yet — ask, instead of silently defaulting to one.

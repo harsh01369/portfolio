@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
       },
       ...industrySlugs.map((industry) => ({
-        url: `${BASE_URL}/solutions/${s.slug}?industry=${industry}`,
+        url: `${BASE_URL}/solutions/${s.slug}/${industry}`,
         lastModified: new Date(),
         changeFrequency: "weekly" as const,
         priority: 0.75,
