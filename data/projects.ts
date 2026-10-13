@@ -549,4 +549,57 @@ The regulatory context is concrete: the EU's Accessibility Act has been enforcea
     live: "https://harsh01369.github.io/auditable/",
     featured: true,
   },
+  {
+    slug: "eloquent-operator-console",
+    title: "AI Operator Console",
+    tagline: "Conversational UI and explainable step-trace viewer for regulated financial-services AI agents",
+    description:
+      "A prototype of the UI layer that sits on top of a financial-services AI agent: a three-panel console with the customer conversation on one side, live reasoning in the middle, and a scrubbable step-by-step trace on the other, built because most agent UIs either hide reasoning behind a black-box chat or dump a 200-line LangChain trace no compliance officer will ever read.",
+    longDescription: `Regulated AI agents in banking and insurance can't just act, every decision has to be explainable, auditable, and confirmable by a human when needed. This console is built as the middle path between a black-box chat and a raw trace dump: a conversation view, a structured reasoning panel, and a scrubbable trace rail, with every step carrying its own confidence score, the SOP section it cited, the tools it called with their structured arguments and results, and a before/after state diff.
+
+It ships with 5 realistic scenarios covering the kind of decisions that actually need this scrutiny: unfreezing an account after a geo-anomaly fraud alert, a $75k cross-border wire under enhanced due diligence, an auto-loan hardship adjustment, an insurance claim SLA follow-up, and a chargeback dispute with a provisional credit. Each trace supports live replay (play, pause, step forward, reset) and exports as audit JSON a compliance reviewer can actually open and read. It's a frontend prototype by design, React 19 and TypeScript strict mode, all mock data local and deterministic, no backend, built to demonstrate the UI layer's information architecture rather than a full agent integration.`,
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite 6",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
+    features: [
+      "Three-panel layout: conversation, live reasoning, scrubbable trace rail",
+      "5 realistic regulated-finance scenarios (fraud, wire transfer, hardship, claims, chargebacks)",
+      "Live trace replay with play/pause/step/reset controls",
+      "Audit JSON export per trace for compliance review",
+      "Per-step confidence score, cited SOP section, tool calls, and state diff",
+      "Responsive across desktop, tablet (slide-in drawer), and mobile (tab switcher)",
+    ],
+    image: "/images/projects/eloquent-operator-console/thumbnail.png",
+    github: "https://github.com/harsh01369/eloquent-operator-console",
+    featured: false,
+  },
+  {
+    slug: "jyotisha-engine",
+    title: "Jyotiṣa Cognitive Reasoning System",
+    tagline: "Research-grade reasoning engine that keeps deterministic calculation strictly separate from AI interpretation",
+    description:
+      "A structured reasoning engine for Jyotiṣa (Vedic astrology) built on one non-negotiable rule: language models never compute longitude, varga, dasha, aspect, or yoga, and never become the authority for a rule. Chart facts come from a deterministic calculator against a local ephemeris; Jyotiṣa knowledge is tracked as editioned texts flowing through reviewed claims into executable rules.",
+    longDescription: `This system treats two very different kinds of accuracy separately. Chart facts (the actual astronomical positions and derived values) come from a local ephemeris and a named, versioned CalculationProfile: the same birth data and profile always produce the same ChartSnapshot, hashable and reproducible. Jyotiṣa knowledge (what those positions are traditionally held to mean) follows a different path entirely: editioned source texts flow through reviewed claims into executable rules, and a user-facing answer may only cite a published RuleSetRelease, never an LLM's general training-data sense of what a text "probably" says.
+
+The project is explicit that LLMs know a syllabus of Jyotiṣa, not a critical edition, and treats them accordingly: usable as clerks and adversarial reviewers, never as the source of authority (śāstra). Several rules are enforced as non-negotiable throughout the codebase: no silent convention-mixing (every result belongs to a named CalculationProfile), a source claim, a commentator's interpretation, an implementation rule, and a system inference are kept as distinct types rather than flattened together, contradiction between sources is preserved as data rather than resolved by fiat, and the system has to answer usefully even with the LLM layer switched off entirely. The deterministic calculation core is Python, with a separate knowledge pipeline package and machine-readable schemas defining the contracts between them.`,
+    technologies: [
+      "Python",
+      "pytest",
+      "ruff",
+    ],
+    features: [
+      "Deterministic calculation core: same input + profile always produces the same hashable result",
+      "Source claim, interpretation, rule, and inference kept as distinct, separately-tracked types",
+      "User-facing answers may only cite a published, versioned RuleSetRelease",
+      "Contradiction between sources preserved as data, never silently resolved",
+      "System must answer usefully with the LLM layer switched off",
+      "Machine-readable schemas defining the calculator/knowledge contract",
+    ],
+    image: "/images/projects/jyotisha-engine/thumbnail.png",
+    featured: false,
+  },
 ];
