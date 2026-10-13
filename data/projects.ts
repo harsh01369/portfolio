@@ -115,7 +115,7 @@ I also built an AI-powered DM engine for Instagram. When users message the brand
       { src: "/images/projects/contentforge/architecture.png", alt: "Content pipeline: data source → extractors → render → schedule → publish" },
     ],
     github: "https://github.com/harsh01369/contentforge-showcase",
-    featured: true,
+    featured: false,
   },
   {
     slug: "uwear",
@@ -165,7 +165,7 @@ The frontend is deployed on Hostinger, and the backend and admin dashboard run o
     ],
     live: "https://uwearuk.com",
     github: "https://github.com/harsh01369/uwear-platform-showcase",
-    featured: true,
+    featured: false,
   },
   {
     slug: "geobot",
@@ -221,7 +221,7 @@ The SQLite database tracks all claims, processed content, and pipeline metrics. 
       { src: "/images/projects/geobot/architecture.png", alt: "7-stage pipeline: fetch → NLP → summarise → verify → publish" },
     ],
     github: "https://github.com/harsh01369/AI-powered-Geo-politics-news-bot",
-    featured: true,
+    featured: false,
   },
   {
     slug: "helec",
@@ -325,16 +325,16 @@ Tests use Vitest with nock for HTTP mocking. Every carrier interaction, token re
     title: "Portfolio Website",
     tagline: "This website, built with Next.js 15 and Tailwind CSS 4",
     description:
-      "My portfolio and blog rebuilt from a Create React App with zero SEO into a Next.js 15 static site. All 22 pages pre-rendered at build time with unique metadata, Open Graph tags, JSON-LD structured data, and an auto-generated sitemap. MDX blog system with syntax highlighting. Modern dark theme with cursor spotlight, dot grid backgrounds, and Framer Motion animations.",
+      "My portfolio and blog rebuilt from a Create React App with zero SEO into a Next.js 15 static site. All pages pre-rendered at build time with unique metadata, Open Graph tags, JSON-LD structured data, and an auto-generated sitemap. MDX blog system with syntax highlighting. Light paper theme with an illustrated, pointer-tracking mascot hero and a persistent one-point-perspective room-grid background.",
     longDescription: `This portfolio is a ground-up rebuild of my previous Create React App site. The old version had zero SEO because everything was client-rendered JavaScript. Google could not index a single page. Searching for my name returned nothing.
 
 The rebuild uses Next.js 15 with the App Router and static site generation. Every page is pre-rendered at build time as full HTML. Each project and blog post gets its own URL with unique title, meta description, Open Graph tags, and JSON-LD structured data (Person, WebSite, BlogPosting, SoftwareApplication schemas). The sitemap.ts auto-generates a sitemap covering all routes.
 
 The blog system uses MDX (Markdown + JSX) loaded through gray-matter for frontmatter parsing and next-mdx-remote for rendering. Code blocks use sugar-high for lightweight syntax highlighting.
 
-The design follows a modern dark theme with interactive effects: a page-level cursor spotlight that follows mouse movement, dot grid backgrounds with radial fading, gradient text on headings, card spotlight effects on hover, a noise texture overlay, and staggered entrance animations via Framer Motion. The flip words component cycles through roles on the hero section.
+The site went through a full visual rebuild from its original dark, CV-style presentation to a light paper theme built around an illustrated mascot hero with pointer-tracking gaze and click-to-greet interaction, and a one-point-perspective room-grid background that now runs continuously from the hero through the footer on every page, not just behind the fold. The copy was reframed from job-seeker language ("available for work") to agency/project framing ("taking projects") to match how the site is actually used to pitch work now.
 
-Tailwind CSS 4 handles all styling with custom theme tokens defined as CSS variables. Inter and JetBrains Mono are self-hosted via next/font for zero external requests.`,
+Tailwind CSS 4 handles all styling with custom theme tokens defined as CSS variables, which made the dark-to-light flip mostly a token-level change rather than a per-component rewrite. Inter and JetBrains Mono are self-hosted via next/font for zero external requests.`,
     technologies: [
       "Next.js 15",
       "React 19",
@@ -345,13 +345,14 @@ Tailwind CSS 4 handles all styling with custom theme tokens defined as CSS varia
       "next/font",
     ],
     features: [
-      "Static site generation for all 22 pages",
+      "Static site generation for every page",
       "MDX blog with syntax highlighting",
       "SEO: unique metadata, Open Graph, JSON-LD, sitemap",
-      "Cursor spotlight and dot grid background effects",
+      "Illustrated mascot hero with pointer-tracking gaze and click-to-greet",
+      "Persistent room-grid background running from hero to footer, site-wide",
       "Framer Motion staggered entrance animations",
       "Self-hosted Inter + JetBrains Mono fonts",
-      "Modern dark theme with noise texture overlay",
+      "Token-level dark-to-light theme flip via CSS custom properties",
     ],
     image: "/images/projects/portfolio/thumbnail.png",
     images: [
