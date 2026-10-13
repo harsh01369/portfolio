@@ -30,7 +30,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block rounded-md bg-white/5 border border-white/5 px-2 py-0.5 text-xs text-text-muted"
+                className="inline-block rounded-md bg-black/[0.04] border border-black/10 px-2 py-0.5 text-xs text-text-muted"
               >
                 {tag}
               </span>

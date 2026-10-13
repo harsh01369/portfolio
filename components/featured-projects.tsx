@@ -175,13 +175,13 @@ export default function FeaturedProjects({
                       {project.technologies.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="inline-block rounded-md bg-white/5 px-2 py-0.5 text-xs text-text-secondary border border-white/5"
+                          className="inline-block rounded-md bg-black/[0.04] px-2 py-0.5 text-xs text-text-secondary border border-black/10"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 4 && (
-                        <span className="inline-block rounded-md bg-white/5 px-2 py-0.5 text-xs text-text-muted border border-white/5">
+                        <span className="inline-block rounded-md bg-black/[0.04] px-2 py-0.5 text-xs text-text-muted border border-black/10">
                           +{project.technologies.length - 4}
                         </span>
                       )}

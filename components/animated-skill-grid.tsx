@@ -39,7 +39,7 @@ export default function AnimatedSkillGrid({
             {category.skills.map((skill) => (
               <span
                 key={skill}
-                className="inline-block rounded-md bg-white/5 border border-white/5 px-2.5 py-1 text-sm text-text-secondary transition-colors hover:border-border-hover hover:text-text-primary"
+                className="inline-block rounded-md bg-black/[0.04] border border-black/10 px-2.5 py-1 text-sm text-text-secondary transition-colors hover:border-border-hover hover:text-text-primary"
               >
                 {skill}
               </span>

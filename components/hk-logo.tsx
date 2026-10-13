@@ -3,11 +3,11 @@
 import { useState, useCallback } from "react";
 
 const COLOR_SETS = [
-  { h: "#3b82f6", k: "#fafafa" },  // default: blue H, white K
-  { h: "#60a5fa", k: "#a78bfa" },  // light blue H, purple K
-  { h: "#a78bfa", k: "#3b82f6" },  // purple H, blue K
-  { h: "#fafafa", k: "#3b82f6" },  // inverted: white H, blue K
-  { h: "#8b5cf6", k: "#60a5fa" },  // purple H, light blue K
+  { h: "#14b8a6", k: "#111111" },  // default: teal H, ink K
+  { h: "#111111", k: "#14b8a6" },  // ink H, teal K
+  { h: "#0d9488", k: "#111111" },  // deep teal H, ink K
+  { h: "#111111", k: "#0d9488" },  // ink H, deep teal K
+  { h: "#14b8a6", k: "#0d9488" },  // teal H, deep teal K
 ];
 
 export default function HKLogo() {

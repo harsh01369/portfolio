@@ -7,7 +7,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createMetadata({
   title: "Contact",
   description:
-    "Get in touch with Harsh Khetia. Open to full-time roles, freelance projects, and collaboration opportunities.",
+    "Get in touch with Harsh Khetia. Taking on new web, AI, and automation projects.",
   path: "/contact",
 });
 
@@ -17,7 +17,7 @@ export default function ContactPage() {
       <AnimatedPageHeader
         label="Contact"
         title="Get in Touch"
-        description="Open to full-time roles, freelance projects, and collaboration opportunities."
+        description="Taking on new web, AI, and automation projects. Tell me what you're building."
       />
 
       <div className="grid gap-12 lg:grid-cols-[1fr_300px]">
