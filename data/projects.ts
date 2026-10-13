@@ -56,6 +56,7 @@ The content pipeline runs its own review gate: as of the last content pass, 993 
       { src: "/images/projects/number-and-verse/hero.png", alt: "Number & Verse — platform overview and key metrics" },
     ],
     github: "https://github.com/harsh01369/number-and-verse",
+    live: "https://numberandverse.com",
     featured: true,
   },
   {
@@ -95,6 +96,7 @@ Absence detection is the other half: a scheduled workflow that stops firing writ
       { src: "/images/projects/silentgreen/hero.png", alt: "SilentGreen — verification overview and key metrics" },
     ],
     github: "https://github.com/harsh01369/silentgreen",
+    live: "https://silentgreen.vercel.app/",
     featured: true,
   },
   {
