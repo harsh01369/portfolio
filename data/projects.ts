@@ -400,4 +400,45 @@ The hardest bugs were not in any single stage, they were in making daily unatten
     github: "https://github.com/harsh01369/opportunity-intelligence-engine",
     featured: true,
   },
+  {
+    slug: "number-and-verse",
+    title: "Number & Verse",
+    tagline: "Numerology product with a deterministic calculation core and versioned AI interpretation",
+    description:
+      "A one-time-purchase personal life-pattern app where numerology is a deterministic calculation layer, a separate pattern engine finds structured relationships in the results, and AI only interprets what's already been computed, never performs the computation itself. Row-level security enforced and tested on a real Postgres engine, not just application-layer checks.",
+    longDescription: `Number & Verse is built around one architectural rule I kept strict throughout: AI interprets, it never calculates. Every numerology number is deterministic, the same birth data always produces the same result, computed by code, versioned, and auditable. A separate pattern engine looks at those computed facts and finds structured relationships between them. Only after both of those layers have run does an AI model (through a provider-agnostic AIProvider, currently Groq) turn the facts into readable interpretation. Scripture and planetary symbolism are kept as explicitly separate lenses rather than blended into the numerology, since conflating different systems of meaning is exactly the kind of thing that erodes trust in a product like this.
+
+Authentication and authorization are deliberately split: Firebase proves who you are, but PostgreSQL row-level security, not application code, decides what you can read. I wrote a two-user RLS test that runs against a real Postgres engine rather than mocking the database, confirming one user genuinely cannot read, change, or delete another user's rows at the database layer. The app also refuses to start in production if it detects local-mode config, a dev-auth unlock, missing keys, a plain HTTP address, or a database role that would bypass RLS, a deliberate startup guard rather than a runtime check that could be skipped.
+
+Payment confirmation has two independent paths that converge on the same grant code: the Stripe webhook, and a verify endpoint that runs when the user returns from checkout, so a payment still gets recognised even if the webhook is delayed or the user closes the tab before it lands. The product itself is a single one-time $9.99 purchase (no subscription) with a free tier limited to Life Path and one pattern, enforced server-side, and 20 "Ask Your Map" questions included with purchase.
+
+The content pipeline runs its own review gate: as of the last content pass, 993 of 1,003 written pages are approved, 163 of those are published to search, and the rest stay approved-but-unindexed until a further review wave promotes them. The 10 unapproved pages (specific scripture commentary where page numbers couldn't be verified against the source) are deliberately held back rather than shipped. 231 tests cover the application, run through Vitest and Playwright, and the whole stack deploys through Railway with its own documented launch checklist (test-mode purchase, refund, second account) before anything goes live.`,
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Three.js",
+      "Firebase Auth",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Row-Level Security",
+      "Stripe",
+      "Groq LLM",
+      "Vitest",
+      "Playwright",
+    ],
+    features: [
+      "Deterministic numerology core, separate from AI interpretation",
+      "PostgreSQL row-level security tested with a real two-user database test",
+      "Production startup guard refuses unsafe config (local mode, missing keys, HTTP)",
+      "Dual payment confirmation: Stripe webhook + return-from-checkout verify",
+      "One-time $9.99 purchase, no subscription, server-enforced free tier",
+      "Content review pipeline: 993 of 1,003 pages approved, 163 published",
+      "231 tests across Vitest and Playwright",
+      "Cinematic Three.js WebGL hero",
+    ],
+    image: "/images/projects/number-and-verse/thumbnail.png",
+    github: "https://github.com/harsh01369/number-and-verse",
+    featured: true,
+  },
 ];
