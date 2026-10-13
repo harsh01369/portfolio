@@ -18,20 +18,18 @@ export const projects: Project[] = [
     slug: "bhairav-aaradhyaa",
     title: "Bhairav Aaradhyaa",
     tagline:
-      "Full-stack spiritual tech platform with dual payments and Puppeteer SEO",
+      "Multi-vertical spiritual tech platform: two deities, a documentary section, and a monetized AI reading engine",
     description:
-      "A spiritual tech platform serving users in India and internationally. React 19 frontend with 65 Bhairava forms, 45 stotras, 35 stories, 23 articles, japa counter with streak gamification, and a life purpose questionnaire algorithm. Express 5 backend with PostgreSQL, dual payment processing (Stripe + Instamojo), and a Puppeteer pipeline pre-rendering 192 pages for SEO.",
-    longDescription: `Bhairav Aaradhyaa is a spiritual tech platform I built from scratch to make Bhairava worship accessible to practitioners across India and the world. The frontend acts as the single source of truth for all spiritual content: 65 Bhairava divine forms with mantras, iconography, and philosophical significance, 45 Sanskrit stotras with transliterations and translations, 35 shastra stories, 23 articles, and 19 tattva deep-dives on spiritual philosophy.
+      "A spiritual tech platform serving users in India and internationally, grown well past its original Bhairava-only scope: a second full deity vertical (Shiva, 27 stotra pages), a documentary Films section with its own launch-email system, a rebuilt Life Purpose engine now on its 4th-generation algorithm with a paid personal-reading tier, and a retention system sending web push and email through a real panchang (Hindu calendar) calculation. Dual payment processing (Stripe + Instamojo) and a Puppeteer pipeline pre-rendering the growing route set for SEO.",
+    longDescription: `Bhairav Aaradhyaa started as a single-deity spiritual content platform and has since grown into something considerably bigger. The original content layer is still there: Bhairava divine forms with mantras and iconography, Sanskrit stotras with transliterations, shastra stories, and articles. What's new is a second, parallel vertical for Shiva with 27 of its own stotra pages, and a Films section with watch pages for documentaries, each with its own launch email and push-notification campaign built on a reusable template rather than one-off work.
 
-The core challenge was handling two completely different payment ecosystems within a unified checkout. Indian users pay in INR through Instamojo, and international users pay in GBP through Stripe. The backend uses MaxMind GeoIP detection to route users to the correct payment gateway automatically. Both gateways verify payments through webhook signatures: HMAC-SHA256 for Stripe and SHA1 MAC for Instamojo.
+The Life Purpose feature went through a real rebuild, not just a tweak: a new questionnaire and results flow, a results dashboard, and a 4th-generation scoring algorithm running behind a switch so it can be validated before fully replacing the previous version. It also introduced the platform's first genuine premium monetization tier, a paid personal reading, on top of the existing one-time unlocks. Admin tooling got hardened alongside it: Brevo sender and domain-auth status lookups, a delivery-events endpoint, and the kind of operational visibility a growing paid feature actually needs.
 
-The japa (mantra counting) feature works offline-first. Users can track mantras without internet, and the counter syncs sessions to the backend when connectivity returns. It includes streak gamification, achievement badges, and session statistics like average bead speed.
+The retention system is the most substantial addition outside the content itself. Web push notifications go out via VAPID, including readings tied to specific sacred days computed from a verified panchang calendar rather than a static list of dates. Every push and email deep-link carries UTM-style attribution so the funnel from notification to return visit is actually measurable, instrumented end to end through GA4. A "chant this mantra now" bridge was built, unmounted for a time, then deliberately remounted once the funnel data justified it, exactly the kind of decision that needs real instrumentation behind it rather than a guess.
 
-The life purpose questionnaire runs a 6-step scoring algorithm across 3 dimensions and recommends a personalised Bhairava form with a confidence score. Users who pay get access to a full sadhana tracker for 11, 40, or 90-day practice journeys with daily completion logging.
+The core technical challenges from the original build are still load-bearing: MaxMind GeoIP routes Indian users to Instamojo in INR and international users to Stripe in GBP automatically, both verified through webhook signatures (HMAC-SHA256 for Stripe, SHA1 MAC for Instamojo), and the Puppeteer-based pre-rendering pipeline that took Google's indexing from 0 pages to full coverage on a client-rendered React app now runs across a meaningfully larger route set, with an ongoing SEO program beyond the initial pre-render: the VBT technique pages scaled to 112, with meta-description rewrites driven by actual CTR data rather than written once and left alone.
 
-SEO was the hardest problem. Since the frontend is a single-page React app, search engines could not index any content. I built a Puppeteer-based pre-rendering pipeline that launches headless Chrome, navigates to each of the 192 routes, waits for React to render fully, and saves the resulting HTML as static files. Google indexing went from 0 pages to full coverage.
-
-The backend runs Express 5 with TypeScript strict mode, Prisma ORM on Neon.tech serverless PostgreSQL, Firebase Admin SDK for authentication, and Brevo for transactional emails with custom HTML templates.`,
+The backend runs Express 5 with TypeScript strict mode, Prisma ORM on Neon.tech serverless PostgreSQL, Firebase Admin SDK for authentication, and Brevo for every transactional and campaign email across the platform.`,
     technologies: [
       "React 19",
       "TypeScript",
@@ -45,17 +43,18 @@ The backend runs Express 5 with TypeScript strict mode, Prisma ORM on Neon.tech 
       "Tailwind CSS",
       "Brevo",
       "Framer Motion",
+      "Web Push (VAPID)",
+      "GA4",
     ],
     features: [
-      "65 Bhairava forms with mantras, iconography, and philosophy",
-      "45 Sanskrit stotras with transliterations and translations",
+      "Two parallel deity verticals: Bhairava and Shiva (27 stotra pages)",
+      "Films section with documentary watch pages and a reusable launch-campaign template",
+      "Life Purpose v2: new questionnaire, results dashboard, 4th-gen algorithm behind a switch",
+      "First paid monetization tier: a premium personal reading, on top of one-time unlocks",
+      "Web push via VAPID tied to a verified panchang (Hindu calendar) calculation",
+      "UTM-style attribution across every push/email deep link, instrumented through GA4",
       "Dual payment processing with geo-based routing (Stripe + Instamojo)",
-      "Puppeteer pre-rendering pipeline for 192 pages",
-      "Offline-first japa counter with streak gamification",
-      "Life purpose questionnaire algorithm with confidence scoring",
-      "Sadhana tracker for 11/40/90-day practice journeys",
-      "Firebase Auth with Google OAuth support",
-      "GDPR-compliant data export and account deletion",
+      "Puppeteer pre-rendering pipeline, SEO program now scaled to 112 VBT technique pages",
     ],
     image: "/images/projects/bhairav-aaradhyaa/thumbnail.png",
     images: [
