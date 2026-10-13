@@ -15,6 +15,207 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "number-and-verse",
+    title: "Number & Verse",
+    tagline: "Numerology product with a deterministic calculation core and versioned AI interpretation",
+    description:
+      "A one-time-purchase personal life-pattern app where numerology is a deterministic calculation layer, a separate pattern engine finds structured relationships in the results, and AI only interprets what's already been computed, never performs the computation itself. Row-level security enforced and tested on a real Postgres engine, not just application-layer checks.",
+    longDescription: `Number & Verse is built around one architectural rule I kept strict throughout: AI interprets, it never calculates. Every numerology number is deterministic, the same birth data always produces the same result, computed by code, versioned, and auditable. A separate pattern engine looks at those computed facts and finds structured relationships between them. Only after both of those layers have run does an AI model (through a provider-agnostic AIProvider, currently Groq) turn the facts into readable interpretation. Scripture and planetary symbolism are kept as explicitly separate lenses rather than blended into the numerology, since conflating different systems of meaning is exactly the kind of thing that erodes trust in a product like this.
+
+Authentication and authorization are deliberately split: Firebase proves who you are, but PostgreSQL row-level security, not application code, decides what you can read. I wrote a two-user RLS test that runs against a real Postgres engine rather than mocking the database, confirming one user genuinely cannot read, change, or delete another user's rows at the database layer. The app also refuses to start in production if it detects local-mode config, a dev-auth unlock, missing keys, a plain HTTP address, or a database role that would bypass RLS, a deliberate startup guard rather than a runtime check that could be skipped.
+
+Payment confirmation has two independent paths that converge on the same grant code: the Stripe webhook, and a verify endpoint that runs when the user returns from checkout, so a payment still gets recognised even if the webhook is delayed or the user closes the tab before it lands. The product itself is a single one-time $9.99 purchase (no subscription) with a free tier limited to Life Path and one pattern, enforced server-side, and 20 "Ask Your Map" questions included with purchase.
+
+The content pipeline runs its own review gate: as of the last content pass, 993 of 1,003 written pages are approved, 163 of those are published to search, and the rest stay approved-but-unindexed until a further review wave promotes them. The 10 unapproved pages (specific scripture commentary where page numbers couldn't be verified against the source) are deliberately held back rather than shipped. 231 tests cover the application, run through Vitest and Playwright, and the whole stack deploys through Railway with its own documented launch checklist (test-mode purchase, refund, second account) before anything goes live.`,
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Three.js",
+      "Firebase Auth",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Row-Level Security",
+      "Stripe",
+      "Groq LLM",
+      "Vitest",
+      "Playwright",
+    ],
+    features: [
+      "Deterministic numerology core, separate from AI interpretation",
+      "PostgreSQL row-level security tested with a real two-user database test",
+      "Production startup guard refuses unsafe config (local mode, missing keys, HTTP)",
+      "Dual payment confirmation: Stripe webhook + return-from-checkout verify",
+      "One-time $9.99 purchase, no subscription, server-enforced free tier",
+      "Content review pipeline: 993 of 1,003 pages approved, 163 published",
+      "231 tests across Vitest and Playwright",
+      "Cinematic Three.js WebGL hero",
+    ],
+    image: "/images/projects/number-and-verse/thumbnail.png",
+    images: [
+      { src: "/images/projects/number-and-verse/hero.png", alt: "Number & Verse — platform overview and key metrics" },
+    ],
+    github: "https://github.com/harsh01369/number-and-verse",
+    featured: true,
+  },
+  {
+    slug: "silentgreen",
+    title: "SilentGreen",
+    tagline: "Catches automations that report success and did nothing, without asking a model to grade a model",
+    description:
+      "A verification CLI for AI and automation pipelines, built on the premise that an LLM judge marking its own family's output is the wrong tool. Instead it checks whether every checkable fact in an answer (numbers, dates, emails, identifiers, quoted text) actually appears in the source material, and carries a clock so it can catch a scheduled workflow that silently stopped firing.",
+    longDescription: `SilentGreen exists because of one failure mode I kept seeing described the same way: a workflow or an AI agent reports success on every run, and the work didn't happen. An upstream API quietly renames a field, a mapping step resolves to null, a database accepts the null, an email goes out reading "Hi {{ $json.firstName }}" to a real customer, and the platform logs every single one of those runs as a 200. Nothing an error-driven monitor watches for ever fires.
+
+The core check deliberately asks a narrower question than most AI evaluation tools: not "is this answer good," but "does every checkable fact in it appear in the material the model was actually given." Numbers, money, dates, emails, links, identifiers, and quoted passages either occur in the source or they don't, which is a question with a real, verifiable answer rather than a judgment call. I measured this against the common alternative (LLM-as-judge) rather than asserting it's better: judges score their own model family's output higher, and agreement that looks like 80% in a controlled test can collapse past 50% error under adversarial bias probes.
+
+Every result lands in one of three verdicts: proven, violated, or unproven, and unproven is the one that matters most. If a workflow changes underneath a check, or the evidence needed to confirm something was never retained, the honest answer is "this wasn't established," not a green tick earned by default. Contracts (short YAML files stating what a pipeline is actually for) are bound to a semantic hash of the workflow graph, so renaming a node or dragging it on the canvas changes nothing, but rewiring a connection or changing a request target invalidates every check bound to it, and those checks report unproven until a person re-confirms them rather than silently continuing to report green about a graph that no longer exists.
+
+Absence detection is the other half: a scheduled workflow that stops firing writes no execution and raises no error, so SilentGreen carries its own clock, discounting nights and weekends so an alarm doesn't fire at 2am on a Saturday for a workflow that only runs weekday business hours (and then get muted within a fortnight, which is worse than no alerting at all). The whole system is read-only against any connected platform, with no code path that can activate, deactivate, or modify anything, and produces a hash-chained, append-only evidence ledger that's deliberately plain JSON so it stays readable and diffable without the tool itself. 167 tests cover the core, and the test that gates every change isn't accuracy, it's the count of faithful answers wrongly flagged, which has to stay at zero.`,
+    technologies: [
+      "TypeScript",
+      "Node.js",
+      "n8n API",
+      "LangSmith",
+      "Langfuse",
+      "OpenTelemetry",
+      "GitHub Actions",
+    ],
+    features: [
+      "Fact-grounding check: every number, date, email, and quote verified against the source",
+      "Three verdicts (proven / violated / unproven), with no code path that turns silence into a pass",
+      "Absence detection with a business-hours-aware clock for silently-stopped workflows",
+      "Contracts bound to a semantic graph hash, go stale rather than rotting on change",
+      "Hash-chained, append-only evidence ledger in plain diffable JSON",
+      "Read-only against every connected platform, no path to modify anything",
+      "Auto-unpacks LangSmith, Langfuse, and OpenTelemetry GenAI trace exports",
+      "167 tests, gated on zero false positives rather than raw accuracy",
+    ],
+    image: "/images/projects/silentgreen/thumbnail.png",
+    images: [
+      { src: "/images/projects/silentgreen/hero.png", alt: "SilentGreen — verification overview and key metrics" },
+    ],
+    github: "https://github.com/harsh01369/silentgreen",
+    featured: true,
+  },
+  {
+    slug: "auditable",
+    title: "Auditable",
+    tagline: "WCAG accessibility audits where every AI finding is verified against the real DOM before it's reported",
+    description:
+      "An accessibility audit tool built around a number most scanners don't show you: a rule engine can fully decide only 4 of the 55 WCAG 2.2 Level A/AA success criteria. The rest need judgment, so this runs axe-core for what's mechanical, an AI pass for what isn't, and a separate verification stage that checks every AI claim against the actually-captured page before it's allowed into the report.",
+    longDescription: `Auditable (wcag-evidence) runs a three-stage pipeline for every page it audits. axe-core settles what's mechanically decidable, reproducibly. A model then reads the rendered DOM, the browser-computed accessibility tree, and every interactive element, reporting what the rule engine structurally cannot see: whether alt text that technically exists actually describes the image, whether a link labelled "Read more" fails to convey its purpose out of context, whether a heading describes the section beneath it. Then, critically, a separate verification stage checks every one of those AI claims against the page actually captured, and a claim only reaches the report if it survives five checks: the WCAG criterion it cites exists, its selector resolves to exactly one element that was really captured, the markup it quotes genuinely appears there, it doesn't overturn a criterion the rule engine already fully decided, and it doesn't just restate something the engine already reported. Claims that fail verification are counted and printed in the report as rejected, not silently dropped, because a report that hides its own rejects looks identical to one that never made a mistake.
+
+I measured accuracy rather than asserting it. Against a held-out test corpus (written after the detection prompt was already tuned, run once, not cherry-picked), the AI judgment pass catches 5 of 7 defect categories a rule engine alone structurally cannot (71%), with zero false positives across 6 deliberately-correct distractor elements built into the corpus specifically to catch a tool that over-reports. On the corpus used for tuning it scores 88%, and the README states that gap plainly rather than quoting the better number.
+
+The tool also refuses to do two things. It won't audit a page it can't confirm is the real page, an early version set a realistic desktop user agent to look more convincing, tripped a Cloudflare bot check, and cheerfully audited the resulting "Just a moment..." interstitial as if it were the site. It now detects and refuses that case outright. And it won't report an absence of findings as conformance: of the 55 WCAG 2.2 A/AA criteria, every report states whether each one is failed, passed, not established, or needs a person, and on the W3C's own demonstration page only 1 of 55 is something a rule engine alone can fully decide. Running the tool against its own sales page caught a real bug: a muted text color computing to 4.30:1 contrast against a 4.5:1 requirement, invisible to the eye, baked into the report template itself, which meant every report the tool had generated up to that point carried the same defect.
+
+The regulatory context is concrete: the EU's Accessibility Act has been enforceable since 28 June 2025, penalties reach €100,000, and in April 2025 the FTC separately fined an overlay-widget vendor $1,000,000 for claiming its product could make a site WCAG compliant on its own. The tool positions itself explicitly against both failure modes, a free scanner that can't make the judgment calls that are most of a real audit, and an unverified automated claim of compliance that courts and regulators have already rejected as a defense.`,
+    technologies: [
+      "TypeScript",
+      "Node.js",
+      "Playwright",
+      "axe-core",
+      "Claude (Anthropic API)",
+      "Groq LLM",
+    ],
+    features: [
+      "Three-stage pipeline: axe-core rule engine, AI judgment pass, independent verification",
+      "Every AI claim checked against the real captured DOM before it reaches the report",
+      "Measured accuracy on a held-out corpus (71%), not an asserted number",
+      "Refuses to audit pages it can't confirm are real (bot-check interstitials, cookie walls)",
+      "Reports coverage for all 55 WCAG 2.2 A/AA criteria as failed/passed/not-established/needs-a-person",
+      "Rejected AI claims are printed in the report, never silently dropped",
+      "Found and fixed a real 4.30:1 contrast defect baked into its own report template",
+      "Evidence pack output: findings, coverage table, manual test plan, draft accessibility statement",
+    ],
+    image: "/images/projects/auditable/thumbnail.png",
+    images: [
+      { src: "/images/projects/auditable/hero.png", alt: "Auditable — audit overview and key metrics" },
+    ],
+    github: "https://github.com/harsh01369/auditable",
+    live: "https://harsh01369.github.io/auditable/",
+    featured: true,
+  },
+  {
+    slug: "opportunity-intelligence-engine",
+    title: "Opportunity Intelligence Engine",
+    tagline:
+      "Lead-discovery and cold-outreach engine: Maps scraping, SMTP verification, sequenced sending",
+    description:
+      "A cold-outreach pipeline that finds real businesses via Google Maps, scans their sites for a usable contact email, verifies deliverability with a raw SMTP probe before anything sends, and runs a 3-touch Brevo sequence with a durable suppression list. Built to run daily, unattended, inside a strict sending cap.",
+    longDescription: `Opportunity Intelligence Engine is a lead-generation and cold-outreach system I built to run real campaigns, not a demo. It finds businesses through Google Maps search, filters out chains and hospital systems with a dedicated regex pass, visits each independent business's website with a headless Playwright browser, and extracts a real contact email from the rendered page content, not just a mailto link, since most sites bury the real address in plain text or a contact form.
+
+Every email that passes the scan goes through an SMTP pre-send check before it ever reaches a queue: a raw socket connection to the domain's MX host, a RCPT TO probe, and a three-way verdict. Accepted addresses get queued automatically. Addresses the probe cannot confirm are held back for manual review rather than risking a bounce, because a sender's domain reputation is a shared, slow-to-rebuild resource.
+
+Outreach runs as a scheduled 3-touch sequence (day 0, day 4, day 10) through the Brevo transactional API, with per-lead tracking links and a suppression list that any opt-out or hard bounce writes to immediately, checked on every single send path so a suppressed address can never receive another touch regardless of which script is running.
+
+The hardest bugs were not in any single stage, they were in making daily unattended runs actually idempotent. An early version silently re-scanned the same several hundred known-bad domains on every restart because a "no email found" outcome was never persisted, only successes were. A worse one: the finder script never closed its own browser instance on exit, so repeated restarts stacked multiple live copies of the same process, all racing to write the same output file and periodically overwriting each other's progress. Fixing both (a persistent no-match log, and a PID lock file plus an explicit process exit) turned a flaky, hours-long daily grind into a clean, repeatable run that currently sits at 597 SMTP-accepted leads out of 966 independent practices scanned for a single campaign.`,
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "Prisma",
+      "PostgreSQL",
+      "Playwright",
+      "Python",
+      "Brevo",
+      "Groq LLM",
+    ],
+    features: [
+      "Google Maps-based lead discovery with chain/hospital-system filtering",
+      "Playwright-based site scanning for real contact emails, not just mailto links",
+      "Raw SMTP RCPT TO verification before any address is queued",
+      "3-touch sequenced outreach via Brevo with per-lead tracking links",
+      "Durable suppression list checked on every send path",
+      "PID-locked, idempotent daily runs with persistent no-match logging",
+      "Free-mail-provider matching so small practices on Gmail still qualify",
+    ],
+    image: "/images/projects/opportunity-intelligence-engine/thumbnail.png",
+    images: [
+      { src: "/images/projects/opportunity-intelligence-engine/hero.png", alt: "Opportunity Intelligence Engine — pipeline overview and key metrics" },
+    ],
+    github: "https://github.com/harsh01369/opportunity-intelligence-engine",
+    featured: true,
+  },
+  {
+    slug: "previsit",
+    title: "Pre-Visit",
+    tagline: "Patient intake automation demo, including a hand-built frame-by-frame video renderer",
+    description:
+      "A Next.js demo site for an AI patient-intake product, pitched to independent medical practices through the Opportunity Intelligence Engine's own cold-outreach pipeline. Built alongside it: a frame-by-frame video rendering engine that screenshots HTML scene files through Puppeteer and stitches them with ffmpeg, with no timeline-editing software anywhere in the pipeline.",
+    longDescription: `Pre-Visit is the demo site I built for an AI-driven patient-intake product, and it's the live link every cold email from the Opportunity Intelligence Engine actually points to. The site itself is a Next.js 15 app: an intake chat panel showing what a patient's pre-visit conversation looks like, a booking calendar, phone and identity verification steps, and a contact path, all built to be the thing a practice owner clicks through in under a minute and immediately understands.
+
+The part I'm most glad I built properly is the demo video. The brief was simple: show a patient's whole flow, then cut to what the doctor actually sees. I built it as a frame-by-frame renderer rather than reaching for timeline-editing software: each scene is a self-contained HTML file exposing a pure renderFrame(progress) function (0 to 1), nothing in it depends on Date.now() or a real CSS transition, so the same progress value always produces the same pixels. A Puppeteer script loops through progress values, screenshots each frame, and ffmpeg encodes the sequence into a silent MP4 per scene before crossfading them together and muxing in an audio track trimmed to the assembled video's exact runtime via ffprobe.
+
+That determinism is what made iteration survivable. Early passes had real, fixable problems: reveals timed to a flat 0.5 seconds regardless of how much text there was to read, hard cuts between scenes that read as a glitch, a closing line whose word-by-word reveal finished right as the scene ended with no time to actually read it. Every fix was a change to one scene's pacing windows, not a re-shoot, because re-rendering a single scene and re-running the assembly script always reproduces exactly the same result. The motion itself went through a real upgrade pass too: the logo draws its stroke on instead of fading, cards drop in with a slight 3D tilt and spring overshoot, the doctor's queue view gets a moving highlight sweep instead of a static pulse, and each side of the story opens with its own full-bleed chapter wipe so the two-sided flow reads as two explicit parts rather than one undifferentiated scroll.
+
+I built this pipeline specifically because the equivalent one used for an earlier demo video was never committed anywhere, only the rendered output survived, and rebuilding from a lost process is not a mistake worth repeating. Everything, scenes, render scripts, and the final output's source, lives in the repo now.`,
+    technologies: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Puppeteer",
+      "ffmpeg",
+    ],
+    features: [
+      "Patient intake chat panel, booking calendar, and identity verification demo",
+      "Frame-by-frame video renderer: pure renderFrame(progress) scenes, no timeline software",
+      "Deterministic rendering: same progress value always produces identical pixels",
+      "Crossfade assembly and ffprobe-driven audio trimming across 5 scenes",
+      "Pacing driven entirely by per-scene duration windows, not fixed-time reveals",
+      "Two-sided story: patient flow, then a cut to the doctor's queue view",
+      "Demo site is the live link the cold-outreach campaign actually sends",
+    ],
+    image: "/images/projects/previsit/thumbnail.png",
+    images: [
+      { src: "/images/projects/previsit/hero.png", alt: "Pre-Visit — demo site overview and key metrics" },
+    ],
+    live: "https://previsit-pi.vercel.app",
+    github: "https://github.com/harsh01369/previsit",
+    featured: true,
+  },
+  {
     slug: "bhairav-aaradhyaa",
     title: "Bhairav Aaradhyaa",
     tagline:
@@ -64,6 +265,65 @@ The backend runs Express 5 with TypeScript strict mode, Prisma ORM on Neon.tech 
     live: "https://bhairavaaradhyaa.com",
     github: "https://github.com/harsh01369/bhairav-aaradhya-showcase",
     featured: true,
+  },
+  {
+    slug: "eloquent-operator-console",
+    title: "AI Operator Console",
+    tagline: "Conversational UI and explainable step-trace viewer for regulated financial-services AI agents",
+    description:
+      "A prototype of the UI layer that sits on top of a financial-services AI agent: a three-panel console with the customer conversation on one side, live reasoning in the middle, and a scrubbable step-by-step trace on the other, built because most agent UIs either hide reasoning behind a black-box chat or dump a 200-line LangChain trace no compliance officer will ever read.",
+    longDescription: `Regulated AI agents in banking and insurance can't just act, every decision has to be explainable, auditable, and confirmable by a human when needed. This console is built as the middle path between a black-box chat and a raw trace dump: a conversation view, a structured reasoning panel, and a scrubbable trace rail, with every step carrying its own confidence score, the SOP section it cited, the tools it called with their structured arguments and results, and a before/after state diff.
+
+It ships with 5 realistic scenarios covering the kind of decisions that actually need this scrutiny: unfreezing an account after a geo-anomaly fraud alert, a $75k cross-border wire under enhanced due diligence, an auto-loan hardship adjustment, an insurance claim SLA follow-up, and a chargeback dispute with a provisional credit. Each trace supports live replay (play, pause, step forward, reset) and exports as audit JSON a compliance reviewer can actually open and read. It's a frontend prototype by design, React 19 and TypeScript strict mode, all mock data local and deterministic, no backend, built to demonstrate the UI layer's information architecture rather than a full agent integration.`,
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite 6",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
+    features: [
+      "Three-panel layout: conversation, live reasoning, scrubbable trace rail",
+      "5 realistic regulated-finance scenarios (fraud, wire transfer, hardship, claims, chargebacks)",
+      "Live trace replay with play/pause/step/reset controls",
+      "Audit JSON export per trace for compliance review",
+      "Per-step confidence score, cited SOP section, tool calls, and state diff",
+      "Responsive across desktop, tablet (slide-in drawer), and mobile (tab switcher)",
+    ],
+    image: "/images/projects/eloquent-operator-console/thumbnail.png",
+    images: [
+      { src: "/images/projects/eloquent-operator-console/hero.png", alt: "AI Operator Console — overview and key metrics" },
+    ],
+    github: "https://github.com/harsh01369/eloquent-operator-console",
+    featured: false,
+  },
+  {
+    slug: "jyotisha-engine",
+    title: "Jyotiṣa Cognitive Reasoning System",
+    tagline: "Research-grade reasoning engine that keeps deterministic calculation strictly separate from AI interpretation",
+    description:
+      "A structured reasoning engine for Jyotiṣa (Vedic astrology) built on one non-negotiable rule: language models never compute longitude, varga, dasha, aspect, or yoga, and never become the authority for a rule. Chart facts come from a deterministic calculator against a local ephemeris; Jyotiṣa knowledge is tracked as editioned texts flowing through reviewed claims into executable rules.",
+    longDescription: `This system treats two very different kinds of accuracy separately. Chart facts (the actual astronomical positions and derived values) come from a local ephemeris and a named, versioned CalculationProfile: the same birth data and profile always produce the same ChartSnapshot, hashable and reproducible. Jyotiṣa knowledge (what those positions are traditionally held to mean) follows a different path entirely: editioned source texts flow through reviewed claims into executable rules, and a user-facing answer may only cite a published RuleSetRelease, never an LLM's general training-data sense of what a text "probably" says.
+
+The project is explicit that LLMs know a syllabus of Jyotiṣa, not a critical edition, and treats them accordingly: usable as clerks and adversarial reviewers, never as the source of authority (śāstra). Several rules are enforced as non-negotiable throughout the codebase: no silent convention-mixing (every result belongs to a named CalculationProfile), a source claim, a commentator's interpretation, an implementation rule, and a system inference are kept as distinct types rather than flattened together, contradiction between sources is preserved as data rather than resolved by fiat, and the system has to answer usefully even with the LLM layer switched off entirely. The deterministic calculation core is Python, with a separate knowledge pipeline package and machine-readable schemas defining the contracts between them.`,
+    technologies: [
+      "Python",
+      "pytest",
+      "ruff",
+    ],
+    features: [
+      "Deterministic calculation core: same input + profile always produces the same hashable result",
+      "Source claim, interpretation, rule, and inference kept as distinct, separately-tracked types",
+      "User-facing answers may only cite a published, versioned RuleSetRelease",
+      "Contradiction between sources preserved as data, never silently resolved",
+      "System must answer usefully with the LLM layer switched off",
+      "Machine-readable schemas defining the calculator/knowledge contract",
+    ],
+    image: "/images/projects/jyotisha-engine/thumbnail.png",
+    images: [
+      { src: "/images/projects/jyotisha-engine/hero.png", alt: "Jyotisa Cognitive Reasoning System — overview and key metrics" },
+    ],
+    featured: false,
   },
   {
     slug: "contentforge",
@@ -361,245 +621,6 @@ Tailwind CSS 4 handles all styling with custom theme tokens defined as CSS varia
     ],
     github: "https://github.com/harsh01369/portfolio-website",
     live: "https://harshkhetia.dev",
-    featured: false,
-  },
-  {
-    slug: "opportunity-intelligence-engine",
-    title: "Opportunity Intelligence Engine",
-    tagline:
-      "Lead-discovery and cold-outreach engine: Maps scraping, SMTP verification, sequenced sending",
-    description:
-      "A cold-outreach pipeline that finds real businesses via Google Maps, scans their sites for a usable contact email, verifies deliverability with a raw SMTP probe before anything sends, and runs a 3-touch Brevo sequence with a durable suppression list. Built to run daily, unattended, inside a strict sending cap.",
-    longDescription: `Opportunity Intelligence Engine is a lead-generation and cold-outreach system I built to run real campaigns, not a demo. It finds businesses through Google Maps search, filters out chains and hospital systems with a dedicated regex pass, visits each independent business's website with a headless Playwright browser, and extracts a real contact email from the rendered page content, not just a mailto link, since most sites bury the real address in plain text or a contact form.
-
-Every email that passes the scan goes through an SMTP pre-send check before it ever reaches a queue: a raw socket connection to the domain's MX host, a RCPT TO probe, and a three-way verdict. Accepted addresses get queued automatically. Addresses the probe cannot confirm are held back for manual review rather than risking a bounce, because a sender's domain reputation is a shared, slow-to-rebuild resource.
-
-Outreach runs as a scheduled 3-touch sequence (day 0, day 4, day 10) through the Brevo transactional API, with per-lead tracking links and a suppression list that any opt-out or hard bounce writes to immediately, checked on every single send path so a suppressed address can never receive another touch regardless of which script is running.
-
-The hardest bugs were not in any single stage, they were in making daily unattended runs actually idempotent. An early version silently re-scanned the same several hundred known-bad domains on every restart because a "no email found" outcome was never persisted, only successes were. A worse one: the finder script never closed its own browser instance on exit, so repeated restarts stacked multiple live copies of the same process, all racing to write the same output file and periodically overwriting each other's progress. Fixing both (a persistent no-match log, and a PID lock file plus an explicit process exit) turned a flaky, hours-long daily grind into a clean, repeatable run that currently sits at 597 SMTP-accepted leads out of 966 independent practices scanned for a single campaign.`,
-    technologies: [
-      "TypeScript",
-      "Next.js",
-      "Prisma",
-      "PostgreSQL",
-      "Playwright",
-      "Python",
-      "Brevo",
-      "Groq LLM",
-    ],
-    features: [
-      "Google Maps-based lead discovery with chain/hospital-system filtering",
-      "Playwright-based site scanning for real contact emails, not just mailto links",
-      "Raw SMTP RCPT TO verification before any address is queued",
-      "3-touch sequenced outreach via Brevo with per-lead tracking links",
-      "Durable suppression list checked on every send path",
-      "PID-locked, idempotent daily runs with persistent no-match logging",
-      "Free-mail-provider matching so small practices on Gmail still qualify",
-    ],
-    image: "/images/projects/opportunity-intelligence-engine/thumbnail.png",
-    github: "https://github.com/harsh01369/opportunity-intelligence-engine",
-    featured: true,
-  },
-  {
-    slug: "number-and-verse",
-    title: "Number & Verse",
-    tagline: "Numerology product with a deterministic calculation core and versioned AI interpretation",
-    description:
-      "A one-time-purchase personal life-pattern app where numerology is a deterministic calculation layer, a separate pattern engine finds structured relationships in the results, and AI only interprets what's already been computed, never performs the computation itself. Row-level security enforced and tested on a real Postgres engine, not just application-layer checks.",
-    longDescription: `Number & Verse is built around one architectural rule I kept strict throughout: AI interprets, it never calculates. Every numerology number is deterministic, the same birth data always produces the same result, computed by code, versioned, and auditable. A separate pattern engine looks at those computed facts and finds structured relationships between them. Only after both of those layers have run does an AI model (through a provider-agnostic AIProvider, currently Groq) turn the facts into readable interpretation. Scripture and planetary symbolism are kept as explicitly separate lenses rather than blended into the numerology, since conflating different systems of meaning is exactly the kind of thing that erodes trust in a product like this.
-
-Authentication and authorization are deliberately split: Firebase proves who you are, but PostgreSQL row-level security, not application code, decides what you can read. I wrote a two-user RLS test that runs against a real Postgres engine rather than mocking the database, confirming one user genuinely cannot read, change, or delete another user's rows at the database layer. The app also refuses to start in production if it detects local-mode config, a dev-auth unlock, missing keys, a plain HTTP address, or a database role that would bypass RLS, a deliberate startup guard rather than a runtime check that could be skipped.
-
-Payment confirmation has two independent paths that converge on the same grant code: the Stripe webhook, and a verify endpoint that runs when the user returns from checkout, so a payment still gets recognised even if the webhook is delayed or the user closes the tab before it lands. The product itself is a single one-time $9.99 purchase (no subscription) with a free tier limited to Life Path and one pattern, enforced server-side, and 20 "Ask Your Map" questions included with purchase.
-
-The content pipeline runs its own review gate: as of the last content pass, 993 of 1,003 written pages are approved, 163 of those are published to search, and the rest stay approved-but-unindexed until a further review wave promotes them. The 10 unapproved pages (specific scripture commentary where page numbers couldn't be verified against the source) are deliberately held back rather than shipped. 231 tests cover the application, run through Vitest and Playwright, and the whole stack deploys through Railway with its own documented launch checklist (test-mode purchase, refund, second account) before anything goes live.`,
-    technologies: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Three.js",
-      "Firebase Auth",
-      "PostgreSQL",
-      "Drizzle ORM",
-      "Row-Level Security",
-      "Stripe",
-      "Groq LLM",
-      "Vitest",
-      "Playwright",
-    ],
-    features: [
-      "Deterministic numerology core, separate from AI interpretation",
-      "PostgreSQL row-level security tested with a real two-user database test",
-      "Production startup guard refuses unsafe config (local mode, missing keys, HTTP)",
-      "Dual payment confirmation: Stripe webhook + return-from-checkout verify",
-      "One-time $9.99 purchase, no subscription, server-enforced free tier",
-      "Content review pipeline: 993 of 1,003 pages approved, 163 published",
-      "231 tests across Vitest and Playwright",
-      "Cinematic Three.js WebGL hero",
-    ],
-    image: "/images/projects/number-and-verse/thumbnail.png",
-    github: "https://github.com/harsh01369/number-and-verse",
-    featured: true,
-  },
-  {
-    slug: "previsit",
-    title: "Pre-Visit",
-    tagline: "Patient intake automation demo, including a hand-built frame-by-frame video renderer",
-    description:
-      "A Next.js demo site for an AI patient-intake product, pitched to independent medical practices through the Opportunity Intelligence Engine's own cold-outreach pipeline. Built alongside it: a frame-by-frame video rendering engine that screenshots HTML scene files through Puppeteer and stitches them with ffmpeg, with no timeline-editing software anywhere in the pipeline.",
-    longDescription: `Pre-Visit is the demo site I built for an AI-driven patient-intake product, and it's the live link every cold email from the Opportunity Intelligence Engine actually points to. The site itself is a Next.js 15 app: an intake chat panel showing what a patient's pre-visit conversation looks like, a booking calendar, phone and identity verification steps, and a contact path, all built to be the thing a practice owner clicks through in under a minute and immediately understands.
-
-The part I'm most glad I built properly is the demo video. The brief was simple: show a patient's whole flow, then cut to what the doctor actually sees. I built it as a frame-by-frame renderer rather than reaching for timeline-editing software: each scene is a self-contained HTML file exposing a pure renderFrame(progress) function (0 to 1), nothing in it depends on Date.now() or a real CSS transition, so the same progress value always produces the same pixels. A Puppeteer script loops through progress values, screenshots each frame, and ffmpeg encodes the sequence into a silent MP4 per scene before crossfading them together and muxing in an audio track trimmed to the assembled video's exact runtime via ffprobe.
-
-That determinism is what made iteration survivable. Early passes had real, fixable problems: reveals timed to a flat 0.5 seconds regardless of how much text there was to read, hard cuts between scenes that read as a glitch, a closing line whose word-by-word reveal finished right as the scene ended with no time to actually read it. Every fix was a change to one scene's pacing windows, not a re-shoot, because re-rendering a single scene and re-running the assembly script always reproduces exactly the same result. The motion itself went through a real upgrade pass too: the logo draws its stroke on instead of fading, cards drop in with a slight 3D tilt and spring overshoot, the doctor's queue view gets a moving highlight sweep instead of a static pulse, and each side of the story opens with its own full-bleed chapter wipe so the two-sided flow reads as two explicit parts rather than one undifferentiated scroll.
-
-I built this pipeline specifically because the equivalent one used for an earlier demo video was never committed anywhere, only the rendered output survived, and rebuilding from a lost process is not a mistake worth repeating. Everything, scenes, render scripts, and the final output's source, lives in the repo now.`,
-    technologies: [
-      "Next.js 15",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Puppeteer",
-      "ffmpeg",
-    ],
-    features: [
-      "Patient intake chat panel, booking calendar, and identity verification demo",
-      "Frame-by-frame video renderer: pure renderFrame(progress) scenes, no timeline software",
-      "Deterministic rendering: same progress value always produces identical pixels",
-      "Crossfade assembly and ffprobe-driven audio trimming across 5 scenes",
-      "Pacing driven entirely by per-scene duration windows, not fixed-time reveals",
-      "Two-sided story: patient flow, then a cut to the doctor's queue view",
-      "Demo site is the live link the cold-outreach campaign actually sends",
-    ],
-    image: "/images/projects/previsit/thumbnail.png",
-    live: "https://previsit-pi.vercel.app",
-    github: "https://github.com/harsh01369/previsit",
-    featured: true,
-  },
-  {
-    slug: "silentgreen",
-    title: "SilentGreen",
-    tagline: "Catches automations that report success and did nothing, without asking a model to grade a model",
-    description:
-      "A verification CLI for AI and automation pipelines, built on the premise that an LLM judge marking its own family's output is the wrong tool. Instead it checks whether every checkable fact in an answer (numbers, dates, emails, identifiers, quoted text) actually appears in the source material, and carries a clock so it can catch a scheduled workflow that silently stopped firing.",
-    longDescription: `SilentGreen exists because of one failure mode I kept seeing described the same way: a workflow or an AI agent reports success on every run, and the work didn't happen. An upstream API quietly renames a field, a mapping step resolves to null, a database accepts the null, an email goes out reading "Hi {{ $json.firstName }}" to a real customer, and the platform logs every single one of those runs as a 200. Nothing an error-driven monitor watches for ever fires.
-
-The core check deliberately asks a narrower question than most AI evaluation tools: not "is this answer good," but "does every checkable fact in it appear in the material the model was actually given." Numbers, money, dates, emails, links, identifiers, and quoted passages either occur in the source or they don't, which is a question with a real, verifiable answer rather than a judgment call. I measured this against the common alternative (LLM-as-judge) rather than asserting it's better: judges score their own model family's output higher, and agreement that looks like 80% in a controlled test can collapse past 50% error under adversarial bias probes.
-
-Every result lands in one of three verdicts: proven, violated, or unproven, and unproven is the one that matters most. If a workflow changes underneath a check, or the evidence needed to confirm something was never retained, the honest answer is "this wasn't established," not a green tick earned by default. Contracts (short YAML files stating what a pipeline is actually for) are bound to a semantic hash of the workflow graph, so renaming a node or dragging it on the canvas changes nothing, but rewiring a connection or changing a request target invalidates every check bound to it, and those checks report unproven until a person re-confirms them rather than silently continuing to report green about a graph that no longer exists.
-
-Absence detection is the other half: a scheduled workflow that stops firing writes no execution and raises no error, so SilentGreen carries its own clock, discounting nights and weekends so an alarm doesn't fire at 2am on a Saturday for a workflow that only runs weekday business hours (and then get muted within a fortnight, which is worse than no alerting at all). The whole system is read-only against any connected platform, with no code path that can activate, deactivate, or modify anything, and produces a hash-chained, append-only evidence ledger that's deliberately plain JSON so it stays readable and diffable without the tool itself. 167 tests cover the core, and the test that gates every change isn't accuracy, it's the count of faithful answers wrongly flagged, which has to stay at zero.`,
-    technologies: [
-      "TypeScript",
-      "Node.js",
-      "n8n API",
-      "LangSmith",
-      "Langfuse",
-      "OpenTelemetry",
-      "GitHub Actions",
-    ],
-    features: [
-      "Fact-grounding check: every number, date, email, and quote verified against the source",
-      "Three verdicts (proven / violated / unproven), with no code path that turns silence into a pass",
-      "Absence detection with a business-hours-aware clock for silently-stopped workflows",
-      "Contracts bound to a semantic graph hash, go stale rather than rotting on change",
-      "Hash-chained, append-only evidence ledger in plain diffable JSON",
-      "Read-only against every connected platform, no path to modify anything",
-      "Auto-unpacks LangSmith, Langfuse, and OpenTelemetry GenAI trace exports",
-      "167 tests, gated on zero false positives rather than raw accuracy",
-    ],
-    image: "/images/projects/silentgreen/thumbnail.png",
-    github: "https://github.com/harsh01369/silentgreen",
-    featured: true,
-  },
-  {
-    slug: "auditable",
-    title: "Auditable",
-    tagline: "WCAG accessibility audits where every AI finding is verified against the real DOM before it's reported",
-    description:
-      "An accessibility audit tool built around a number most scanners don't show you: a rule engine can fully decide only 4 of the 55 WCAG 2.2 Level A/AA success criteria. The rest need judgment, so this runs axe-core for what's mechanical, an AI pass for what isn't, and a separate verification stage that checks every AI claim against the actually-captured page before it's allowed into the report.",
-    longDescription: `Auditable (wcag-evidence) runs a three-stage pipeline for every page it audits. axe-core settles what's mechanically decidable, reproducibly. A model then reads the rendered DOM, the browser-computed accessibility tree, and every interactive element, reporting what the rule engine structurally cannot see: whether alt text that technically exists actually describes the image, whether a link labelled "Read more" fails to convey its purpose out of context, whether a heading describes the section beneath it. Then, critically, a separate verification stage checks every one of those AI claims against the page actually captured, and a claim only reaches the report if it survives five checks: the WCAG criterion it cites exists, its selector resolves to exactly one element that was really captured, the markup it quotes genuinely appears there, it doesn't overturn a criterion the rule engine already fully decided, and it doesn't just restate something the engine already reported. Claims that fail verification are counted and printed in the report as rejected, not silently dropped, because a report that hides its own rejects looks identical to one that never made a mistake.
-
-I measured accuracy rather than asserting it. Against a held-out test corpus (written after the detection prompt was already tuned, run once, not cherry-picked), the AI judgment pass catches 5 of 7 defect categories a rule engine alone structurally cannot (71%), with zero false positives across 6 deliberately-correct distractor elements built into the corpus specifically to catch a tool that over-reports. On the corpus used for tuning it scores 88%, and the README states that gap plainly rather than quoting the better number.
-
-The tool also refuses to do two things. It won't audit a page it can't confirm is the real page, an early version set a realistic desktop user agent to look more convincing, tripped a Cloudflare bot check, and cheerfully audited the resulting "Just a moment..." interstitial as if it were the site. It now detects and refuses that case outright. And it won't report an absence of findings as conformance: of the 55 WCAG 2.2 A/AA criteria, every report states whether each one is failed, passed, not established, or needs a person, and on the W3C's own demonstration page only 1 of 55 is something a rule engine alone can fully decide. Running the tool against its own sales page caught a real bug: a muted text color computing to 4.30:1 contrast against a 4.5:1 requirement, invisible to the eye, baked into the report template itself, which meant every report the tool had generated up to that point carried the same defect.
-
-The regulatory context is concrete: the EU's Accessibility Act has been enforceable since 28 June 2025, penalties reach €100,000, and in April 2025 the FTC separately fined an overlay-widget vendor $1,000,000 for claiming its product could make a site WCAG compliant on its own. The tool positions itself explicitly against both failure modes, a free scanner that can't make the judgment calls that are most of a real audit, and an unverified automated claim of compliance that courts and regulators have already rejected as a defense.`,
-    technologies: [
-      "TypeScript",
-      "Node.js",
-      "Playwright",
-      "axe-core",
-      "Claude (Anthropic API)",
-      "Groq LLM",
-    ],
-    features: [
-      "Three-stage pipeline: axe-core rule engine, AI judgment pass, independent verification",
-      "Every AI claim checked against the real captured DOM before it reaches the report",
-      "Measured accuracy on a held-out corpus (71%), not an asserted number",
-      "Refuses to audit pages it can't confirm are real (bot-check interstitials, cookie walls)",
-      "Reports coverage for all 55 WCAG 2.2 A/AA criteria as failed/passed/not-established/needs-a-person",
-      "Rejected AI claims are printed in the report, never silently dropped",
-      "Found and fixed a real 4.30:1 contrast defect baked into its own report template",
-      "Evidence pack output: findings, coverage table, manual test plan, draft accessibility statement",
-    ],
-    image: "/images/projects/auditable/thumbnail.png",
-    github: "https://github.com/harsh01369/auditable",
-    live: "https://harsh01369.github.io/auditable/",
-    featured: true,
-  },
-  {
-    slug: "eloquent-operator-console",
-    title: "AI Operator Console",
-    tagline: "Conversational UI and explainable step-trace viewer for regulated financial-services AI agents",
-    description:
-      "A prototype of the UI layer that sits on top of a financial-services AI agent: a three-panel console with the customer conversation on one side, live reasoning in the middle, and a scrubbable step-by-step trace on the other, built because most agent UIs either hide reasoning behind a black-box chat or dump a 200-line LangChain trace no compliance officer will ever read.",
-    longDescription: `Regulated AI agents in banking and insurance can't just act, every decision has to be explainable, auditable, and confirmable by a human when needed. This console is built as the middle path between a black-box chat and a raw trace dump: a conversation view, a structured reasoning panel, and a scrubbable trace rail, with every step carrying its own confidence score, the SOP section it cited, the tools it called with their structured arguments and results, and a before/after state diff.
-
-It ships with 5 realistic scenarios covering the kind of decisions that actually need this scrutiny: unfreezing an account after a geo-anomaly fraud alert, a $75k cross-border wire under enhanced due diligence, an auto-loan hardship adjustment, an insurance claim SLA follow-up, and a chargeback dispute with a provisional credit. Each trace supports live replay (play, pause, step forward, reset) and exports as audit JSON a compliance reviewer can actually open and read. It's a frontend prototype by design, React 19 and TypeScript strict mode, all mock data local and deterministic, no backend, built to demonstrate the UI layer's information architecture rather than a full agent integration.`,
-    technologies: [
-      "React 19",
-      "TypeScript",
-      "Vite 6",
-      "Tailwind CSS",
-      "Framer Motion",
-    ],
-    features: [
-      "Three-panel layout: conversation, live reasoning, scrubbable trace rail",
-      "5 realistic regulated-finance scenarios (fraud, wire transfer, hardship, claims, chargebacks)",
-      "Live trace replay with play/pause/step/reset controls",
-      "Audit JSON export per trace for compliance review",
-      "Per-step confidence score, cited SOP section, tool calls, and state diff",
-      "Responsive across desktop, tablet (slide-in drawer), and mobile (tab switcher)",
-    ],
-    image: "/images/projects/eloquent-operator-console/thumbnail.png",
-    github: "https://github.com/harsh01369/eloquent-operator-console",
-    featured: false,
-  },
-  {
-    slug: "jyotisha-engine",
-    title: "Jyotiṣa Cognitive Reasoning System",
-    tagline: "Research-grade reasoning engine that keeps deterministic calculation strictly separate from AI interpretation",
-    description:
-      "A structured reasoning engine for Jyotiṣa (Vedic astrology) built on one non-negotiable rule: language models never compute longitude, varga, dasha, aspect, or yoga, and never become the authority for a rule. Chart facts come from a deterministic calculator against a local ephemeris; Jyotiṣa knowledge is tracked as editioned texts flowing through reviewed claims into executable rules.",
-    longDescription: `This system treats two very different kinds of accuracy separately. Chart facts (the actual astronomical positions and derived values) come from a local ephemeris and a named, versioned CalculationProfile: the same birth data and profile always produce the same ChartSnapshot, hashable and reproducible. Jyotiṣa knowledge (what those positions are traditionally held to mean) follows a different path entirely: editioned source texts flow through reviewed claims into executable rules, and a user-facing answer may only cite a published RuleSetRelease, never an LLM's general training-data sense of what a text "probably" says.
-
-The project is explicit that LLMs know a syllabus of Jyotiṣa, not a critical edition, and treats them accordingly: usable as clerks and adversarial reviewers, never as the source of authority (śāstra). Several rules are enforced as non-negotiable throughout the codebase: no silent convention-mixing (every result belongs to a named CalculationProfile), a source claim, a commentator's interpretation, an implementation rule, and a system inference are kept as distinct types rather than flattened together, contradiction between sources is preserved as data rather than resolved by fiat, and the system has to answer usefully even with the LLM layer switched off entirely. The deterministic calculation core is Python, with a separate knowledge pipeline package and machine-readable schemas defining the contracts between them.`,
-    technologies: [
-      "Python",
-      "pytest",
-      "ruff",
-    ],
-    features: [
-      "Deterministic calculation core: same input + profile always produces the same hashable result",
-      "Source claim, interpretation, rule, and inference kept as distinct, separately-tracked types",
-      "User-facing answers may only cite a published, versioned RuleSetRelease",
-      "Contradiction between sources preserved as data, never silently resolved",
-      "System must answer usefully with the LLM layer switched off",
-      "Machine-readable schemas defining the calculator/knowledge contract",
-    ],
-    image: "/images/projects/jyotisha-engine/thumbnail.png",
     featured: false,
   },
 ];
