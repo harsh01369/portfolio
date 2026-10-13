@@ -513,4 +513,40 @@ Absence detection is the other half: a scheduled workflow that stops firing writ
     github: "https://github.com/harsh01369/silentgreen",
     featured: true,
   },
+  {
+    slug: "auditable",
+    title: "Auditable",
+    tagline: "WCAG accessibility audits where every AI finding is verified against the real DOM before it's reported",
+    description:
+      "An accessibility audit tool built around a number most scanners don't show you: a rule engine can fully decide only 4 of the 55 WCAG 2.2 Level A/AA success criteria. The rest need judgment, so this runs axe-core for what's mechanical, an AI pass for what isn't, and a separate verification stage that checks every AI claim against the actually-captured page before it's allowed into the report.",
+    longDescription: `Auditable (wcag-evidence) runs a three-stage pipeline for every page it audits. axe-core settles what's mechanically decidable, reproducibly. A model then reads the rendered DOM, the browser-computed accessibility tree, and every interactive element, reporting what the rule engine structurally cannot see: whether alt text that technically exists actually describes the image, whether a link labelled "Read more" fails to convey its purpose out of context, whether a heading describes the section beneath it. Then, critically, a separate verification stage checks every one of those AI claims against the page actually captured, and a claim only reaches the report if it survives five checks: the WCAG criterion it cites exists, its selector resolves to exactly one element that was really captured, the markup it quotes genuinely appears there, it doesn't overturn a criterion the rule engine already fully decided, and it doesn't just restate something the engine already reported. Claims that fail verification are counted and printed in the report as rejected, not silently dropped, because a report that hides its own rejects looks identical to one that never made a mistake.
+
+I measured accuracy rather than asserting it. Against a held-out test corpus (written after the detection prompt was already tuned, run once, not cherry-picked), the AI judgment pass catches 5 of 7 defect categories a rule engine alone structurally cannot (71%), with zero false positives across 6 deliberately-correct distractor elements built into the corpus specifically to catch a tool that over-reports. On the corpus used for tuning it scores 88%, and the README states that gap plainly rather than quoting the better number.
+
+The tool also refuses to do two things. It won't audit a page it can't confirm is the real page, an early version set a realistic desktop user agent to look more convincing, tripped a Cloudflare bot check, and cheerfully audited the resulting "Just a moment..." interstitial as if it were the site. It now detects and refuses that case outright. And it won't report an absence of findings as conformance: of the 55 WCAG 2.2 A/AA criteria, every report states whether each one is failed, passed, not established, or needs a person, and on the W3C's own demonstration page only 1 of 55 is something a rule engine alone can fully decide. Running the tool against its own sales page caught a real bug: a muted text color computing to 4.30:1 contrast against a 4.5:1 requirement, invisible to the eye, baked into the report template itself, which meant every report the tool had generated up to that point carried the same defect.
+
+The regulatory context is concrete: the EU's Accessibility Act has been enforceable since 28 June 2025, penalties reach €100,000, and in April 2025 the FTC separately fined an overlay-widget vendor $1,000,000 for claiming its product could make a site WCAG compliant on its own. The tool positions itself explicitly against both failure modes, a free scanner that can't make the judgment calls that are most of a real audit, and an unverified automated claim of compliance that courts and regulators have already rejected as a defense.`,
+    technologies: [
+      "TypeScript",
+      "Node.js",
+      "Playwright",
+      "axe-core",
+      "Claude (Anthropic API)",
+      "Groq LLM",
+    ],
+    features: [
+      "Three-stage pipeline: axe-core rule engine, AI judgment pass, independent verification",
+      "Every AI claim checked against the real captured DOM before it reaches the report",
+      "Measured accuracy on a held-out corpus (71%), not an asserted number",
+      "Refuses to audit pages it can't confirm are real (bot-check interstitials, cookie walls)",
+      "Reports coverage for all 55 WCAG 2.2 A/AA criteria as failed/passed/not-established/needs-a-person",
+      "Rejected AI claims are printed in the report, never silently dropped",
+      "Found and fixed a real 4.30:1 contrast defect baked into its own report template",
+      "Evidence pack output: findings, coverage table, manual test plan, draft accessibility statement",
+    ],
+    image: "/images/projects/auditable/thumbnail.png",
+    github: "https://github.com/harsh01369/auditable",
+    live: "https://harsh01369.github.io/auditable/",
+    featured: true,
+  },
 ];
