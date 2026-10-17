@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SignatureRing from "@/components/signature-ring";
 
 // Each cycling word is filled with that real project's own screenshot
-// (background-clip: text) instead of a flat color — the same technique the
+// (background-clip: text) instead of a flat color, the same technique the
 // trailer's hook uses. Images are pre-blurred as separate files (gblur,
 // sigma=14) rather than blurred live: a CSS blur() filter on the element
 // also blurs the clip-path/text-mask edges, not just the image, which read

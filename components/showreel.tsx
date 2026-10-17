@@ -42,7 +42,7 @@ export default function Showreel() {
             </h2>
           </div>
           <p className="text-sm text-text-muted">
-            Built frame by frame &mdash; same renderer behind every demo on this site.
+            Built frame by frame, same renderer behind every demo on this site.
           </p>
         </motion.div>
 

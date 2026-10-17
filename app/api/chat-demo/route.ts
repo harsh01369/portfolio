@@ -114,7 +114,7 @@ export async function POST(request: Request) {
 
     // Tone layer applied on top of every industry's own knowledge, so it doesn't
     // need repeating in each prompt. Warm and natural, but honest if asked directly
-    // whether it's a bot — real disclosure laws (EU AI Act Art. 50, California's bot
+    // whether it's a bot, real disclosure laws (EU AI Act Art. 50, California's bot
     // law) require that, and pretending otherwise is a bad bet for a real business.
     //
     // Written to the same bar as the outreach email copywriting elsewhere in this

@@ -55,7 +55,7 @@ The content pipeline runs its own review gate: as of the last content pass, 993 
     ],
     image: "/images/projects/number-and-verse/thumbnail.png",
     images: [
-      { src: "/images/projects/number-and-verse/hero.png", alt: "Number & Verse — platform overview and key metrics" },
+      { src: "/images/projects/number-and-verse/hero.png", alt: "Number & Verse, platform overview and key metrics" },
     ],
     github: "https://github.com/harsh01369/number-and-verse",
     live: "https://numberandverse.com",
@@ -95,7 +95,7 @@ Absence detection is the other half: a scheduled workflow that stops firing writ
     ],
     image: "/images/projects/silentgreen/thumbnail.png",
     images: [
-      { src: "/images/projects/silentgreen/hero.png", alt: "SilentGreen — verification overview and key metrics" },
+      { src: "/images/projects/silentgreen/hero.png", alt: "SilentGreen, verification overview and key metrics" },
     ],
     github: "https://github.com/harsh01369/silentgreen",
     live: "https://silentgreen.vercel.app/",
@@ -138,7 +138,7 @@ The regulatory context is concrete: the EU's Accessibility Act has been enforcea
     ],
     image: "/images/projects/auditable/thumbnail.png",
     images: [
-      { src: "/images/projects/auditable/hero.png", alt: "Auditable — audit overview and key metrics" },
+      { src: "/images/projects/auditable/hero.png", alt: "Auditable, audit overview and key metrics" },
     ],
     github: "https://github.com/harsh01369/auditable",
     live: "https://harsh01369.github.io/auditable/",
@@ -179,7 +179,7 @@ The hardest bugs were not in any single stage, they were in making daily unatten
     ],
     image: "/images/projects/opportunity-intelligence-engine/thumbnail.png",
     images: [
-      { src: "/images/projects/opportunity-intelligence-engine/hero.png", alt: "Opportunity Intelligence Engine — pipeline overview and key metrics" },
+      { src: "/images/projects/opportunity-intelligence-engine/hero.png", alt: "Opportunity Intelligence Engine, pipeline overview and key metrics" },
     ],
     github: "https://github.com/harsh01369/opportunity-intelligence-engine",
     featured: true,
@@ -217,7 +217,7 @@ I built this pipeline specifically because the equivalent one used for an earlie
     ],
     image: "/images/projects/previsit/thumbnail.png",
     images: [
-      { src: "/images/projects/previsit/hero.png", alt: "Pre-Visit — demo site overview and key metrics" },
+      { src: "/images/projects/previsit/hero.png", alt: "Pre-Visit, demo site overview and key metrics" },
     ],
     live: "https://previsit-pi.vercel.app",
     github: "https://github.com/harsh01369/previsit",
@@ -267,7 +267,7 @@ The backend runs Express 5 with TypeScript strict mode, Prisma ORM on Neon.tech 
     ],
     image: "/images/projects/bhairav-aaradhyaa/thumbnail.png",
     images: [
-      { src: "/images/projects/bhairav-aaradhyaa/hero.png", alt: "Bhairav Aaradhyaa — platform overview with key metrics" },
+      { src: "/images/projects/bhairav-aaradhyaa/hero.png", alt: "Bhairav Aaradhyaa, platform overview with key metrics" },
       { src: "/images/projects/bhairav-aaradhyaa/architecture.png", alt: "System architecture: frontend, backend, payments, and services" },
     ],
     live: "https://bhairavaaradhyaa.com",
@@ -305,7 +305,7 @@ It ships with 5 realistic scenarios covering the kind of decisions that actually
     ],
     image: "/images/projects/eloquent-operator-console/thumbnail.png",
     images: [
-      { src: "/images/projects/eloquent-operator-console/hero.png", alt: "AI Operator Console — overview and key metrics" },
+      { src: "/images/projects/eloquent-operator-console/hero.png", alt: "AI Operator Console, overview and key metrics" },
     ],
     github: "https://github.com/harsh01369/eloquent-operator-console",
     featured: false,
@@ -334,7 +334,7 @@ The project is explicit that LLMs know a syllabus of Jyotiṣa, not a critical e
     ],
     image: "/images/projects/jyotisha-engine/thumbnail.png",
     images: [
-      { src: "/images/projects/jyotisha-engine/hero.png", alt: "Jyotisa Cognitive Reasoning System — overview and key metrics" },
+      { src: "/images/projects/jyotisha-engine/hero.png", alt: "Jyotisa Cognitive Reasoning System, overview and key metrics" },
     ],
     featured: false,
   },
@@ -384,7 +384,7 @@ I also built an AI-powered DM engine for Instagram. When users message the brand
     ],
     image: "/images/projects/contentforge/thumbnail.png",
     images: [
-      { src: "/images/projects/contentforge/hero.png", alt: "ContentForge — content automation engine overview" },
+      { src: "/images/projects/contentforge/hero.png", alt: "ContentForge, content automation engine overview" },
       { src: "/images/projects/contentforge/architecture.png", alt: "Content pipeline: data source → extractors → render → schedule → publish" },
     ],
     github: "https://github.com/harsh01369/contentforge-showcase",
@@ -433,7 +433,7 @@ The frontend is deployed on Hostinger, and the backend and admin dashboard run o
     ],
     image: "/images/projects/uwear/thumbnail.png",
     images: [
-      { src: "/images/projects/uwear/hero.png", alt: "UWEAR UK — e-commerce ecosystem overview" },
+      { src: "/images/projects/uwear/hero.png", alt: "UWEAR UK, e-commerce ecosystem overview" },
       { src: "/images/projects/uwear/architecture.png", alt: "Architecture: storefront, backend API, and admin dashboard" },
     ],
     live: "https://uwearuk.com",
@@ -490,7 +490,7 @@ The SQLite database tracks all claims, processed content, and pipeline metrics. 
     ],
     image: "/images/projects/geobot/thumbnail.png",
     images: [
-      { src: "/images/projects/geobot/hero.png", alt: "GeoThreadBot — AI news pipeline overview" },
+      { src: "/images/projects/geobot/hero.png", alt: "GeoThreadBot, AI news pipeline overview" },
       { src: "/images/projects/geobot/architecture.png", alt: "7-stage pipeline: fetch → NLP → summarise → verify → publish" },
     ],
     github: "https://github.com/harsh01369/AI-powered-Geo-politics-news-bot",
@@ -542,7 +542,7 @@ REST endpoints handle conversation retrieval and health checks, while Socket.IO 
     ],
     image: "/images/projects/helec/thumbnail.png",
     images: [
-      { src: "/images/projects/helec/hero.png", alt: "HELEC — AI customer support chat overview" },
+      { src: "/images/projects/helec/hero.png", alt: "HELEC, AI customer support chat overview" },
       { src: "/images/projects/helec/architecture.png", alt: "Real-time architecture: SvelteKit ↔ Socket.IO ↔ Fastify ↔ Groq" },
     ],
     github: "https://github.com/harsh01369/helec",
@@ -587,7 +587,7 @@ Tests use Vitest with nock for HTTP mocking. Every carrier interaction, token re
     ],
     image: "/images/projects/cybership/thumbnail.png",
     images: [
-      { src: "/images/projects/cybership/hero.png", alt: "CyberShip — shipping rate aggregator overview" },
+      { src: "/images/projects/cybership/hero.png", alt: "CyberShip, shipping rate aggregator overview" },
       { src: "/images/projects/cybership/architecture.png", alt: "Adapter pattern: ShippingService → CarrierRegistry → Carrier adapters" },
     ],
     github: "https://github.com/harsh01369/cybership-carrier-service",
@@ -629,7 +629,7 @@ Tailwind CSS 4 handles all styling with custom theme tokens defined as CSS varia
     ],
     image: "/images/projects/portfolio/thumbnail.png",
     images: [
-      { src: "/images/projects/portfolio/hero.png", alt: "Portfolio Website — Next.js 15 SSG overview" },
+      { src: "/images/projects/portfolio/hero.png", alt: "Portfolio Website, Next.js 15 SSG overview" },
       { src: "/images/projects/portfolio/architecture.png", alt: "Architecture: App Router → SSG → SEO layer → Vercel" },
     ],
     github: "https://github.com/harsh01369/portfolio-website",

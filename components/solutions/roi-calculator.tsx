@@ -11,7 +11,7 @@ export default function ROICalculator({ content, industry, solution }: { content
   const monthly = missed * avg * 4.33;
   const annual = monthly * 12;
   const priced = getPricing(solution.slug, industry.slug);
-  // One-time solutions don't have a monthly cost to compare against — show weeks to
+  // One-time solutions don't have a monthly cost to compare against, show weeks to
   // payback on the one-time fee instead of a "Nx over per month" multiple.
   const cost = priced.kind === "one-time" ? (priced.oneTimeLow ?? 0) : (priced.monthly ?? 0);
   const payMultiple = monthly / cost;
@@ -75,7 +75,7 @@ export default function ROICalculator({ content, industry, solution }: { content
               </p>
               <button onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
                 className="w-full py-3.5 rounded-md text-white font-bold text-sm uppercase tracking-wide hover:opacity-90 transition-opacity" style={{ backgroundColor: industry.accentColor }}>
-                Book a Free Call
+                Get Started
               </button>
             </div>
           </motion.div>

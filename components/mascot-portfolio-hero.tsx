@@ -6,7 +6,7 @@ import * as React from "react"
 
 export type MascotPortfolioHeroProps = {
   /**
-   * Height of the hero. Must be a definite length — the poster is fitted to
+   * Height of the hero. Must be a definite length, the poster is fitted to
    * this box, so a percentage collapses to 0px unless every ancestor up to
    * `<html>` has a real height. Never pass `"100%"`.
    */
@@ -37,7 +37,7 @@ export type MascotPortfolioHeroProps = {
   line2?: string
   /** Third headline line. Its last letter gets the looping swash. */
   line3?: string
-  /** Fourth line, the big one — set before the vertical tag. */
+  /** Fourth line, the big one, set before the vertical tag. */
   word?: string
   /** The vertical label between `word` and the bracketed letters. */
   verticalTag?: string
@@ -86,7 +86,7 @@ const CH = 720
    The figure is flat SVG. What sells it as a head turning is parallax: the
    features ride on top of the skull and move further than it does, the nose
    sits proud of the face and moves further still, and the ears go the other
-   way and foreshorten. Nothing here is 3D maths — it is a stack of layers
+   way and foreshorten. Nothing here is 3D maths, it is a stack of layers
    whose offsets are ordered by how far each one sits from the neck. */
 
 // #region gaze
@@ -109,7 +109,7 @@ export function approach(cur: number, target: number, dt: number, rate: number) 
 /**
  * How far each layer moves for a gaze of (x, y). Offsets are in figure units
  * and nested: `face` is relative to `head`, `nose` and `eyes` to `face`.
- * `near` is 0..1, how close the pointer is to the face — it widens the eyes
+ * `near` is 0..1, how close the pointer is to the face, it widens the eyes
  * and lifts the brows.
  */
 export function pose(x: number, y: number, near: number) {
@@ -144,7 +144,7 @@ type Seg = [number, number, number, number]
  * A one-point-perspective room in a 1000x1000 box that is stretched to fill
  * the hero. The back wall is a grid; every grid line on its edge runs out to
  * the frame away from the vanishing point; the depth lines are the back wall
- * scaled up about that point. Stretching distorts it, which is fine — it is a
+ * scaled up about that point. Stretching distorts it, which is fine, it is a
  * room, and a taller screen just gets a taller one.
  */
 function room(): { back: Seg[]; rays: Seg[]; depth: string[] } {
@@ -189,7 +189,7 @@ function room(): { back: Seg[]; rays: Seg[]; depth: string[] } {
 
 const ROOM = room()
 
-/** Five irregular petals, closed, as one outline — so the stroke never crosses itself. */
+/** Five irregular petals, closed, as one outline, so the stroke never crosses itself. */
 function flowerPath() {
   const n = 180
   const lens = [1, 0.84, 0.95, 0.78, 0.9]
@@ -318,7 +318,7 @@ type Layers = Partial<
 >
 
 const DEFAULT_SERVICES = ["Brand design", "Logo design", "Interface design", "IP character design"]
-const DEFAULT_GREETINGS = ["Hi there!", "Let's make something bold.", "Psst — I'm open to work.", "Okay, you can stop poking me :)"]
+const DEFAULT_GREETINGS = ["Hi there!", "Let's make something bold.", "Psst, I'm open to work.", "Okay, you can stop poking me :)"]
 
 export default function MascotPortfolioHero({
   height = "100svh",
@@ -375,7 +375,7 @@ export default function MascotPortfolioHero({
   }
   React.useEffect(() => () => window.clearTimeout(happyTimer.current), [])
 
-  /* The loop. Everything the pointer drives is written straight to the SVG —
+  /* The loop. Everything the pointer drives is written straight to the SVG , 
      running it through React state would re-render the whole poster at 60fps. */
   React.useEffect(() => {
     const root = rootRef.current
@@ -779,7 +779,7 @@ export default function MascotPortfolioHero({
                   )}
                 </g>
 
-                {/* Beauty mark — a little star on the cheek. */}
+                {/* Beauty mark, a little star on the cheek. */}
                 <path d="M420 382 L423.5 391 L433 391.5 L425.6 397.5 L428.2 406.8 L420 401.5 L411.8 406.8 L414.4 397.5 L407 391.5 L416.5 391 Z" fill="#2a1a14" />
 
                 {/* The grin. */}

@@ -23,7 +23,7 @@ export default function ImageGallery({ images }: { images: GalleryImage[] }) {
 
   return (
     <div className="mb-12">
-      {/* Image — clickable to open lightbox */}
+      {/* Image, clickable to open lightbox */}
       <div className="relative">
         <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-accent/20 to-purple-500/20 blur-lg opacity-50" />
         <div

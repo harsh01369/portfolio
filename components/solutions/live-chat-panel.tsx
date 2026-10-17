@@ -15,7 +15,7 @@ interface Props {
   solutionSlug: string;
 }
 
-// The real, live chat agent — embedded directly in the site mockup, not a separate
+// The real, live chat agent, embedded directly in the site mockup, not a separate
 // floating widget. This is what "See It Live" actually points to, so it has to be real.
 export default function LiveChatPanel({ industry, solutionSlug }: Props) {
   const [minimized, setMinimized] = useState(false);

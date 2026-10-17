@@ -56,7 +56,7 @@ export default function Home() {
         seeking="A new build"
         href="/contact"
         services={["Web apps", "Payment systems", "AI pipelines", "E-commerce"]}
-        greetings={["Hi, I'm Harsh!", "Let's build something solid.", "Psst — I'm taking on projects.", "Okay you can stop clicking :)"]}
+        greetings={["Hi, I'm Harsh!", "Let's build something solid.", "Psst, I'm taking on projects.", "Okay you can stop clicking :)"]}
         accent="#14b8a6"
       />
       <Showreel />

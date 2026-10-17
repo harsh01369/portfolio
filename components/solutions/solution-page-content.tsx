@@ -48,7 +48,7 @@ export default function SolutionPageContent({ solution, initialIndustry }: Props
     router.replace(`/solutions/${solution.slug}/${slug}${query ? `?${query}` : ""}`, { scroll: false });
   }
 
-  // No industry chosen yet — ask, instead of silently defaulting to one.
+  // No industry chosen yet, ask, instead of silently defaulting to one.
   if (!selectedIndustry) {
     return (
       <div className="solutions-theme relative z-10">

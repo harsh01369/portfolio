@@ -137,7 +137,7 @@ export default function PackageBuilder({ industry, leadId, campaign }: { industr
           <Icon name="star" className="w-5 h-5 shrink-0" style={{ color: summary.unlockedBonus ? industry.accentColor : "#94a3b8" }} />
           <div className="flex-1">
             <p className="text-sm font-semibold text-[#0f172a]">
-              {bonusModule.name} {summary.unlockedBonus ? "— unlocked free" : `— free at 4 modules (worth $${bonusModule.monthly[tier]}/mo)`}
+              {bonusModule.name} {summary.unlockedBonus ? ", unlocked free" : `, free at 4 modules (worth $${bonusModule.monthly[tier]}/mo)`}
             </p>
             <p className="text-xs text-[#64748b]">{bonusModule.description}</p>
           </div>

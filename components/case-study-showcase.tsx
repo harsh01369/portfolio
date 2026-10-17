@@ -11,7 +11,7 @@ interface CaseStudy {
   domain: string;
 }
 
-// The 3 real case studies the trailer built around — same order, same
+// The 3 real case studies the trailer built around, same order, same
 // framing (numbered chrome, giant background name, an open-laptop mockup
 // around the real screenshot, tagline + domain chip row).
 const CASES: CaseStudy[] = [

@@ -36,7 +36,7 @@ export interface FAQ { question: string; answer: string; }
 
 // Recurring items (chatbot, booking, reviews) are tiered by willingness-to-pay per
 // vertical. One-time items (speed optimization, rebuild) are tiered by build
-// complexity instead — a trades/dental site typically needs more pages and
+// complexity instead, a trades/dental site typically needs more pages and
 // integrations than a cafe/tattoo site, so the higher price there is defensible
 // as more work, not just "they can afford it."
 export interface PricingModel {
@@ -61,7 +61,7 @@ export const pricing: Record<SolutionSlug, PricingModel> = {
 };
 
 // ============================================================
-// PACKAGE BUILDER — the 4 sellable, mix-and-match modules plus the one bonus
+// PACKAGE BUILDER, the 4 sellable, mix-and-match modules plus the one bonus
 // that only unlocks at the full bundle. Review Requests is deliberately not
 // independently pickable: it's invisible background automation with no felt
 // daily pain, easy to DIY for free (Google already gives every business a
@@ -164,7 +164,7 @@ export interface SolutionIndustryContent {
   chatSystemPrompt: string;
 }
 
-// Muted, restrained accent per industry — one working color, not a saturated rainbow.
+// Muted, restrained accent per industry, one working color, not a saturated rainbow.
 export const industries: IndustryConfig[] = [
   { slug: "medico", label: "Medico", accentColor: "#3A6D8C", accentLight: "#F4F7F8", accentDark: "#2A5266", workVerb: "treating", businessNoun: "practice", tier: "A" },
   { slug: "pet-care", label: "Pet Care", accentColor: "#4C7A6D", accentLight: "#F4F7F6", accentDark: "#385C52", workVerb: "grooming", businessNoun: "business", tier: "B" },

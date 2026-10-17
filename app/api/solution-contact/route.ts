@@ -84,7 +84,7 @@ export async function POST(request: Request) {
         sender: { name: "Solution Lead", email: process.env.BREVO_SENDER_EMAIL! },
         to: [{ email: process.env.BREVO_SENDER_EMAIL! }],
         replyTo: { name: safeSubjectName, email },
-        subject: `New Lead: ${safeSubjectName} — ${safeSubjectNeed} (${escapeHtml(industry)})`,
+        subject: `New Lead: ${safeSubjectName}, ${safeSubjectNeed} (${escapeHtml(industry)})`,
         htmlContent: `
           <h2>New Solution Page Lead</h2>
           <table style="border-collapse:collapse;width:100%;max-width:500px;">

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 /**
  * Recurring ring-bloom mark used at the top of the hero and again in the
- * closing CTA — the same bookend device used throughout the trailer, so the
+ * closing CTA, the same bookend device used throughout the trailer, so the
  * homepage carries one recognizable signature instead of each section
  * inventing its own flourish.
  */
