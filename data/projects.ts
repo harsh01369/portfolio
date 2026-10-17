@@ -11,6 +11,8 @@ export interface Project {
   github?: string;
   live?: string;
   featured: boolean;
+  /** Real, measured outcomes for this project (not activity counts). Shown as a short proof strip on the project card. */
+  results?: { label: string; value: string }[];
 }
 
 export const projects: Project[] = [
@@ -97,6 +99,10 @@ Absence detection is the other half: a scheduled workflow that stops firing writ
     ],
     github: "https://github.com/harsh01369/silentgreen",
     live: "https://silentgreen.vercel.app/",
+    results: [
+      { label: "Finance Ops, UK", value: "Catches AI billing errors" },
+      { label: "Fintech Ops, Singapore", value: "Verified fact vs. unproven claim" },
+    ],
     featured: true,
   },
   {
@@ -267,6 +273,11 @@ The backend runs Express 5 with TypeScript strict mode, Prisma ORM on Neon.tech 
     live: "https://bhairavaaradhyaa.com",
     github: "https://github.com/harsh01369/bhairav-aaradhya-showcase",
     featured: true,
+    results: [
+      { label: "Organic Search Growth (6mo)", value: "18x" },
+      { label: "AI Overview Citations", value: "13,147" },
+      { label: "New Users (5wks)", value: "500+" },
+    ],
   },
   {
     slug: "eloquent-operator-console",
