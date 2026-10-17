@@ -74,14 +74,20 @@ function TabBar() {
   }, [inView, cyclesLeft, active]);
 
   return (
-    <div ref={ref} className="mb-10 flex justify-center">
-      <div className="relative inline-flex gap-1 rounded-full border border-border bg-surface p-1.5">
+    <div ref={ref} className="mb-10 flex justify-center px-2">
+      {/* flex-wrap + a rounded-2xl fallback shape instead of a fixed-width
+          pill row -- the pill forced all 4 labels onto one line and
+          overflowed off the left edge of the screen on mobile (confirmed on
+          a real phone screenshot). layoutId's shared-element transition
+          still animates the indicator correctly between wrapped positions,
+          it doesn't care whether the parent is a single row or two. */}
+      <div className="relative flex w-full max-w-xl flex-wrap justify-center gap-1.5 rounded-2xl border border-border bg-surface p-1.5 sm:w-auto sm:flex-nowrap sm:rounded-full">
         {TABS.map((tab, i) => (
           <button
             key={tab}
             type="button"
             onClick={() => setActive(i)}
-            className="relative whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
+            className="relative whitespace-nowrap rounded-full px-3.5 py-2 text-xs font-semibold transition-colors sm:px-5 sm:py-2.5 sm:text-sm"
             style={{ color: active === i ? "#ffffff" : "var(--color-text-muted)" }}
           >
             {active === i && (
@@ -132,23 +138,38 @@ export default function CapabilityGrid() {
                 hidden: { opacity: 0, y: 24 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
               }}
-              className="relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-8"
+              className="flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-7 transition-colors hover:border-border-hover sm:p-8"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-accent/40 bg-accent/10">
-                {cell.icon}
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-accent/40 bg-accent/10">
+                  {cell.icon}
+                </div>
+                {cell.stat && (
+                  <span className="text-3xl font-black tracking-tight text-accent sm:text-4xl">
+                    {cell.stat}
+                  </span>
+                )}
               </div>
+
               <h3 className="mt-5 text-xl font-bold tracking-tight">{cell.title}</h3>
               <p className="mt-1.5 text-sm text-text-muted">{cell.sub}</p>
 
+              {/* thumbnail now flows below the copy instead of floating
+                  absolutely over it -- the old version sized it by a
+                  percentage of card width with no minimum card height,
+                  so on a narrow card it rode up over "Research, write,
+                  verify, send." and made it unreadable (confirmed on a
+                  real phone screenshot). */}
               {cell.thumb && (
-                <div className="absolute -right-3 -bottom-3 w-[46%] overflow-hidden rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.18)]" style={{ transform: "rotate(2deg)" }}>
-                  <Image src={cell.thumb} alt="" width={400} height={300} className="h-auto w-full object-cover" />
+                <div className="relative mt-5 aspect-[16/10] w-full overflow-hidden rounded-lg border border-border/60 shadow-[0_14px_30px_rgba(0,0,0,0.1)]">
+                  <Image
+                    src={cell.thumb}
+                    alt=""
+                    fill
+                    className="object-cover object-top"
+                    sizes="(min-width: 640px) 420px, 90vw"
+                  />
                 </div>
-              )}
-              {cell.stat && (
-                <span className="absolute bottom-6 right-7 text-4xl font-black tracking-tight text-accent">
-                  {cell.stat}
-                </span>
               )}
             </motion.div>
           ))}
