@@ -9,8 +9,12 @@ import CardSpotlight from "./card-spotlight";
 
 export default function FeaturedProjects({
   projects,
+  eyebrow = "Portfolio",
+  title = "Featured Projects",
 }: {
   projects: Project[];
+  eyebrow?: string;
+  title?: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -55,9 +59,9 @@ export default function FeaturedProjects({
         className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10"
       >
         <div>
-          <p className="text-sm font-medium text-accent mb-2">Portfolio</p>
+          <p className="text-sm font-medium text-accent mb-2">{eyebrow}</p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl gradient-text">
-            Featured Projects
+            {title}
           </h2>
         </div>
 
@@ -170,6 +174,17 @@ export default function FeaturedProjects({
                     <p className="mt-2 text-sm text-text-muted leading-relaxed line-clamp-2">
                       {project.tagline}
                     </p>
+
+                    {project.results && project.results.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-border pt-3">
+                        {project.results.map((r) => (
+                          <div key={r.label} className="flex items-baseline gap-1.5">
+                            <span className="text-sm font-semibold text-accent">{r.value}</span>
+                            <span className="text-xs text-text-muted">{r.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {project.technologies.slice(0, 4).map((tech) => (

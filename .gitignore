@@ -22,3 +22,8 @@ next-env.d.ts
 
 .claude/
 .scratch-pc/
+
+# Trailer build scratch space: render scripts, thousands of intermediate
+# frame PNGs, and output MP4s. The final showreel itself ships via
+# public/videos/, not this directory.
+trailer-project/
