@@ -4,6 +4,7 @@ import type { ProofOfWorkPreviewConfig } from "@/data/proof-of-work-previews";
 import DataVideoPlayerDemo from "./data-video-player-demo";
 import DiscoveryJourneyDemo from "./discovery-journey-demo";
 import CareerPathDemo from "./career-path-demo";
+import { demoRegistry } from "./demo-registry";
 
 interface Props {
   preview: ProofOfWorkPreviewConfig;
@@ -27,6 +28,11 @@ function DemoByKind({ preview }: { preview: ProofOfWorkPreviewConfig }) {
       );
     case "career-path":
       return <CareerPathDemo paths={preview.paths} accentColor={preview.accentColor} bgDark={preview.bgDark} />;
+    case "registry": {
+      const Demo = demoRegistry[preview.registryKey];
+      if (!Demo) return null;
+      return <Demo accentColor={preview.accentColor} bgDark={preview.bgDark} />;
+    }
   }
 }
 
@@ -73,7 +79,7 @@ export default function ProofOfWorkPageContent({ preview }: Props) {
         </a>
       </div>
 
-      <div className="grid md:grid-cols-[1fr_380px] gap-10 items-start">
+      <div className="grid md:grid-cols-[1fr_440px] gap-10 items-start">
         <div className="order-2 md:order-1">
           <h2 className="text-xl font-semibold text-text-primary mb-5">What this demo is</h2>
           <p className="text-sm text-text-primary/85 leading-relaxed mb-5">{preview.demoExplainer}</p>
