@@ -33,6 +33,31 @@ import MonteCarloRootCauseDemo from "./demos/montecarlo-rootcause-demo";
 import Dv01LoanLevelDemo from "./demos/dv01-loanlevel-demo";
 import SubstraktSyncDemo from "./demos/substrakt-sync-demo";
 import EightSleepBoundaryDemo from "./demos/eightsleep-boundary-demo";
+import AccountableProofVaultDemo from "./demos/accountable-proof-vault-demo";
+import AstraRoutingDemo from "./demos/astra-routing-demo";
+import ConstructorReasoningDemo from "./demos/constructor-reasoning-demo";
+import CypherockShardMapDemo from "./demos/cypherock-shard-map-demo";
+import FloxChainOfCustodyDemo from "./demos/flox-chain-of-custody-demo";
+import FormceptInfraOntologyDemo from "./demos/formcept-infra-ontology-demo";
+import HcaptchaLatencyRiskDemo from "./demos/hcaptcha-latency-risk-demo";
+import InterraGuardrailConsoleDemo from "./demos/interra-guardrail-console-demo";
+import JerryTcoSimulatorDemo from "./demos/jerry-tco-simulator-demo";
+import KargoTowerTrustDemo from "./demos/kargo-tower-trust-demo";
+import KovoScoreClimbDemo from "./demos/kovo-score-climb-demo";
+import MetabaseUpgradeSafetyDemo from "./demos/metabase-upgrade-safety-demo";
+import NametagDeletionAttestationDemo from "./demos/nametag-deletion-attestation-demo";
+import NexCrossDomainDemo from "./demos/nex-crossdomain-demo";
+import NorthbeamReconciliationDemo from "./demos/northbeam-reconciliation-demo";
+import OdenLineToModelDemo from "./demos/oden-line-to-model-demo";
+import PepperOrderAgentDemo from "./demos/pepper-order-agent-demo";
+import PurposeCausalTraceDemo from "./demos/purpose-causal-trace-demo";
+import SkylightMagicImportDemo from "./demos/skylight-magic-import-demo";
+import SpadeMtlsHandshakeDemo from "./demos/spade-mtls-handshake-demo";
+import TemporalProxyInspectorDemo from "./demos/temporal-proxy-inspector-demo";
+import VestedTrueReturnDemo from "./demos/vested-true-return-demo";
+import WellbeamCareTransitionDemo from "./demos/wellbeam-care-transition-demo";
+import WheelhousePriceProvenanceDemo from "./demos/wheelhouse-price-provenance-demo";
+import WyndlabsTrustReceiptDemo from "./demos/wyndlabs-trust-receipt-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -65,4 +90,29 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "dv01-loanlevel": Dv01LoanLevelDemo,
   "substrakt-sync": SubstraktSyncDemo,
   "eightsleep-boundary": EightSleepBoundaryDemo,
+  "accountable-proof-vault": AccountableProofVaultDemo,
+  "astra-routing": AstraRoutingDemo,
+  "constructor-reasoning": ConstructorReasoningDemo,
+  "cypherock-shard-map": CypherockShardMapDemo,
+  "flox-chain-of-custody": FloxChainOfCustodyDemo,
+  "formcept-infra-ontology": FormceptInfraOntologyDemo,
+  "hcaptcha-latency-risk": HcaptchaLatencyRiskDemo,
+  "interra-guardrail-console": InterraGuardrailConsoleDemo,
+  "jerry-tco-simulator": JerryTcoSimulatorDemo,
+  "kargo-tower-trust": KargoTowerTrustDemo,
+  "kovo-score-climb": KovoScoreClimbDemo,
+  "metabase-upgrade-safety": MetabaseUpgradeSafetyDemo,
+  "nametag-deletion-attestation": NametagDeletionAttestationDemo,
+  "nex-crossdomain": NexCrossDomainDemo,
+  "northbeam-reconciliation": NorthbeamReconciliationDemo,
+  "oden-line-to-model": OdenLineToModelDemo,
+  "pepper-order-agent": PepperOrderAgentDemo,
+  "purpose-causal-trace": PurposeCausalTraceDemo,
+  "skylight-magic-import": SkylightMagicImportDemo,
+  "spade-mtls-handshake": SpadeMtlsHandshakeDemo,
+  "temporal-proxy-inspector": TemporalProxyInspectorDemo,
+  "vested-true-return": VestedTrueReturnDemo,
+  "wellbeam-care-transition": WellbeamCareTransitionDemo,
+  "wheelhouse-price-provenance": WheelhousePriceProvenanceDemo,
+  "wyndlabs-trust-receipt": WyndlabsTrustReceiptDemo,
 };
