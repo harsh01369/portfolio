@@ -58,6 +58,31 @@ import VestedTrueReturnDemo from "./demos/vested-true-return-demo";
 import WellbeamCareTransitionDemo from "./demos/wellbeam-care-transition-demo";
 import WheelhousePriceProvenanceDemo from "./demos/wheelhouse-price-provenance-demo";
 import WyndlabsTrustReceiptDemo from "./demos/wyndlabs-trust-receipt-demo";
+import HeyMarvinCitationHarnessDemo from "./demos/heymarvin-citation-harness-demo";
+import FieldguideTenantIsolationDemo from "./demos/fieldguide-tenant-isolation-demo";
+import PoshDropMomentDemo from "./demos/posh-drop-moment-demo";
+import TwinMindUnitEconomicsDemo from "./demos/twinmind-unit-economics-demo";
+import HazelBlastRadiusDemo from "./demos/hazel-blast-radius-demo";
+import QuidientMeasuredGeneratedDemo from "./demos/quidient-measured-generated-demo";
+import CoastGhostFillDemo from "./demos/coast-ghost-fill-demo";
+import FeatheryProvenanceDemo from "./demos/feathery-provenance-demo";
+import LindusCitrusDemo from "./demos/lindus-citrus-demo";
+import SiroConsentDemo from "./demos/siro-consent-demo";
+import CapsuleBrandLockDemo from "./demos/capsule-brand-lock-demo";
+import BobyardConfidenceTakeoffDemo from "./demos/bobyard-confidence-takeoff-demo";
+import AnythingTapToPromptDemo from "./demos/anything-tap-to-prompt-demo";
+import DataDomeSignalDemo from "./demos/datadome-signal-demo";
+import MochiRoutingDemo from "./demos/mochi-routing-demo";
+import BevelAttributionDemo from "./demos/bevel-attribution-demo";
+import StuutReconciliationDemo from "./demos/stuut-reconciliation-demo";
+import EdgeQUtilizationDemo from "./demos/edgeq-utilization-demo";
+import CounselTriageDemo from "./demos/counsel-triage-demo";
+import OnosTenantIsolationDemo from "./demos/onos-tenant-isolation-demo";
+import DossSyncConflictDemo from "./demos/doss-sync-conflict-demo";
+import ForwardTwinFreshnessDemo from "./demos/forward-twin-freshness-demo";
+import StarbridgeProvenanceTraceDemo from "./demos/starbridge-provenance-trace-demo";
+import SwoopAirgapParityDemo from "./demos/swoop-airgap-parity-demo";
+import FreeformPartReplayDemo from "./demos/freeform-part-replay-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -115,4 +140,29 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "wellbeam-care-transition": WellbeamCareTransitionDemo,
   "wheelhouse-price-provenance": WheelhousePriceProvenanceDemo,
   "wyndlabs-trust-receipt": WyndlabsTrustReceiptDemo,
+  "heymarvin-citation-harness": HeyMarvinCitationHarnessDemo,
+  "fieldguide-tenant-isolation": FieldguideTenantIsolationDemo,
+  "posh-drop-moment": PoshDropMomentDemo,
+  "twinmind-unit-economics": TwinMindUnitEconomicsDemo,
+  "hazel-blast-radius": HazelBlastRadiusDemo,
+  "quidient-measured-generated": QuidientMeasuredGeneratedDemo,
+  "coast-ghost-fill": CoastGhostFillDemo,
+  "feathery-provenance": FeatheryProvenanceDemo,
+  "lindus-citrus": LindusCitrusDemo,
+  "siro-consent": SiroConsentDemo,
+  "capsule-brand-lock": CapsuleBrandLockDemo,
+  "bobyard-confidence-takeoff": BobyardConfidenceTakeoffDemo,
+  "anything-tap-to-prompt": AnythingTapToPromptDemo,
+  "datadome-signal": DataDomeSignalDemo,
+  "mochi-routing": MochiRoutingDemo,
+  "bevel-attribution": BevelAttributionDemo,
+  "stuut-reconciliation": StuutReconciliationDemo,
+  "edgeq-utilization": EdgeQUtilizationDemo,
+  "counsel-triage": CounselTriageDemo,
+  "onos-tenant-isolation": OnosTenantIsolationDemo,
+  "doss-sync-conflict": DossSyncConflictDemo,
+  "forward-twin-freshness": ForwardTwinFreshnessDemo,
+  "starbridge-provenance-trace": StarbridgeProvenanceTraceDemo,
+  "swoop-airgap-parity": SwoopAirgapParityDemo,
+  "freeform-part-replay": FreeformPartReplayDemo,
 };
