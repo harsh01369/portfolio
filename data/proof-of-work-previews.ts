@@ -1173,7 +1173,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     companyName: "WellBeam",
     roleTitle: "Senior DevSecOps Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/4824691-senior-devsecops-engineer",
-    companyUrl: "https://wellfound.com/jobs/4824691-senior-devsecops-engineer",
+    companyUrl: "https://well-beam.com/",
     accentColor: "#B5651D",
     accentDark: "#8F4F13",
     bgDark: "#160F08",
@@ -1184,7 +1184,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
       "The role embeds security directly in the pipeline connecting hospital EMRs to home-health and hospice EMRs at the exact moment of patient discharge.",
     demoExplainer:
       "A working care-transition security trace: simulate one patient handoff record moving from an acute EMR into WellBeam and out to a home-health EMR, watching each infra control fire as the record crosses a boundary, ending in a per-record attestation summary.",
-    sampleDataNote: "Simulated discharge record and control timings, built for this demo only, not real WellBeam infrastructure or patient data. wellbeam.com belongs to an unrelated supplement company and is intentionally not linked anywhere, companyUrl falls back to the job posting.",
+    sampleDataNote: "Simulated discharge record and control timings, built for this demo only, not real WellBeam infrastructure or patient data. Real domain is well-beam.com, not wellbeam.com (an unrelated supplement company).",
   },
 
   "jerry-ai": {
