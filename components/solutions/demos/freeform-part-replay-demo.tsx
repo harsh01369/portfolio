@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
@@ -8,196 +8,237 @@ interface Props {
   bgDark: string;
 }
 
-type Mode = "nominal" | "corrected";
-
-interface Checkpoint {
+interface Layer {
   layer: number;
-  thermalC: number;
-  deviationMicron: number;
-  adjustment: string | null;
+  laserA: number;
+  laserB: number;
+  seamDelta: number;
+  corrected: boolean;
 }
 
-const NOMINAL: Checkpoint[] = [
-  { layer: 40, thermalC: 1612, deviationMicron: 4, adjustment: null },
-  { layer: 120, thermalC: 1618, deviationMicron: 5, adjustment: null },
-  { layer: 200, thermalC: 1615, deviationMicron: 3, adjustment: null },
-  { layer: 280, thermalC: 1620, deviationMicron: 4, adjustment: null },
-  { layer: 360, thermalC: 1617, deviationMicron: 3, adjustment: null },
+const LAYERS: Layer[] = [
+  { layer: 40, laserA: 1612, laserB: 1609, seamDelta: 3, corrected: false },
+  { layer: 120, laserA: 1618, laserB: 1611, seamDelta: 7, corrected: false },
+  { layer: 200, laserA: 1615, laserB: 1646, seamDelta: 31, corrected: false },
+  { layer: 201, laserA: 1615, laserB: 1617, seamDelta: 2, corrected: true },
+  { layer: 280, laserA: 1620, laserB: 1618, seamDelta: 2, corrected: false },
+  { layer: 360, laserA: 1617, laserB: 1616, seamDelta: 1, corrected: false },
 ];
 
-const CORRECTED: Checkpoint[] = [
-  { layer: 40, thermalC: 1614, deviationMicron: 4, adjustment: null },
-  { layer: 120, thermalC: 1618, deviationMicron: 5, adjustment: null },
-  { layer: 200, thermalC: 1649, deviationMicron: 11, adjustment: "Laser power -6%, thermal drift detected" },
-  { layer: 280, thermalC: 1621, deviationMicron: 5, adjustment: null },
-  { layer: 360, thermalC: 1616, deviationMicron: 4, adjustment: null },
+const SEAM_TOLERANCE = 12;
+
+const FLEET = [
+  { cell: "Cell 02", values: [2, 3, 2, 4, 3], risk: false },
+  { cell: "Cell 03", values: [3, 8, 14, 9, 6], risk: true },
+  { cell: "Cell 05", values: [2, 2, 3, 2, 2], risk: false },
+  { cell: "Cell 07", values: [4, 11, 17, 10, 5], risk: true },
 ];
+
+function sparkPath(values: number[], w: number, h: number, max: number) {
+  const step = w / (values.length - 1);
+  return values
+    .map((v, i) => `${i === 0 ? "M" : "L"} ${(i * step).toFixed(1)} ${(h - (v / max) * h).toFixed(1)}`)
+    .join(" ");
+}
 
 export default function FreeformPartReplayDemo({ accentColor, bgDark }: Props) {
-  const [mode, setMode] = useState<Mode>("corrected");
   const [index, setIndex] = useState(-1);
   const [runKey, setRunKey] = useState(0);
   const [complete, setComplete] = useState(false);
+  const [flagFleet, setFlagFleet] = useState(false);
+  const timers = useRef<number[]>([]);
 
-  const data = mode === "corrected" ? CORRECTED : NOMINAL;
-  const current = index >= 0 ? data[Math.min(index, data.length - 1)] : null;
-  const adjustmentCount = data.filter((c) => c.adjustment !== null).length;
+  const current = index >= 0 ? LAYERS[Math.min(index, LAYERS.length - 1)] : null;
+  const correctionLogged = LAYERS.some((l) => l.corrected);
+  const seamHistory = LAYERS.slice(0, index + 1).map((l) => l.seamDelta);
+  const maxDelta = Math.max(SEAM_TOLERANCE + 5, ...LAYERS.map((l) => l.seamDelta));
 
   function play() {
+    timers.current.forEach((t) => window.clearTimeout(t));
+    timers.current = [];
     setRunKey((k) => k + 1);
     setComplete(false);
+    setFlagFleet(false);
     setIndex(0);
-    data.forEach((_, i) => {
-      window.setTimeout(() => setIndex(i), i * 480);
+    LAYERS.forEach((_, i) => {
+      const t = window.setTimeout(() => setIndex(i), i * 460);
+      timers.current.push(t);
     });
-    window.setTimeout(() => setComplete(true), data.length * 480 + 200);
-  }
-
-  function switchMode(m: Mode) {
-    setMode(m);
-    setIndex(-1);
-    setComplete(false);
+    const t = window.setTimeout(() => setComplete(true), LAYERS.length * 460 + 200);
+    timers.current.push(t);
   }
 
   return (
     <div className="w-full max-w-lg">
       <div
-        className="relative rounded-2xl overflow-hidden shadow-2xl"
-        style={{ background: bgDark, border: `1px solid ${accentColor}2E` }}
+        className="relative rounded-xl overflow-hidden shadow-2xl"
+        style={{ background: bgDark, border: `1px solid ${accentColor}33` }}
       >
         <div
-          className="absolute -top-24 -left-20 w-64 h-64 rounded-full pointer-events-none"
-          style={{ background: accentColor, opacity: 0.1, filter: "blur(60px)" }}
+          className="absolute inset-0 pointer-events-none opacity-[0.05]"
+          style={{
+            backgroundImage: `linear-gradient(${accentColor} 1px, transparent 1px), linear-gradient(90deg, ${accentColor} 1px, transparent 1px)`,
+            backgroundSize: "18px 18px",
+          }}
         />
 
-        <div className="relative p-7">
-          <div className="flex items-center justify-between mb-6">
-            <p className="text-white/40 text-[11px] uppercase tracking-[0.2em]">Part-to-sensor replay</p>
-            <div
-              className="flex rounded-full p-0.5"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              {(["nominal", "corrected"] as Mode[]).map((m) => (
-                <button
-                  key={m}
-                  onClick={() => switchMode(m)}
-                  className="relative text-[11px] font-semibold px-3 py-1.5 rounded-full transition-colors"
-                  style={{ color: mode === m ? bgDark : "rgba(255,255,255,0.55)" }}
-                >
-                  {mode === m && (
-                    <motion.div
-                      layoutId="ff-mode-pill"
-                      className="absolute inset-0 rounded-full"
-                      style={{ background: accentColor }}
-                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                    />
-                  )}
-                  <span className="relative">{m === "nominal" ? "Nominal run" : "Run with correction"}</span>
-                </button>
-              ))}
+        <div className="relative p-5">
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-white/40 text-[10px] uppercase tracking-[0.18em]">Multi-laser seam audit</p>
+            <p className="text-white/30 text-[9.5px] font-mono tabular-nums">Bracket Ti-6Al-4V, Run 4471</p>
+          </div>
+
+          <div className="relative rounded-lg overflow-hidden mb-4" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
+            <div className="flex h-28">
+              <div
+                className="flex-1 flex items-center justify-center relative"
+                style={{ background: "linear-gradient(135deg, #0e2a3a, #0a1b26)" }}
+              >
+                <span className="text-[9px] text-cyan-200/60 absolute top-2 left-2 uppercase tracking-wider">Laser A</span>
+                <span className="font-mono text-cyan-100 text-lg tabular-nums">{current ? `${current.laserA}C` : "-"}</span>
+              </div>
+              <div
+                className="w-[3px] relative z-10"
+                style={{
+                  background: current && current.seamDelta > SEAM_TOLERANCE ? "#f59e0b" : "rgba(255,255,255,0.25)",
+                  boxShadow: current && current.seamDelta > SEAM_TOLERANCE ? "0 0 14px #f59e0b" : "none",
+                }}
+              />
+              <div
+                className="flex-1 flex items-center justify-center relative"
+                style={{ background: "linear-gradient(225deg, #3a260e, #26170a)" }}
+              >
+                <span className="text-[9px] text-amber-200/60 absolute top-2 right-2 uppercase tracking-wider">Laser B</span>
+                <span className="font-mono text-amber-100 text-lg tabular-nums">{current ? `${current.laserB}C` : "-"}</span>
+              </div>
+            </div>
+            <div className="px-3 py-1.5 flex items-center justify-between" style={{ background: "rgba(0,0,0,0.3)" }}>
+              <span className="text-white/35 text-[9px]">seam delta</span>
+              <span
+                className="font-mono text-[11px] tabular-nums"
+                style={{ color: current && current.seamDelta > SEAM_TOLERANCE ? "#f59e0b" : "rgba(255,255,255,0.6)" }}
+              >
+                {current ? `${current.seamDelta}C` : "-"} / {SEAM_TOLERANCE}C limit
+              </span>
             </div>
           </div>
 
-          <p className="text-white/40 text-[10px] font-mono tabular-nums mb-4">Bracket, Ti-6Al-4V, Run 4471</p>
-
-          <div className="relative h-1.5 rounded-full mb-6" style={{ background: "rgba(255,255,255,0.08)" }}>
-            <motion.div
-              className="h-full rounded-full"
-              style={{ background: accentColor }}
-              animate={{ width: `${((index + 1) / data.length) * 100}%` }}
-              transition={{ ease: "linear", duration: 0.3 }}
-            />
-            {data.map((cp, i) => {
-              const reached = index >= i;
-              return (
-                <div
-                  key={`${runKey}-marker-${cp.layer}`}
-                  className="absolute top-1/2 w-2.5 h-2.5 rounded-full border"
-                  style={{
-                    left: `${(i / (data.length - 1)) * 100}%`,
-                    transform: "translate(-50%, -50%)",
-                    background: cp.adjustment !== null && reached ? "#f59e0b" : reached ? accentColor : "rgba(255,255,255,0.15)",
-                    borderColor: cp.adjustment !== null ? "#f59e0b" : accentColor,
-                  }}
+          <div className="mb-4">
+            <p className="text-white/30 text-[9px] uppercase tracking-wider mb-1.5">Seam delta, this run</p>
+            <svg viewBox="0 0 220 40" className="w-full h-10">
+              <line x1="0" y1={40 - (SEAM_TOLERANCE / maxDelta) * 40} x2="220" y2={40 - (SEAM_TOLERANCE / maxDelta) * 40} stroke="#f59e0b" strokeDasharray="3 3" strokeWidth="1" opacity="0.5" />
+              {seamHistory.length > 1 && (
+                <motion.path
+                  key={runKey}
+                  d={sparkPath(seamHistory, 220, 40, maxDelta)}
+                  fill="none"
+                  stroke={accentColor}
+                  strokeWidth="1.5"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.3 }}
                 />
-              );
-            })}
-          </div>
-
-          <div className="grid grid-cols-3 gap-2 mb-5">
-            <div
-              className="rounded-lg px-3 py-2.5 text-center"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              <p className="text-white/35 text-[8.5px] uppercase tracking-wider mb-1">Layer</p>
-              <p className="text-white text-sm font-mono tabular-nums">{current ? current.layer : "-"}</p>
-            </div>
-            <div
-              className="rounded-lg px-3 py-2.5 text-center"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              <p className="text-white/35 text-[8.5px] uppercase tracking-wider mb-1">Thermal</p>
-              <p className="text-white text-sm font-mono tabular-nums">{current ? `${current.thermalC}C` : "-"}</p>
-            </div>
-            <div
-              className="rounded-lg px-3 py-2.5 text-center"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              <p className="text-white/35 text-[8.5px] uppercase tracking-wider mb-1">Deviation</p>
-              <p className="text-white text-sm font-mono tabular-nums">
-                {current ? `${current.deviationMicron}um` : "-"}
-              </p>
-            </div>
+              )}
+            </svg>
           </div>
 
           <div className="flex justify-center mb-4">
             <button
               onClick={play}
-              className="text-[11px] font-semibold px-4 py-1.5 rounded-full transition-opacity hover:opacity-85"
+              className="text-[11px] font-semibold px-4 py-1.5 rounded-md transition-opacity hover:opacity-85"
               style={{ background: accentColor, color: bgDark }}
             >
               Play replay
             </button>
           </div>
 
-          <div className="min-h-[76px]">
+          <div className="min-h-[108px]">
             <AnimatePresence mode="wait">
-              {current && current.adjustment !== null && !complete && (
+              {current && current.corrected && (
                 <motion.div
                   key={`adj-${runKey}`}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-lg px-3.5 py-3"
+                  className="rounded-lg px-3.5 py-3 mb-2"
                   style={{ background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.4)" }}
                 >
-                  <p className="text-white text-xs font-semibold mb-1">Control adjustment logged</p>
-                  <p className="text-white/45 text-[10.5px] leading-relaxed">{current.adjustment}</p>
+                  <p className="text-white text-xs font-semibold mb-1">Seam correction logged, layer {current.layer}</p>
+                  <p className="text-white/45 text-[10.5px] leading-relaxed">
+                    Laser B power trimmed 4% to match laser A&apos;s melt pool at the seam boundary. Delta back under
+                    the {SEAM_TOLERANCE}C limit within one layer.
+                  </p>
                 </motion.div>
               )}
               {complete && (
                 <motion.div
-                  key={`cert-${runKey}-${mode}`}
+                  key={`cert-${runKey}`}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-lg px-3.5 py-3"
-                  style={{ background: `${accentColor}14`, border: `1px solid ${accentColor}55` }}
+                  className="rounded-lg overflow-hidden"
+                  style={{ border: `1px solid ${accentColor}55` }}
                 >
-                  <p className="text-white text-xs font-semibold mb-1">Certified production-grade</p>
-                  <p className="text-white/45 text-[10.5px] leading-relaxed">
-                    {adjustmentCount > 0
-                      ? `All ${data.length} checkpoints within tolerance, ${adjustmentCount} real-time correction logged and resolved, final dimensional check passed.`
-                      : `All ${data.length} checkpoints within tolerance, no corrections needed, final dimensional check passed.`}
-                  </p>
+                  <div className="px-3.5 py-3" style={{ background: `${accentColor}14` }}>
+                    <p className="text-white text-xs font-semibold mb-1">Certified, seam integrity validated</p>
+                    <p className="text-white/45 text-[10.5px] leading-relaxed">
+                      {correctionLogged
+                        ? "One seam excursion detected and corrected in-process. Final dimensional and seam checks both passed."
+                        : "No seam excursions this run. Final dimensional check passed."}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setFlagFleet(true)}
+                    className="w-full text-left px-3.5 py-2.5 text-[10.5px]"
+                    style={{ background: "rgba(255,255,255,0.03)", color: accentColor }}
+                  >
+                    This seam geometry runs hot elsewhere too. Check the fleet &gt;
+                  </button>
                 </motion.div>
               )}
               {!current && !complete && (
                 <p className="text-white/30 text-[11px] text-center pt-4">
-                  Play the replay to see the sensor data that justifies calling this specific part
-                  production-grade.
+                  Play the replay to watch what the seam between two lasers does under heat, and what gets fixed
+                  before the part ships.
                 </p>
               )}
             </AnimatePresence>
           </div>
+
+          <AnimatePresence>
+            {flagFleet && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mt-3 rounded-lg p-3"
+                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+              >
+                <p className="text-white/35 text-[9px] uppercase tracking-wider mb-2">
+                  Same seam geometry, other cells printing this bracket
+                </p>
+                <div className="flex gap-3">
+                  {FLEET.map((f) => (
+                    <div key={f.cell} className="flex-1">
+                      <svg viewBox="0 0 60 28" className="w-full h-7">
+                        <path
+                          d={sparkPath(f.values, 60, 28, 20)}
+                          fill="none"
+                          stroke={f.risk ? "#f59e0b" : "rgba(255,255,255,0.3)"}
+                          strokeWidth="1.5"
+                        />
+                      </svg>
+                      <p className="text-[8.5px] text-center mt-0.5" style={{ color: f.risk ? "#f59e0b" : "rgba(255,255,255,0.3)" }}>
+                        {f.cell}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-white/40 text-[9.5px] leading-relaxed mt-2">
+                  2 of 4 other cells running this part show the same seam-side heat pattern. Worth a path-planning
+                  review before it shows up as a defect on one of them instead of a correction.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
