@@ -64,6 +64,12 @@ interface BasePreview {
   whatTheyAsked: string;
   demoExplainer: string;
   sampleDataNote: string;
+  // Optional: replaces the generic "happy to hop on a call" closing line with
+  // one specific, answerable question tied to this demo's own idea. Asking
+  // someone who actually knows the system to correct you gets a reply in a
+  // way a generic call invite doesn't. Falls back to the generic line when
+  // not set, most demos don't have this yet.
+  closingQuestion?: string;
 }
 
 export interface DataVideoPreview extends BasePreview {
@@ -1664,6 +1670,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     heroNote: "NQE checks are just queries with a violation field, run against the twin on every snapshot. The gap nobody shows you is that a check going green doesn't mean the network is clean, it means the device class it depends on has reported in. A firewall-dependent check can sit green for minutes on stale data while a router-dependent one next to it already refreshed.",
     whatTheyAsked: "The role keeps the digital twin platform reliable at scale, the same platform NQE checks and Forward Predict run on top of, where a confirmed-clean result is only as good as the freshness of the device class behind it.",
     demoExplainer: "A real NQE-style check library (four checks, each a query with a violation field) sitting on top of a simulated config push. Push a firewall ACL change and watch checks resolve independently as their own device class reports in, one flips to a real violation, the others clear on their own timeline, with a predict-only mode that shows the same result without ever touching the live network.",
+    closingQuestion: "Is per-check data freshness something NQE already surfaces, or would it actually need to be built. Genuinely curious how far off this is from how Verify really works.",
     sampleDataNote: "Illustrative topology and timings, built for this demo only, not a real Forward Networks customer network.",
   },
 
@@ -1718,6 +1725,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     heroNote: "Running multiple lasers on one build means the highest-risk spot on any part is the seam where laser A's zone meets laser B's, that's where a melt pool mismatch shows up first. A per-part certificate that doesn't call out seam integrity by name is missing the one place a multi-laser system is actually different from a single-laser one.",
     whatTheyAsked: "The role builds the factory infrastructure behind an AI-controlled, multi-laser metal printing platform that sells finished parts as a manufacturing service rather than selling the printers.",
     demoExplainer: "A seam audit, not a generic sensor log: watch both lasers' zones heat independently through a run, see the exact layer where the seam between them drifts past tolerance, watch the in-process power correction pull it back, then open the fleet view, the same seam geometry is already running hot on two other cells printing this part, which is a factory-wide signal a single-part certificate would never surface.",
+    closingQuestion: "Does seam-side thermal mismatch between lasers actually show up as the main defect driver on your builds, or is that not the real failure mode at your scale. Would rather get corrected than guess.",
     sampleDataNote: "Illustrative part run and sensor readings, built for this demo only, not real Freeform production data.",
   },
 };

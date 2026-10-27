@@ -93,8 +93,8 @@ export default function ProofOfWorkPageContent({ preview }: Props) {
 
       <div className="mt-8 pt-8 border-t border-text-primary/10">
         <p className="text-sm text-text-primary/60 mb-2">
-          Happy to walk through how this was built, and how it'd extend to real client data, on a free call, no
-          charge, no pressure.
+          {preview.closingQuestion ||
+            "Happy to walk through how this was built, and how it'd extend to real client data, on a free call, no charge, no pressure."}
         </p>
         <a
           href="/contact"
