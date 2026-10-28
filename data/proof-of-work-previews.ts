@@ -1861,6 +1861,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does a late close actually trigger a full recompute across every existing LP's position like that, or does Juniper Square handle catch-up contributions differently under the hood?",
     sampleDataNote: "Illustrative LPs and capital call figures, built for this demo only, not a real Juniper Square fund.",
   },
+
+  "toi-labs": {
+    slug: "toi-labs",
+    demoKind: "registry",
+    registryKey: "toi-labs-ota-session",
+    companyName: "Toi Labs",
+    roleTitle: "Senior Cloud & IoT Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4579438-senior-cloud-iot-engineer",
+    companyUrl: "https://www.toilabs.com/",
+    accentColor: "#A78BFA",
+    accentDark: "#8B5CF6",
+    bgDark: "#120B1E",
+    city: "Remote",
+    heroNote: "TrueLoo is passive monitoring, no wearable, no cuff, it just has to be running an optical scan whenever a resident sits down. A fleet-wide firmware rollout that pushes the moment it's reachable doesn't know that, so a device mid-session can get the same update timing as one sitting idle in an empty bathroom.",
+    whatTheyAsked: "The role owns the cloud and IoT fleet management behind TrueLoo's devices, including over-the-air updates and provisioning across every installed unit.",
+    demoExplainer: "A live fleet rollout. Push a firmware update to three units, two idle ones update immediately, the third, mid-session with an optical scan running, defers the update and queues it instead of interrupting the reading. Mark the session complete and watch the queued update apply.",
+    closingQuestion: "Does TrueLoo's OTA rollout actually defer like that for an in-progress session, or does fleet management treat every reachable device the same regardless of session state?",
+    sampleDataNote: "Illustrative fleet units and session state, built for this demo only, not real Toi Labs telemetry.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

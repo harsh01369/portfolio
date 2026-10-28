@@ -90,6 +90,7 @@ import KalepaRiskBreakdownDemo from "./demos/kalepa-risk-breakdown-demo";
 import NorthflankIdleTeardownDemo from "./demos/northflank-idle-teardown-demo";
 import AssuredDeterminismBoundaryDemo from "./demos/assured-determinism-boundary-demo";
 import JuniperSquareRebalanceDemo from "./demos/juniper-square-rebalance-demo";
+import ToiLabsOtaSessionDemo from "./demos/toi-labs-ota-session-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -179,4 +180,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "northflank-idle-teardown": NorthflankIdleTeardownDemo,
   "assured-determinism-boundary": AssuredDeterminismBoundaryDemo,
   "juniper-square-rebalance": JuniperSquareRebalanceDemo,
+  "toi-labs-ota-session": ToiLabsOtaSessionDemo,
 };
