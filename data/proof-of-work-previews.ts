@@ -1823,6 +1823,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does idle teardown on Northflank factor in anything besides HTTP traffic, or would a background worker like that really get reaped the same way?",
     sampleDataNote: "Illustrative preview environments and idle timers, built for this demo only, not real Northflank telemetry.",
   },
+
+  assured: {
+    slug: "assured",
+    demoKind: "registry",
+    registryKey: "assured-determinism-boundary",
+    companyName: "Assured",
+    roleTitle: "Staff Database Reliability Engineer",
+    jobPostingUrl: "https://www.builtinla.com/job/staff-database-reliability-engineer-dbre/10013638",
+    companyUrl: "https://www.assured.com/",
+    accentColor: "#38BDF8",
+    accentDark: "#0EA5E9",
+    bgDark: "#071722",
+    city: "Remote (US)",
+    heroNote: "Assured's own framing is agents where they accelerate the work, determinism where it protects the outcome. The part worth stress-testing: agent steps like next-best-action and drafted notes can legitimately phrase the same claim differently run to run, that's expected, not a bug. The real reliability question is whether that variance ever leaks into the deterministic steps downstream, the payout math, the policy-limit check.",
+    whatTheyAsked: "The role owns database reliability for the systems these claims pipelines run on, PostgreSQL and Aurora, where reproducibility and consistency are the whole job.",
+    demoExplainer: "Run the same claim through the pipeline twice. The agent-driven steps (next best action, drafted notes) come back with different phrasing each run, legitimately, while the deterministic payout calculation against policy limits comes back byte-identical both times.",
+    closingQuestion: "Is that agent/deterministic boundary actually enforced at the architecture level, or is it more of a convention that depends on each step being built correctly?",
+    sampleDataNote: "Illustrative claim and pipeline outputs, built for this demo only, not a real Assured customer claim.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
