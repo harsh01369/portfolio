@@ -2029,6 +2029,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is boundary reset handled once in the Formula engine's capsule semantics now, or is it still something individual calculations have to get right themselves?",
     sampleDataNote: "Illustrative flow readings and capsule boundaries, built for this demo only, not a real Seeq customer dataset.",
   },
+  chronograph: {
+    slug: "chronograph",
+    demoKind: "registry",
+    registryKey: "chronograph-mark-freshness",
+    companyName: "Chronograph",
+    roleTitle: "Senior Software Engineer, Platform Engineering",
+    jobPostingUrl: "https://grnh.se/1pm4u2ys7us",
+    companyUrl: "https://www.chronograph.pe/",
+    accentColor: "#5EEAD4",
+    accentDark: "#2DD4BF",
+    bgDark: "#06171A",
+    city: "Remote",
+    heroNote: "Each GP in a fund submits its own valuation mark on its own schedule. An LP checking fund-level NAV today gets whatever's been filed blended with whatever hasn't, a single number that quietly mixes fresh Q3 marks with carried-over Q2 ones for whichever portfolio company's GP hasn't submitted yet.",
+    whatTheyAsked: "The platform role sits on infrastructure and internal developer tooling, the layer that decides whether mark freshness is tracked and surfaced, or just disappears into the blended total.",
+    demoExplainer: "Toggle a four-holding fund's NAV from a single blended figure to a per-holding breakdown, and watch one portfolio company's stale Q2 mark show up riding inside what looked like a clean Q3 number.",
+    closingQuestion: "On the LP side, is mark freshness something the platform surfaces per-holding today, or does it only show up if someone manually chases down which GP hasn't filed yet?",
+    sampleDataNote: "Illustrative fund holdings and mark values, built for this demo only, not a real Chronograph client portfolio.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
