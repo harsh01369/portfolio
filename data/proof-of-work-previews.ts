@@ -2119,6 +2119,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is there a workspace-list indicator today for whether a given template actually supports session persistence, or is that something an admin has to already know about their own template to predict?",
     sampleDataNote: "Illustrative agent task and template setting, built for this demo only, not a real Coder customer workspace.",
   },
+  datamint: {
+    slug: "datamint",
+    demoKind: "registry",
+    registryKey: "datamint-fingerprint-layers",
+    companyName: "Datamint",
+    roleTitle: "Rust Systems Engineer, Browser Security",
+    jobPostingUrl: "https://www.resumekart.com/jobs/cmuro9n4z7846c041ce4645eb",
+    companyUrl: "https://datamint.xyz/",
+    accentColor: "#FB7185",
+    accentDark: "#F43F5E",
+    bgDark: "#1A070B",
+    city: "Remote (Global)",
+    heroNote: "Your own stack description mentions JA4 spoofing at the TLS layer and HTTP/2 frame fingerprinting separately, and that's the honest reason they're separate: matching Chrome's TLS ClientHello doesn't automatically reproduce Chrome's HTTP/2 SETTINGS and frame order. A detector checking both layers for consistency catches that gap even when the TLS layer alone is a perfect match.",
+    whatTheyAsked: "The role is exactly this, TLS/BoringSSL fingerprinting on a low-latency Rust engine, where a consistent cross-layer fingerprint is the entire point of the fast-fetch path.",
+    demoExplainer: "Toggle the HTTP/2 layer between a default Rust client's frame order and an emulated Chrome frame order, and watch a cross-layer consistency check flip even though the TLS layer never changes.",
+    closingQuestion: "Is cross-layer consistency something the fast-fetch engine checks against itself before a request goes out, or is it only discovered after the fact when a target starts rejecting a route that used to work?",
+    sampleDataNote: "Illustrative fingerprint layers, built for this demo only, not a real Datamint request trace.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

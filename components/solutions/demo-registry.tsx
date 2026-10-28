@@ -104,6 +104,7 @@ import OscilarFeatureStalenessDemo from "./demos/oscilar-feature-staleness-demo"
 import EnveritasPixelResolutionDemo from "./demos/enveritas-pixel-resolution-demo";
 import NamespaceCacheLocalityDemo from "./demos/namespace-cache-locality-demo";
 import CoderSessionPersistenceDemo from "./demos/coder-session-persistence-demo";
+import DatamintFingerprintLayersDemo from "./demos/datamint-fingerprint-layers-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -207,4 +208,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "enveritas-pixel-resolution": EnveritasPixelResolutionDemo,
   "namespace-cache-locality": NamespaceCacheLocalityDemo,
   "coder-session-persistence": CoderSessionPersistenceDemo,
+  "datamint-fingerprint-layers": DatamintFingerprintLayersDemo,
 };
