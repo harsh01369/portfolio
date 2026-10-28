@@ -2101,6 +2101,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does the scheduler compare queue depth against cold-pull cost per dispatch, or is cache locality weighted high enough that it wins by default even when the cache-holding node is backed up?",
     sampleDataNote: "Illustrative node queue depths and timing, built for this demo only, not real Namespace fleet telemetry.",
   },
+  coder: {
+    slug: "coder",
+    demoKind: "registry",
+    registryKey: "coder-session-persistence",
+    companyName: "Coder",
+    roleTitle: "Software Engineer (Enterprise Experience, Backend)",
+    jobPostingUrl: "https://jobs.ashbyhq.com/Coder",
+    companyUrl: "https://coder.com/",
+    accentColor: "#818CF8",
+    accentDark: "#6366F1",
+    bgDark: "#0B0A1A",
+    city: "Remote",
+    heroNote: "Your own lifecycle docs say a paused task's conversation context only survives if both the agent and the template support session persistence. From the workspace list, a resumed task looks identical either way, there's no visible signal that one template quietly drops the agent's context and the other doesn't.",
+    whatTheyAsked: "The Enterprise Experience role builds the features that let large orgs run this in production, which is exactly where a silent, template-dependent context loss on resume becomes an org-wide support problem instead of a one-off surprise.",
+    demoExplainer: "Pause and resume the same mid-refactor agent task under two different templates, one preserves the conversation, the other resumes to an empty context with no visible difference until the agent starts over.",
+    closingQuestion: "Is there a workspace-list indicator today for whether a given template actually supports session persistence, or is that something an admin has to already know about their own template to predict?",
+    sampleDataNote: "Illustrative agent task and template setting, built for this demo only, not a real Coder customer workspace.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

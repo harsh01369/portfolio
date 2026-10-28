@@ -103,6 +103,7 @@ import ChronographMarkFreshnessDemo from "./demos/chronograph-mark-freshness-dem
 import OscilarFeatureStalenessDemo from "./demos/oscilar-feature-staleness-demo";
 import EnveritasPixelResolutionDemo from "./demos/enveritas-pixel-resolution-demo";
 import NamespaceCacheLocalityDemo from "./demos/namespace-cache-locality-demo";
+import CoderSessionPersistenceDemo from "./demos/coder-session-persistence-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -205,4 +206,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "oscilar-feature-staleness": OscilarFeatureStalenessDemo,
   "enveritas-pixel-resolution": EnveritasPixelResolutionDemo,
   "namespace-cache-locality": NamespaceCacheLocalityDemo,
+  "coder-session-persistence": CoderSessionPersistenceDemo,
 };
