@@ -2227,6 +2227,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is that percentile-based mapping recalibrated per bureau as each country's scoring distribution shifts over time, or is it a fixed lookup that assumes the source bureau's distribution stays put?",
     sampleDataNote: "Illustrative applicant score and percentile, built for this demo only, not a real Nova Credit applicant record.",
   },
+  workersio: {
+    slug: "workersio",
+    demoKind: "registry",
+    registryKey: "workersio-interleaving",
+    companyName: "Workers IO",
+    roleTitle: "Systems Engineer, Hypervisor and Kernel",
+    jobPostingUrl: "https://www.ycombinator.com/companies/workers-io/jobs/UV8iE3b-systems-engineer-hypervisor-and-kernel",
+    companyUrl: "https://workers.io/",
+    accentColor: "#FACC15",
+    accentDark: "#EAB308",
+    bgDark: "#171206",
+    city: "SF / Remote (US)",
+    heroNote: "Your own site says the simulator searches through millions of interleavings, faults, and timings to find the exact conditions that break the promises you care about. Almost every schedule between two racing operations is fine, one specific interleaving isn't, and it only shows up if the scheduler happens to land on exactly that one.",
+    whatTheyAsked: "The Hypervisor and Kernel role owns the scheduler, timers, and interrupt layer that this whole search runs on top of, the thing that actually controls which interleaving gets explored next.",
+    demoExplainer: "Search a concurrent withdraw-and-transfer race for a breaking interleaving among millions, then replay it deterministically, same schedule, same fault, same result every time.",
+    closingQuestion: "When the search finds a breaking interleaving like that, is the replay guaranteed bit-for-bit deterministic down to the hypervisor's own scheduling decisions, or does determinism stop at the application layer and the VMM still has some slack underneath it?",
+    sampleDataNote: "Illustrative interleaving search and replay, built for this demo only, not a real Workers IO simulation run.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
