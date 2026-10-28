@@ -2047,6 +2047,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "On the LP side, is mark freshness something the platform surfaces per-holding today, or does it only show up if someone manually chases down which GP hasn't filed yet?",
     sampleDataNote: "Illustrative fund holdings and mark values, built for this demo only, not a real Chronograph client portfolio.",
   },
+  oscilar: {
+    slug: "oscilar",
+    demoKind: "registry",
+    registryKey: "oscilar-feature-staleness",
+    companyName: "Oscilar",
+    roleTitle: "Staff Software Engineer, Analytics & Data Architecture",
+    jobPostingUrl: "https://www.tealhq.com/job/staff-engineer-analytics-data-architecture_7ea1a74ae71f4863267ba8fa31ea1dc7d963e",
+    companyUrl: "https://oscilar.com/",
+    accentColor: "#F472B6",
+    accentDark: "#EC4899",
+    bgDark: "#1A0710",
+    city: "Remote (US/Canada)",
+    heroNote: "The role description itself lays out a tiered setup: a system of record, a low-latency serving tier, and a batch/ML tier. A velocity-based rule answered from the serving tier in milliseconds is answered from a precomputed feature, not from the system of record directly, which means the feature can be a few transactions behind reality during a burst.",
+    whatTheyAsked: "The role owns exactly this data layer, the boundary between the low-latency serving tier risk decisions actually run against and the system of record that's always a step ahead of it.",
+    demoExplainer: "Push rapid card swipes faster than the feature pipeline can recompute, and watch the serving tier's velocity count fall behind the system of record's, enough to flip the decision on one of them.",
+    closingQuestion: "Under a burst like that, is there a bound on how stale the serving tier's features can get before a rule re-evaluates against fresher data, or is it whatever the batch/ML tier's refresh cadence happens to be?",
+    sampleDataNote: "Illustrative transaction velocity counters, built for this demo only, not a real Oscilar customer decision.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

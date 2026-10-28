@@ -100,6 +100,7 @@ import NetbirdRelayFallbackDemo from "./demos/netbird-relay-fallback-demo";
 import ParadeDbInlineIndexDemo from "./demos/paradedb-inline-index-demo";
 import SeeqCapsuleResetDemo from "./demos/seeq-capsule-reset-demo";
 import ChronographMarkFreshnessDemo from "./demos/chronograph-mark-freshness-demo";
+import OscilarFeatureStalenessDemo from "./demos/oscilar-feature-staleness-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -199,4 +200,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "paradedb-inline-index": ParadeDbInlineIndexDemo,
   "seeq-capsule-reset": SeeqCapsuleResetDemo,
   "chronograph-mark-freshness": ChronographMarkFreshnessDemo,
+  "oscilar-feature-staleness": OscilarFeatureStalenessDemo,
 };
