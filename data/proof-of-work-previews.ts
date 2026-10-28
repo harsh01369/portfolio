@@ -2191,6 +2191,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is identity resolution across a clinic's EHR exports handled with deterministic matching rules, probabilistic matching, or does it fall back to manual review when a case like this one is ambiguous?",
     sampleDataNote: "Illustrative patient records, built for this demo only, not real Relevant Healthcare clinic data.",
   },
+  tahoma: {
+    slug: "tahoma",
+    demoKind: "registry",
+    registryKey: "tahoma-portal-selfheal",
+    companyName: "Tahoma AI",
+    roleTitle: "Founding Engineer",
+    jobPostingUrl: "https://www.seattletechjobs.com/jobs/founding-engineer-31c7ca6f",
+    companyUrl: "https://www.tahoma.io/",
+    accentColor: "#22D3EE",
+    accentDark: "#06B6D4",
+    bgDark: "#051619",
+    city: "Remote (US)",
+    heroNote: "Your own product page says Cascade self-heals when portals change, which only matters because payer portals change their layout without warning and a recorded workflow that clicks a fixed screen position has no way to know its target moved underneath it.",
+    whatTheyAsked: "The Founding Engineer role is squarely this, agents that have to keep working across payer portals you don't control, where self-heal is the difference between a silent misclick and a submitted claim.",
+    demoExplainer: "Flip a payer portal's layout and toggle self-heal on or off, and watch a coordinate-matching agent confidently click Cancel instead of Submit Claim, with nothing in its own log looking like a failure.",
+    closingQuestion: "When self-heal re-locates an element after a layout change, does it also flag that the portal changed so the recorded workflow gets re-validated, or does it just quietly keep running on the new layout until something else breaks?",
+    sampleDataNote: "Illustrative recorded workflow step, built for this demo only, not a real Tahoma AI customer run.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

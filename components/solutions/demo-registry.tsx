@@ -108,6 +108,7 @@ import DatamintFingerprintLayersDemo from "./demos/datamint-fingerprint-layers-d
 import KaavioConflictConfidenceDemo from "./demos/kaavio-conflict-confidence-demo";
 import SphinxAntennaContentionDemo from "./demos/sphinx-antenna-contention-demo";
 import RelevantIdentityResolutionDemo from "./demos/relevant-identity-resolution-demo";
+import TahomaPortalSelfhealDemo from "./demos/tahoma-portal-selfheal-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -215,4 +216,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "kaavio-conflict-confidence": KaavioConflictConfidenceDemo,
   "sphinx-antenna-contention": SphinxAntennaContentionDemo,
   "relevant-identity-resolution": RelevantIdentityResolutionDemo,
+  "tahoma-portal-selfheal": TahomaPortalSelfhealDemo,
 };
