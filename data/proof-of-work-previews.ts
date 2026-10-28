@@ -1842,6 +1842,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is that agent/deterministic boundary actually enforced at the architecture level, or is it more of a convention that depends on each step being built correctly?",
     sampleDataNote: "Illustrative claim and pipeline outputs, built for this demo only, not a real Assured customer claim.",
   },
+
+  "juniper-square": {
+    slug: "juniper-square",
+    demoKind: "registry",
+    registryKey: "juniper-square-rebalance",
+    companyName: "Juniper Square",
+    roleTitle: "Senior Site Reliability Engineer",
+    jobPostingUrl: "https://www.builtinsf.com/job/senior-site-reliability-engineer/10378986",
+    companyUrl: "https://www.junipersquare.com/",
+    accentColor: "#4ADE80",
+    accentDark: "#22C55E",
+    bgDark: "#06160C",
+    city: "Remote (US)",
+    heroNote: "A late-closing LP doesn't just get added to the cap table, every existing LP's share of a capital call that already happened gets recomputed against the new total commitment. That recompute touching every investor's position, not just the new one, is the part a generic fund-tracking spreadsheet model misses.",
+    whatTheyAsked: "The role scales and secures the cloud infrastructure behind the platform that runs these capital call and waterfall calculations for every fund on it.",
+    demoExplainer: "A live late-close rebalance. Three LPs have already had capital called against them. Add a fourth LP who closes late and watch every existing LP's called-to-date figure recompute against the new total committed capital, while the late LP gets a catch-up contribution for the call it missed.",
+    closingQuestion: "Does a late close actually trigger a full recompute across every existing LP's position like that, or does Juniper Square handle catch-up contributions differently under the hood?",
+    sampleDataNote: "Illustrative LPs and capital call figures, built for this demo only, not a real Juniper Square fund.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

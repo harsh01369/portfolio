@@ -89,6 +89,7 @@ import ArizeDriftMonitorDemo from "./demos/arize-drift-monitor-demo";
 import KalepaRiskBreakdownDemo from "./demos/kalepa-risk-breakdown-demo";
 import NorthflankIdleTeardownDemo from "./demos/northflank-idle-teardown-demo";
 import AssuredDeterminismBoundaryDemo from "./demos/assured-determinism-boundary-demo";
+import JuniperSquareRebalanceDemo from "./demos/juniper-square-rebalance-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -177,4 +178,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "kalepa-risk-breakdown": KalepaRiskBreakdownDemo,
   "northflank-idle-teardown": NorthflankIdleTeardownDemo,
   "assured-determinism-boundary": AssuredDeterminismBoundaryDemo,
+  "juniper-square-rebalance": JuniperSquareRebalanceDemo,
 };
