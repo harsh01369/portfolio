@@ -97,6 +97,7 @@ import SpruceChannelBoundaryDemo from "./demos/spruce-channel-boundary-demo";
 import DrivewealthFractionalFillDemo from "./demos/drivewealth-fractional-fill-demo";
 import Class8OemNormalizeDemo from "./demos/class8-oem-normalize-demo";
 import NetbirdRelayFallbackDemo from "./demos/netbird-relay-fallback-demo";
+import ParadeDbInlineIndexDemo from "./demos/paradedb-inline-index-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -193,4 +194,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "drivewealth-fractional-fill": DrivewealthFractionalFillDemo,
   "class8-oem-normalize": Class8OemNormalizeDemo,
   "netbird-relay-fallback": NetbirdRelayFallbackDemo,
+  "paradedb-inline-index": ParadeDbInlineIndexDemo,
 };

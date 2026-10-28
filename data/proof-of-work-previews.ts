@@ -1993,6 +1993,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "For customers running mostly site-to-site traffic between corporate NATs, is the relayed percentage something you track per-deployment, or only surfaced when someone complains about latency?",
     sampleDataNote: "Illustrative peer connection, built for this demo only, not a real NetBird customer session.",
   },
+  paradedb: {
+    slug: "paradedb",
+    demoKind: "registry",
+    registryKey: "paradedb-inline-index",
+    companyName: "ParadeDB",
+    roleTitle: "Database Engineer, Storage & Query Execution",
+    jobPostingUrl: "https://www.paradedb.com/careers/database-engineer",
+    companyUrl: "https://www.paradedb.com/",
+    accentColor: "#A78BFA",
+    accentDark: "#8B5CF6",
+    bgDark: "#120B1F",
+    city: "Remote (US/Canada)",
+    heroNote: "The pitch against hand-rolled Postgres full-text search isn't just speed, it's that pg_search updates its BM25 index inside the same transaction as the write. A bolted-on search index synced by a background job has a real window where a row exists in Postgres but a search query can't find it yet.",
+    whatTheyAsked: "The role works on storage and query execution for pg_search itself, the exact layer that decides whether that sync window exists at all.",
+    demoExplainer: "Insert a row and watch two index strategies race: the inline-transaction approach finds it immediately, the background-resync approach has a visible gap before it catches up.",
+    closingQuestion: "Is there a worst-case bound on that resync lag anywhere in the pgrx-based pipeline, or is it purely a function of how backed-up the background worker's queue gets under write load?",
+    sampleDataNote: "Illustrative insert and query timing, built for this demo only, not a real ParadeDB benchmark.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
