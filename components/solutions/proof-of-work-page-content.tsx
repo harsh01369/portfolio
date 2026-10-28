@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { ProofOfWorkPreviewConfig } from "@/data/proof-of-work-previews";
 import DataVideoPlayerDemo from "./data-video-player-demo";
 import DiscoveryJourneyDemo from "./discovery-journey-demo";
@@ -8,6 +9,34 @@ import { demoRegistry } from "./demo-registry";
 
 interface Props {
   preview: ProofOfWorkPreviewConfig;
+}
+
+// Their own favicon next to their own name, so the page reads as built for
+// them before anyone reads a word. Google's favicon service needs no key and
+// no per-domain config, unlike Clearbit's old logo API (shut down end of
+// 2025). Hides itself on failure instead of showing a broken image icon.
+function CompanyMark({ companyUrl }: { companyUrl: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+
+  let domain: string;
+  try {
+    domain = new URL(companyUrl).hostname;
+  } catch {
+    return null;
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
+      alt=""
+      width={32}
+      height={32}
+      className="rounded-md"
+      onError={() => setFailed(true)}
+    />
+  );
 }
 
 function DemoByKind({ preview }: { preview: ProofOfWorkPreviewConfig }) {
@@ -46,7 +75,8 @@ export default function ProofOfWorkPageContent({ preview }: Props) {
         Built in response to your open role
       </div>
 
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-[1.1] mb-3">
+      <h1 className="flex items-center gap-3 text-4xl md:text-5xl font-bold tracking-tight text-text-primary leading-[1.1] mb-3">
+        <CompanyMark companyUrl={preview.companyUrl} />
         {preview.companyName}
       </h1>
 
