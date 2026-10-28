@@ -1918,6 +1918,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does Compa actually enforce a minimum cohort size like that before showing a benchmark, or is disclosure risk at narrow filters handled some other way?",
     sampleDataNote: "Illustrative cohort sizes and benchmark figures, built for this demo only, not real Compa customer data.",
   },
+
+  "spruce-health": {
+    slug: "spruce-health",
+    demoKind: "registry",
+    registryKey: "spruce-channel-boundary",
+    companyName: "Spruce Health",
+    roleTitle: "Senior Security Engineer",
+    jobPostingUrl: "https://wellfound.com/company/sprucehealth/jobs",
+    companyUrl: "https://sprucehealth.com/",
+    accentColor: "#5EEAD4",
+    accentDark: "#2DD4BF",
+    bgDark: "#051715",
+    city: "Remote (US)",
+    heroNote: "Secure group messaging needs every participant inside the app, there's no group SMS fallback. That means one uninvited participant doesn't just degrade to a less secure channel for themselves, it blocks the secure channel for the whole group until they're in.",
+    whatTheyAsked: "The role sits in security on the platform that enforces exactly this boundary between secure in-app messaging and standard SMS/fax/email channels for PHI.",
+    demoExplainer: "A live conversation roster. Two participants have Spruce accounts, one caregiver doesn't, and the group channel stays blocked the whole time they're missing, not degraded to SMS. Invite them in and watch the secure group channel actually turn on.",
+    closingQuestion: "Is that really an all-or-nothing gate on group secure messaging, or is there a partial mode I'm missing where the group still functions with one SMS-only participant?",
+    sampleDataNote: "Illustrative conversation and participants, built for this demo only, not a real Spruce Health patient record.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
