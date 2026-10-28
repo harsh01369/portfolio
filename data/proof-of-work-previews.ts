@@ -2245,6 +2245,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When the search finds a breaking interleaving like that, is the replay guaranteed bit-for-bit deterministic down to the hypervisor's own scheduling decisions, or does determinism stop at the application layer and the VMM still has some slack underneath it?",
     sampleDataNote: "Illustrative interleaving search and replay, built for this demo only, not a real Workers IO simulation run.",
   },
+  orca: {
+    slug: "orca",
+    demoKind: "registry",
+    registryKey: "orca-guardrail",
+    companyName: "Orca Aerospace",
+    roleTitle: "Founding Flight Software Engineer",
+    jobPostingUrl: "https://www.ycombinator.com/companies/orca-aerospace/jobs/eMihWDs-founding-flight-software-engineer",
+    companyUrl: "https://orcaaerospace.com/",
+    accentColor: "#38BDF8",
+    accentDark: "#0EA5E9",
+    bgDark: "#061620",
+    city: "SF / Remote (US)",
+    heroNote: "Your own site splits the stack three ways: the AI operator decides what to do, a deterministic planner decides how, and guardrails approve or deny every command before it reaches the vehicle. That middle step means a correct, high-confidence AI decision can still produce a plan that doesn't fit inside what's actually left in the tank.",
+    whatTheyAsked: "The Founding Flight Software Engineer role writes exactly this onboard operator stack, including the software-in-the-loop and hardware-in-the-loop testing that would have to catch a guardrail denial like this one before it ever flies.",
+    demoExplainer: "Drop the remaining propellant budget and watch a correct debris-avoidance decision get denied at the guardrail layer, not because the AI was wrong, but because the deterministic plan it generated no longer fits the fuel actually available.",
+    closingQuestion: "When a guardrail denies a plan like that, does the AI operator get a chance to re-propose within the new constraint, or does a denial just hold position until ground intervenes?",
+    sampleDataNote: "Illustrative burn budget and guardrail check, built for this demo only, not a real Orca Aerospace flight decision.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
