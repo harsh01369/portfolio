@@ -2317,6 +2317,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Beyond the clock and active sockets, is there a general rule for which syscalls get flagged non-replayable, or is that list something that's grown case by case as new edge cases surfaced?",
     sampleDataNote: "Illustrative snapshot and wall-clock values, built for this demo only, not a real Wasmer Edge deployment.",
   },
+  lamar: {
+    slug: "lamar",
+    demoKind: "registry",
+    registryKey: "lamar-benefit-path",
+    companyName: "Lamar Health",
+    roleTitle: "Product Engineer",
+    jobPostingUrl: "https://www.ycombinator.com/companies/lamar-health/jobs/nkwwGKj-product-engineer",
+    companyUrl: "https://www.lamarhealth.com/",
+    accentColor: "#2DD4BF",
+    accentDark: "#14B8A6",
+    bgDark: "#051716",
+    city: "SF / San Mateo / Remote (US, Canada)",
+    heroNote: "Whether a specialty drug is billed under the pharmacy benefit or the medical benefit decides which electronic standard the prior authorization actually has to go out on, NCPDP SCRIPT through the pharmacy claims network, or a FHIR-based PA API into the payer's clinical review system. Same drug, same diagnosis, wrong channel, and it doesn't get rejected for medical necessity, it just doesn't land anywhere useful.",
+    whatTheyAsked: "The Product Engineer, FDE role sits with field deployment teams turning what actually breaks in submissions into the product, which is exactly where a benefit-path misroute gets caught before it becomes a stuck PA.",
+    demoExplainer: "Toggle the same drug and diagnosis between pharmacy benefit and medical benefit, and watch the submission standard and routing channel change entirely, same packet, different pipe.",
+    closingQuestion: "Is benefit-path determination done per payer-plan lookup before a packet gets assembled, or is it something the field team still has to flag manually when a payer's categorization doesn't match what's on file?",
+    sampleDataNote: "Illustrative PA submission routing, built for this demo only, not a real Lamar Health customer case.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

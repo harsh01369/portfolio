@@ -115,6 +115,7 @@ import OrcaGuardrailDemo from "./demos/orca-guardrail-demo";
 import EntanglAsbuiltDriftDemo from "./demos/entangl-asbuilt-drift-demo";
 import KlavisVerificationGapDemo from "./demos/klavis-verification-gap-demo";
 import WasmerSnapshotClockDemo from "./demos/wasmer-snapshot-clock-demo";
+import LamarBenefitPathDemo from "./demos/lamar-benefit-path-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -229,4 +230,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "entangl-asbuilt-drift": EntanglAsbuiltDriftDemo,
   "klavis-verification-gap": KlavisVerificationGapDemo,
   "wasmer-snapshot-clock": WasmerSnapshotClockDemo,
+  "lamar-benefit-path": LamarBenefitPathDemo,
 };
