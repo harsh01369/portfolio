@@ -2155,6 +2155,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When two sources agree and a third disagrees, does confidence scoring weight by source type, such as manufacturer PDF over scraped web page, or is it closer to a pure agreement count across whatever sources happen to exist?",
     sampleDataNote: "Illustrative SKU attribute and source values, built for this demo only, not a real Kaavio customer catalog.",
   },
+  sphinx: {
+    slug: "sphinx",
+    demoKind: "registry",
+    registryKey: "sphinx-antenna-contention",
+    companyName: "Sphinx Defense",
+    roleTitle: "Backend Engineer, Space Communications",
+    jobPostingUrl: "https://himalayas.app/companies/sphinx-defense/jobs/backend-engineer",
+    companyUrl: "https://sphinxdefense.com/",
+    accentColor: "#38BDF8",
+    accentDark: "#0EA5E9",
+    bgDark: "#06131A",
+    city: "Remote (US)",
+    heroNote: "The legacy Satellite Control Network is 19 parabolic dishes worldwide, and each one talks to exactly one satellite at a time. Two operators wanting overlapping windows on the same dish isn't a scheduling nuance, it's a hard conflict, unless there's a wider pool of commercial and government antennas to reassign into.",
+    whatTheyAsked: "The Space Communications backend role builds exactly the ground systems and scheduling logic that decides whether a contact-window conflict becomes a queued wait or a clean reassignment to another antenna in the pool.",
+    demoExplainer: "Switch the same overlapping contact request between a single dedicated dish and a pooled marketplace, and watch a hard scheduling conflict turn into a reassignment to a different antenna covering the same ground track.",
+    closingQuestion: "When the scheduler reassigns across the pool like that, is ground-track coverage the primary constraint it solves for, or does commercial-vs-government antenna eligibility and classification level narrow the pool further before coverage even gets checked?",
+    sampleDataNote: "Illustrative contact windows and antenna assignment, built for this demo only, not real Sphinx Defense scheduling data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

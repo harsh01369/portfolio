@@ -106,6 +106,7 @@ import NamespaceCacheLocalityDemo from "./demos/namespace-cache-locality-demo";
 import CoderSessionPersistenceDemo from "./demos/coder-session-persistence-demo";
 import DatamintFingerprintLayersDemo from "./demos/datamint-fingerprint-layers-demo";
 import KaavioConflictConfidenceDemo from "./demos/kaavio-conflict-confidence-demo";
+import SphinxAntennaContentionDemo from "./demos/sphinx-antenna-contention-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -211,4 +212,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "coder-session-persistence": CoderSessionPersistenceDemo,
   "datamint-fingerprint-layers": DatamintFingerprintLayersDemo,
   "kaavio-conflict-confidence": KaavioConflictConfidenceDemo,
+  "sphinx-antenna-contention": SphinxAntennaContentionDemo,
 };
