@@ -2299,6 +2299,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When programmatic verification catches a shallow-check false positive like that, does it get logged as a signal about the shallow check's coverage gaps, or does it just silently correct the label for that one episode?",
     sampleDataNote: "Illustrative coding task and verification outcome, built for this demo only, not a real Klavis AI training episode.",
   },
+  wasmer: {
+    slug: "wasmer",
+    demoKind: "registry",
+    registryKey: "wasmer-snapshot-clock",
+    companyName: "Wasmer",
+    roleTitle: "Rust Engineer, Distributed Systems",
+    jobPostingUrl: "https://www.ycombinator.com/companies/wasmer/jobs/peVgEv8-rust-engineer-distributed-systems",
+    companyUrl: "https://wasmer.io/",
+    accentColor: "#FBBF24",
+    accentDark: "#F59E0B",
+    bgDark: "#1A1206",
+    city: "Remote (CET +/-2h)",
+    heroNote: "Instaboot's own announcement calls out clock reads and active sockets as the exceptions to an otherwise deterministic snapshot. Every other system call can safely replay from the frozen state. The clock can't, because real time kept moving the whole time the snapshot sat idle between cold requests.",
+    whatTheyAsked: "The Rust Engineer, Distributed Systems role works on Wasmer Edge's scheduler and orchestration layer, the exact place that decides which snapshotted calls get replayed and which, like the clock, have to be caught and re-executed instead.",
+    demoExplainer: "Resume the same snapshot a few times and watch the real wall-clock pull further away from the frozen value the snapshot was taken at, correctly, because the runtime re-reads it instead of replaying it.",
+    closingQuestion: "Beyond the clock and active sockets, is there a general rule for which syscalls get flagged non-replayable, or is that list something that's grown case by case as new edge cases surfaced?",
+    sampleDataNote: "Illustrative snapshot and wall-clock values, built for this demo only, not a real Wasmer Edge deployment.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

@@ -114,6 +114,7 @@ import WorkersIoInterleavingDemo from "./demos/workersio-interleaving-demo";
 import OrcaGuardrailDemo from "./demos/orca-guardrail-demo";
 import EntanglAsbuiltDriftDemo from "./demos/entangl-asbuilt-drift-demo";
 import KlavisVerificationGapDemo from "./demos/klavis-verification-gap-demo";
+import WasmerSnapshotClockDemo from "./demos/wasmer-snapshot-clock-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -227,4 +228,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "orca-guardrail": OrcaGuardrailDemo,
   "entangl-asbuilt-drift": EntanglAsbuiltDriftDemo,
   "klavis-verification-gap": KlavisVerificationGapDemo,
+  "wasmer-snapshot-clock": WasmerSnapshotClockDemo,
 };
