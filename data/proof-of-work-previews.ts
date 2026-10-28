@@ -1804,6 +1804,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does Copilot's scoring actually decay stale factors like that OSHA violation over time, or does everything stay at full weight until an underwriter manually dismisses it?",
     sampleDataNote: "Illustrative submission and risk factors, built for this demo only, not a real Kalepa customer file.",
   },
+
+  northflank: {
+    slug: "northflank",
+    demoKind: "registry",
+    registryKey: "northflank-idle-teardown",
+    companyName: "Northflank",
+    roleTitle: "Cloud Infrastructure Engineer",
+    jobPostingUrl: "https://northflank.com/careers/25024796-eeea-4b8b-bb49-b939ced37c65",
+    companyUrl: "https://northflank.com/",
+    accentColor: "#6EE7B7",
+    accentDark: "#34D399",
+    bgDark: "#06160F",
+    city: "Remote",
+    heroNote: "Idle teardown keeps preview costs sane, but the signal it watches is HTTP traffic. A preview with a background worker or webhook retry loop can be doing real work with zero inbound requests, which reads as idle and gets reaped right alongside the ones nobody's touched.",
+    whatTheyAsked: "The role designs and manages the multi-cloud infrastructure behind Northflank's platform, including the cost controls that tear down idle preview environments automatically.",
+    demoExplainer: "Three live preview environments on idle timers. Advance the clock and watch two get reaped normally, then watch the third, one with an active webhook retry worker but no HTTP traffic, get torn down the exact same way, dropping in-flight retries nobody asked to lose.",
+    closingQuestion: "Does idle teardown on Northflank factor in anything besides HTTP traffic, or would a background worker like that really get reaped the same way?",
+    sampleDataNote: "Illustrative preview environments and idle timers, built for this demo only, not real Northflank telemetry.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

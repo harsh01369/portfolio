@@ -87,6 +87,7 @@ import TykMdcbQuotaDemo from "./demos/tyk-mdcb-quota-demo";
 import AltinityReplicaLagDemo from "./demos/altinity-replica-lag-demo";
 import ArizeDriftMonitorDemo from "./demos/arize-drift-monitor-demo";
 import KalepaRiskBreakdownDemo from "./demos/kalepa-risk-breakdown-demo";
+import NorthflankIdleTeardownDemo from "./demos/northflank-idle-teardown-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -173,4 +174,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "altinity-replica-lag": AltinityReplicaLagDemo,
   "arize-drift-monitor": ArizeDriftMonitorDemo,
   "kalepa-risk-breakdown": KalepaRiskBreakdownDemo,
+  "northflank-idle-teardown": NorthflankIdleTeardownDemo,
 };
