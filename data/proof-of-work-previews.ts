@@ -2173,6 +2173,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When the scheduler reassigns across the pool like that, is ground-track coverage the primary constraint it solves for, or does commercial-vs-government antenna eligibility and classification level narrow the pool further before coverage even gets checked?",
     sampleDataNote: "Illustrative contact windows and antenna assignment, built for this demo only, not real Sphinx Defense scheduling data.",
   },
+  relevant: {
+    slug: "relevant",
+    demoKind: "registry",
+    registryKey: "relevant-identity-resolution",
+    companyName: "Relevant Healthcare",
+    roleTitle: "Lead Engineer",
+    jobPostingUrl: "https://relevant.healthcare/jobs/lead-engineer/",
+    companyUrl: "https://relevant.healthcare/",
+    accentColor: "#34D399",
+    accentDark: "#10B981",
+    bgDark: "#051712",
+    city: "Remote (US/Canada)",
+    heroNote: "UDS mapping guides for FQHCs flag duplicate patient identities going unresolved as a known, specific source of bad clinical quality measure counts, not a hypothetical edge case. A visit record and a lab result filed under slightly different name spellings for the same patient can each fail a measure alone, even though the care actually happened.",
+    whatTheyAsked: "The Lead Engineer role owns the data platform underneath exactly this, syncing and reconciling records across each clinic's own EHR before any measure count can be trusted.",
+    demoExplainer: "Toggle the same patient's visit and lab records between unresolved and resolved identity, and watch a genuinely well-controlled diabetes case disappear from the reported numerator purely because of a name mismatch.",
+    closingQuestion: "Is identity resolution across a clinic's EHR exports handled with deterministic matching rules, probabilistic matching, or does it fall back to manual review when a case like this one is ambiguous?",
+    sampleDataNote: "Illustrative patient records, built for this demo only, not real Relevant Healthcare clinic data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

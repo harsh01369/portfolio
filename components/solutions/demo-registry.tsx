@@ -107,6 +107,7 @@ import CoderSessionPersistenceDemo from "./demos/coder-session-persistence-demo"
 import DatamintFingerprintLayersDemo from "./demos/datamint-fingerprint-layers-demo";
 import KaavioConflictConfidenceDemo from "./demos/kaavio-conflict-confidence-demo";
 import SphinxAntennaContentionDemo from "./demos/sphinx-antenna-contention-demo";
+import RelevantIdentityResolutionDemo from "./demos/relevant-identity-resolution-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -213,4 +214,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "datamint-fingerprint-layers": DatamintFingerprintLayersDemo,
   "kaavio-conflict-confidence": KaavioConflictConfidenceDemo,
   "sphinx-antenna-contention": SphinxAntennaContentionDemo,
+  "relevant-identity-resolution": RelevantIdentityResolutionDemo,
 };
