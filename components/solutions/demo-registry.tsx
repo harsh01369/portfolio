@@ -113,6 +113,7 @@ import NovaCreditScoreNormalizeDemo from "./demos/novacredit-score-normalize-dem
 import WorkersIoInterleavingDemo from "./demos/workersio-interleaving-demo";
 import OrcaGuardrailDemo from "./demos/orca-guardrail-demo";
 import EntanglAsbuiltDriftDemo from "./demos/entangl-asbuilt-drift-demo";
+import KlavisVerificationGapDemo from "./demos/klavis-verification-gap-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -225,4 +226,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "workersio-interleaving": WorkersIoInterleavingDemo,
   "orca-guardrail": OrcaGuardrailDemo,
   "entangl-asbuilt-drift": EntanglAsbuiltDriftDemo,
+  "klavis-verification-gap": KlavisVerificationGapDemo,
 };

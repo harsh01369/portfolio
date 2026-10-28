@@ -2281,6 +2281,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When a drawing and an equipment record disagree like that, does the procedure generator flag the conflict for a human to resolve, or does it have a default source of truth it falls back to?",
     sampleDataNote: "Illustrative facility equipment record, built for this demo only, not a real Entangl customer site.",
   },
+  klavis: {
+    slug: "klavis",
+    demoKind: "registry",
+    registryKey: "klavis-verification-gap",
+    companyName: "Klavis AI",
+    roleTitle: "Founding Engineer",
+    jobPostingUrl: "https://www.ycombinator.com/companies/klavis-ai/jobs/tEVtDPg-founding-engineer",
+    companyUrl: "https://www.klavis.ai/",
+    accentColor: "#A78BFA",
+    accentDark: "#8B5CF6",
+    bgDark: "#120B1F",
+    city: "SF / Remote (US)",
+    heroNote: "Your own site's pitch is Dockerized environments and programmatic verification for RL and SFT training, and the word programmatic is the whole point. A shallow check that only looks at the file an agent touched can pass a change that a full test run would catch as broken everywhere else it's called.",
+    whatTheyAsked: "The Founding Engineer role builds exactly this verification layer, the thing standing between a coding agent's claimed success and whether that claim actually becomes a training label worth trusting.",
+    demoExplainer: "Switch the same function-rename task between a shallow check and full programmatic verification, and watch a task that looks like a clean success turn into a build-breaking failure the moment the check actually runs the suite.",
+    closingQuestion: "When programmatic verification catches a shallow-check false positive like that, does it get logged as a signal about the shallow check's coverage gaps, or does it just silently correct the label for that one episode?",
+    sampleDataNote: "Illustrative coding task and verification outcome, built for this demo only, not a real Klavis AI training episode.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
