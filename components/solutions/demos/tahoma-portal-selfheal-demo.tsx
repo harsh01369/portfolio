@@ -92,3 +92,4 @@ export default function TahomaPortalSelfhealDemo({ accentColor, bgDark }: Props)
     </div>
   );
 }
+
