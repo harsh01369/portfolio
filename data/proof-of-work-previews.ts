@@ -2209,6 +2209,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When self-heal re-locates an element after a layout change, does it also flag that the portal changed so the recorded workflow gets re-validated, or does it just quietly keep running on the new layout until something else breaks?",
     sampleDataNote: "Illustrative recorded workflow step, built for this demo only, not a real Tahoma AI customer run.",
   },
+  novacredit: {
+    slug: "novacredit",
+    demoKind: "registry",
+    registryKey: "novacredit-score-normalize",
+    companyName: "Nova Credit",
+    roleTitle: "Senior Software Engineer",
+    jobPostingUrl: "https://job-boards.greenhouse.io/novacredit",
+    companyUrl: "https://www.novacredit.com/",
+    accentColor: "#C084FC",
+    accentDark: "#A855F7",
+    bgDark: "#120A1A",
+    city: "Remote (US)",
+    heroNote: "Your own product page says Credit Passport converts foreign records into a local-equivalent score, and that word, equivalent, is doing real work. A UK bureau's 0-999 scale and a US FICO-style 300-850 scale don't share a zero point or a shape, so the same percentile of creditworthiness lands on very different raw numbers.",
+    whatTheyAsked: "The engineering role sits on exactly the pipeline that maps differing foreign bureau schemas into a canonical internal format, where the percentile-based conversion is the difference between a correct decision and a wrongly declined applicant.",
+    demoExplainer: "Toggle the same UK applicant's record between its raw 0-999 score and the converted local-equivalent score, and watch a genuinely strong 71st-percentile applicant go from looking mediocre to looking exactly as creditworthy as they are.",
+    closingQuestion: "Is that percentile-based mapping recalibrated per bureau as each country's scoring distribution shifts over time, or is it a fixed lookup that assumes the source bureau's distribution stays put?",
+    sampleDataNote: "Illustrative applicant score and percentile, built for this demo only, not a real Nova Credit applicant record.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

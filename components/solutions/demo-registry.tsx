@@ -109,6 +109,7 @@ import KaavioConflictConfidenceDemo from "./demos/kaavio-conflict-confidence-dem
 import SphinxAntennaContentionDemo from "./demos/sphinx-antenna-contention-demo";
 import RelevantIdentityResolutionDemo from "./demos/relevant-identity-resolution-demo";
 import TahomaPortalSelfhealDemo from "./demos/tahoma-portal-selfheal-demo";
+import NovaCreditScoreNormalizeDemo from "./demos/novacredit-score-normalize-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -217,4 +218,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "sphinx-antenna-contention": SphinxAntennaContentionDemo,
   "relevant-identity-resolution": RelevantIdentityResolutionDemo,
   "tahoma-portal-selfheal": TahomaPortalSelfhealDemo,
+  "novacredit-score-normalize": NovaCreditScoreNormalizeDemo,
 };
