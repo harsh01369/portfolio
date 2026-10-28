@@ -1937,6 +1937,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is that really an all-or-nothing gate on group secure messaging, or is there a partial mode I'm missing where the group still functions with one SMS-only participant?",
     sampleDataNote: "Illustrative conversation and participants, built for this demo only, not a real Spruce Health patient record.",
   },
+
+  drivewealth: {
+    slug: "drivewealth",
+    demoKind: "registry",
+    registryKey: "drivewealth-fractional-fill",
+    companyName: "DriveWealth",
+    roleTitle: "Data Engineer II",
+    jobPostingUrl: "https://wellfound.com/jobs/3085170-data-engineer-ii",
+    companyUrl: "https://www.drivewealth.com/",
+    accentColor: "#34D399",
+    accentDark: "#10B981",
+    bgDark: "#051712",
+    city: "Remote",
+    heroNote: "The exchange only trades whole shares, fractional orders by dollar amount have to get aggregated into one block order first. The part that's easy to gloss over is what happens when that block only partially fills, every customer's fraction needs to get prorated down from their original order, not just the lucky first ones.",
+    whatTheyAsked: "The role sits on the data engineering team handling exactly this kind of order, allocation, and settlement data across the brokerage infrastructure.",
+    demoExplainer: "Four customer orders at different dollar amounts get aggregated into one whole-share block order. Simulate a partial fill from the exchange and watch every customer's individual fraction prorate down proportionally from their original order, not just whoever ordered first.",
+    closingQuestion: "Is proration on a partial block fill actually proportional to order size like that, or does DriveWealth handle partial fills differently under the hood?",
+    sampleDataNote: "Illustrative orders and fill rate, built for this demo only, not real DriveWealth execution data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
