@@ -1975,6 +1975,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is cross-OEM normalization like that actually handled centrally before Load Optimization runs, or does each OEM integration carry its own conversion logic?",
     sampleDataNote: "Illustrative trucks and fuel readings, built for this demo only, not real Class8 fleet data.",
   },
+  netbird: {
+    slug: "netbird",
+    demoKind: "registry",
+    registryKey: "netbird-relay-fallback",
+    companyName: "NetBird",
+    roleTitle: "Software Engineer (Backend)",
+    jobPostingUrl: "https://jobs.ashbyhq.com/netbird/34a8f26f-7537-4321-b7b4-39146c68d7ad",
+    companyUrl: "https://netbird.io/",
+    accentColor: "#38BDF8",
+    accentDark: "#0EA5E9",
+    bgDark: "#07131A",
+    city: "Remote",
+    heroNote: "NetBird's own docs lay out a four-level connection priority, direct LAN, then two ICE candidate types, then relay as the last resort. Two peers behind symmetric NAT on separate corporate networks will exhaust the first three and land on the relay, which still works and is still encrypted, but isn't the straight line the \"peer-to-peer\" pitch implies.",
+    whatTheyAsked: "The backend role owns control-plane work across peer coordination, policy, and multi-tenancy, which is exactly the layer that decides which priority level a given pair of peers actually lands on.",
+    demoExplainer: "Run the connection attempt between two office-NAT peers and watch the priority ladder get exhausted one level at a time before the relay catches it.",
+    closingQuestion: "For customers running mostly site-to-site traffic between corporate NATs, is the relayed percentage something you track per-deployment, or only surfaced when someone complains about latency?",
+    sampleDataNote: "Illustrative peer connection, built for this demo only, not a real NetBird customer session.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
