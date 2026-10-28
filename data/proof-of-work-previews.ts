@@ -2083,6 +2083,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "For plots near that false-positive boundary, is there a step that re-checks at full resolution before a farmer gets flagged, or does the coarser pass stand unless someone appeals it?",
     sampleDataNote: "Illustrative plot and pixel grid, built for this demo only, not a real Enveritas farm assessment.",
   },
+  namespace: {
+    slug: "namespace",
+    demoKind: "registry",
+    registryKey: "namespace-cache-locality",
+    companyName: "Namespace",
+    roleTitle: "Infrastructure Software Engineer",
+    jobPostingUrl: "https://namespace.so/careers",
+    companyUrl: "https://namespace.so/",
+    accentColor: "#60A5FA",
+    accentDark: "#3B82F6",
+    bgDark: "#060E1A",
+    city: "SF / NYC / Zurich / remote-hybrid",
+    heroNote: "Your own engineering post describes a cache-aware scheduler that tracks which cache revisions live on which nodes and routes jobs there. That's a real win when the node is free. When that node is also the busiest one in the fleet, routing to the cache hit can lose to just taking the idle node and pulling cold.",
+    whatTheyAsked: "The role owns control planes, automation, and observability across the fleet, which is exactly where that cache-locality-versus-idle-capacity tradeoff gets decided for every job dispatched.",
+    demoExplainer: "Switch a new CI job between \"route to the cache hit\" and \"route to the idle node\" and watch which one actually gets to first output faster, it isn't always the one holding the cache.",
+    closingQuestion: "Does the scheduler compare queue depth against cold-pull cost per dispatch, or is cache locality weighted high enough that it wins by default even when the cache-holding node is backed up?",
+    sampleDataNote: "Illustrative node queue depths and timing, built for this demo only, not real Namespace fleet telemetry.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
