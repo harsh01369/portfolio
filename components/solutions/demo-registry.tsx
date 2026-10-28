@@ -98,6 +98,7 @@ import DrivewealthFractionalFillDemo from "./demos/drivewealth-fractional-fill-d
 import Class8OemNormalizeDemo from "./demos/class8-oem-normalize-demo";
 import NetbirdRelayFallbackDemo from "./demos/netbird-relay-fallback-demo";
 import ParadeDbInlineIndexDemo from "./demos/paradedb-inline-index-demo";
+import SeeqCapsuleResetDemo from "./demos/seeq-capsule-reset-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -195,4 +196,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "class8-oem-normalize": Class8OemNormalizeDemo,
   "netbird-relay-fallback": NetbirdRelayFallbackDemo,
   "paradedb-inline-index": ParadeDbInlineIndexDemo,
+  "seeq-capsule-reset": SeeqCapsuleResetDemo,
 };

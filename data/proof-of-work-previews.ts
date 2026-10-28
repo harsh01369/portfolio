@@ -2011,6 +2011,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is there a worst-case bound on that resync lag anywhere in the pgrx-based pipeline, or is it purely a function of how backed-up the background worker's queue gets under write load?",
     sampleDataNote: "Illustrative insert and query timing, built for this demo only, not a real ParadeDB benchmark.",
   },
+  seeq: {
+    slug: "seeq",
+    demoKind: "registry",
+    registryKey: "seeq-capsule-reset",
+    companyName: "Seeq",
+    roleTitle: "Backend Software Engineer, Staff/Principal",
+    jobPostingUrl: "https://apply.workable.com/seeq/",
+    companyUrl: "https://www.seeq.com/",
+    accentColor: "#FB923C",
+    accentDark: "#F97316",
+    bgDark: "#1A0F05",
+    city: "Remote (US)",
+    heroNote: "A running volume integral is supposed to reset at each capsule boundary. Seeq's own community forum has threads where it didn't, carrying a prior capsule's accumulated total into the next one and tripping a threshold alarm almost immediately against a baseline that wasn't really the new capsule's.",
+    whatTheyAsked: "The role leads architecture for complex, data-intensive backend systems, which is exactly where a capsule-boundary reset either gets handled centrally and correctly, or quietly becomes every calculation author's problem.",
+    demoExplainer: "Toggle between a capsule-2 accumulator that resets at the boundary and one that carries over capsule 1's leftover volume, and watch the same threshold alarm fire at a different point for a reason that has nothing to do with capsule 2's actual flow.",
+    closingQuestion: "Is boundary reset handled once in the Formula engine's capsule semantics now, or is it still something individual calculations have to get right themselves?",
+    sampleDataNote: "Illustrative flow readings and capsule boundaries, built for this demo only, not a real Seeq customer dataset.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
