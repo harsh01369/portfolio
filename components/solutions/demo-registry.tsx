@@ -92,6 +92,7 @@ import AssuredDeterminismBoundaryDemo from "./demos/assured-determinism-boundary
 import JuniperSquareRebalanceDemo from "./demos/juniper-square-rebalance-demo";
 import ToiLabsOtaSessionDemo from "./demos/toi-labs-ota-session-demo";
 import SentilinkManifestLinkDemo from "./demos/sentilink-manifest-link-demo";
+import CompaCohortThresholdDemo from "./demos/compa-cohort-threshold-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -183,4 +184,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "juniper-square-rebalance": JuniperSquareRebalanceDemo,
   "toi-labs-ota-session": ToiLabsOtaSessionDemo,
   "sentilink-manifest-link": SentilinkManifestLinkDemo,
+  "compa-cohort-threshold": CompaCohortThresholdDemo,
 };

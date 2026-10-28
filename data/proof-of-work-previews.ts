@@ -1899,6 +1899,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is PII overlap across institutions actually the main signal Manifest surfaces, or is the real linkage logic weighing something less obvious than shared SSN and phone?",
     sampleDataNote: "Illustrative applications and scores, built for this demo only, not real SentiLink customer data.",
   },
+
+  compa: {
+    slug: "compa",
+    demoKind: "registry",
+    registryKey: "compa-cohort-threshold",
+    companyName: "Compa",
+    roleTitle: "Enterprise Security Engineer",
+    jobPostingUrl: "https://careers.base10.vc/companies/compa/jobs/70704337-enterprise-security-engineer",
+    companyUrl: "https://www.compa.com/",
+    accentColor: "#FB923C",
+    accentDark: "#EA580C",
+    bgDark: "#1C0F04",
+    city: "Remote (US)",
+    heroNote: "Pooled, anonymized comp data is only anonymous as long as the cohort behind it is big enough. Filter down to level, location, and funding stage at the same time, and a 200-company dataset can collapse to two or three real offers wearing a 'median' label, which is a real disclosure risk, not a hypothetical one.",
+    whatTheyAsked: "The role sits in security, reporting to the Head of Security & IT, protecting the pipelines and data this company pools from hundreds of customer HR systems.",
+    demoExplainer: "A live benchmark query. Narrow the filter from a broad cohort down to one specific level, location, and funding stage, and watch the contributing-company count drop. Below a safe threshold, the benchmark value gets suppressed instead of quietly showing a number that's really just two companies' real offers.",
+    closingQuestion: "Does Compa actually enforce a minimum cohort size like that before showing a benchmark, or is disclosure risk at narrow filters handled some other way?",
+    sampleDataNote: "Illustrative cohort sizes and benchmark figures, built for this demo only, not real Compa customer data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
