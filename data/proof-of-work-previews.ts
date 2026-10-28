@@ -1785,6 +1785,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does Arize's drift monitor actually suppress or flag low-confidence alerts on a thin production window like that, or is sample size something teams have to watch for themselves?",
     sampleDataNote: "Illustrative embedding clusters and distances, built for this demo only, not real Arize customer data.",
   },
+
+  kalepa: {
+    slug: "kalepa",
+    demoKind: "registry",
+    registryKey: "kalepa-risk-breakdown",
+    companyName: "Kalepa",
+    roleTitle: "Senior Platform Engineer, Infrastructure",
+    jobPostingUrl: "https://job-boards.greenhouse.io/kalepa/jobs/5742656004",
+    companyUrl: "https://www.kalepa.com/",
+    accentColor: "#2DD4BF",
+    accentDark: "#0F9488",
+    bgDark: "#061A17",
+    city: "Remote (US)",
+    heroNote: "Copilot's whole pitch is scores that show their work, each flag traces back to one source and one as-of date instead of a black-box number. The gap that's easy to miss: showing the work isn't the same as aging it. A six-year-old OSHA violation keeps its full weight in the score forever, right alongside this week's news, until a human explicitly dismisses it.",
+    whatTheyAsked: "The role owns infrastructure performance, reliability, and cost for the platform that ingests submission documents and computes these risk scores at scale.",
+    demoExplainer: "A live risk-score breakdown. Each contributing factor shows its source and as-of date, a stale, long-resolved OSHA violation sits at full weight next to this week's news. Dismiss the stale factor and watch the overall score recompute immediately, restore it and watch it snap back.",
+    closingQuestion: "Does Copilot's scoring actually decay stale factors like that OSHA violation over time, or does everything stay at full weight until an underwriter manually dismisses it?",
+    sampleDataNote: "Illustrative submission and risk factors, built for this demo only, not a real Kalepa customer file.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
