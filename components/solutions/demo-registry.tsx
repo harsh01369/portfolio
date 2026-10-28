@@ -101,6 +101,7 @@ import ParadeDbInlineIndexDemo from "./demos/paradedb-inline-index-demo";
 import SeeqCapsuleResetDemo from "./demos/seeq-capsule-reset-demo";
 import ChronographMarkFreshnessDemo from "./demos/chronograph-mark-freshness-demo";
 import OscilarFeatureStalenessDemo from "./demos/oscilar-feature-staleness-demo";
+import EnveritasPixelResolutionDemo from "./demos/enveritas-pixel-resolution-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -201,4 +202,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "seeq-capsule-reset": SeeqCapsuleResetDemo,
   "chronograph-mark-freshness": ChronographMarkFreshnessDemo,
   "oscilar-feature-staleness": OscilarFeatureStalenessDemo,
+  "enveritas-pixel-resolution": EnveritasPixelResolutionDemo,
 };

@@ -2065,6 +2065,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Under a burst like that, is there a bound on how stale the serving tier's features can get before a rule re-evaluates against fresher data, or is it whatever the batch/ML tier's refresh cadence happens to be?",
     sampleDataNote: "Illustrative transaction velocity counters, built for this demo only, not a real Oscilar customer decision.",
   },
+  enveritas: {
+    slug: "enveritas",
+    demoKind: "registry",
+    registryKey: "enveritas-pixel-resolution",
+    companyName: "Enveritas",
+    roleTitle: "Backend Software Engineer, Python/Postgres",
+    jobPostingUrl: "https://www.enveritas.org/jobs/backend-software-eng/",
+    companyUrl: "https://www.enveritas.org/",
+    accentColor: "#4ADE80",
+    accentDark: "#22C55E",
+    bgDark: "#07140B",
+    city: "Remote (Global)",
+    heroNote: "Enveritas's own EUDR page argues that 30m and 10m satellite imagery generates significant false positives for smallholder plots, which is exactly what you'd expect from pixel resolution alone. A small farm sitting next to a genuinely deforested patch can get flagged as overlapping it purely because the pixel grid is coarser than the real boundary between them.",
+    whatTheyAsked: "The backend and data engineering team is the layer that runs the plot-vs-deforestation intersection check this depends on, where resolution choice is the difference between a compliant farmer and a false non-compliance flag.",
+    demoExplainer: "Switch between Landsat, Copernicus, and Enveritas's own 0.5m imagery on the same 0.4 hectare farm next to a deforested patch, and watch the same geography get classified as overlapping or not purely based on pixel size.",
+    closingQuestion: "For plots near that false-positive boundary, is there a step that re-checks at full resolution before a farmer gets flagged, or does the coarser pass stand unless someone appeals it?",
+    sampleDataNote: "Illustrative plot and pixel grid, built for this demo only, not a real Enveritas farm assessment.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
