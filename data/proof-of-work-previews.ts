@@ -1728,6 +1728,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does seam-side thermal mismatch between lasers actually show up as the main defect driver on your builds, or is that not the real failure mode at your scale. Would rather get corrected than guess.",
     sampleDataNote: "Illustrative part run and sensor readings, built for this demo only, not real Freeform production data.",
   },
+
+  tyk: {
+    slug: "tyk",
+    demoKind: "registry",
+    registryKey: "tyk-mdcb-quota",
+    companyName: "Tyk",
+    roleTitle: "Site Reliability Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4855330-site-reliability-engineer",
+    companyUrl: "https://tyk.io/",
+    accentColor: "#F15A24",
+    accentDark: "#C2450F",
+    bgDark: "#1A0E08",
+    city: "Remote",
+    heroNote: "MDCB's whole point is resilience, each region's gateway keeps enforcing rate limits off its own local cache even if the link to the control plane drops. The tradeoff nobody states out loud is that 'local cache' also means no region knows what the others are counting in real time, so an org limit configured once isn't actually one number, it's that number enforced independently, in parallel, everywhere traffic lands.",
+    whatTheyAsked: "The role owns reliability and automation for Tyk Cloud, the global multi-region platform MDCB's control plane and data plane gateways both run on.",
+    demoExplainer: "A live org-quota monitor across three regions. Send a synchronized burst at all three at once and watch each one enforce the configured limit purely against its own local count, no shared counter in the loop, then watch the combined real total cross the org-wide limit before the next policy sync reconciles it.",
+    closingQuestion: "Does a synchronized multi-region burst actually clear the configured org limit like this before MDCB's next sync, or is there a cross-region counter in the real system I'm missing?",
+    sampleDataNote: "Illustrative region counters and timing, built for this demo only, not real Tyk Cloud telemetry.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
