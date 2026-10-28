@@ -2263,6 +2263,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When a guardrail denies a plan like that, does the AI operator get a chance to re-propose within the new constraint, or does a denial just hold position until ground intervenes?",
     sampleDataNote: "Illustrative burn budget and guardrail check, built for this demo only, not a real Orca Aerospace flight decision.",
   },
+  entangl: {
+    slug: "entangl",
+    demoKind: "registry",
+    registryKey: "entangl-asbuilt-drift",
+    companyName: "Entangl",
+    roleTitle: "Full Stack Engineer",
+    jobPostingUrl: "https://www.ycombinator.com/companies/entangl/jobs/nu9J4uA-full-stack-engineer",
+    companyUrl: "https://www.entangl.com/",
+    accentColor: "#FB923C",
+    accentDark: "#F97316",
+    bgDark: "#1A0F05",
+    city: "SF / Remote (US, SG)",
+    heroNote: "Your own product checks generated procedures against a facility's drawings, equipment lists, and design documents, and separately works to find documentation gaps. That second job exists because physical equipment gets swapped and the drawings don't always get updated the same day, so a procedure generated purely from the drawing can describe a unit that isn't actually there anymore.",
+    whatTheyAsked: "The Full Stack Engineer role builds the product surface for exactly this reconciliation, between what the drawings say and what equipment records show is actually installed.",
+    demoExplainer: "Switch the same filter-replacement procedure between the 2023 design drawing and the current equipment record, and watch it reference a completely different unit model, same room, same task, different reality.",
+    closingQuestion: "When a drawing and an equipment record disagree like that, does the procedure generator flag the conflict for a human to resolve, or does it have a default source of truth it falls back to?",
+    sampleDataNote: "Illustrative facility equipment record, built for this demo only, not a real Entangl customer site.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

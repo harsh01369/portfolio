@@ -112,6 +112,7 @@ import TahomaPortalSelfhealDemo from "./demos/tahoma-portal-selfheal-demo";
 import NovaCreditScoreNormalizeDemo from "./demos/novacredit-score-normalize-demo";
 import WorkersIoInterleavingDemo from "./demos/workersio-interleaving-demo";
 import OrcaGuardrailDemo from "./demos/orca-guardrail-demo";
+import EntanglAsbuiltDriftDemo from "./demos/entangl-asbuilt-drift-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -223,4 +224,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "novacredit-score-normalize": NovaCreditScoreNormalizeDemo,
   "workersio-interleaving": WorkersIoInterleavingDemo,
   "orca-guardrail": OrcaGuardrailDemo,
+  "entangl-asbuilt-drift": EntanglAsbuiltDriftDemo,
 };
