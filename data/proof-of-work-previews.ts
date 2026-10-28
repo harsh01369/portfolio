@@ -1880,6 +1880,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does TrueLoo's OTA rollout actually defer like that for an in-progress session, or does fleet management treat every reachable device the same regardless of session state?",
     sampleDataNote: "Illustrative fleet units and session state, built for this demo only, not real Toi Labs telemetry.",
   },
+
+  sentilink: {
+    slug: "sentilink",
+    demoKind: "registry",
+    registryKey: "sentilink-manifest-link",
+    companyName: "SentiLink",
+    roleTitle: "Senior Data Platform Engineer",
+    jobPostingUrl: "https://www.builtinchicago.org/job/senior-data-platform-engineer/10427302",
+    companyUrl: "https://www.sentilink.com/",
+    accentColor: "#F472B6",
+    accentDark: "#EC4899",
+    bgDark: "#1A0A14",
+    city: "Remote (US)",
+    heroNote: "A synthetic identity doesn't look risky one application at a time, that's the whole point of using a stolen SSN with a plausible name. The real signal is in the overlap, the same SSN and phone number reused across institutions that can't see each other's applications, which is exactly what Manifest exists to surface.",
+    whatTheyAsked: "The role builds and maintains the data platform behind these fraud products, the pipelines and storage that make cross-institution identity linkage possible at the scale SentiLink runs at.",
+    demoExplainer: "Three applications at three different institutions, each scoring low in isolation. Run a Manifest cross-reference and watch the overlapping SSN, DOB, and phone number link them into one synthetic identity ring, with the real score only becoming visible once the cross-institution connection is made.",
+    closingQuestion: "Is PII overlap across institutions actually the main signal Manifest surfaces, or is the real linkage logic weighing something less obvious than shared SSN and phone?",
+    sampleDataNote: "Illustrative applications and scores, built for this demo only, not real SentiLink customer data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

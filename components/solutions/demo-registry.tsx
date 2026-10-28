@@ -91,6 +91,7 @@ import NorthflankIdleTeardownDemo from "./demos/northflank-idle-teardown-demo";
 import AssuredDeterminismBoundaryDemo from "./demos/assured-determinism-boundary-demo";
 import JuniperSquareRebalanceDemo from "./demos/juniper-square-rebalance-demo";
 import ToiLabsOtaSessionDemo from "./demos/toi-labs-ota-session-demo";
+import SentilinkManifestLinkDemo from "./demos/sentilink-manifest-link-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -181,4 +182,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "assured-determinism-boundary": AssuredDeterminismBoundaryDemo,
   "juniper-square-rebalance": JuniperSquareRebalanceDemo,
   "toi-labs-ota-session": ToiLabsOtaSessionDemo,
+  "sentilink-manifest-link": SentilinkManifestLinkDemo,
 };
