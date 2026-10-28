@@ -1747,6 +1747,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does a synchronized multi-region burst actually clear the configured org limit like this before MDCB's next sync, or is there a cross-region counter in the real system I'm missing?",
     sampleDataNote: "Illustrative region counters and timing, built for this demo only, not real Tyk Cloud telemetry.",
   },
+
+  altinity: {
+    slug: "altinity",
+    demoKind: "registry",
+    registryKey: "altinity-replica-lag",
+    companyName: "Altinity",
+    roleTitle: "Cloud Service Site Reliability Engineer",
+    jobPostingUrl: "https://jobs.accel.com/companies/altinity-2/jobs/53780100-cloud-service-site-reliability-engineer-sre",
+    companyUrl: "https://altinity.com/",
+    accentColor: "#FFCC01",
+    accentDark: "#D1A600",
+    bgDark: "#1A1605",
+    city: "Remote",
+    heroNote: "ReplicatedMergeTree replicas fetch new parts asynchronously, each on its own schedule. The part everyone glosses over: a plain SELECT count(*) against a shard doesn't wait for all replicas to agree, it just hits whichever one the load balancer routes to, lagging or not. Same query, same shard, two different answers, for as long as one replica is still catching up.",
+    whatTheyAsked: "The role helps build out Altinity.Cloud, the managed ClickHouse service running the Kubernetes operator and coordination layer that keeps shards and replicas healthy underneath customer clusters.",
+    demoExplainer: "A live 3-replica shard. Insert a batch of rows and watch each replica fetch the new part on its own timeline, one lagging well behind the other two. Run count(*) against a randomly picked replica and watch the answer actually differ depending on which one got picked, until the laggard catches up.",
+    closingQuestion: "Does Altinity.Cloud's load balancing actively route around a lagging replica like this, or is that read-your-own-writes gap something customers just have to know to handle themselves?",
+    sampleDataNote: "Illustrative replica fetch timing and row counts, built for this demo only, not real Altinity.Cloud telemetry.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
