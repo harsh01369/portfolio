@@ -1956,6 +1956,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is proration on a partial block fill actually proportional to order size like that, or does DriveWealth handle partial fills differently under the hood?",
     sampleDataNote: "Illustrative orders and fill rate, built for this demo only, not real DriveWealth execution data.",
   },
+
+  class8: {
+    slug: "class8",
+    demoKind: "registry",
+    registryKey: "class8-oem-normalize",
+    companyName: "Class8",
+    roleTitle: "Data Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4766912-data-engineer",
+    companyUrl: "https://class8.com/",
+    accentColor: "#FACC15",
+    accentDark: "#EAB308",
+    bgDark: "#171206",
+    city: "Remote",
+    heroNote: "Going OEM-native across Freightliner, Volvo, and Mack means inheriting three different telemetry schemas for the same thing. Compare raw fuel readings across a mixed fleet and you're not comparing fuel economy, you're comparing units, refresh rates, and sensor definitions that happen to look like numbers.",
+    whatTheyAsked: "The role builds the data pipelines that make sense of OEM telemetry across multiple truck manufacturers before any cross-fleet comparison or optimization decision can trust the numbers.",
+    demoExplainer: "Three trucks from three OEMs report fuel data in three incompatible formats. Reading the raw numbers tells you nothing comparable. Normalize across the schemas and watch the actual worst performer flip to the truck whose raw reading looked the most ordinary.",
+    closingQuestion: "Is cross-OEM normalization like that actually handled centrally before Load Optimization runs, or does each OEM integration carry its own conversion logic?",
+    sampleDataNote: "Illustrative trucks and fuel readings, built for this demo only, not real Class8 fleet data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

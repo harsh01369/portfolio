@@ -95,6 +95,7 @@ import SentilinkManifestLinkDemo from "./demos/sentilink-manifest-link-demo";
 import CompaCohortThresholdDemo from "./demos/compa-cohort-threshold-demo";
 import SpruceChannelBoundaryDemo from "./demos/spruce-channel-boundary-demo";
 import DrivewealthFractionalFillDemo from "./demos/drivewealth-fractional-fill-demo";
+import Class8OemNormalizeDemo from "./demos/class8-oem-normalize-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -189,4 +190,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "compa-cohort-threshold": CompaCohortThresholdDemo,
   "spruce-channel-boundary": SpruceChannelBoundaryDemo,
   "drivewealth-fractional-fill": DrivewealthFractionalFillDemo,
+  "class8-oem-normalize": Class8OemNormalizeDemo,
 };
