@@ -85,6 +85,7 @@ import SwoopAirgapParityDemo from "./demos/swoop-airgap-parity-demo";
 import FreeformPartReplayDemo from "./demos/freeform-part-replay-demo";
 import TykMdcbQuotaDemo from "./demos/tyk-mdcb-quota-demo";
 import AltinityReplicaLagDemo from "./demos/altinity-replica-lag-demo";
+import ArizeDriftMonitorDemo from "./demos/arize-drift-monitor-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -169,4 +170,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "freeform-part-replay": FreeformPartReplayDemo,
   "tyk-mdcb-quota": TykMdcbQuotaDemo,
   "altinity-replica-lag": AltinityReplicaLagDemo,
+  "arize-drift-monitor": ArizeDriftMonitorDemo,
 };

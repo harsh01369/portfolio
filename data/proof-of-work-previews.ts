@@ -1766,6 +1766,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does Altinity.Cloud's load balancing actively route around a lagging replica like this, or is that read-your-own-writes gap something customers just have to know to handle themselves?",
     sampleDataNote: "Illustrative replica fetch timing and row counts, built for this demo only, not real Altinity.Cloud telemetry.",
   },
+
+  arize: {
+    slug: "arize",
+    demoKind: "registry",
+    registryKey: "arize-drift-monitor",
+    companyName: "Arize AI",
+    roleTitle: "DevOps Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4748817-devops-engineer",
+    companyUrl: "https://arize.com/",
+    accentColor: "#6366F1",
+    accentDark: "#4338CA",
+    bgDark: "#0E0B1A",
+    city: "Remote (US)",
+    heroNote: "A drift score is just the distance between two centroids, baseline embeddings versus whatever's in the current production window. The part that's easy to gloss over: that distance means nothing without knowing how many points built the production centroid. A six-point window can swing as far as a real shift and the math can't tell the difference by itself.",
+    whatTheyAsked: "The role supports the infrastructure behind Arize's monitoring platform, the same pipeline that computes drift scores and fires alerts on production model behavior.",
+    demoExplainer: "A live embedding-drift monitor. Shift production traffic and watch the centroid move away from baseline until the distance crosses the alert threshold, then flip to a small sample window and watch the same alert fire on a six-point window that's statistically too thin to trust.",
+    closingQuestion: "Does Arize's drift monitor actually suppress or flag low-confidence alerts on a thin production window like that, or is sample size something teams have to watch for themselves?",
+    sampleDataNote: "Illustrative embedding clusters and distances, built for this demo only, not real Arize customer data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
