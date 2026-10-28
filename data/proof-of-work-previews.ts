@@ -2137,6 +2137,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is cross-layer consistency something the fast-fetch engine checks against itself before a request goes out, or is it only discovered after the fact when a target starts rejecting a route that used to work?",
     sampleDataNote: "Illustrative fingerprint layers, built for this demo only, not a real Datamint request trace.",
   },
+  kaavio: {
+    slug: "kaavio",
+    demoKind: "registry",
+    registryKey: "kaavio-conflict-confidence",
+    companyName: "Kaavio",
+    roleTitle: "Backend / Data Engineer",
+    jobPostingUrl: "https://github.com/KaavioAI/jobs/blob/main/data-engineer.md",
+    companyUrl: "https://www.kaavio.ai/",
+    accentColor: "#FBBF24",
+    accentDark: "#F59E0B",
+    bgDark: "#1A1206",
+    city: "US (flexible location)",
+    heroNote: "Kaavio's own product page says it cross-references multiple sources, detects conflicts, and scores confidence on every attribute. That means confidence isn't a function of how many sources exist for a SKU, it's a function of whether they agree, and two agreeing sources can out-rank a third that disagrees.",
+    whatTheyAsked: "The role owns the ingestion, normalization, and enrichment pipelines across Postgres and BigQuery that this conflict-and-confidence logic actually runs inside, for catalogs running into the millions of SKUs.",
+    demoExplainer: "Toggle which of three sources are active for one SKU's input voltage and watch the confidence score react to agreement between sources, not just source count.",
+    closingQuestion: "When two sources agree and a third disagrees, does confidence scoring weight by source type, such as manufacturer PDF over scraped web page, or is it closer to a pure agreement count across whatever sources happen to exist?",
+    sampleDataNote: "Illustrative SKU attribute and source values, built for this demo only, not a real Kaavio customer catalog.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
