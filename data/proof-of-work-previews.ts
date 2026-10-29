@@ -2569,6 +2569,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is the verification step a separate model call checking the draft against the source, or deterministic rule-matching on known fields like dates and exceptions?",
     sampleDataNote: "Illustrative support ticket and policy text, built for this demo only, not a real Lorikeet customer interaction.",
   },
+  databento: {
+    slug: "databento",
+    demoKind: "registry",
+    registryKey: "databento-normalization-loss",
+    companyName: "Databento",
+    roleTitle: "Software Engineer (TypeScript/JavaScript)",
+    jobPostingUrl: "https://wellfound.com/jobs/4493355-software-engineer-typescript-javascript",
+    companyUrl: "https://databento.com/",
+    accentColor: "#FB923C",
+    accentDark: "#EA580C",
+    bgDark: "#1A0E04",
+    city: "Remote",
+    heroNote: "Databento's own docs say it plainly: normalizing raw venue feeds into their shared DBN schema is deliberately lossy, truncated timestamps and discarded sequence numbers among the tradeoffs, which is exactly why a separate raw PCAP feed exists for the cases where original packet order actually matters.",
+    whatTheyAsked: "An engineer on this platform is the one deciding, feed by feed, which fields are safe to normalize away and which ones a trading strategy downstream can't afford to lose.",
+    demoExplainer: "Toggle the same two near-simultaneous quotes between the normalized feed and raw PCAP, and watch which one actually arrived first go from ambiguous to exact.",
+    closingQuestion: "Is there a documented list of which normalized fields are safe for strategy backtesting versus which ones require falling back to raw PCAP, or is that still tribal knowledge per dataset?",
+    sampleDataNote: "Illustrative quotes and venue, built for this demo only, not real Databento market data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
