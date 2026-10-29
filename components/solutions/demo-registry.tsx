@@ -127,6 +127,7 @@ import CodeForAmericaQuestionCollapseDemo from "./demos/codeforamerica-question-
 import PomeloClaimsBlindspotDemo from "./demos/pomelo-claims-blindspot-demo";
 import CyberhavenLineageDemo from "./demos/cyberhaven-lineage-demo";
 import AuroraLidarSnapshotDemo from "./demos/aurora-lidar-snapshot-demo";
+import ImplyCompactionLockDemo from "./demos/imply-compaction-lock-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -253,4 +254,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "pomelo-claims-blindspot": PomeloClaimsBlindspotDemo,
   "cyberhaven-lineage": CyberhavenLineageDemo,
   "aurora-lidar-snapshot": AuroraLidarSnapshotDemo,
+  "imply-compaction-lock": ImplyCompactionLockDemo,
 };

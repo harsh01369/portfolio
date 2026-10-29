@@ -2533,6 +2533,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is there any automatic signal that a LIDAR capture is aging past a useful window for a given site, or is catching staleness still entirely on the person doing the design?",
     sampleDataNote: "Illustrative address and capture date, built to match Aurora's own published help-center example, not a real customer project.",
   },
+  imply: {
+    slug: "imply",
+    demoKind: "registry",
+    registryKey: "imply-compaction-lock",
+    companyName: "Imply",
+    roleTitle: "Senior Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4572944-senior-software-engineer-remote",
+    companyUrl: "https://imply.io/",
+    accentColor: "#2DD4BF",
+    accentDark: "#14B8A6",
+    bgDark: "#051716",
+    city: "Remote",
+    heroNote: "Druid's own docs state the rule plainly: compaction locks the interval it's merging, and by default an ingestion task that needs that same interval supersedes it, the compaction task fails without finishing. A busy datasource with a steady trickle of late events can keep losing that race on the same hour.",
+    whatTheyAsked: "A senior engineer on this team is exactly who tunes the skip window and retry behavior that decides whether a hard-to-ingest interval ever actually gets compacted.",
+    demoExplainer: "Toggle a compaction job between a quiet interval and one where a late event lands mid-merge, and watch the same merge go from completing cleanly to getting superseded and left fragmented.",
+    closingQuestion: "For a datasource where late events are common on the same interval, is retry-until-success the default behavior, or does a stuck interval need someone to notice and re-trigger it manually?",
+    sampleDataNote: "Illustrative datasource and segment counts, built for this demo only, not a real Imply customer workload.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
