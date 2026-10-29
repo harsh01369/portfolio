@@ -2461,6 +2461,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is title-retirement status pulled live from the state record at underwriting, or does it rely on the borrower or dealer reporting it accurately?",
     sampleDataNote: "Illustrative application and terms, built for this demo only, not a real Zippy MH loan file.",
   },
+  codeforamerica: {
+    slug: "codeforamerica",
+    demoKind: "registry",
+    registryKey: "codeforamerica-question-collapse",
+    companyName: "Code for America",
+    roleTitle: "Staff Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4692234-staff-software-engineer",
+    companyUrl: "https://www.codeforamerica.org/",
+    accentColor: "#60A5FA",
+    accentDark: "#3B82F6",
+    bgDark: "#0A1222",
+    city: "Remote (US)",
+    heroNote: "CfA's own writeup on GetCalFresh's SNAP expedited screening describes collapsing a compound legal condition, income under $150 and resources under $100, into one personalized yes/no question computed from data the applicant already gave. Same rule, reportedly over half the drop-off gone, and 75% for Chinese-speaking applicants specifically.",
+    whatTheyAsked: "A staff engineer on this team owns exactly this kind of translation, turning a legal eligibility rule into a question a person under pressure can actually answer, without changing what the rule means.",
+    demoExplainer: "Toggle the same SNAP eligibility rule between its original compound wording and the collapsed personalized question, and see what moved: not the rule, just who has to do the math.",
+    closingQuestion: "When a state updates the underlying income or resource threshold, does the personalized-question layer regenerate automatically, or does someone have to manually re-derive the simplified wording each time?",
+    sampleDataNote: "Illustrative question wording, built to match CfA's own published example, not a live GetCalFresh screen.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

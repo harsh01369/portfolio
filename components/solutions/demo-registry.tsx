@@ -123,6 +123,7 @@ import VirtaBatchVsEventDemo from "./demos/virta-batch-vs-event-demo";
 import ModernTreasuryIdempotencyDemo from "./demos/moderntreasury-idempotency-demo";
 import NextPatientEligibilityGapDemo from "./demos/nextpatient-eligibility-gap-demo";
 import ZippyMHTitleStatusDemo from "./demos/zippymh-title-status-demo";
+import CodeForAmericaQuestionCollapseDemo from "./demos/codeforamerica-question-collapse-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -245,4 +246,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "moderntreasury-idempotency": ModernTreasuryIdempotencyDemo,
   "nextpatient-eligibility-gap": NextPatientEligibilityGapDemo,
   "zippymh-title-status": ZippyMHTitleStatusDemo,
+  "codeforamerica-question-collapse": CodeForAmericaQuestionCollapseDemo,
 };
