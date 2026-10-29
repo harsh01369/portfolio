@@ -2767,6 +2767,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is retrieval filtered to the guest's property ID before ranking runs, or does scoping happen after, as a post-hoc check on whatever the top results turn out to be?",
     sampleDataNote: "Illustrative properties and guidebook content, built for this demo only, grounded in the role's own stated RAG-reliability focus, not real Hostfully customer data.",
   },
+  allocate: {
+    slug: "allocate",
+    demoKind: "registry",
+    registryKey: "allocate-pooled-remainder",
+    companyName: "Allocate.co",
+    roleTitle: "Sr. Software Engineer II, Full Stack",
+    jobPostingUrl: "https://wellfound.com/jobs/4602763-sr-software-engineer-ii-full-stack",
+    companyUrl: "https://allocate.co/",
+    accentColor: "#22D3EE",
+    accentDark: "#0891B2",
+    bgDark: "#031518",
+    city: "Remote (US)",
+    heroNote: "Allocate's own pitch is aggregating smaller tickets into a single LP position. That single position is still just a wrapper: every capital call against it has to resolve back down to fractional, uneven cent-level shares across every underlying investor, and rounded shares don't always sum back to the call amount.",
+    whatTheyAsked: "This engineer ships features end to end across the Postgres schema, C# APIs, and Vue interfaces that model exactly this kind of pooled-vehicle math for advisors and their clients.",
+    demoExplainer: "Toggle a $250,000 capital call between the clean number owed at the SPV level and the same call allocated across 14 individual investors, and watch a rounding remainder appear that the SPV view never showed.",
+    closingQuestion: "When rounded per-investor shares don't sum back to the call amount, is there a defined rule for where the remainder goes, or does it get handled case by case in ops?",
+    sampleDataNote: "Illustrative capital call, investor count, and dollar figures, built for this demo only, grounded in Allocate's own published SPV-aggregation model, not a real Allocate fund or investor.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
