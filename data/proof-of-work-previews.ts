@@ -2425,6 +2425,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "For a client that retries with a new key by mistake after a timeout, is there a secondary dedupe check beyond the key itself, or does that failure mode rely entirely on the client getting the key right?",
     sampleDataNote: "Illustrative wire amounts and timing, built for this demo only, not a real Modern Treasury transaction.",
   },
+  nextpatient: {
+    slug: "nextpatient",
+    demoKind: "registry",
+    registryKey: "nextpatient-eligibility-gap",
+    companyName: "NextPatient",
+    roleTitle: "Staff Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4185263-staff-software-engineer",
+    companyUrl: "https://www.nextpatient.co/",
+    accentColor: "#22D3EE",
+    accentDark: "#06B6D4",
+    bgDark: "#031A1F",
+    city: "Remote (US)",
+    heroNote: "NextPatient's own FAQ draws the line plainly: it shows which providers accept a patient's insurance, but it does not verify insurance eligibility. Those are two different checks, network acceptance versus this specific plan covering this specific visit, and a booking can look fully confirmed while only the first one ever ran.",
+    whatTheyAsked: "A staff engineer on a scheduling platform that already integrates deeply with EHRs like athenahealth and Nextech is exactly who'd own closing that gap, if and when it gets closed.",
+    demoExplainer: "Toggle between \"provider accepts this network\" and \"this plan's actual eligibility for this visit,\" and watch a booking that reads as confirmed turn out to rest on a check that was never run.",
+    closingQuestion: "Is eligibility verification intentionally left to the practice's own front desk, or is it on the roadmap as a check NextPatient itself would run before confirming?",
+    sampleDataNote: "Illustrative patient and plan details, built for this demo only, not a real NextPatient customer case.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
