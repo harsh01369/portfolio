@@ -2551,6 +2551,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "For a datasource where late events are common on the same interval, is retry-until-success the default behavior, or does a stuck interval need someone to notice and re-trigger it manually?",
     sampleDataNote: "Illustrative datasource and segment counts, built for this demo only, not a real Imply customer workload.",
   },
+  lorikeet: {
+    slug: "lorikeet",
+    demoKind: "registry",
+    registryKey: "lorikeet-grounding-gap",
+    companyName: "Lorikeet",
+    roleTitle: "Senior Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4555185-senior-software-engineer",
+    companyUrl: "https://www.lorikeetcx.ai/",
+    accentColor: "#2DD4BF",
+    accentDark: "#0D9488",
+    bgDark: "#041716",
+    city: "United States",
+    heroNote: "Lorikeet's own published view is unusually direct for a company selling AI support agents: retrieval grounding alone doesn't stop hallucination, a model can retrieve exactly the right document and still summarize it wrong. Their stated fix is every customer-facing statement backed by a retrieved source, a deterministic tool call, or an explicit fallback, not retrieval by itself.",
+    whatTheyAsked: "A senior engineer here owns exactly that gap, the step between a correct retrieval and the words a customer actually reads, for support interactions Lorikeet explicitly builds for fintechs and healthtechs where getting this wrong has real consequences.",
+    demoExplainer: "Toggle the same correctly-retrieved return policy between grounding-only and grounded-plus-verified, and watch the exact same source produce a subtly wrong answer in one path and a checked one in the other.",
+    closingQuestion: "Is the verification step a separate model call checking the draft against the source, or deterministic rule-matching on known fields like dates and exceptions?",
+    sampleDataNote: "Illustrative support ticket and policy text, built for this demo only, not a real Lorikeet customer interaction.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
