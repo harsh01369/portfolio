@@ -135,6 +135,7 @@ import ChipMotorsAsymmetricThresholdDemo from "./demos/chipmotors-asymmetric-thr
 import AxolotisSilentGapDemo from "./demos/axolotis-silent-gap-demo";
 import BraidSilentContractDemo from "./demos/braid-silent-contract-demo";
 import DecisionlyActiveCardDemo from "./demos/decisionly-active-card-demo";
+import BuoyantOpaquePortDemo from "./demos/buoyant-opaque-port-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -269,4 +270,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "axolotis-silent-gap": AxolotisSilentGapDemo,
   "braid-silent-contract": BraidSilentContractDemo,
   "decisionly-active-card": DecisionlyActiveCardDemo,
+  "buoyant-opaque-port": BuoyantOpaquePortDemo,
 };

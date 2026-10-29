@@ -2677,6 +2677,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When card blocking and the fraud case get filed out of order, is that caught automatically today, or does the case just sit stalled until someone notices?",
     sampleDataNote: "Illustrative case and dollar amount, built for this demo only, grounded in Decisionly's own published API schema, not a real issuer case.",
   },
+  buoyant: {
+    slug: "buoyant",
+    demoKind: "registry",
+    registryKey: "buoyant-opaque-port",
+    companyName: "Buoyant.io",
+    roleTitle: "Senior Software Engineer, Control Plane",
+    jobPostingUrl: "https://wellfound.com/jobs/4819962-senior-software-engineer-control-plane",
+    companyUrl: "https://buoyant.io/",
+    accentColor: "#60A5FA",
+    accentDark: "#2563EB",
+    bgDark: "#040D1E",
+    city: "Remote (US, Canada, Europe, South America)",
+    heroNote: "Linkerd's own docs describe exactly this tradeoff: protocol detection needs the client to speak first, and a server-speaks-first protocol like MySQL gets every connection stuck paying a fixed detection timeout until the port is explicitly marked opaque.",
+    whatTheyAsked: "This engineer helps build the control plane for Buoyant's new cloud native infrastructure product, the same team that built Linkerd's reconciliation, admission webhook, and protocol-handling logic in the first place.",
+    demoExplainer: "Toggle a MySQL connection through the mesh between default protocol detection and an explicit opaque-ports annotation, and watch the same connection go from a flat 10-second stall to effectively instant.",
+    closingQuestion: "On the new control plane product, is opaque-port configuration something operators have to know to set per protocol, or is there a plan to detect server-speaks-first protocols automatically before they hit this stall?",
+    sampleDataNote: "Illustrative service and timing, built for this demo only, grounded in Linkerd's own published protocol-detection documentation, not a real Buoyant customer deployment.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
