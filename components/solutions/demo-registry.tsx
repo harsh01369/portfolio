@@ -141,6 +141,7 @@ import BleapLockedRateDemo from "./demos/bleap-locked-rate-demo";
 import ProtonLateEventDemo from "./demos/proton-late-event-demo";
 import HostfullyCrossPropertyDemo from "./demos/hostfully-cross-property-demo";
 import AllocatePooledRemainderDemo from "./demos/allocate-pooled-remainder-demo";
+import AZXAbstentionDemo from "./demos/azx-abstention-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -281,4 +282,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "proton-late-event": ProtonLateEventDemo,
   "hostfully-cross-property": HostfullyCrossPropertyDemo,
   "allocate-pooled-remainder": AllocatePooledRemainderDemo,
+  "azx-abstention": AZXAbstentionDemo,
 };

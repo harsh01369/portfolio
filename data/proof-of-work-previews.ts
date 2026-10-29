@@ -2785,6 +2785,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When rounded per-investor shares don't sum back to the call amount, is there a defined rule for where the remainder goes, or does it get handled case by case in ops?",
     sampleDataNote: "Illustrative capital call, investor count, and dollar figures, built for this demo only, grounded in Allocate's own published SPV-aggregation model, not a real Allocate fund or investor.",
   },
+  azx: {
+    slug: "azx",
+    demoKind: "registry",
+    registryKey: "azx-abstention",
+    companyName: "AZX",
+    roleTitle: "Senior ML Engineer, Energy & Utilities",
+    jobPostingUrl: "https://wellfound.com/jobs/4656848-senior-ml-engineer-energy-utilities",
+    companyUrl: "https://azx.io/",
+    accentColor: "#FACC15",
+    accentDark: "#CA8A04",
+    bgDark: "#1A1403",
+    city: "Remote (US)",
+    heroNote: "AZX's own posting is explicit that its disaggregation libraries ship with abstention and monitoring built in, because the planning and dispatch support behind demand-response programs is a place where, in their own words, acting on a wrong number carries real cost.",
+    whatTheyAsked: "This engineer owns the reusable disaggregation and forecasting libraries every client pod draws on, each shipped with its own evaluation harness, for programs that curtail or dispatch real assets based on what the model says.",
+    demoExplainer: "Toggle the same ambiguous 54-46 meter reading between a model forced to pick one device and one that abstains below its own confidence threshold, and watch a demand-response dispatch decision either act on a guess or defer.",
+    closingQuestion: "When the model abstains, is there a defined fallback the dispatch program follows for that meter, or does an ambiguous reading just drop out of the program for that cycle?",
+    sampleDataNote: "Illustrative meter reading and confidence split, built for this demo only, grounded in the role's own stated abstention requirement, not real AZX client data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
