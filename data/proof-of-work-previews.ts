@@ -2641,6 +2641,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When a data gap gets filled silently today, is there any downstream signal that tells the operator which parts of an approved schedule were real data versus a fallback, or does that distinction disappear once the schedule ships?",
     sampleDataNote: "Illustrative inflow data and turbine unit, built for this demo only, grounded in the role's own stated ingestion philosophy, not real Axolotis customer data.",
   },
+  braid: {
+    slug: "braid",
+    demoKind: "registry",
+    registryKey: "braid-silent-contract",
+    companyName: "Braid Technologies",
+    roleTitle: "Senior Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4475620-senior-software-engineer",
+    companyUrl: "https://www.braidfi.com/",
+    accentColor: "#A78BFA",
+    accentDark: "#7C3AED",
+    bgDark: "#0E0820",
+    city: "Remote (Everywhere)",
+    heroNote: "Braid's own posting names the exact risk it's hiring against: plausible-but-wrong logic and silent contract changes from AI-generated code, on a Java/Spring Boot platform that moves billions of dollars with no room for error.",
+    whatTheyAsked: "This engineer is the one in the room who catches the subtle bug an AI assistant introduces before it reaches a production settlement system, on a team that treats AI as leverage but never as an excuse for what ships.",
+    demoExplainer: "Toggle a one-line AI-generated rounding-mode change in a settlement-splitting method between merged unnoticed and caught in review, and watch what a silent contract change actually costs across a night's batch.",
+    closingQuestion: "What's actually catching a change like this today, a human reviewer who knows this failure pattern, a specific test for rounding-boundary cases, or neither yet?",
+    sampleDataNote: "Illustrative code diff and batch figures, built for this demo only, grounded in the role's own stated concern about AI-generated silent contract changes, not real Braid code or settlement data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
