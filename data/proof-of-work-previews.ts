@@ -2839,6 +2839,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is there a confirm-back step before an approval gets logged today, or does the first transcription that scores as a yes go straight to billing?",
     sampleDataNote: "Illustrative call transcript and repair amount, built for this demo only, grounded in the role's own description of what the product actually does, not a real ZukiTalk customer call.",
   },
+  crediflow: {
+    slug: "crediflow",
+    demoKind: "registry",
+    registryKey: "crediflow-stale-covenant",
+    companyName: "Crediflow AI",
+    roleTitle: "Full-Stack Software Engineer, AI Fintech",
+    jobPostingUrl: "https://wellfound.com/jobs/4138534-full-stack-software-engineer-ai-fintech",
+    companyUrl: "https://www.crediflow.ai/",
+    accentColor: "#38BDF8",
+    accentDark: "#0369A1",
+    bgDark: "#031722",
+    city: "Remote (Everywhere)",
+    heroNote: "Crediflow's own site names QuickBooks, Xero, and Sage as accounting integrations behind its \"real-time portfolio monitoring\" claim, but none of those platforms sync on a schedule the lender controls, they sync when the borrower's own bookkeeper reconciles.",
+    whatTheyAsked: "This engineer builds the ingestion, risk, and monitoring systems that turn integrations like these into a covenant status a credit team actually trusts, including the parts where the underlying data's own freshness isn't the lender's to set.",
+    demoExplainer: "Toggle a minimum-cash covenant between what the monitoring dashboard currently shows and what the QuickBooks source data is actually dated, and watch a green compliant status sit on top of a 12-day-old number.",
+    closingQuestion: "Does the platform surface how stale an accounting-system data point is before showing a covenant as compliant, or does a sync lag only become visible once someone goes looking for it?",
+    sampleDataNote: "Illustrative covenant, balance, and sync lag, built for this demo only, grounded in Crediflow's own published integrations and monitoring claims, not a real Crediflow borrower account.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

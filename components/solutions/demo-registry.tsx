@@ -144,6 +144,7 @@ import AllocatePooledRemainderDemo from "./demos/allocate-pooled-remainder-demo"
 import AZXAbstentionDemo from "./demos/azx-abstention-demo";
 import GeovisualStalePassDemo from "./demos/geovisual-stale-pass-demo";
 import ZukiTalkConfirmLoopDemo from "./demos/zukitalk-confirm-loop-demo";
+import CrediflowStaleCovenantDemo from "./demos/crediflow-stale-covenant-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -287,4 +288,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "azx-abstention": AZXAbstentionDemo,
   "geovisual-stale-pass": GeovisualStalePassDemo,
   "zukitalk-confirm-loop": ZukiTalkConfirmLoopDemo,
+  "crediflow-stale-covenant": CrediflowStaleCovenantDemo,
 };
