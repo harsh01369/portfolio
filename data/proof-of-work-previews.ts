@@ -2713,6 +2713,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When an agent's spend limit gets raised mid-session versus set once upfront, is that change enforced at the token level immediately, or does it take a new authorization to apply?",
     sampleDataNote: "Illustrative transaction and dollar amount, built for this demo only, grounded in PayOS's own published launch post, not a real PayOS transaction.",
   },
+  bleap: {
+    slug: "bleap",
+    demoKind: "registry",
+    registryKey: "bleap-locked-rate",
+    companyName: "Bleap",
+    roleTitle: "Software Engineer (Security & DevOps)",
+    jobPostingUrl: "https://wellfound.com/jobs/4697891-software-engineer-security-devops",
+    companyUrl: "https://www.bleap.finance/",
+    accentColor: "#34D399",
+    accentDark: "#059669",
+    bgDark: "#031A12",
+    city: "Remote (Europe)",
+    heroNote: "Bleap's own pitch locks the crypto-to-fiat exchange rate at the moment a transaction is authorized, spending directly from a non-custodial wallet balance. Card networks routinely authorize one amount and settle a different one days later, a pattern that predates crypto entirely and now sits directly on top of it.",
+    whatTheyAsked: "This engineer works on the security and infrastructure layer connecting a non-custodial wallet to real card-network rails, where a variable-amount merchant and a volatile asset now have to reconcile on the same transaction.",
+    demoExplainer: "Toggle a gas-pump transaction between the moment of authorization and final settlement two days later, and watch a locked rate and a variable settled amount land on an asset that's already moved.",
+    closingQuestion: "When the settled amount differs from the authorized hold on a volatile-asset balance, is the final on-chain conversion priced at the original locked rate, the settlement-time spot rate, or something in between?",
+    sampleDataNote: "Illustrative transaction, hold amount, and SOL price, built for this demo only, grounded in Bleap's own published rate-lock claim, not a real Bleap transaction.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
