@@ -2749,6 +2749,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When an ERP event lands after the curated snapshot but before a rep acts on it, is there a defined staleness window that catches it, or does it depend on how long until the next scheduled rebuild?",
     sampleDataNote: "Illustrative part number, stock counts, and timestamps, built for this demo only, grounded in the role's own stated reconciliation concerns, not real Proton customer data.",
   },
+  hostfully: {
+    slug: "hostfully",
+    demoKind: "registry",
+    registryKey: "hostfully-cross-property",
+    companyName: "Hostfully",
+    roleTitle: "Senior Software Engineer (Python), LLM Features",
+    jobPostingUrl: "https://wellfound.com/jobs/4875062-senior-backend-developer-java-clone",
+    companyUrl: "https://www.hostfully.com/",
+    accentColor: "#F97316",
+    accentDark: "#C2410C",
+    bgDark: "#1C0E03",
+    city: "Remote (US)",
+    heroNote: "Hostfully's own posting is about taking an LLM-powered guest feature from prototype to a reliable production system, retrieval failure modes included. Property managers on Hostfully routinely run many units, each with its own guidebook, and a guest question answered from the wrong one is the retrieval-scoping failure that specific setup actually produces.",
+    whatTheyAsked: "This engineer owns turning LLM prototypes into production features that are reliable, observable, and safe, for a company whose own customers manage guidebooks across dozens of properties at once.",
+    demoExplainer: "Toggle a guest's wifi-password question between unscoped top-k retrieval across a host's whole portfolio and retrieval locked to the actual reservation, and watch the same confident answer come from the wrong property or the right one.",
+    closingQuestion: "Is retrieval filtered to the guest's property ID before ranking runs, or does scoping happen after, as a post-hoc check on whatever the top results turn out to be?",
+    sampleDataNote: "Illustrative properties and guidebook content, built for this demo only, grounded in the role's own stated RAG-reliability focus, not real Hostfully customer data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
