@@ -142,6 +142,7 @@ import ProtonLateEventDemo from "./demos/proton-late-event-demo";
 import HostfullyCrossPropertyDemo from "./demos/hostfully-cross-property-demo";
 import AllocatePooledRemainderDemo from "./demos/allocate-pooled-remainder-demo";
 import AZXAbstentionDemo from "./demos/azx-abstention-demo";
+import GeovisualStalePassDemo from "./demos/geovisual-stale-pass-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -283,4 +284,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "hostfully-cross-property": HostfullyCrossPropertyDemo,
   "allocate-pooled-remainder": AllocatePooledRemainderDemo,
   "azx-abstention": AZXAbstentionDemo,
+  "geovisual-stale-pass": GeovisualStalePassDemo,
 };

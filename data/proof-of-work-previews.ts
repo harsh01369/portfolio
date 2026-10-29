@@ -2803,6 +2803,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When the model abstains, is there a defined fallback the dispatch program follows for that meter, or does an ambiguous reading just drop out of the program for that cycle?",
     sampleDataNote: "Illustrative meter reading and confidence split, built for this demo only, grounded in the role's own stated abstention requirement, not real AZX client data.",
   },
+  geovisual: {
+    slug: "geovisual",
+    demoKind: "registry",
+    registryKey: "geovisual-stale-pass",
+    companyName: "GeoVisual Analytics",
+    roleTitle: "Part-Time Senior Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4756854-part-time-sr-software-engineer",
+    companyUrl: "https://www.geovisual-analytics.com/",
+    accentColor: "#84CC16",
+    accentDark: "#4D7C0F",
+    bgDark: "#0B1403",
+    city: "Remote (US, Canada, LatAm)",
+    heroNote: "The role's own tech stack names Sentinel Hub directly, and Sentinel-2's roughly 5-day revisit cycle combined with cloud cover means a field's dashboard can be showing the last clear pass from weeks ago, not a stale number, an absent one, with no new optical read at all in between.",
+    whatTheyAsked: "This engineer builds the platform connecting satellite and geospatial data to the day-to-day decisions growers, processors, and shippers make off of it.",
+    demoExplainer: "Toggle a lettuce block's NDVI reading between the latest available Sentinel-2 image and what's actually happened in the field since, and watch three cloud-covered passes turn an 18-day-old number into the only number there is.",
+    closingQuestion: "When consecutive passes get lost to cloud cover, does the dashboard surface that gap explicitly, or does the last clear image just keep displaying as current until a new one clears?",
+    sampleDataNote: "Illustrative field, NDVI value, and pass count, built for this demo only, grounded in the role's own named Sentinel Hub tooling and Sentinel-2's public revisit cadence, not real GeoVisual customer data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
