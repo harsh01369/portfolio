@@ -124,6 +124,7 @@ import ModernTreasuryIdempotencyDemo from "./demos/moderntreasury-idempotency-de
 import NextPatientEligibilityGapDemo from "./demos/nextpatient-eligibility-gap-demo";
 import ZippyMHTitleStatusDemo from "./demos/zippymh-title-status-demo";
 import CodeForAmericaQuestionCollapseDemo from "./demos/codeforamerica-question-collapse-demo";
+import PomeloClaimsBlindspotDemo from "./demos/pomelo-claims-blindspot-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -247,4 +248,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "nextpatient-eligibility-gap": NextPatientEligibilityGapDemo,
   "zippymh-title-status": ZippyMHTitleStatusDemo,
   "codeforamerica-question-collapse": CodeForAmericaQuestionCollapseDemo,
+  "pomelo-claims-blindspot": PomeloClaimsBlindspotDemo,
 };

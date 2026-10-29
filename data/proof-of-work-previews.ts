@@ -2479,6 +2479,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When a state updates the underlying income or resource threshold, does the personalized-question layer regenerate automatically, or does someone have to manually re-derive the simplified wording each time?",
     sampleDataNote: "Illustrative question wording, built to match CfA's own published example, not a live GetCalFresh screen.",
   },
+  pomelo: {
+    slug: "pomelo",
+    demoKind: "registry",
+    registryKey: "pomelo-claims-blindspot",
+    companyName: "Pomelo Care",
+    roleTitle: "Staff Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4536894-staff-software-engineer",
+    companyUrl: "https://www.pomelocare.com/",
+    accentColor: "#FB7185",
+    accentDark: "#F43F5E",
+    bgDark: "#1A0710",
+    city: "Remote (US)",
+    heroNote: "Pomelo's own SMFM-presented study, nearly 45,000 deliveries across six health plans, found that first-time mothers with no documented pre-pregnancy claims are exactly the group a claims-history risk model has the least to work with. The company's stated fix is reading lab, pharmacy, and EHR data too, not just claims, because clinical risk changes through pregnancy and a once-a-visit claims snapshot can't keep up.",
+    whatTheyAsked: "A staff engineer on the patient-experience and risk side owns exactly this kind of multi-source signal pipeline, where the gap isn't a bug, it's what a claims-only model was always going to miss.",
+    demoExplainer: "Toggle the same first-time patient between a claims-only risk model and Pomelo's own multi-source approach, and watch a real lab signal either get missed entirely or caught in time to act on.",
+    closingQuestion: "For a patient with genuinely no data anywhere yet, first visit, nothing on file, is there a default risk posture, or does the model stay silent until the first real signal arrives?",
+    sampleDataNote: "Illustrative patient scenario, built around Pomelo's own published study finding, not a real patient case.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
