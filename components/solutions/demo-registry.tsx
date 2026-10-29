@@ -132,6 +132,7 @@ import LorikeetGroundingGapDemo from "./demos/lorikeet-grounding-gap-demo";
 import DatabentoNormalizationLossDemo from "./demos/databento-normalization-loss-demo";
 import LeadBankLedgerInsuranceDemo from "./demos/leadbank-ledger-insurance-demo";
 import ChipMotorsAsymmetricThresholdDemo from "./demos/chipmotors-asymmetric-threshold-demo";
+import AxolotisSilentGapDemo from "./demos/axolotis-silent-gap-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -263,4 +264,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "databento-normalization-loss": DatabentoNormalizationLossDemo,
   "leadbank-ledger-insurance": LeadBankLedgerInsuranceDemo,
   "chipmotors-asymmetric-threshold": ChipMotorsAsymmetricThresholdDemo,
+  "axolotis-silent-gap": AxolotisSilentGapDemo,
 };

@@ -2623,6 +2623,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Are the stop-for-people and theft-alert thresholds tuned independently off one shared detector, or are there separate models for each, and how do you evaluate a threshold change before it reaches a vehicle in the field?",
     sampleDataNote: "Illustrative confidence score and thresholds, built for this demo only, grounded in the role's own stated design philosophy, not real Chip telemetry.",
   },
+  axolotis: {
+    slug: "axolotis",
+    demoKind: "registry",
+    registryKey: "axolotis-silent-gap",
+    companyName: "Axolotis.ai",
+    roleTitle: "Software Engineer, AI Product & Platform",
+    jobPostingUrl: "https://wellfound.com/jobs/4855247-software-engineer-ai-product-platform",
+    companyUrl: "https://axolotisopt.com/",
+    accentColor: "#2DD4BF",
+    accentDark: "#0D9488",
+    bgDark: "#031615",
+    city: "Remote (US)",
+    heroNote: "Axolotis's own posting for this role names the exact failure mode worth worrying about: ingestion that fails loudly rather than silently when a customer's real-world hydropower data is messy or incomplete, with human-in-the-loop approval sitting between the agentic workflow and anything that actually touches turbine scheduling.",
+    whatTheyAsked: "This engineer owns the guardrails between an agentic workflow that already runs daily production optimization and the operator who has to trust and approve what it produces, including what happens when a customer's inflow data has a gap in it.",
+    demoExplainer: "Toggle one blank cell in a turbine inflow forecast between a silent fallback and a loud failure, and watch whether the operator ever finds out which hour of the approved schedule was actually a guess.",
+    closingQuestion: "When a data gap gets filled silently today, is there any downstream signal that tells the operator which parts of an approved schedule were real data versus a fallback, or does that distinction disappear once the schedule ships?",
+    sampleDataNote: "Illustrative inflow data and turbine unit, built for this demo only, grounded in the role's own stated ingestion philosophy, not real Axolotis customer data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
