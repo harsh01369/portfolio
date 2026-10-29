@@ -2497,6 +2497,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "For a patient with genuinely no data anywhere yet, first visit, nothing on file, is there a default risk posture, or does the model stay silent until the first real signal arrives?",
     sampleDataNote: "Illustrative patient scenario, built around Pomelo's own published study finding, not a real patient case.",
   },
+  cyberhaven: {
+    slug: "cyberhaven",
+    demoKind: "registry",
+    registryKey: "cyberhaven-lineage",
+    companyName: "Cyberhaven",
+    roleTitle: "Senior/Staff Software Engineer, Content Processing",
+    jobPostingUrl: "https://wellfound.com/jobs/4897745-senior-staff-software-engineer-content-processing",
+    companyUrl: "https://www.cyberhaven.com/",
+    accentColor: "#A78BFA",
+    accentDark: "#8B5CF6",
+    bgDark: "#120A1F",
+    city: "Remote (Europe)",
+    heroNote: "Cyberhaven's own walkthrough of this exact chain is public: download a sensitive report, copy one paragraph out, paste it into a generative AI tool. No file signature, filename, or hash survives that copy, which is precisely why signature-based DLP sees nothing and lineage tracking, following the action instead of the content, catches it anyway.",
+    whatTheyAsked: "A content-processing engineer on this team is the one building exactly this kind of transformation-resistant tracing, where the content changes shape at every hop but the lineage has to hold.",
+    demoExplainer: "Toggle the same three-step chain, download, partial copy, paste into an AI tool, between legacy signature matching and lineage tracking, and watch the same leak go from invisible to flagged.",
+    closingQuestion: "For a chain with five or six hops instead of one, screenshot, OCR, retype, does lineage confidence degrade gracefully, or is there a hop count where it stops being traceable?",
+    sampleDataNote: "Illustrative file and chain, built to match Cyberhaven's own published example, not a real customer incident.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
