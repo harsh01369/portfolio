@@ -2695,6 +2695,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "On the new control plane product, is opaque-port configuration something operators have to know to set per protocol, or is there a plan to detect server-speaks-first protocols automatically before they hit this stall?",
     sampleDataNote: "Illustrative service and timing, built for this demo only, grounded in Linkerd's own published protocol-detection documentation, not a real Buoyant customer deployment.",
   },
+  payos: {
+    slug: "payos",
+    demoKind: "registry",
+    registryKey: "payos-no-identity",
+    companyName: "PayOS",
+    roleTitle: "Founding Engineer, Payments",
+    jobPostingUrl: "https://wellfound.com/jobs/4634547-founding-engineer-payments",
+    companyUrl: "https://www.payos.ai/",
+    accentColor: "#FBBF24",
+    accentDark: "#D97706",
+    bgDark: "#1C1203",
+    city: "Remote (US)",
+    heroNote: "PayOS's own launch post names the real problem plainly: an agent has no legal identity, which breaks card-not-present verification that was built around a human being present at checkout. Their proxy token answers that by authorizing on a spend limit and a prior human approval instead of an identity that doesn't exist for an autonomous buyer.",
+    whatTheyAsked: "This founding engineer owns payments infrastructure from the ground up, including the edge cases that don't have a standard answer yet, like what actually authorizes a transaction when there's no cardholder present to verify.",
+    demoExplainer: "Toggle the same $340 agent-booked charge between standard card-not-present verification and PayOS's own agentic-token model, and watch what the authorization decision actually checks change completely.",
+    closingQuestion: "When an agent's spend limit gets raised mid-session versus set once upfront, is that change enforced at the token level immediately, or does it take a new authorization to apply?",
+    sampleDataNote: "Illustrative transaction and dollar amount, built for this demo only, grounded in PayOS's own published launch post, not a real PayOS transaction.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
