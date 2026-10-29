@@ -117,6 +117,8 @@ import KlavisVerificationGapDemo from "./demos/klavis-verification-gap-demo";
 import WasmerSnapshotClockDemo from "./demos/wasmer-snapshot-clock-demo";
 import LamarBenefitPathDemo from "./demos/lamar-benefit-path-demo";
 import MossAlphaBlendDemo from "./demos/moss-alpha-blend-demo";
+import OneChronosCombinatorialMatchDemo from "./demos/onechronos-combinatorial-match-demo";
+import BlueCargoClockSwitchDemo from "./demos/bluecargo-clock-switch-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -233,4 +235,6 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "wasmer-snapshot-clock": WasmerSnapshotClockDemo,
   "lamar-benefit-path": LamarBenefitPathDemo,
   "moss-alpha-blend": MossAlphaBlendDemo,
+  "onechronos-combinatorial-match": OneChronosCombinatorialMatchDemo,
+  "bluecargo-clock-switch": BlueCargoClockSwitchDemo,
 };
