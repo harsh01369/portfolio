@@ -2389,6 +2389,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is the demurrage-to-detention handoff keyed off the actual gate-out event per carrier, or is there a per-port fallback when that event doesn't arrive cleanly?",
     sampleDataNote: "Illustrative container timeline and free-time windows, built for this demo only, not a real BlueCargo customer case.",
   },
+  virta: {
+    slug: "virta",
+    demoKind: "registry",
+    registryKey: "virta-batch-vs-event",
+    companyName: "Virta Health",
+    roleTitle: "Software Engineer",
+    jobPostingUrl: "https://jobs.ashbyhq.com/virtahealth/0cd02f05-28be-4d24-abb6-46fddc487971",
+    companyUrl: "https://www.virtahealth.com/",
+    accentColor: "#4ADE80",
+    accentDark: "#22C55E",
+    bgDark: "#051A0E",
+    city: "Remote (US)",
+    heroNote: "Virta's own head of engineering has written publicly that Spark, the system sharing patient data with coaches and providers, chose batch/async over event-driven processing early on for shipping speed, and has run that way for over six years while medication adjustments need to land in near real-time. A re-architecture is reportedly being planned.",
+    whatTheyAsked: "A software engineer joining now inherits exactly this tradeoff, whichever side of the planned re-architecture they land on.",
+    demoExplainer: "Toggle a low glucose reading between the batch/async path and an event-driven push, and watch when it actually reaches the coach's queue change, not just how it's logged.",
+    closingQuestion: "Is the re-architecture moving the whole Spark pipeline event-driven, or just carving out a fast path for the readings that need same-day response?",
+    sampleDataNote: "Illustrative reading and timing, built for this demo only, not real Virta patient data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

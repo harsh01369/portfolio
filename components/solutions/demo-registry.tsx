@@ -119,6 +119,7 @@ import LamarBenefitPathDemo from "./demos/lamar-benefit-path-demo";
 import MossAlphaBlendDemo from "./demos/moss-alpha-blend-demo";
 import OneChronosCombinatorialMatchDemo from "./demos/onechronos-combinatorial-match-demo";
 import BlueCargoClockSwitchDemo from "./demos/bluecargo-clock-switch-demo";
+import VirtaBatchVsEventDemo from "./demos/virta-batch-vs-event-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -237,4 +238,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "moss-alpha-blend": MossAlphaBlendDemo,
   "onechronos-combinatorial-match": OneChronosCombinatorialMatchDemo,
   "bluecargo-clock-switch": BlueCargoClockSwitchDemo,
+  "virta-batch-vs-event": VirtaBatchVsEventDemo,
 };
