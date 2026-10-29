@@ -2821,6 +2821,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When consecutive passes get lost to cloud cover, does the dashboard surface that gap explicitly, or does the last clear image just keep displaying as current until a new one clears?",
     sampleDataNote: "Illustrative field, NDVI value, and pass count, built for this demo only, grounded in the role's own named Sentinel Hub tooling and Sentinel-2's public revisit cadence, not real GeoVisual customer data.",
   },
+  zukitalk: {
+    slug: "zukitalk",
+    demoKind: "registry",
+    registryKey: "zukitalk-confirm-loop",
+    companyName: "ZukiTalk",
+    roleTitle: "AI Voice Platform Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4742415-ai-voice-platform-software-engineer",
+    companyUrl: "https://zukitalk.com/",
+    accentColor: "#FB7185",
+    accentDark: "#E11D48",
+    bgDark: "#1C0509",
+    city: "Remote (US)",
+    heroNote: "ZukiTalk's own posting describes the real job: the voice agent calls customers after a vehicle inspection and collects service approvals without a service advisor on the line. Over a phone connection, with road noise, that's a speech-recognition problem with a dollar amount attached to every answer.",
+    whatTheyAsked: "This engineer owns the Voice AI platform end to end, including optimizing conversation flow and the customer experience around exactly the moment a spoken answer becomes a logged, billable approval.",
+    demoExplainer: "Toggle the same ambiguous customer response, \"yeah, no, go ahead,\" between a single-pass transcription that logs it as an approval immediately and a version that reads the approval back before recording anything.",
+    closingQuestion: "Is there a confirm-back step before an approval gets logged today, or does the first transcription that scores as a yes go straight to billing?",
+    sampleDataNote: "Illustrative call transcript and repair amount, built for this demo only, grounded in the role's own description of what the product actually does, not a real ZukiTalk customer call.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
