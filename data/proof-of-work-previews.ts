@@ -2605,6 +2605,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is reconciliation real-time against the bank's own ledger, or a periodic batch job, and what's the actual detection window if a partner's numbers start drifting?",
     sampleDataNote: "Illustrative balances, built for this demo only, not a real Lead Bank partner account.",
   },
+  chipmotors: {
+    slug: "chipmotors",
+    demoKind: "registry",
+    registryKey: "chipmotors-asymmetric-threshold",
+    companyName: "Chip Motors",
+    roleTitle: "Staff Software Engineer, Computer Vision",
+    jobPostingUrl: "https://wellfound.com/jobs/4597530-staff-software-engineer-computer-vision",
+    companyUrl: "https://chipmotors.com/",
+    accentColor: "#38BDF8",
+    accentDark: "#0284C7",
+    bgDark: "#04131E",
+    city: "Remote (US)",
+    heroNote: "Chip's own posting for this role says it directly: the cost of missing a person is not symmetric with the cost of a false positive, and a theft alert held to a false-alarm rate a customer won't tolerate has to be rare and right rather than frequent and hedged. Those are opposite instincts applied to the exact same detector.",
+    whatTheyAsked: "This engineer owns perception end to end on the vehicle itself, deciding what counts as a hazard worth stopping for versus what counts as a theft attempt worth alerting an owner about, on hardware with a real latency and power budget, not a cloud bill.",
+    demoExplainer: "Toggle the same 34% confidence detection between the pedestrian-safety decision and the theft-alert decision, and watch one threshold wave it through while the other holds it back, by design.",
+    closingQuestion: "Are the stop-for-people and theft-alert thresholds tuned independently off one shared detector, or are there separate models for each, and how do you evaluate a threshold change before it reaches a vehicle in the field?",
+    sampleDataNote: "Illustrative confidence score and thresholds, built for this demo only, grounded in the role's own stated design philosophy, not real Chip telemetry.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
