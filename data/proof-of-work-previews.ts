@@ -2335,6 +2335,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is benefit-path determination done per payer-plan lookup before a packet gets assembled, or is it something the field team still has to flag manually when a payer's categorization doesn't match what's on file?",
     sampleDataNote: "Illustrative PA submission routing, built for this demo only, not a real Lamar Health customer case.",
   },
+  moss: {
+    slug: "moss",
+    demoKind: "registry",
+    registryKey: "moss-alpha-blend",
+    companyName: "Moss",
+    roleTitle: "Founding Machine Learning Engineer",
+    jobPostingUrl: "https://www.ycombinator.com/companies/moss/jobs/HmK9Iqk-machine-learning-engineer",
+    companyUrl: "https://www.moss.dev/",
+    accentColor: "#F472B6",
+    accentDark: "#EC4899",
+    bgDark: "#1A0A14",
+    city: "San Francisco / Remote",
+    heroNote: "Moss's hybrid retrieval blends a vector score and a BM25 keyword score through one alpha parameter, documented as vector, keyword, and hybrid modes with an alpha to weight them. Same query, same two documents, same index, and moving that single number changes which document ranks first, sometimes against what either score alone would pick.",
+    whatTheyAsked: "The founding ML engineer role owns embeddings, reranking, and semantic retrieval end to end, which is exactly where a default alpha quietly decides the wrong winner for a whole class of queries.",
+    demoExplainer: "Toggle alpha between semantic-only, hybrid, and keyword-only for the same query, and watch which of two documents ranks first change, including a crossover point neither pure mode would surface on its own.",
+    closingQuestion: "Is alpha tuned per customer workload, or is 0.5 the default most integrations ship with and never revisit?",
+    sampleDataNote: "Illustrative retrieval scores, built for this demo only, not real Moss benchmark data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
