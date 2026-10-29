@@ -122,6 +122,7 @@ import BlueCargoClockSwitchDemo from "./demos/bluecargo-clock-switch-demo";
 import VirtaBatchVsEventDemo from "./demos/virta-batch-vs-event-demo";
 import ModernTreasuryIdempotencyDemo from "./demos/moderntreasury-idempotency-demo";
 import NextPatientEligibilityGapDemo from "./demos/nextpatient-eligibility-gap-demo";
+import ZippyMHTitleStatusDemo from "./demos/zippymh-title-status-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -243,4 +244,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "virta-batch-vs-event": VirtaBatchVsEventDemo,
   "moderntreasury-idempotency": ModernTreasuryIdempotencyDemo,
   "nextpatient-eligibility-gap": NextPatientEligibilityGapDemo,
+  "zippymh-title-status": ZippyMHTitleStatusDemo,
 };

@@ -2443,6 +2443,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is eligibility verification intentionally left to the practice's own front desk, or is it on the roadmap as a check NextPatient itself would run before confirming?",
     sampleDataNote: "Illustrative patient and plan details, built for this demo only, not a real NextPatient customer case.",
   },
+  zippymh: {
+    slug: "zippymh",
+    demoKind: "registry",
+    registryKey: "zippymh-title-status",
+    companyName: "Zippy MH",
+    roleTitle: "Staff Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/3722091-staff-software-engineer",
+    companyUrl: "https://zippymh.com/",
+    accentColor: "#FBBF24",
+    accentDark: "#F59E0B",
+    bgDark: "#1A1304",
+    city: "Remote (US)",
+    heroNote: "A manufactured home doesn't become real property just because the owner owns the land under it. It stays legally chattel, personal property, until the state title is actually retired on paper. Same home, same land, same owner, and the loan terms a chattel lender like Zippy can offer depend on which side of that filing it's actually on.",
+    whatTheyAsked: "A staff engineer on a platform that originates manufactured home loans is the one encoding exactly this classification rule, where land ownership and title status are two different facts that have to stay separately tracked.",
+    demoExplainer: "Toggle a single application between title-not-yet-retired and title-retired, and watch the legal classification and the loan terms available change, with nothing about the physical home or land changing at all.",
+    closingQuestion: "Is title-retirement status pulled live from the state record at underwriting, or does it rely on the borrower or dealer reporting it accurately?",
+    sampleDataNote: "Illustrative application and terms, built for this demo only, not a real Zippy MH loan file.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
