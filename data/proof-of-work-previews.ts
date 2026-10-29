@@ -2587,6 +2587,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is there a documented list of which normalized fields are safe for strategy backtesting versus which ones require falling back to raw PCAP, or is that still tribal knowledge per dataset?",
     sampleDataNote: "Illustrative quotes and venue, built for this demo only, not real Databento market data.",
   },
+  leadbank: {
+    slug: "leadbank",
+    demoKind: "registry",
+    registryKey: "leadbank-ledger-insurance",
+    companyName: "Lead Bank",
+    roleTitle: "Software Engineer V",
+    jobPostingUrl: "https://wellfound.com/jobs/3777043-software-engineer-v",
+    companyUrl: "https://www.lead.bank/",
+    accentColor: "#4ADE80",
+    accentDark: "#16A34A",
+    bgDark: "#041A0D",
+    city: "Remote (US)",
+    heroNote: "Pass-through FDIC insurance on a pooled FBO account isn't automatic, it depends on records proving exactly how much of the pool belongs to each end customer. When that reconciliation breaks, that's the exact mechanism that left customers unable to access funds in the Synapse collapse, and it's exactly what Lead Bank's in-house engineering team exists to own instead of outsourcing it to fragile third-party middleware.",
+    whatTheyAsked: "A software engineer here is building the ledger infrastructure where a sponsor bank's actual balance and a fintech partner's own customer-level records have to stay provably in sync, not eventually, continuously.",
+    demoExplainer: "Toggle an FBO pool between a reconciled ledger and one that's quietly drifted from the bank's actual balance, and watch pass-through insurance go from provable to the dollar to genuinely uncertain.",
+    closingQuestion: "Is reconciliation real-time against the bank's own ledger, or a periodic batch job, and what's the actual detection window if a partner's numbers start drifting?",
+    sampleDataNote: "Illustrative balances, built for this demo only, not a real Lead Bank partner account.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

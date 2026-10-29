@@ -130,6 +130,7 @@ import AuroraLidarSnapshotDemo from "./demos/aurora-lidar-snapshot-demo";
 import ImplyCompactionLockDemo from "./demos/imply-compaction-lock-demo";
 import LorikeetGroundingGapDemo from "./demos/lorikeet-grounding-gap-demo";
 import DatabentoNormalizationLossDemo from "./demos/databento-normalization-loss-demo";
+import LeadBankLedgerInsuranceDemo from "./demos/leadbank-ledger-insurance-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -259,4 +260,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "imply-compaction-lock": ImplyCompactionLockDemo,
   "lorikeet-grounding-gap": LorikeetGroundingGapDemo,
   "databento-normalization-loss": DatabentoNormalizationLossDemo,
+  "leadbank-ledger-insurance": LeadBankLedgerInsuranceDemo,
 };
