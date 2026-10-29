@@ -138,6 +138,7 @@ import DecisionlyActiveCardDemo from "./demos/decisionly-active-card-demo";
 import BuoyantOpaquePortDemo from "./demos/buoyant-opaque-port-demo";
 import PayOSNoIdentityDemo from "./demos/payos-no-identity-demo";
 import BleapLockedRateDemo from "./demos/bleap-locked-rate-demo";
+import ProtonLateEventDemo from "./demos/proton-late-event-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -275,4 +276,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "buoyant-opaque-port": BuoyantOpaquePortDemo,
   "payos-no-identity": PayOSNoIdentityDemo,
   "bleap-locked-rate": BleapLockedRateDemo,
+  "proton-late-event": ProtonLateEventDemo,
 };

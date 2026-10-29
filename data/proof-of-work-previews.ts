@@ -2731,6 +2731,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "When the settled amount differs from the authorized hold on a volatile-asset balance, is the final on-chain conversion priced at the original locked rate, the settlement-time spot rate, or something in between?",
     sampleDataNote: "Illustrative transaction, hold amount, and SOL price, built for this demo only, grounded in Bleap's own published rate-lock claim, not a real Bleap transaction.",
   },
+  proton: {
+    slug: "proton",
+    demoKind: "registry",
+    registryKey: "proton-late-event",
+    companyName: "proton.ai",
+    roleTitle: "Senior Data Engineer (AI-Native), Data Layer",
+    jobPostingUrl: "https://wellfound.com/jobs/4497215-senior-data-engineer-ai-native-data-layer",
+    companyUrl: "https://proton.ai/",
+    accentColor: "#818CF8",
+    accentDark: "#4F46E5",
+    bgDark: "#0B0A1F",
+    city: "Remote (Europe, US)",
+    heroNote: "Proton's own posting is explicit about where its AI brain's mistakes actually come from: late or out-of-order data from the distributor's own ERP, not the model. A sale rung up in Prophet 21 after this hour's curated snapshot already built is exactly that failure mode, applied to a real part number a rep might pitch minutes later.",
+    whatTheyAsked: "This engineer owns the medallion-style data layer end to end, including the reconciliation logic that decides whether a late-arriving ERP event gets caught before it reaches the AI brain and the rep, or after.",
+    demoExplainer: "Toggle the same just-sold part between the curated snapshot as it was built and a version that reconciles the late ERP event first, and watch a confident recommendation either survive or get caught.",
+    closingQuestion: "When an ERP event lands after the curated snapshot but before a rep acts on it, is there a defined staleness window that catches it, or does it depend on how long until the next scheduled rebuild?",
+    sampleDataNote: "Illustrative part number, stock counts, and timestamps, built for this demo only, grounded in the role's own stated reconciliation concerns, not real Proton customer data.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
