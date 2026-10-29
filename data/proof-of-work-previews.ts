@@ -2407,6 +2407,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Is the re-architecture moving the whole Spark pipeline event-driven, or just carving out a fast path for the readings that need same-day response?",
     sampleDataNote: "Illustrative reading and timing, built for this demo only, not real Virta patient data.",
   },
+  moderntreasury: {
+    slug: "moderntreasury",
+    demoKind: "registry",
+    registryKey: "moderntreasury-idempotency",
+    companyName: "Modern Treasury",
+    roleTitle: "Software Engineer - Infrastructure",
+    jobPostingUrl: "https://jobs.ashbyhq.com/moderntreasury/bac5287c-66a1-4954-ab55-1c4c545a8ede",
+    companyUrl: "https://www.moderntreasury.com/",
+    accentColor: "#818CF8",
+    accentDark: "#6366F1",
+    bgDark: "#0A0A1A",
+    city: "Remote / New York / San Francisco",
+    heroNote: "Modern Treasury's own journal is direct about this: a POST isn't idempotent by default, so a client retry after a timeout can double-execute a payment unless an idempotency key is attached. Their own write-up calls the key itself a last resort, with state machines, transactions, and mutexes doing the real internal work, and the key's stored-result window lasting 24 hours.",
+    whatTheyAsked: "The infrastructure engineering role is explicitly about scaling and standardizing the patterns underneath money movement, which is exactly where a missing or misapplied idempotency key turns a network timeout into a duplicate wire.",
+    demoExplainer: "Toggle a retried wire transfer request between no idempotency key and the same key reused, and watch the second request either execute again or return the original result untouched.",
+    closingQuestion: "For a client that retries with a new key by mistake after a timeout, is there a secondary dedupe check beyond the key itself, or does that failure mode rely entirely on the client getting the key right?",
+    sampleDataNote: "Illustrative wire amounts and timing, built for this demo only, not a real Modern Treasury transaction.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {

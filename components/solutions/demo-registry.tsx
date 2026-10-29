@@ -120,6 +120,7 @@ import MossAlphaBlendDemo from "./demos/moss-alpha-blend-demo";
 import OneChronosCombinatorialMatchDemo from "./demos/onechronos-combinatorial-match-demo";
 import BlueCargoClockSwitchDemo from "./demos/bluecargo-clock-switch-demo";
 import VirtaBatchVsEventDemo from "./demos/virta-batch-vs-event-demo";
+import ModernTreasuryIdempotencyDemo from "./demos/moderntreasury-idempotency-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -239,4 +240,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "onechronos-combinatorial-match": OneChronosCombinatorialMatchDemo,
   "bluecargo-clock-switch": BlueCargoClockSwitchDemo,
   "virta-batch-vs-event": VirtaBatchVsEventDemo,
+  "moderntreasury-idempotency": ModernTreasuryIdempotencyDemo,
 };
