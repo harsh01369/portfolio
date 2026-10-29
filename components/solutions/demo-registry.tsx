@@ -145,6 +145,7 @@ import AZXAbstentionDemo from "./demos/azx-abstention-demo";
 import GeovisualStalePassDemo from "./demos/geovisual-stale-pass-demo";
 import ZukiTalkConfirmLoopDemo from "./demos/zukitalk-confirm-loop-demo";
 import CrediflowStaleCovenantDemo from "./demos/crediflow-stale-covenant-demo";
+import CloseIndexLagDemo from "./demos/close-index-lag-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -289,4 +290,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "geovisual-stale-pass": GeovisualStalePassDemo,
   "zukitalk-confirm-loop": ZukiTalkConfirmLoopDemo,
   "crediflow-stale-covenant": CrediflowStaleCovenantDemo,
+  "close-index-lag": CloseIndexLagDemo,
 };

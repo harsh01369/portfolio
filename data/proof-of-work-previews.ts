@@ -2857,6 +2857,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "Does the platform surface how stale an accounting-system data point is before showing a covenant as compliant, or does a sync lag only become visible once someone goes looking for it?",
     sampleDataNote: "Illustrative covenant, balance, and sync lag, built for this demo only, grounded in Crediflow's own published integrations and monitoring claims, not a real Crediflow borrower account.",
   },
+  close: {
+    slug: "close",
+    demoKind: "registry",
+    registryKey: "close-index-lag",
+    companyName: "Close",
+    roleTitle: "Senior Software Engineer, Backend",
+    jobPostingUrl: "https://wellfound.com/jobs/3388717-senior-software-engineer-backend-usa-only-100-remote",
+    companyUrl: "https://close.com/",
+    accentColor: "#FB923C",
+    accentDark: "#C2410C",
+    bgDark: "#1A0D03",
+    city: "Remote (US)",
+    heroNote: "Close's own posting describes the CRM team operating on billions of Mongo documents with Elasticsearch underneath while making the CRM agent-ready through retrieval and MCP. Two sources of truth means an agent reading through search doesn't necessarily see what Mongo already knows the instant it changes.",
+    whatTheyAsked: "This engineer works on the team rebuilding the CRM's data model so it's agent-ready through retrieval, traversal, and action coverage, on a system where the index a retrieval-based agent reads from isn't the same system a human write lands on first.",
+    demoExplainer: "Toggle a lead's status right after a rep marks it Closed Lost between what an agent sees through Elasticsearch and what's already true in Mongo, and watch a follow-up action queue against a status that's already stale by a few seconds.",
+    closingQuestion: "For agent actions that read through the search index, is there a freshness check against Mongo before acting, or does the agent trust whatever the index currently returns?",
+    sampleDataNote: "Illustrative lead and timing, built for this demo only, grounded in the role's own stated Mongo/Elasticsearch architecture, not a real Close customer account.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
