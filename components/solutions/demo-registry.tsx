@@ -134,6 +134,7 @@ import LeadBankLedgerInsuranceDemo from "./demos/leadbank-ledger-insurance-demo"
 import ChipMotorsAsymmetricThresholdDemo from "./demos/chipmotors-asymmetric-threshold-demo";
 import AxolotisSilentGapDemo from "./demos/axolotis-silent-gap-demo";
 import BraidSilentContractDemo from "./demos/braid-silent-contract-demo";
+import DecisionlyActiveCardDemo from "./demos/decisionly-active-card-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -267,4 +268,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "chipmotors-asymmetric-threshold": ChipMotorsAsymmetricThresholdDemo,
   "axolotis-silent-gap": AxolotisSilentGapDemo,
   "braid-silent-contract": BraidSilentContractDemo,
+  "decisionly-active-card": DecisionlyActiveCardDemo,
 };

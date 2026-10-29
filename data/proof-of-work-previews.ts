@@ -2659,6 +2659,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "What's actually catching a change like this today, a human reviewer who knows this failure pattern, a specific test for rounding-boundary cases, or neither yet?",
     sampleDataNote: "Illustrative code diff and batch figures, built for this demo only, grounded in the role's own stated concern about AI-generated silent contract changes, not real Braid code or settlement data.",
   },
+  decisionly: {
+    slug: "decisionly",
+    demoKind: "registry",
+    registryKey: "decisionly-active-card",
+    companyName: "Decisionly",
+    roleTitle: "Software Engineer",
+    jobPostingUrl: "https://wellfound.com/jobs/4491956-software-engineer",
+    companyUrl: "https://www.decisionly.com/",
+    accentColor: "#F472B6",
+    accentDark: "#DB2777",
+    bgDark: "#1A0511",
+    city: "Remote (US)",
+    heroNote: "Decisionly's own public API schema requires card.is_active to be false before it will accept fraud evidence, a precondition that sits entirely outside the dispute case itself and depends on whether a separate card-blocking workflow actually finished first.",
+    whatTheyAsked: "An engineer here works across the stack on a greenfield dispute-automation product, integrating third-party APIs and acting as the technical point of contact for issuer customers whose evidence submissions live or die on exactly this kind of cross-system precondition.",
+    demoExplainer: "Toggle a $340 fraud case between card.is_active true and false, and watch the exact same dispute either stall on an invisible precondition or clear it, depending on whether a different workflow finished first.",
+    closingQuestion: "When card blocking and the fraud case get filed out of order, is that caught automatically today, or does the case just sit stalled until someone notices?",
+    sampleDataNote: "Illustrative case and dollar amount, built for this demo only, grounded in Decisionly's own published API schema, not a real issuer case.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
