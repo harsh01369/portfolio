@@ -126,6 +126,7 @@ import ZippyMHTitleStatusDemo from "./demos/zippymh-title-status-demo";
 import CodeForAmericaQuestionCollapseDemo from "./demos/codeforamerica-question-collapse-demo";
 import PomeloClaimsBlindspotDemo from "./demos/pomelo-claims-blindspot-demo";
 import CyberhavenLineageDemo from "./demos/cyberhaven-lineage-demo";
+import AuroraLidarSnapshotDemo from "./demos/aurora-lidar-snapshot-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -251,4 +252,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "codeforamerica-question-collapse": CodeForAmericaQuestionCollapseDemo,
   "pomelo-claims-blindspot": PomeloClaimsBlindspotDemo,
   "cyberhaven-lineage": CyberhavenLineageDemo,
+  "aurora-lidar-snapshot": AuroraLidarSnapshotDemo,
 };

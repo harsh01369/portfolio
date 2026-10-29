@@ -2515,6 +2515,24 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     closingQuestion: "For a chain with five or six hops instead of one, screenshot, OCR, retype, does lineage confidence degrade gracefully, or is there a hop count where it stops being traceable?",
     sampleDataNote: "Illustrative file and chain, built to match Cyberhaven's own published example, not a real customer incident.",
   },
+  aurora: {
+    slug: "aurora",
+    demoKind: "registry",
+    registryKey: "aurora-lidar-snapshot",
+    companyName: "Aurora Solar",
+    roleTitle: "Senior Software Engineer, Computation",
+    jobPostingUrl: "https://wellfound.com/jobs/4722672-senior-software-engineer-computation",
+    companyUrl: "https://aurorasolar.com/",
+    accentColor: "#FACC15",
+    accentDark: "#EAB308",
+    bgDark: "#1A1504",
+    city: "Remote (US / Canada)",
+    heroNote: "Aurora's own help docs say it plainly: LIDAR shading is a snapshot from whenever the survey flight happened, and they flag the exact failure case, a customer who had shade trees removed after that flight still sees them modeled as shade. The fix exists, turn LIDAR shading off for that obstruction, but nothing surfaces that the data is stale until someone goes looking.",
+    whatTheyAsked: "The computation role sits right on this problem, where a physically accurate model can still be wrong the moment the real world changes underneath it.",
+    demoExplainer: "Toggle the same rooftop between LIDAR shading as originally captured and a re-verified state after the trees came down, and watch the modeled production swing on a roof that never physically changed in between captures.",
+    closingQuestion: "Is there any automatic signal that a LIDAR capture is aging past a useful window for a given site, or is catching staleness still entirely on the person doing the design?",
+    sampleDataNote: "Illustrative address and capture date, built to match Aurora's own published help-center example, not a real customer project.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
