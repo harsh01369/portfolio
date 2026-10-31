@@ -6,6 +6,7 @@ import DataVideoPlayerDemo from "./data-video-player-demo";
 import DiscoveryJourneyDemo from "./discovery-journey-demo";
 import CareerPathDemo from "./career-path-demo";
 import { demoRegistry } from "./demo-registry";
+import ProofOfWorkVideo from "./proof-of-work-video";
 
 interface Props {
   preview: ProofOfWorkPreviewConfig;
@@ -117,7 +118,11 @@ export default function ProofOfWorkPageContent({ preview }: Props) {
         </div>
 
         <div className="order-1 md:order-2 md:sticky md:top-24 flex justify-center md:justify-end">
-          <DemoByKind preview={preview} />
+          {preview.videoUrl ? (
+            <ProofOfWorkVideo src={preview.videoUrl} accentColor={preview.accentColor} />
+          ) : (
+            <DemoByKind preview={preview} />
+          )}
         </div>
       </div>
 

@@ -70,6 +70,13 @@ interface BasePreview {
   // way a generic call invite doesn't. Falls back to the generic line when
   // not set, most demos don't have this yet.
   closingQuestion?: string;
+  // Optional: a rendered motion-graphics walkthrough (trailer-project/'s
+  // GSAP/Puppeteer pipeline), shown in place of the interactive demo when
+  // set. An explicit field rather than a convention-based path check, since
+  // Next can't stat public/ at request time and this lets a rendered file
+  // sit in public/ during QA before going live. Most entries won't have
+  // this yet -- falls back to DemoByKind when unset.
+  videoUrl?: string;
 }
 
 export interface DataVideoPreview extends BasePreview {
@@ -756,6 +763,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "astra",
     demoKind: "registry",
     registryKey: "astra-routing",
+    videoUrl: "/videos/proof-of-work/astra.mp4",
     companyName: "Astra",
     roleTitle: "Backend Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/4869788-backend-engineer",
@@ -1659,6 +1667,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "forward-networks",
     demoKind: "registry",
     registryKey: "forward-twin-freshness",
+    videoUrl: "/videos/proof-of-work/forward-networks.mp4",
     companyName: "Forward Networks",
     roleTitle: "Site Reliability Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/4470034-site-reliability-engineer",
@@ -1714,6 +1723,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "freeform",
     demoKind: "registry",
     registryKey: "freeform-part-replay",
+    videoUrl: "/videos/proof-of-work/freeform.mp4",
     companyName: "Freeform",
     roleTitle: "Senior Factory Infrastructure Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/4639917",
@@ -1979,6 +1989,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "netbird",
     demoKind: "registry",
     registryKey: "netbird-relay-fallback",
+    videoUrl: "/videos/proof-of-work/netbird.mp4",
     companyName: "NetBird",
     roleTitle: "Software Engineer (Backend)",
     jobPostingUrl: "https://jobs.ashbyhq.com/netbird/34a8f26f-7537-4321-b7b4-39146c68d7ad",
@@ -2321,6 +2332,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "lamar",
     demoKind: "registry",
     registryKey: "lamar-benefit-path",
+    videoUrl: "/videos/proof-of-work/lamar.mp4",
     companyName: "Lamar Health",
     roleTitle: "Product Engineer",
     jobPostingUrl: "https://www.ycombinator.com/companies/lamar-health/jobs/nkwwGKj-product-engineer",
@@ -2339,6 +2351,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "moss",
     demoKind: "registry",
     registryKey: "moss-alpha-blend",
+    videoUrl: "/videos/proof-of-work/moss.mp4",
     companyName: "Moss",
     roleTitle: "Founding Machine Learning Engineer",
     jobPostingUrl: "https://www.ycombinator.com/companies/moss/jobs/HmK9Iqk-machine-learning-engineer",
@@ -2357,6 +2370,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "onechronos",
     demoKind: "registry",
     registryKey: "onechronos-combinatorial-match",
+    videoUrl: "/videos/proof-of-work/onechronos.mp4",
     companyName: "OneChronos",
     roleTitle: "Engineering Manager",
     jobPostingUrl: "https://www.ycombinator.com/companies/onechronos/jobs/AWrXrPs-engineering-manager",
@@ -2447,6 +2461,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "zippymh",
     demoKind: "registry",
     registryKey: "zippymh-title-status",
+    videoUrl: "/videos/proof-of-work/zippymh.mp4",
     companyName: "Zippy MH",
     roleTitle: "Staff Software Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/3722091-staff-software-engineer",
@@ -2465,6 +2480,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "codeforamerica",
     demoKind: "registry",
     registryKey: "codeforamerica-question-collapse",
+    videoUrl: "/videos/proof-of-work/codeforamerica.mp4",
     companyName: "Code for America",
     roleTitle: "Staff Software Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/4692234-staff-software-engineer",
@@ -2483,6 +2499,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "pomelo",
     demoKind: "registry",
     registryKey: "pomelo-claims-blindspot",
+    videoUrl: "/videos/proof-of-work/pomelo.mp4",
     companyName: "Pomelo Care",
     roleTitle: "Staff Software Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/4536894-staff-software-engineer",
@@ -2627,6 +2644,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "axolotis",
     demoKind: "registry",
     registryKey: "axolotis-silent-gap",
+    videoUrl: "/videos/proof-of-work/axolotis.mp4",
     companyName: "Axolotis.ai",
     roleTitle: "Software Engineer, AI Product & Platform",
     jobPostingUrl: "https://wellfound.com/jobs/4855247-software-engineer-ai-product-platform",
@@ -2699,6 +2717,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     slug: "payos",
     demoKind: "registry",
     registryKey: "payos-no-identity",
+    videoUrl: "/videos/proof-of-work/payos.mp4",
     companyName: "PayOS",
     roleTitle: "Founding Engineer, Payments",
     jobPostingUrl: "https://wellfound.com/jobs/4634547-founding-engineer-payments",
