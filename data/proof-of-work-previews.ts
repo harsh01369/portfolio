@@ -1012,6 +1012,27 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     sampleDataNote: "5 illustrative saved questions/dashboards and a simulated version diff, not a real Metabase Cloud instance or customer content.",
   },
 
+  "metabase-annotations": {
+    slug: "metabase-annotations",
+    demoKind: "registry",
+    registryKey: "metabase-point-annotation",
+    companyName: "Metabase",
+    roleTitle: "Software Engineer (Frontend)",
+    jobPostingUrl: "https://jobs.lever.co/metabase/8f02d3fa-edf4-4433-a6d1-4f9e517ac8f9",
+    companyUrl: "https://www.metabase.com/",
+    accentColor: "#509EE3",
+    accentDark: "#2F7FC4",
+    bgDark: "#0A121C",
+    city: "Remote (Everywhere)",
+    heroNote:
+      "The posting itself names the gap: let people annotate specific points on a line chart, then figure out how that surfaces across dashboards. Metabase's shipped Events & Timelines gets partway there, but every event is typed in by hand and only marks a date on the x-axis, not the point it explains.",
+    whatTheyAsked:
+      "Augmenting visualizations: build the feature to allow annotations directly on specific data points in a line chart, and determine how to expose those when it makes sense across dashboards and the entire app.",
+    demoExplainer:
+      "The same weekly-signups line chart in two modes: Metabase's current Events & Timelines (one hand-typed event, pinned to a date, disconnected from the dip's actual value) versus query-based point annotation, where both anomalies are pulled live from a sample incidents table and rendered directly on the data point they explain.",
+    sampleDataNote: "16 weeks of illustrative signup data and 2 sample incident rows, not a real Metabase instance or customer content.",
+  },
+
   flox: {
     slug: "flox",
     demoKind: "registry",
