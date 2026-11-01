@@ -1031,6 +1031,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     demoExplainer:
       "The same weekly-signups line chart in two modes: Metabase's current Events & Timelines (one hand-typed event, pinned to a date, disconnected from the dip's actual value) versus query-based point annotation, where both anomalies are pulled live from a sample incidents table and rendered directly on the data point they explain.",
     sampleDataNote: "16 weeks of illustrative signup data and 2 sample incident rows, not a real Metabase instance or customer content.",
+    videoUrl: "/videos/proof-of-work/metabase-annotations.mp4",
   },
 
   flox: {
