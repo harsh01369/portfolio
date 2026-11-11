@@ -147,6 +147,14 @@ import ZukiTalkConfirmLoopDemo from "./demos/zukitalk-confirm-loop-demo";
 import CrediflowStaleCovenantDemo from "./demos/crediflow-stale-covenant-demo";
 import CloseIndexLagDemo from "./demos/close-index-lag-demo";
 import MetabasePointAnnotationDemo from "./demos/metabase-point-annotation-demo";
+import FormanceLedgerDriftDemo from "./demos/formance-ledger-drift-demo";
+import MiddeskStatusLagDemo from "./demos/middesk-status-lag-demo";
+import CandidAutofixAuditDemo from "./demos/candid-autofix-audit-demo";
+import AlvysContextRaceDemo from "./demos/alvys-context-race-demo";
+import AmplitudeIdentityMergeDemo from "./demos/amplitude-identity-merge-demo";
+import MedplumSubscriptionRetryDemo from "./demos/medplum-subscription-retry-demo";
+import NumeralNexusLagDemo from "./demos/numeral-nexus-lag-demo";
+import InsifyPolicyVersioningDemo from "./demos/insify-policy-versioning-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -293,4 +301,12 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "crediflow-stale-covenant": CrediflowStaleCovenantDemo,
   "close-index-lag": CloseIndexLagDemo,
   "metabase-point-annotation": MetabasePointAnnotationDemo,
+  "formance-ledger-drift": FormanceLedgerDriftDemo,
+  "middesk-status-lag": MiddeskStatusLagDemo,
+  "candid-autofix-audit": CandidAutofixAuditDemo,
+  "alvys-context-race": AlvysContextRaceDemo,
+  "amplitude-identity-merge": AmplitudeIdentityMergeDemo,
+  "medplum-subscription-retry": MedplumSubscriptionRetryDemo,
+  "numeral-nexus-lag": NumeralNexusLagDemo,
+  "insify-policy-versioning": InsifyPolicyVersioningDemo,
 };
