@@ -161,6 +161,10 @@ import ProcindexToleranceQueueDemo from "./demos/procindex-tolerance-queue-demo"
 import SlashFdicSpreadDemo from "./demos/slash-fdic-spread-demo";
 import AlaffiaEscalationPathDemo from "./demos/alaffia-escalation-path-demo";
 import StracAccuracyGapDemo from "./demos/strac-accuracy-gap-demo";
+import ClaimHealthPacketGapDemo from "./demos/claim-health-packet-gap-demo";
+import CurriCoverageGapDemo from "./demos/curri-coverage-gap-demo";
+import VoomaExtractionErrorDemo from "./demos/vooma-extraction-error-demo";
+import ClaimSortedTelematicsGapDemo from "./demos/claimsorted-telematics-gap-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -321,4 +325,8 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "slash-fdic-spread": SlashFdicSpreadDemo,
   "alaffia-escalation-path": AlaffiaEscalationPathDemo,
   "strac-accuracy-gap": StracAccuracyGapDemo,
+  "claim-health-packet-gap": ClaimHealthPacketGapDemo,
+  "curri-coverage-gap": CurriCoverageGapDemo,
+  "vooma-extraction-error": VoomaExtractionErrorDemo,
+  "claimsorted-telematics-gap": ClaimSortedTelematicsGapDemo,
 };
