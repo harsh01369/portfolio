@@ -165,6 +165,8 @@ import ClaimHealthPacketGapDemo from "./demos/claim-health-packet-gap-demo";
 import CurriCoverageGapDemo from "./demos/curri-coverage-gap-demo";
 import VoomaExtractionErrorDemo from "./demos/vooma-extraction-error-demo";
 import ClaimSortedTelematicsGapDemo from "./demos/claimsorted-telematics-gap-demo";
+import FurtherAIPracticallyGapDemo from "./demos/furtherai-practically-gap-demo";
+import StreamSourceLinkDemo from "./demos/stream-source-link-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -329,4 +331,6 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "curri-coverage-gap": CurriCoverageGapDemo,
   "vooma-extraction-error": VoomaExtractionErrorDemo,
   "claimsorted-telematics-gap": ClaimSortedTelematicsGapDemo,
+  "furtherai-practically-gap": FurtherAIPracticallyGapDemo,
+  "stream-source-link": StreamSourceLinkDemo,
 };
