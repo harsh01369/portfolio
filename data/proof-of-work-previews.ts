@@ -3213,6 +3213,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "claim-health": {
     slug: "claim-health",
+    videoUrl: "/videos/proof-of-work/claim-health.mp4",
     demoKind: "registry",
     registryKey: "claim-health-packet-gap",
     companyName: "Claim Health",
@@ -3230,6 +3231,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "curri": {
     slug: "curri",
+    videoUrl: "/videos/proof-of-work/curri.mp4",
     demoKind: "registry",
     registryKey: "curri-coverage-gap",
     companyName: "Curri",
@@ -3247,6 +3249,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "vooma": {
     slug: "vooma",
+    videoUrl: "/videos/proof-of-work/vooma.mp4",
     demoKind: "registry",
     registryKey: "vooma-extraction-error",
     companyName: "Vooma",
@@ -3264,6 +3267,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "claimsorted": {
     slug: "claimsorted",
+    videoUrl: "/videos/proof-of-work/claimsorted.mp4",
     demoKind: "registry",
     registryKey: "claimsorted-telematics-gap",
     companyName: "ClaimSorted",
@@ -3281,6 +3285,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "furtherai": {
     slug: "furtherai",
+    videoUrl: "/videos/proof-of-work/furtherai.mp4",
     demoKind: "registry",
     registryKey: "furtherai-practically-gap",
     companyName: "FurtherAI",
@@ -3298,6 +3303,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "stream": {
     slug: "stream",
+    videoUrl: "/videos/proof-of-work/stream.mp4",
     demoKind: "registry",
     registryKey: "stream-source-link",
     companyName: "Stream",
@@ -3315,6 +3321,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "retailready": {
     slug: "retailready",
+    videoUrl: "/videos/proof-of-work/retailready.mp4",
     demoKind: "registry",
     registryKey: "retailready-scope-gap",
     companyName: "RetailReady",
@@ -3332,6 +3339,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "promptless": {
     slug: "promptless",
+    videoUrl: "/videos/proof-of-work/promptless.mp4",
     demoKind: "registry",
     registryKey: "promptless-signal-gap",
     companyName: "Promptless",
