@@ -160,6 +160,7 @@ import SixtyfourTierConfidenceDemo from "./demos/sixtyfour-tier-confidence-demo"
 import ProcindexToleranceQueueDemo from "./demos/procindex-tolerance-queue-demo";
 import SlashFdicSpreadDemo from "./demos/slash-fdic-spread-demo";
 import AlaffiaEscalationPathDemo from "./demos/alaffia-escalation-path-demo";
+import StracAccuracyGapDemo from "./demos/strac-accuracy-gap-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -319,4 +320,5 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "procindex-tolerance-queue": ProcindexToleranceQueueDemo,
   "slash-fdic-spread": SlashFdicSpreadDemo,
   "alaffia-escalation-path": AlaffiaEscalationPathDemo,
+  "strac-accuracy-gap": StracAccuracyGapDemo,
 };

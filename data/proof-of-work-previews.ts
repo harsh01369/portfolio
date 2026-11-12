@@ -3188,6 +3188,23 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     demoExplainer: "Run the same AI review on a clear-cut claim and a complex one: watch one get approved automatically and the other get flagged for a clinician, the split the throughput number is actually built on.",
     sampleDataNote: "Illustrative claim types, built for this demo only, not real Alaffia Health customer data.",
   },
+  "strac": {
+    slug: "strac",
+    demoKind: "registry",
+    registryKey: "strac-accuracy-gap",
+    companyName: "Strac",
+    roleTitle: "Senior Full Stack Software Engineer",
+    jobPostingUrl: "https://www.ycombinator.com/companies/strac/jobs/LC8K6PL-senior-full-stack-software-engineer",
+    companyUrl: "https://www.strac.io/",
+    accentColor: "#F87171",
+    accentDark: "#DC2626",
+    bgDark: "#1A0505",
+    city: "Austin, TX / Seattle, WA / Remote (US)",
+    heroNote: "Strac's own site says it will \"Scan, Classify, and Action on PII, PHI, PCI, Source Code\" and calls its detection \"very accurate,\" but publishes no accuracy, precision, or recall figure anywhere, and never mentions false positives or false negatives.",
+    whatTheyAsked: "The role builds the full stack for Strac's DLP/DSPM platform, exactly where that unquantified accuracy claim meets a real sensitive-data pattern someone is trying to get past it.",
+    demoExplainer: "Scan the same SSN in standard format and spelled out to see which one a DLP pattern match actually catches, the gap an unpublished accuracy number can't be checked against.",
+    sampleDataNote: "Illustrative data pattern, built for this demo only, not a real Strac customer scan.",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
