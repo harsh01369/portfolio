@@ -155,6 +155,11 @@ import AmplitudeIdentityMergeDemo from "./demos/amplitude-identity-merge-demo";
 import MedplumSubscriptionRetryDemo from "./demos/medplum-subscription-retry-demo";
 import NumeralNexusLagDemo from "./demos/numeral-nexus-lag-demo";
 import InsifyPolicyVersioningDemo from "./demos/insify-policy-versioning-demo";
+import FinchSyncLagDemo from "./demos/finch-sync-lag-demo";
+import SixtyfourTierConfidenceDemo from "./demos/sixtyfour-tier-confidence-demo";
+import ProcindexToleranceQueueDemo from "./demos/procindex-tolerance-queue-demo";
+import SlashFdicSpreadDemo from "./demos/slash-fdic-spread-demo";
+import AlaffiaEscalationPathDemo from "./demos/alaffia-escalation-path-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -309,4 +314,9 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "medplum-subscription-retry": MedplumSubscriptionRetryDemo,
   "numeral-nexus-lag": NumeralNexusLagDemo,
   "insify-policy-versioning": InsifyPolicyVersioningDemo,
+  "finch-sync-lag": FinchSyncLagDemo,
+  "sixtyfour-tier-confidence": SixtyfourTierConfidenceDemo,
+  "procindex-tolerance-queue": ProcindexToleranceQueueDemo,
+  "slash-fdic-spread": SlashFdicSpreadDemo,
+  "alaffia-escalation-path": AlaffiaEscalationPathDemo,
 };
