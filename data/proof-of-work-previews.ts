@@ -258,6 +258,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   "virta-health": {
     slug: "virta-health",
+    videoUrl: "/videos/proof-of-work/virta-health.mp4",
     demoKind: "registry",
     registryKey: "virta-signal-chain",
     companyName: "Virta Health",
@@ -679,12 +680,13 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   "monte-carlo": {
     slug: "monte-carlo",
+    videoUrl: "/videos/proof-of-work/monte-carlo.mp4",
     demoKind: "registry",
     registryKey: "montecarlo-rootcause",
     companyName: "Monte Carlo",
     roleTitle: "Senior Backend Engineer",
-    jobPostingUrl: "https://wellfound.com/jobs/4787336-senior-backend-engineer",
-    companyUrl: "https://www.montecarlodata.com/",
+    jobPostingUrl: "https://jobs.ashbyhq.com/montecarlodata",
+    companyUrl: "https://www.montecarlo.ai/",
     accentColor: "#8B5CF6",
     accentDark: "#6940C9",
     bgDark: "#0F1420",
@@ -982,6 +984,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   "formcept-devops": {
     slug: "formcept-devops",
+    videoUrl: "/videos/proof-of-work/formcept-devops.mp4",
     demoKind: "registry",
     registryKey: "formcept-infra-ontology",
     companyName: "FORMCEPT",
@@ -1367,6 +1370,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   posh: {
     slug: "posh",
+    videoUrl: "/videos/proof-of-work/posh.mp4",
     demoKind: "registry",
     registryKey: "posh-drop-moment",
     companyName: "Posh",
@@ -1404,11 +1408,12 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   hazel: {
     slug: "hazel",
+    videoUrl: "/videos/proof-of-work/hazel.mp4",
     demoKind: "registry",
     registryKey: "hazel-blast-radius",
     companyName: "Hazel",
     roleTitle: "AI Engineer",
-    jobPostingUrl: "https://wellfound.com/jobs/4791909-ai-engineer",
+    jobPostingUrl: "https://zapply.jobs/jobs/f9d97b69-3048-4cfe-9687-74bb2afc35ea/",
     companyUrl: "https://www.fromhazel.ai/",
     accentColor: "#E8914A",
     accentDark: "#C97230",
@@ -1441,11 +1446,12 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   "coast-pay": {
     slug: "coast-pay",
+    videoUrl: "/videos/proof-of-work/coast-pay.mp4",
     demoKind: "registry",
     registryKey: "coast-ghost-fill",
     companyName: "Coast",
     roleTitle: "Full-Stack / Senior Full-Stack Engineer",
-    jobPostingUrl: "https://wellfound.com/jobs/1556383",
+    jobPostingUrl: "https://job-boards.greenhouse.io/coast/jobs/4243549004",
     companyUrl: "https://coastpay.com/",
     accentColor: "#3E7CB1",
     accentDark: "#2E5F8C",
@@ -1459,6 +1465,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   feathery: {
     slug: "feathery",
+    videoUrl: "/videos/proof-of-work/feathery.mp4",
     demoKind: "registry",
     registryKey: "feathery-provenance",
     companyName: "Feathery",
@@ -1477,12 +1484,13 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   "lindus-health": {
     slug: "lindus-health",
+    videoUrl: "/videos/proof-of-work/lindus-health.mp4",
     demoKind: "registry",
     registryKey: "lindus-citrus",
     companyName: "Lindus Health",
     roleTitle: "Full Stack Engineer",
     jobPostingUrl: "https://wellfound.com/jobs/4823703-full-stack-engineer",
-    companyUrl: "https://lindustx.com/",
+    companyUrl: "https://www.lindustx.com/",
     accentColor: "#3FAE64",
     accentDark: "#2E8A4C",
     bgDark: "#0A140D",
@@ -1757,11 +1765,12 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
 
   "swoop-technologies": {
     slug: "swoop-technologies",
+    videoUrl: "/videos/proof-of-work/swoop-technologies.mp4",
     demoKind: "registry",
     registryKey: "swoop-airgap-parity",
     companyName: "Swoop Technologies",
     roleTitle: "Infrastructure Engineer",
-    jobPostingUrl: "https://wellfound.com/jobs/4523559-infrastructure-engineer",
+    jobPostingUrl: "https://jobs.ashbyhq.com/swoop/27ceb6ec-26ef-4a86-ba2b-212f8ad7f8b2",
     companyUrl: "https://www.swooptech.com/",
     accentColor: "#8A94A6",
     accentDark: "#6B7585",
@@ -2150,6 +2159,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   namespace: {
     slug: "namespace",
+    videoUrl: "/videos/proof-of-work/namespace.mp4",
     demoKind: "registry",
     registryKey: "namespace-cache-locality",
     companyName: "Namespace",
@@ -2606,11 +2616,12 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   imply: {
     slug: "imply",
+    videoUrl: "/videos/proof-of-work/imply.mp4",
     demoKind: "registry",
     registryKey: "imply-compaction-lock",
     companyName: "Imply",
     roleTitle: "Senior Software Engineer",
-    jobPostingUrl: "https://wellfound.com/jobs/4572944-senior-software-engineer-remote",
+    jobPostingUrl: "https://jobs.khoslaventures.com/companies/imply/jobs/32626528-software-engineer",
     companyUrl: "https://imply.io/",
     accentColor: "#2DD4BF",
     accentDark: "#14B8A6",
