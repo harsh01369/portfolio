@@ -167,6 +167,8 @@ import VoomaExtractionErrorDemo from "./demos/vooma-extraction-error-demo";
 import ClaimSortedTelematicsGapDemo from "./demos/claimsorted-telematics-gap-demo";
 import FurtherAIPracticallyGapDemo from "./demos/furtherai-practically-gap-demo";
 import StreamSourceLinkDemo from "./demos/stream-source-link-demo";
+import RetailReadyScopeGapDemo from "./demos/retailready-scope-gap-demo";
+import PromptlessSignalGapDemo from "./demos/promptless-signal-gap-demo";
 
 export interface RegistryDemoProps {
   accentColor: string;
@@ -333,4 +335,6 @@ export const demoRegistry: Record<string, ComponentType<RegistryDemoProps>> = {
   "claimsorted-telematics-gap": ClaimSortedTelematicsGapDemo,
   "furtherai-practically-gap": FurtherAIPracticallyGapDemo,
   "stream-source-link": StreamSourceLinkDemo,
+  "retailready-scope-gap": RetailReadyScopeGapDemo,
+  "promptless-signal-gap": PromptlessSignalGapDemo,
 };
