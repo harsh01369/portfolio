@@ -3105,6 +3105,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "finch": {
     slug: "finch",
+    videoUrl: "/videos/proof-of-work/finch.mp4",
     demoKind: "registry",
     registryKey: "finch-sync-lag",
     companyName: "Finch",
@@ -3122,6 +3123,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "sixtyfour": {
     slug: "sixtyfour",
+    videoUrl: "/videos/proof-of-work/sixtyfour.mp4",
     demoKind: "registry",
     registryKey: "sixtyfour-tier-confidence",
     companyName: "Sixtyfour",
@@ -3139,6 +3141,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "procindex": {
     slug: "procindex",
+    videoUrl: "/videos/proof-of-work/procindex.mp4",
     demoKind: "registry",
     registryKey: "procindex-tolerance-queue",
     companyName: "ProcIndex",
@@ -3156,6 +3159,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "slash": {
     slug: "slash",
+    videoUrl: "/videos/proof-of-work/slash.mp4",
     demoKind: "registry",
     registryKey: "slash-fdic-spread",
     companyName: "Slash",
@@ -3173,6 +3177,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "alaffia-health": {
     slug: "alaffia-health",
+    videoUrl: "/videos/proof-of-work/alaffia-health.mp4",
     demoKind: "registry",
     registryKey: "alaffia-escalation-path",
     companyName: "Alaffia Health",
@@ -3190,6 +3195,7 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
   },
   "strac": {
     slug: "strac",
+    videoUrl: "/videos/proof-of-work/strac.mp4",
     demoKind: "registry",
     registryKey: "strac-accuracy-gap",
     companyName: "Strac",
