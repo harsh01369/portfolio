@@ -77,6 +77,8 @@ interface BasePreview {
   // sit in public/ during QA before going live. Most entries won't have
   // this yet -- falls back to DemoByKind when unset.
   videoUrl?: string;
+  // Optional: render only the centered video, no copy or links. Needs videoUrl.
+  videoOnly?: boolean;
 }
 
 export interface DataVideoPreview extends BasePreview {
@@ -3354,6 +3356,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     whatTheyAsked: "The role is a Founding Engineer on Promptless's doc-automation agent, exactly where that \"decides whether it warrants\" judgment call meets a PR with no explicit signal.",
     demoExplainer: "Open a PR with an explicit breaking-change note and one that silently changes a default to see where that judgment call catches a doc-relevant change, and where it could pass one through.",
     sampleDataNote: "Illustrative pull requests, built for this demo only, not a real Promptless customer repo.",
+  },
+  "the-philly-homes": {
+    slug: "the-philly-homes",
+    videoUrl: "/videos/proof-of-work/the-philly-homes.mp4",
+    videoOnly: true,
+    demoKind: "registry",
+    registryKey: "promptless-signal-gap",
+    companyName: "The Philly Homes",
+    roleTitle: "AI lead-sourcing engine",
+    jobPostingUrl: "",
+    companyUrl: "",
+    accentColor: "#14B8A6",
+    accentDark: "#0F766E",
+    bgDark: "#0b0f0e",
+    city: "Philadelphia, PA",
+    heroNote: "",
+    whatTheyAsked: "",
+    demoExplainer: "",
+    sampleDataNote: "",
   },
 };
 

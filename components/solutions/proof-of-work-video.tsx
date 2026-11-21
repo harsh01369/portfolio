@@ -5,13 +5,14 @@ import { useRef, useState } from "react";
 interface Props {
   src: string;
   accentColor: string;
+  large?: boolean;
 }
 
 // Same self-hosted <video> + play-button-overlay pattern as components/
 // showreel.tsx, sized to sit in the demo column (440px) instead of a
 // full-bleed hero block. Shown in place of the interactive demo once a
 // company's video has been rendered and its videoUrl set.
-export default function ProofOfWorkVideo({ src, accentColor }: Props) {
+export default function ProofOfWorkVideo({ src, accentColor, large }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -35,7 +36,7 @@ export default function ProofOfWorkVideo({ src, accentColor }: Props) {
 
   return (
     <div
-      className="group relative w-full max-w-[440px] overflow-hidden rounded-2xl border border-text-primary/10 bg-black shadow-[0_30px_70px_rgba(0,0,0,0.25)]"
+      className={`group relative w-full ${large ? "max-w-[1100px]" : "max-w-[440px]"} overflow-hidden rounded-2xl border border-text-primary/10 bg-black shadow-[0_30px_70px_rgba(0,0,0,0.25)]`}
       style={{ boxShadow: `0 30px 70px -20px ${accentColor}33` }}
     >
       <video
