@@ -3376,6 +3376,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     demoExplainer: "",
     sampleDataNote: "",
   },
+  "application-submission-walkthrough": {
+    slug: "application-submission-walkthrough",
+    videoUrl: "/videos/proof-of-work/application-submission-walkthrough.mp4",
+    videoOnly: true,
+    demoKind: "registry",
+    registryKey: "promptless-signal-gap",
+    companyName: "Discovered Labs",
+    roleTitle: "Full Stack Engineer",
+    jobPostingUrl: "",
+    companyUrl: "",
+    accentColor: "#14B8A6",
+    accentDark: "#0F766E",
+    bgDark: "#0b0f0e",
+    city: "Remote",
+    heroNote: "",
+    whatTheyAsked: "",
+    demoExplainer: "",
+    sampleDataNote: "",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
