@@ -3414,6 +3414,25 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     demoExplainer: "",
     sampleDataNote: "",
   },
+  secureintent: {
+    slug: "secureintent",
+    videoUrl: "/videos/proof-of-work/secureintent.mp4",
+    videoOnly: true,
+    demoKind: "registry",
+    registryKey: "promptless-signal-gap",
+    companyName: "SecureIntent",
+    roleTitle: "Walkthrough",
+    jobPostingUrl: "",
+    companyUrl: "",
+    accentColor: "#14B8A6",
+    accentDark: "#0F766E",
+    bgDark: "#0b0f0e",
+    city: "Remote",
+    heroNote: "",
+    whatTheyAsked: "",
+    demoExplainer: "",
+    sampleDataNote: "",
+  },
 };
 
 export function getProofOfWorkPreview(slug: string): ProofOfWorkPreviewConfig | undefined {
