@@ -70,7 +70,12 @@ export default function ProofOfWorkPageContent({ preview }: Props) {
   if (preview.videoOnly && preview.videoUrl) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#0b0f0e] px-4 py-10">
-        <ProofOfWorkVideo src={preview.videoUrl} accentColor={preview.accentColor} large />
+        <ProofOfWorkVideo
+          src={preview.videoUrl}
+          accentColor={preview.accentColor}
+          large
+          portrait={preview.videoPortrait}
+        />
       </div>
     );
   }

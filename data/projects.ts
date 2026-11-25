@@ -73,7 +73,7 @@ The core check deliberately asks a narrower question than most AI evaluation too
 
 Every result lands in one of three verdicts: proven, violated, or unproven, and unproven is the one that matters most. If a workflow changes underneath a check, or the evidence needed to confirm something was never retained, the honest answer is "this wasn't established," not a green tick earned by default. Contracts (short YAML files stating what a pipeline is actually for) are bound to a semantic hash of the workflow graph, so renaming a node or dragging it on the canvas changes nothing, but rewiring a connection or changing a request target invalidates every check bound to it, and those checks report unproven until a person re-confirms them rather than silently continuing to report green about a graph that no longer exists.
 
-Absence detection is the other half: a scheduled workflow that stops firing writes no execution and raises no error, so SilentGreen carries its own clock, discounting nights and weekends so an alarm doesn't fire at 2am on a Saturday for a workflow that only runs weekday business hours (and then get muted within a fortnight, which is worse than no alerting at all). The whole system is read-only against any connected platform, with no code path that can activate, deactivate, or modify anything, and produces a hash-chained, append-only evidence ledger that's deliberately plain JSON so it stays readable and diffable without the tool itself. 167 tests cover the core, and the test that gates every change isn't accuracy, it's the count of faithful answers wrongly flagged, which has to stay at zero.`,
+Absence detection is the other half: a scheduled workflow that stops firing writes no execution and raises no error, so SilentGreen carries its own clock, discounting nights and weekends so an alarm doesn't fire at 2am on a Saturday for a workflow that only runs weekday business hours (and then get muted within a fortnight, which is worse than no alerting at all). The whole system is read-only against any connected platform, with no code path that can activate, deactivate, or modify anything, and produces a hash-chained, append-only evidence ledger that's deliberately plain JSON so it stays readable and diffable without the tool itself. 288 tests cover the core, and the test that gates every change isn't accuracy, it's the count of faithful answers wrongly flagged, which has to stay at zero.`,
     technologies: [
       "TypeScript",
       "Node.js",
@@ -91,7 +91,7 @@ Absence detection is the other half: a scheduled workflow that stops firing writ
       "Hash-chained, append-only evidence ledger in plain diffable JSON",
       "Read-only against every connected platform, no path to modify anything",
       "Auto-unpacks LangSmith, Langfuse, and OpenTelemetry GenAI trace exports",
-      "167 tests, gated on zero false positives rather than raw accuracy",
+      "288 tests, gated on zero false positives rather than raw accuracy",
     ],
     image: "/images/projects/silentgreen/thumbnail.png",
     images: [

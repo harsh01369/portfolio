@@ -79,6 +79,8 @@ interface BasePreview {
   videoUrl?: string;
   // Optional: render only the centered video, no copy or links. Needs videoUrl.
   videoOnly?: boolean;
+  /** The film is 4:5 rather than 16:9. */
+  videoPortrait?: boolean;
 }
 
 export interface DataVideoPreview extends BasePreview {
@@ -3428,6 +3430,26 @@ export const proofOfWorkPreviews: Record<string, ProofOfWorkPreviewConfig> = {
     accentDark: "#0F766E",
     bgDark: "#0b0f0e",
     city: "Remote",
+    heroNote: "",
+    whatTheyAsked: "",
+    demoExplainer: "",
+    sampleDataNote: "",
+  },
+  temple: {
+    slug: "temple",
+    videoUrl: "/videos/proof-of-work/temple.mp4",
+    videoOnly: true,
+    videoPortrait: true,
+    demoKind: "registry",
+    registryKey: "promptless-signal-gap",
+    companyName: "Temple",
+    roleTitle: "Founding Engineer",
+    jobPostingUrl: "https://intemple.ai/careers/founding-engineer/",
+    companyUrl: "https://intemple.ai",
+    accentColor: "#2337C6",
+    accentDark: "#1A2899",
+    bgDark: "#0B0D26",
+    city: "Remote, UK",
     heroNote: "",
     whatTheyAsked: "",
     demoExplainer: "",
