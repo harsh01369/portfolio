@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 
-const BASE_URL = "https://harshkhetia.dev";
+const BASE_URL = "https://www.harshkhetia.dev";
+
+const DEFAULT_IMAGE = {
+  url: "/og-card.png",
+  width: 1200,
+  height: 630,
+  alt: "Harsh Khetia, full-stack and AI engineer",
+};
 
 export function createMetadata({
   title,
@@ -14,20 +21,26 @@ export function createMetadata({
   image?: string;
 }): Metadata {
   const url = `${BASE_URL}${path}`;
+  // A page's openGraph replaces the one in the root layout, so every field
+  // the preview card needs has to be set here too.
+  const card = image ? { url: image, width: 1200, height: 630, alt: title } : DEFAULT_IMAGE;
   return {
     title,
     description,
     openGraph: {
+      type: "website",
+      locale: "en_GB",
+      siteName: "Harsh Khetia",
       title,
       description,
       url,
-      ...(image && { images: [{ url: image, width: 1200, height: 630 }] }),
+      images: [card],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(image && { images: [image] }),
+      images: [card.url],
     },
     alternates: {
       canonical: url,
@@ -46,7 +59,7 @@ export const personJsonLd = {
   "@type": "Person",
   name: "Harsh Khetia",
   url: BASE_URL,
-  image: `${BASE_URL}/og-image.png`,
+  image: `${BASE_URL}/og-card.png`,
   jobTitle: "Full Stack Developer & AI Engineer",
   addressLocality: "Manchester",
   addressCountry: "GB",
@@ -97,7 +110,7 @@ export function blogPostJsonLd({
     dateModified: date,
     url: `${BASE_URL}/blog/${slug}`,
     mainEntityOfPage: `${BASE_URL}/blog/${slug}`,
-    image: `${BASE_URL}/og-image.png`,
+    image: `${BASE_URL}/og-card.png`,
     author: {
       "@type": "Person",
       name: "Harsh Khetia",

@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://harshkhetia.dev"),
+  metadataBase: new URL("https://www.harshkhetia.dev"),
   title: {
     default: "Harsh Khetia | Full Stack Developer",
     template: "%s | Harsh Khetia",
@@ -50,17 +50,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://harshkhetia.dev",
+    url: "https://www.harshkhetia.dev",
     siteName: "Harsh Khetia",
     title: "Harsh Khetia | Full Stack Developer",
     description:
       "Full Stack Developer and AI Engineer building scalable web applications, payment systems, and AI pipelines.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-card.png",
         width: 1200,
         height: 630,
-        alt: "Harsh Khetia, Full-Stack Developer & AI Engineer",
+        alt: "Harsh Khetia, full-stack and AI engineer",
       },
     ],
   },
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "Harsh Khetia | Full Stack Developer",
     description:
       "Full Stack Developer and AI Engineer building scalable web applications, payment systems, and AI pipelines.",
-    images: ["/og-image.png"],
+    images: ["/og-card.png"],
   },
   robots: {
     index: true,
